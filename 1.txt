@@ -1,3 +1,13 @@
+Domowy vscode poprawnie robi pasteAndIndent z .js do .txt
+"editor.detectIndentation": false,
+
+{
+   "key": "ctrl+shift+v",
+   "command": "pasteAndIndent.action",
+    "when": "editorTextFocus && !editorReadonly"
+ },
+
+
 https://docs.cypress.io/api/commands/clearcookies.html#Syntax
 https://docs.cypress.io/api/commands/clearlocalstorage.html#Syntax
 https://docs.cypress.io/api/commands/reload.html#Force-Reload

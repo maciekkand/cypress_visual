@@ -1,0 +1,2823 @@
+00) git tips
+01) github tips
+02) github setup i git
+03) cheatsheet
+
+05) krótki hello weird
+06) pełny hello weird
+
+07) .gitignore
+08) config
+09) alias
+
+11) status
+12) add
+13) ls-files
+14) ls-tree
+15) mv
+16) rm
+17) commit
+
+21) log
+22) log -S (szukanie komitów zawierających słowo)
+23) log pretty formats
+
+24) reflog
+25) reflog show
+
+26) show
+27) show  --name-only
+28) show: 'filename too long' (win7)
+
+30) treeish - referencing commits (HEAD^ ~)
+40) diff
+41) diff hash
+
+50) checkout plik
+51) checkout hasz nazwaPliku
+52) checkout -b nazwa HEAD..
+
+53) revert
+54) amend
+
+60) reset HEAD - unstaging files
+61) reset --soft
+62) reset  ( --mixed )
+63) reset --hard
+64) clean
+
+65) remote
+66) remote --track
+67) remote -push
+68) remote -fetch
+69) remote -merge
+
+80) push
+81) push  --force
+82) fetch
+83) pull
+
+90) branch
+91) checkout nazwa_brancha   ( branch switching )
+92) diff branch_1  branch_2
+93) branch --merged
+94) branch --move
+95) branch --delete
+96) branch odzysk
+
+100) merge
+101) merge --squash
+102) merge --abort
+103) mergetool
+
+110) rebase
+111) rebase -i  ( swapping commits order )
+112) rebase -i  reword
+113) rebase -i  edit
+114) rebase -i  squash  ( łączenie kilku komitów w 1 )
+115) rebase - naprawianie błędu
+
+120) stash save
+121) stash list
+122) stash show
+123) stash pop i apply
+124) stash drop i clear
+
+130) tag
+131) blame
+132) cherry-pick
+
+140) update-index
+141) clone
+142) alias
+
+300) github Pages
+301) github - hello weird
+302) github - fork & pull request
+303) github - git clone fatal ... timed out
+304) Jak wyrzucić pomyłkowo zakomitowany plik
+
+310) filtrowanie commitów po datach i stringach
+311) Jak sklonować repo do określonego commita
+312) jak skasować wypuszowane komity
+313) Kopiowanie repa na githubie
+
+314) Przełączanie się między repami (credentials)
+315) Co można wyczytać z hasha SHA1
+316) Aliasy basha
+317) Skrypty gita
+
+318) Format daty
+319) Zmiana daty commita
+320) Skrypt autor
+322) Skrypt redate
+323) Fejk repo (starego na nowe)
+324) Wielkość liter w nazwie katalogu
+
+330) Working while waiting for pending PR
+___________________________________________________________________________________________
+00) git tips
+
+    https://github.com/git-tips/tips
+
+    i) książka Pro Git online
+        https://git-scm.com/book/en/v2
+
+    a) instalacja gita
+        Przy instalacji, wybrać radio boksa 'Używaj narzędzi linuksa'
+        Zainstaluje ponad 100 komend linuksowych
+
+    b) interaktywny cheatsheet
+        ndpsoftware.com/git-cheatsheet.html#loc=index;
+
+    c) jak zapisać tymczasowo zmienione przez siebie pliki (stash), by ściągnąć zmiany w repo (git pull)
+
+        git add .
+        git stash save 'fix Michala'
+        git stash list                                  // stash@{0}: On 88946: fix Michala
+        git show stash@{0}                       // wylistuje wszystkie zmiany  ( diff )
+        git stash show -p > ../stasiek.txt   // save na plik na desktopie
+
+        git checkout master
+        git pull
+
+    c) git komenda --help
+        Otwiera strone helpa w chrumie
+
+    d) przewijanie historii wykonanych komend
+        ctrl + r
+      wybranie właściwej:
+        Tab
+
+    e) zrobiłem git pull'a, a potem commita i pusha
+        push został odrzucony pod wezwaniem 'nie można pushować zmerdżowanego'
+        Rozw:
+          Gerrit > klik w ticket > klik w Download w prawym górnym > skopiuj do schowka linię 'Checkout':
+                  git fetch ssh://lj68zq@plmaaa02.europe.delphiauto.net:29418/Ferrari_NIT_HMI_HTML5_Common refs/changes/16/34316/2 && git checkout FETCH_HEAD
+
+          Odpal ją w gicie  ( w dowolnym branchu )
+          git pull --rebase origin master
+          wprowadź zmiany
+          git status
+          git add .
+          git commit --amend
+          git push origin HEAD:refs/for/master      //  ( lj.. / start.. )
+
+    f) wylistowanie zmian w plikach przed komitem
+        git add .
+        git diff --cached
+
+        git diff --cached > ~/Desktop/83719_zmiany.txt   // zrzucenie na plik na desktopie
+
+___________________________________________________________________________________________
+01) github tips
+
+      https://laravel-news.com/github-tips-tricks
+      https://dev.to/_darrenburns/8-productivity-tips-for-github-44kn
+      https://www.freecodecamp.org/news/5-github-tips-for-new-coders-2f312689ffd5/
+      https://blog.newrelic.com/engineering/github-tips-tricks/
+
+      a) ?w=1 query param.
+          Removes whitespace-only diffs and only shows you lines with code changes
+
+      b) ?author=<github_username>
+          Commits by author
+          https://github.com/search/advanced?q=author%3Dpaulredmond
+          https://github.com/search?q=author%3Dpaulredmond
+          https://github.com/search?q=author%3Dpaulredmond&type=Code
+
+          https://github.com/search?q=author%3D503152573
+          https://github.com/search?q=author%3Adefunkt&type=Commits
+          https://github.com/search?q=author%3A503152573
+
+          503152573
+
+
+
+      c) linking to Files
+           When linking to a file on @github, press 'y' to transform the URL to a SHA-based reference.
+           That way, the link will remain stable even if the underlying file changes in future commits
+
+      d) line highlighting
+           For example, the hash #L23-L30 would select the line range of lines 23-30.
+           In tandem with the ‘y’ trick, the SHA-based URL will ensure your line number hash
+           is accurate in the future
+
+      e) cross-Linking Issues
+          You can cross-link issues and pull requests with the following format in comments,
+          pull request descriptions, etc.:
+            <organization>/<repo>#<issue_number>
+
+            Based on that pattern, here’s an example:
+              Depends on laravelnews/my-package#123
+
+       f) keyboard shortcuts
+            Shift + ?
+
+       g) task / todo lists
+            You can create task lists in pull requests with markdown like the following:
+
+              - [ ] Tests for validation
+              - [x] Tests for unauthorized access
+              - [ ] Add indexes to migrations
+
+            You can check the boxes too once you save the description of a pull request, and you can edit the description to add more todos and manage complete vs. incomplete.
+
+            As a bonus, they show up as todo’s on the master list of PRs:
+
+       h) cli
+            alias git=hub
+
+            In a GitHub project, you can browse the issues with the hub browse command:
+              hub browse -- issues
+
+              # or a specific project
+              hub browse laravel/framework issues
+              hub browse laravel/framework wiki
+              hub browse laravel/framework pulls
+
+              hub pull-request
+
+              # check for help info
+              hub pull-request --help
+
+
+___________________________________________________________________________________________
+02) github setup i git
+
+    1) https://github.com/maciekkand?tab=repositories
+    2) prawy górny '+' i klik baton 'New'
+    3) repo name: 'misiu'
+    4) click 'Create repo'
+    5) skopiuj linię z adresem repo: https://github.com/maciekkand/misiu.git
+
+    6) cd Desktop
+    7) git clone https://github.com/maciekkand/misiu.git
+    8) cd misiu
+
+    9) --global user.name login
+       --global user.email login@gazeta.pl
+
+   10) touch .gitignore
+
+   11) wklej do niego:
+        build
+        coverage
+        .DS_Store
+        .env
+        .eslintcache
+        node_modules
+        npm-debug.log*
+        package-lock.json
+        yarn-debug.log*
+        yarn-error.log*
+        .yarn-integrity
+
+   12) git init
+   13) echo 'Linia #1' >> test.js
+   14) git status
+   15) git add .
+   16) git commit -m "first commit"
+   17) git remote add origin https://github.com/nabu1/git1.git
+   18) git push -u origin master
+
+___________________________________________________________________________________________
+03) cheatsheet
+
+    gist.github.com/etoxin/1acb257550b1de60fe99
+
+    # search (regex)
+    git grep "regex"
+
+    # list all branches
+    git branch -a
+
+    # list remote branches
+    git branch -r
+
+    # checkout an branch on remote
+    # make sure you don't use `origin`
+    git fetch
+    git checkout branchName
+
+    # Create a new branch
+    # first create a branch
+    git checkout -b <branchName>
+
+    # Create a new branch from an existing branch
+    git checkout origin/branchName -b newBranchName
+
+    # Then push your new branch to the repo
+    git push origin <branchName>
+
+    # Create a branch from a commit
+    # AKA Recover a deleted branch
+    git checkout -b <branch> <sha>
+
+    # revert all changes in a branch. Removes staged and working directory changes.
+    git reset --hard
+
+    # Resets index to former commit; replace '56e05fced' with your commit code. You can use git log to get commit code
+    git reset 56e05fced
+
+    # revert a file to the most recent commit
+    git checkout HEAD -- /somePath/file.txt
+
+    # undo the last commit. Blow it out of the water.
+    git reset --hard HEAD~1
+
+    # undo your last commit but leave the files from that commit staged.
+    git reset --soft HEAD~1
+
+    # delete local (untracked) files
+    git clean -f
+
+    # If you want to also remove directories, run
+    git clean -f -d
+
+    # to discard changes in working directory
+    git checkout -- <file>
+
+    # Checkout a file from another branch
+    git checkout origin/branchName  -- fileName.txt
+
+    # clean a folder
+    git clean -fxd {dir_path}
+
+    # commit a folder/file without staging it.
+    git commit /folderToCommit -m 'commit msg'
+
+    # list all branches (remote & local/remote only)
+    git branch -a
+    git branch -r
+
+    # Find out all branches a commit is on
+    git branch --contains <commit>
+
+    # display log with Tree
+    git log --pretty=format:"%h - %cr (%an) %s" --graph
+
+    ## Merge Master into your local branch
+    git fetch
+    git merge origin/master
+
+    ## a shortcut to this is. They are both the same
+    git pull origin master
+
+    # or, if it's a busy repo.
+    git pull --rebase <remote name> <branch name>
+
+
+    # list conflicts
+    git diff --name-only --diff-filter=U
+    grep -lr '<<<<<<<' .
+
+    ## Diff a conflict
+    git mergetool -t opendiff
+
+    # pull a branch , merge if conflicted use remote.
+    git pull -s recursive -X theirs origin ra
+
+    # show log with merged files
+    git log -m -1 --name-only
+
+    # Show the changes between two branches.
+    git diff --name-status master..branchName > changelog.txt
+
+    ### Stashes
+
+    # save a stash
+    git stash save "My changes."
+
+    # list your saved stashes
+    git stash list
+
+    # apply a stash (Where stash@{1} is the stash you want to apply.)
+    git stash apply stash@{1}
+
+    # delete a branch on origin
+    git push origin --delete <branchName>
+
+    # delete a branch locally
+    git branch -d <branchName>
+
+    # remove local branches that are not on remote
+    git remote prune origin
+
+    # Get all commits from a branch. For a release log, changelog etc.
+    git cherry -v develop mybranch
+
+___________________________________________________________________________________________
+05) krótki hello weird
+
+     a) git init
+     b) stwórz plik .gitignore (patrz p.111)
+
+     c) git remote add origin https://github.com/maciekkand/gittest.git
+     d) git remote         // origin
+     e) git remote -v    //  origin  httpgits://bitbucket.org/nabu1312 (fetch)
+
+
+     f) tworzenie plików i edycja
+     g) git status
+     h) git add .
+     i) git commit -m 'Init: files and directories setup'
+
+     j) tworzenie plików i edycja
+     k) git status
+     l) git add .
+     m) git commit --amend -m 'Init: files and directories setup'
+     n) git push -u origin master
+
+     Jeśli chcesz mieć pojedyńcze komity, a dopiero przed pushem
+     je skleić w jeden, to oczywiście nie rób amenda, tylko komituj pojedyńcze a na koniec
+
+      git rebase -i [ hasz ostatniego komita po którym chcesz skleić (squash) resztę  komitów ]
+
+___________________________________________________________________________________________
+06) pełny hello weird
+
+    youtube.com/watch?v=mYjZtU1-u9Y&list=PL1F56EA413018EEE1
+
+    a) mkdir nowy && cd nowy
+
+    b) git init
+
+    c) stwórz plik .gitignore (patrz p.111)
+
+    d) touch japko.txt gruszka.txt && echo 'Japko 1' > japko1.txt
+
+    e) git status // pokazuje aktualny branch i stan trackowanych (uwzględnianych przez gita)  plików
+               // 'On branch master  Initial commit  Untracked files: gruszka.txt japko.txt'
+
+    f) git rm --cached japko.txt // wyjęcie pliku lub katalogu listy z trackowanych
+
+    g) git status  // Untracked files: japko.txt
+
+    h) git rm -f gruszka.txt  // wykasowanie pliku z filesystemu
+                              // Możliwe tylko, gdy gruszka byla widoczna dla gita,
+                              // tzn była dodana git add'em
+
+    i) ls                 // japko.txt
+
+    j) git status        // Untracked files: japko.txt
+
+    k) git add japko.txt
+
+    l)  git commit -m 'Initial commit' // master (root-commit) cc6e0eb] Initial commit
+                                       // 1 file changed, 1 insertion(+)
+                                       // create mode 100644 japko.txt
+
+    m) git log                         // commit cc6e0eb9260fc39f8d5c60ceae5f34a7b0bf2c78
+                                       // Author: nabu <nabu1312@gmail.com>
+                                       // Date:   Sun Sep 18 14:18:27 2016 +0200
+                                       // Initial commit
+
+   n) git status                         // On branch master, nothing to commit,working tree clean
+
+   o) touch gruszka.txt && echo 'Tu gruszka 1' > gruszka.txt
+
+   p) git status                      // Untracked files: gruszka.txt
+
+   q) git add .
+
+   r) git status                     // Changes to be committed: new file: gruszka.txt
+
+   s) echo 'Tu gruszka 2' >> gruszka.txt
+
+   t) git status                     // Changes not staged for commit:  modified:   gruszka.txt
+                                     // (use "git add <file>..." to update what will be committed)
+                                     // (use "git checkout -- <file>..." to discard changes in working directory)
+
+   u) git commit  -m 'gruszka.txt added'  // Commit nie zostanie wykonany, bo plik został
+                                          // zmodyfikowany,ale nie został ponownie dodany do staged,
+                                          // ewentualnie zmiany nie zostały wycofane git checkoutem
+                                          // Changes not staged for commit: modified: gruszka.txt
+                                          // no changes added to commit
+
+   v) git checkout gruszka.txt
+
+   w) cat gruszka.txt                 // Tu gruszka 1  -  czyli linia 'Tu gruszka 2' została usunięta
+
+   x) git status                      // nothing to commit, working tree clean
+
+   y) touch sliwka.txt && echo 'Tu sliwka 1' >> sliwka.txt
+
+   z) git diff                       // pusto - nie zwraca nic
+
+   aa) echo 'Tu sliwka 2' >> sliwka.txt
+
+   ab) git diff                      // pusto - nie zwraca nic
+
+   aa) echo 'Tu sliwka 2' >> sliwka.txt
+
+   ac) git add .
+
+   ad) echo 'Tu sliwka 3 - po git add' >> sliwka.txt
+
+   ae) git add .
+
+   af) git diff                      // --- a/sliwka.txt
+                                        +++ b/sliwka.txt
+                                        @@ -1,3 +1,4 @@
+                                         Tu sliwka 1
+                                         Tu sliwka 2
+                                        +Tu sliwka 3 - po git add
+
+   ag) git -am 'Komenda git -am'   // dodanie zmienionego pliku i komentarz do commita
+
+   ah) echo 'Tu sliwka 4 - po commicie' >> sliwka.txt
+
+   ai) git status -s          //   M sliwka.txt  - skrócone lista zmienionych plików
+
+___________________________________________________________________________________________ +  -
+07) .gitignore
+
+      UWAGA !
+        Komituj .gitignore'a
+        https://stackoverflow.com/questions/5765645/should-you-commit-gitignore-into-the-git-repos
+
+
+         a) Stwórz plik o ww nazwie w katalogu, w którym za pomocą git init, stworzyłeś katalog .git
+
+         b) git add .  - spowoduje dodanie wszystkiego, łącznie z podkatalogami, prócz tego co w .gitignore
+
+         c) git commit -a -m 'Dodanie plików'  // trzeba go dodać do projektu
+
+         Jeśli z dowolnego powodu chcemy by był zapisywany przez gita pusty katalog,
+         trzeba stworzyć w nim dowolnym nawet pusty plik,  bo inaczej git nie zapamięta pustego katalogu
+         Przyjęło się tworzyć go jako plik .gitkeep
+
+         Można używać podstawowych regexów:
+            a)   *   ?    [ aeiou ]    [ 0 - 9 ]
+
+            b) negacja:
+                *.php        ignoruj pliki .php ..
+                !index.php   // .. prócz index.php
+
+            c) assets/videos/         // ignoruj wszystkie pliki w katalogu z końcowym slaszem
+
+            d) node .gitignore
+
+                build
+                coverage
+                .DS_Store
+                .env
+                .eslintcache
+                node_modules
+                npm-debug.log*
+                package-lock.json
+                yarn-debug.log*
+                yarn-error.log*
+                .yarn-integrity
+
+            e) tylko 2 wybrane pliki
+
+                *.*
+                !a.js
+                !b.js
+___________________________________________________________________________________________
+08) config
+
+      git config  -l  lub --list  // listuje wszystkie ustawienia
+      git config  -e              // wyswietla ww w vim'ie
+
+      git config --global alias.l1 'log -1'
+
+      --global user.name login               // Potrzebne,  by commit zapisał kto go zrobił
+      --global user.email login@gazeta.pl   // jw
+      --global color.ui true               //  kolory w konsoli
+
+      Położenie pliku .gitconfig:
+        C: / Users / makn / .gitconfig
+      -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+      [user]
+        email = m.k@domena.com
+      [core]
+        editor = subl
+      [merge]
+        tool = winmerge
+
+___________________________________________________________________________________________
+09) alias
+
+        durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+
+        Aliasy często używanych poleceń można tworzyć z ręki, tzn wpisując komendę np:
+
+          git config --global alias.s status   // teraz, po wpisaniu 'git s' wykona się git status
+
+        .. albo edytując plik .gitconfig gdzie są zapisywane. Typowo w win7, leży on na:
+            C:\Users\makn\.gitconfig
+              ( ew włącz w win pokazywanie plików ukrytych, jeśli go nie widać )
+
+        Jeśli nie ma go tam, odpal poniższe, by zobaczyć położenie wszystkich plików konfig gita:
+          git config --list --show-origin | awk '{print $1}' | uniq
+
+        .. jednym z nich będzie:
+          file:C:/Users/makn/.gitconfig
+
+        Wpisz więc np te,przykładowe komendy:
+
+          [alias]
+            s = status
+            l = log
+            l1 = log -1'
+            l5 = log --oneline -5
+            a = add .
+
+        Albo wbij z ręki:
+
+          git config --global alias.l1 'log -1'
+
+          git config --global alias.cm 'checkout master'
+
+          git config --global alias.c- 'checkout -'
+
+          git config --global alias.a add .
+
+          git config --global alias.l1 'log --oneline -5'
+
+          pull  =  !git checkout master && git pull origin master && git checkout -  // dziwnie poszło,  sprawdzić !
+
+        Dodane ręcznie do pliku .gitconfig:
+          c = !git checkout $1 && git status
+
+// poniższe z tajemniczych przyczyn, nie chodzą
+        git config --global alias.pull 'pull origin master'
+        git config --global alias.push 'push origin HEAD:refs/for/master'
+
+        Odpalanie gitem poleceń linuksowych:
+
+            a) do pliku C:\Users\makn\.gitconfig,  na końcu sekcji [alias], wbij:
+                sayhello = !(echo "Hello World")   // ! znaczy 'użyj shella, nie gita'
+
+            b) i odpal:
+                 git sayhello  // Hello World
+
+             c) analogicznie, wbij poniższe:
+                 chs = !git checkout $1 && git status     // $1 jest pierwszym parametrem podanym po 'git chs'
+
+              d) git chs 89139B    // przejdzie do ww brancha  i odpali git status
+
+        Można też zrobić windowsowe bacze, dzięki czemu nie trzeba pisać prefiksu 'git'
+
+        UWAGA !!
+            Używając pretty formats w baczach windowsowych, eskejpuj znak '%' poprzedzając go jeszcze jednym. Innymi słowy, tam gdzie jest '%' ma być '%%'
+
+         Tak więc, oryginalna linia z pojedyńczymi '%',  w win baczu musi zawierać podwójne:
+
+        git log --pretty=format:"%%C(yellow)%%h%%Cred %%cd%%Creset %%s%%Cblue %%cn" --decorate --numstat --date=iso
+
+___________________________________________________________________________________________
+11) status
+
+    git status - pokazuje aktualny branch i stan trackowanych plików,
+    czyli uwzględnianych przez gita
+
+    On branch master
+    Initial commit
+
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+            gruszka.txt
+            japko.txt
+    nothing added to commit but untracked files present (use "git add" to track)
+___________________________________________________________________________________________
+12) add
+
+    Dodaj wszystkie pliki do śledzenia gitem:
+      git add .
+    ..lub git add japko.txt i git add gruszka.txt
+
+    I sprawdźmy stan gita przez git status:
+      new file:   gruszka.txt
+      new file:   japko.txt
+
+    git add .                       //  add all
+    git add *.*                   //  add all files from current directory
+    git add <list of files>
+    git add --all
+    git add *.txt               // Add all txt files in current directory
+    git add docs/*.txt     //  Add all txt files in docs directory
+    git add docs/           //  Add all files in docs directory
+    git add "*.txt"          //  Add all txt files in the whole project
+
+    git add -u             //  it will only stage the modified files.
+___________________________________________________________________________________________
+13) ls-files
+
+      git-scm.com/docs/git-ls-files
+
+      Wyświetla pliki dodane przez git add
+      Wszystkie pliki będące w working dir można sprawdzić przez: ls lub dir
+      Pozostałe, to pliki będące w working directory, ale niewidzialne dla gita bo nie dodane
+
+        --cached
+        --deleted
+        --ignored
+        --modified
+        --others      // untracked
+        --stage
+        --directory
+        --no-empty-directory
+        --unmerged
+        --killed  // files on the filesystem that need to be removed due to file/directory conflicts for checkout-index to succeed.
+___________________________________________________________________________________________
+14) ls-tree
+
+      Listowanie komitniętych plików
+
+      blob = file
+      tree = directory
+
+      git ls-tree HEAD      // files in the HEAD repo  ( w najnowszym komicie )
+      git ls-tree master   // jw
+
+        100644 blob dae3de59adc242bc1aa0f9156def5758a434b439    banan.txt
+        100644 blob 1eb8b86d535a9045d31ed3122a76f38503235199    gruszka.txt
+        100644 blob cf879ec2875922a06e44df29cd3e112abcd8cb31    japko.txt
+        100644 blob 63f33b035b83692fad3ffe93c0650263208e30bd    sliwka.txt
+
+      git ls-tree HEAD^  // 1 komit przed najnowszym  -  brak banan.txt
+
+        100644 blob 1eb8b86d535a9045d31ed3122a76f38503235199    gruszka.txt
+        100644 blob cf879ec2875922a06e44df29cd3e112abcd8cb31    japko.txt
+        100644 blob 63f33b035b83692fad3ffe93c0650263208e30bd    sliwka.txt
+
+      ls-tree kawałek_hasza pokaże zawartość tego directory
+      ( jeśli rekord miał parametr tree; tu nie ma takiego )
+
+      git ls-tree --full-tree -r HEAD   // listowanie wszystkich komitniętych plików włącznie w podkatalogami
+
+        100644 blob dae3de59adc242bc1aa0f9156def5758a434b439    banan.txt
+        100644 blob 63f33b035b83692fad3ffe93c0650263208e30bd    sliwka.txt
+        100644 blob 1eb8b86d535a9045d31ed3122a76f38503235199    /app/gruszka.txt
+        100644 blob cf879ec2875922a06e44df29cd3e112abcd8cb31    /app/japko.txt
+___________________________________________________________________________________________
+15) mv
+
+      Zmiana nazwy albo przesunięcie do innego katalogu:
+
+      git mv japko.txt jablko.txt
+      git status                                         // renamed:    japko.txt -> jablko.txt
+
+      mkdir dupa
+      git mv jablko.txt dupa/jablko.txt
+      git status                                        //  renamed:    japko.txt -> dupa/jablko.txt
+
+      Zmiany zrobionej z pominięciem komendy gitowej, git nie zauważy
+___________________________________________________________________________________________
+16)  rm
+
+      a) untracking - wyjęcie pliku lub katalogu listy z trackowanych
+          git rm --cached nazwa_pliku
+          git rm -r --cached nazwa_katalogu/               -  r = recursive - czyli z podkatalogamy
+
+      b) usunięcie z filesystemu
+            git rm -f nazwa_pliku
+___________________________________________________________________________________________
+17) commit
+
+      UWAGA !
+          Zawsze przed i po komicie, rób git status, by się upewnić, że jest czysto,
+          czyli że wszystkie pliki zostały zakomitowane  ( nie zostały jakieś pominiete )
+
+      Tylko pliki staged  ( komedą 'git add plik' lub 'git add .' ) będą komitnięte
+      Pliki untracked nie będą komitnięte
+
+          git commit  -m 'Opis commita'
+
+      lub w wersji skróconej, by nie pisać osobno git add .
+          git -am 'Opis commita'
+
+      git commit -am "Modify readme"   // add i commit w jednym
+
+___________________________________________________________________________________________
+21) log
+
+    https://git-scm.com/docs/pretty-formats
+
+    Lynda - Git Essential Training\09. Navigating the Commit Tree #3 Getting more from commit log
+
+     Log pełny i 2 skrócone  ( prawie takie same )
+     Gdy ilość linii przekracza ekran, wyświetlane jest okienko  ( END )
+     By wyjść z trybu wyświetlania, wciśnij Shit + zz  ( przytrzymaj shift i 2 razy z ),  lub 'q'
+
+     git log -5                         // 5 logów
+     git log --oneline             // <sha1> <title line>
+     git log --format=fuller
+     git log --format=full
+     git log --format=medium  ( domyslny )
+     git log --format=short
+     git log --format=email
+     git log --format=raw
+     git log --graph  (  przydaje sie przy branchach )
+     git log --decorate nazwe brancha  ( (HEAD -> master) )
+
+     git log --oneline --graph --all --decorate   // optymalna; zrobić aliasa
+
+     git log --grep = "temp"    // grepowanie po opisie komita
+
+     git log > znajdź hasza początku i końca przedziału i ..
+     git log ce5d4dc..ea03b95  --oneline        // ostatni hasz sie nie załapuje
+     git log ce5d4dc..  nazwaPliku                 //  od ce5d4dc do ostatniego komita dot pliku nazwaPliku
+
+     git log  -p  ( od patch )          // diff dla każdego z komitów
+     git log  -p  ce5d4dc gruszka.txt  //  diff dla pliku w komicie
+
+     git log --stat                   // skrócone wersje git loga; ile plików i ile linii zmienił dany komit
+     git log --summary
+     git log --stat --summary
+
+     git log -g  // dodaje info jak z refloga  (patrz 8b)
+
+            commit cbf77e868a44ec2310ccfae577275376072627c2
+            Reflog: HEAD@{0} (Anatol,  Banan <ab@gmail.com>)
+            Reflog message: checkout: moving from cbf77e868a44ec2310ccfae577275376072627c2 to ManageViewsRevert
+            Author: Anatol,  Banan <ab@gmail.com>
+            Date:   Thu Oct 13 15:43:49 2016 +0200
+
+            regression fix: CREATE VIEW didnt save name, got bad id and EDIT work bad (see point 34 of Issue Log)
+
+   git log mojBranch --not develop  // wyświetla tylko commity z mojego brancha
+                                   // tzn bez commitów parenta  ( tu: 'develop' )
+
+___________________________________________________________________________________________
+22) git log -S  ( szukanie komitów zawierających słowo )
+
+        https://stackoverflow.com/questions/5816134/finding-a-git-commit-that-introduced-a-string-in-any-branch
+
+        To find all commits that added or removed the fixed string whatever. The --all parameter means to start from every branch and --source means to show which of those branches led to finding that commit. It's often useful to add -p to show the patches that each of those commits would introduce as well.
+
+        git log -Gword   //  since 1.7.4, takes a regular expression
+
+        git log -S <whatever> --source --all
+
+        git log --all -p --reverse --source -S 'needle'
+
+        git log --oneline --reverse     chronologicznie rosnąco
+___________________________________________________________________________________________
+23) log pretty formats
+
+        git-scm.com/docs/pretty-formats
+
+        UWAGA !!
+            Używając pretty formats w baczach windowsowych, eskejpuj znak '%' poprzedzając go jeszcze jednym.
+            Innymi słowy, tam gdzie jest '%' ma być '%%'
+
+        Formatowanie wydruków git loga,  refloga i innych. Np:
+
+        git reflog --pretty='%cd %h %gd %gs'   // %cd  = commit date       Thu Oct 13 15:43:49 2016 +0200
+                                                  %h  =  krótki hash
+                                                  %gd = shortened reflog selector  HEAD@{0}
+                                                  %gs = reflog subject                     checkout: moving from cbf77e7c2 to ManageViewsRevert
+                                                  %an = autor
+                                                  %ad = data i czas
+
+      Thu Oct 13 15:43:49 2016 +0200 cbf77e8 HEAD@{0} checkout: moving from cbf77e7c2 to ManageViewsRevert
+
+      git log --pretty=format:"%%C(yellow)%%h%%Cred %%cd%%Creset %%s%%Cblue %%cn" --decorate --numstat --date=iso
+
+      git log --pretty=format:"%ai %h %s"  // 2019-02-05 01:33:53 +0100
+      git log --pretty=format:"%aD %h %s"  // Tue, 5 Feb 2019 11:03:48 +0100
+
+___________________________________________________________________________________________
+24) reflog
+
+      Pokazuje komity (tak jak git log) + checkouty i pulle
+      Pokazuje tylko zdarzenia lokalne, remotków  -  nie
+
+      UWAGA !
+        Jeśli narobiłeś głupot i nie chcesz by były widoczne w reflogu, to go wyczyść:
+          git reflog expire --expire=0 --all
+          git prune   // remove the - now-dangling - commits
+
+        git reflog  --date = iso   // dodaje date i godzine
+        git log -g  // dodaje info jak z refloga
+
+        git reflog
+
+            431fb8b HEAD@{1}: commit: done: "n/a" added when a field is empty
+            167a1b5 HEAD@{2}: pull origin ManageViewsRevert: Fast-forward
+            a33d6d0 HEAD@{3}: checkout: moving from ManageViews to ManageViewsRevert
+            ce68ca3 HEAD@{4}: clone: from https://gitlab.mobica.com/mams/projectList.git
+
+      git log -g // log + reflog  ( patrz 8b )
+
+      git reflog  --all   // pokazuje wszystkie branche i również stashe
+
+
+___________________________________________________________________________________________
+25) reflog show
+
+       Pokazuje pushe:
+        git reflog show origin/ManageViewsRevert
+
+       .. z datą i autorem:
+       git reflog show origin/ManageViewsRevert --date=iso
+___________________________________________________________________________________________
+26) show
+
+      Pokazuje pełne dane komita -  połaczenie git loga i diff'a
+      Pokazuje stan każdego (lub wybranego) pliku w danym komicie
+
+      git show HEAD
+      git show ea03b95
+
+      git show path.../plik.js
+
+      git show d55dfb:app/scripts/services/mock.js > mock_d55dfb.js  // stan pliku w komicie
+
+      git log --follow -p -- file
+      gitk  fileName - wyświetla historię zmian w pliku
+
+      SourceTree > zaznacz plik  ( klikając )  > dolna zakładka: File Status >
+                 > prawy klik na wybranym pliku i Open  ( otworzy plik w Sublimie )
+___________________________________________________________________________________________
+27) show --name-only
+
+      Wyświetla listę zmienionych plików:
+
+        git show --name-only  // dla ostatniego komita
+        git show --pretty="" --name-only eaa75d   // dla któregoś innego i bez headera komita
+
+            eventTracker/event-tracker-utag.service.js
+            eventTracker/event-types.js
+            dashboard-settings/dashboard.settings.controller.js
+___________________________________________________________________________________________
+28) show: 'filename too long'  ( win7 )
+
+        Poniższa komenda, wywalała się w win7 z błędem 'filename too long', mimo że jej całkowita długość  = 169 znaków,
+        była dużo niższa od standardowej max długości ścieżki w win = 260 znaków
+
+        git show 7a5108b00cd3a0695c512f0d355fcdd860afde82:cdbnext-app/src/main/resources/static/ui/app/dev/resources/assets/js/common/eventTracker/event-tracker-utag.service.js
+
+        Pomogło odpalenie:
+            git config --system core.longpaths true
+
+___________________________________________________________________________________________
+30) treeish - referencing commits  ( HEAD^ ~ )
+
+        Lynda - Git Essential Training \ 09. Navigating the Commit Tree  #1 Referencing commits
+
+            a) full SHA-1 hash  ( 40 chars )
+            b) short SHA-1 hash  ( 4+ chars; midsized projects = 8 - 10 chars )
+            c) HEAD pointer
+            d) branch / tag reference
+
+            e) ancestry:
+                i) parent  ( poprzedni ) commit:
+                        HEAD^   or  acf87504^    or   master^
+                        HEAD~1
+                            lub
+                        HEAD~     = 1 w doł od HEAD  ( konwencja zakłada że kolejny komit graficznie pojawia się u góry poprzedniego )
+
+                ii) grandparent  ( poprzednik poprzednika ) commit:
+                        HEAD^^   or  acf87504^^    or   master^^
+                        HEAD~2   = 2 w doł od HEAD
+
+               iii) great grandparent  ( poprzednik poprzednika poprzedniak) commit:
+                        HEAD^^^   or  acf87504^^^    or   master^^^
+                        HEAD~3   = 3 w doł od HEAD
+___________________________________________________________________________________________
+29) for-each-ref
+
+        stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+
+        Tworzenie raportów na podstawie wszystkich refów  ( sha commitów, pushów, pulli,  checkoutów, itd )
+
+        git for-each-ref --sort=-committerdate refs/heads/
+
+            7a9a94c3e250bc88e83683bcda0bee98084b9ec8 commit refs/heads/ManageViewsRevert
+            7c0f148407dcf2b4d2dcb2d2790afd73ce7dcc6a commit refs/heads/ManageViews
+            f80f595f9b9ad7aa642bbd212d07faa40eee7b77 commit refs/heads/manageViews2
+
+       git for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:sh
+       ort)'
+
+           2016-10-17 Banan Anatol ManageViewsRevert
+           2016-10-05 Banan Anatol ManageViews
+           2016-10-04 Banan Anatol manageViews2
+           2016-10-03 mams master
+           2016-10-03 Banan Anatol dropdownFiltersOn
+           2016-09-30 Banan Anatol modal
+           2016-09-27 mams myProfile
+           2016-09-26 mams projectList
+           2016-09-26 Banan Anatol grids
+           2016-09-16 Banan Anatol inputComponents
+
+
+       // Kolorowana lista najnowszych komitów w każdym branchu
+
+       git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:res
+      et) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(commi
+      tterdate:iso)%(color:reset))'
+
+          inputComponents - 31821ea - User name is displayed on dashboard_view - Banan Anatol(2016-09-16 15:37:04 +0200)
+          grids - 3474ced - Real data based on .csv mock included in pro view - Banan Anatol(2016-09-26 11:46:47 +0200)
+          projectList - a79c824 - Adding views, filters decorator(in progress), .. - mams (2016-09-26 17:30:41 +0200)
+          myProfile - 526267e - remove clearing cache - mams (2016-09-27 12:37:07 +0200)
+          modal - 19e313b - Merge branch 'modal' of https://gitlab.mobica.com/mams/projectList into modal - Banan Anatol(2016-09-30 11:24:14 +0200)
+          dropdownFiltersOn - d4eeb7c - done: sorting by single column  - Banan Anatol(2016-10-03 12:43:20 +0200)
+          master - b02e2c2 - update - mams (2016-10-03 14:29:52 +0200)
+          manageViews2 - f80f595 - wip: editing view - Banan Anatol(2016-10-04 16:07:59 +0200)
+          ManageViews - 7c0f148 - fix: DEL button, adding confirm alert, adding "Edit View viewName" header - Banan Anatol(2016-10-05 10:27:29 +0200)
+        * ManageViewsRevert - 7a9a94c - fix: click on EDIT takes view, based on its ID (rather than its name) - Banan Anatol(2016-10-17 16:01:58 +0200)
+
+___________________________________________________________________________________________
+40) diff
+
+    Lynda - Git Essential Training \ 05. Making Changes to Files \ 3. Viewing changes i 4. Viewing staged changes
+
+    Działa tylko na pliku wcześniej dodanym przez git add, a dopiero potem zmodyfikowaym
+    Innymi słowy, git diff pokazuje różnicę między repository  ( plikiem z commita ),
+    a tym, z working directory
+
+    git diff                    // różnice między repo  ( plik po komicie ) a working dir  ( przed dodaniem do stage )
+    git diff --staged    // różnice między repo  ( plik po komicie ) a staged ( po dodaniu do stage przez git add plik)
+                               // wcześniej zwany --cached
+
+    git diff                    // różnice we wszystkich plikach
+    git diff banan.txt   //  różnice w wybranym pliku
+
+                            --- a/banan.txt         3 minusy oznaczają wersję z repository
+                            +++ b/banan.txt     3 plusy - wersja w working directory
+                            @@ -1 +1,2 @@
+                             Banan nr 1
+                            +Banan nr 2
+
+    git diff hash_Starszego hash_Nowszego  > plik  // Wyrzuci zmiany między commitami  ( hashe najłatweij wziąć z refloga )
+
+    git diff hash_Starszego hash_Nowszego wybranyPlik > plik  // Wyrzuci zmiany między commitami dot wybranego pliku
+
+    git diff --color-words    // zamiast całej linii,  koloruje tylko zmienione stringi
+
+    git diff --word-diff       // do ww dodaje nawiasy  ( kwadratowy do czerwonego i klamrowy do zielonego )
+
+    git diff  --stat   // statystyka  - ile linii zmieniło się w którym pliku
+
+___________________________________________________________________________________________
+41) diff hash
+
+        git diff hasz                     //  zmiany od komita oznaczonego haszem do aktualnego  ( HEAD'a )
+        git diff hasz nazwaPliku  // jw na pliku
+        git diff hasz1..hasz2        //  hasz1 do hasz2
+        git diff hasz1..hasz2  nazwaPliku   //  hasz1 do hasz2  na pliku
+        git diff hasz1..HEAD^^                 // i inne treeishe  - patrz 8d)
+
+        git diff --ignore-space-change    // ignoruje jeśli ktoś zmienił n spacji na m spacji
+        git diff -b                                     //  jw
+        git diff --ignore-all-space            //  ignoruje jakiekolwiek zmiany ze spacjami
+        git diff -w                                     //  jw
+___________________________________________________________________________________________
+50) checkout plik
+
+    Lynda -  Git Essential Training \ 07. Undoing Changes #1
+
+    Odzysk pliku z ostatniego commita
+
+    Przywraca plik z ostatniego komita, ale nie wyciąga go z komita i nie wkłada do staging
+    Wywala plik zmodyfikowany w working dir, od chwili ostatniego komita
+    2 myślniki są dobrą praktyką, by podkreślić że nie chodzi nam o inny branch
+
+    git checkout --japko.txt
+    git status                          // staging pusty
+
+    git checkout .                  // wywalenie wszystkich zmian ze wszystkich plików
+___________________________________________________________________________________________
+51) checkout hasz nazwaPliku
+
+        odzysk pliku z dowolnego commit
+
+        Lynda -  Git Essential Training \ 07. Undoing Changes #4
+
+        Jeśli chcesz odzyskać plik sprzed paru  ( 2+ )  komitów, znajdź jego hasza:
+
+        git reflog
+            43514ee HEAD@{0}: commit: Japko 3                // 'Japko 1  Japko 2  Japko 3'
+            07df391 HEAD@{1}: commit: Japko 2               // 'Japko 1  Japko 2'
+            4adbf8d HEAD@{2}: commit (initial): Japko 1  // 'Japko 1'
+
+        git checkout 07df391 japko.txt  // odzyska plik z 'Japko 1  Japko 2'
+        git checkout 4adbf8d japko.txt  // odzyska plik z 'Japko 1'
+
+        git status    //  modified:   japko.txt  - umieszcza go w staging
+
+        Teraz:
+            git reset HEAD japko.txt   // cofa go do working dir
+            git status                          // pokazuje że w staging jest pusto
+
+         i mozna go edytować
+
+        Robiąc potem komita, w opisie daj 'It reverts commit  07df391 '
+___________________________________________________________________________________________
+52) checkout -b nazwa HEAD..
+
+        Zrobienie nowej gałęzi ze stanem 2 commity temu
+
+        Bo się połapałem, że na masterze wszystko ok, a na slavie, baton 'OK' przestał działać.
+        Chce sie wiec cofnąć parę commitów wstecz, ale nie tracić 2 ostatnich
+
+        git checkout -b wip HEAD~2
+
+        A potem w SourceTree:
+
+            a) schodzenie kolejno w dół po commitach
+            b) prawy klik >  Reset current branch to this commit > Hard - discard all working copy changes
+            c) Chrome > cache clear
+            d) odpalenie apki i jeśli nie działa, zejście niżej, do starszej szukając kiedy zadziała
+
+___________________________________________________________________________________________
+53) revert
+
+      Lynda -  Git Essential Training \ 07. Undoing Changes #5
+
+      Skasowanie ostatniego komita  ( chociaż ślad po nim w logu pozostanie )
+      Odwrócone zostaną wszystkie zmiany w plikach  ( prócz zmiany nazwy lub położenia plików )
+
+      Stan po serii komitów do pliku 'z':
+
+          $ git log --oneline
+              1410140 adding 3    // ostatni komit
+              b4e0bba adding 2
+              2bf9e0b adding 1
+
+          $ cat z
+              adding 1
+              adding 2
+              adding 3             // ostatnia zmiana pliku
+
+          $ git revert 1410140    // hasz ostatniego komita
+
+          $ git log --oneline
+               32017b7 Revert "adding 3"   // dodanie komita ..
+               1410140 adding 3
+               b4e0bba adding 2
+               2bf9e0b adding 1
+
+          $ cat z
+               adding 1
+               adding 2        // .. kasującego linijkę:  'adding 3'
+
+________________________________________________________________________________________
+54)  amend
+
+       Nadpisanie błędnego komita
+       Warunek: musi to być ostatni komit
+
+       W praktyce często każdy komit robi się z amendem, by puszować tylko 1 komit
+       Dzięki temu, podczas code review patrzy sie tylko na 1 komit
+
+       Wadą jest to że tracę wszystkie poprzednie komity, bo zawsze będę miał tylko ostatni
+
+       Rozw: robić komity _bez_ amenda, a na chwile przed pushem, robię squasha, który składa ileś komitów w 1
+
+          Robi się to przez git rebase -i  ( patrz 111 )
+
+       a) Komitnąłeś zmiany i zaraz zdałeś sobie sprawę, że zapomniałeś dodać
+       do poczekalni ( staging area )  pliku, który chciałeś oryginalnie umieścić w wykonanej rewizji.
+
+         git  commit  -m  'initial  commit'                              // pomyłkowy komit
+         git  add  forgotten_file                                             //  dodanie przeoczonego pliku
+         git  commit --amend  -m 'dodanie forgotten_file'   //   powtórny, korygujący commit
+
+        b) Komitując,  dodałeś zły albo niepełny opis. Możesz go uzupełnić
+                git  commit --amend   -m 'KOREKTA OPISU -  dodanie forgotten_file'   //   powtórny, korygujący commit
+
+         W git logu widać będzie tylko drugi z ww komitów, ale git reflog pokaże oba
+___________________________________________________________________________________________
+60) reset HEAD - unstaging files
+
+        Lynda -  Git Essential Training \ 07. Undoing Changes #2 Unstaging files
+
+        Wycofanie pliku ze staging area do working dir
+        Bo został z rozpędu dodany hurtem razem z innymi przez add . a nie powinien
+        albo nie zawiera tego co powinien
+        Po wycofaniu można ten brak uzupełnić, ponownie dodać i komitnąć
+
+        Jeśli nie wymieni się nazwy pliku,  wszystkie zostaną wyciągnięte ze staging do working
+        Jeśli po dodaniu do staging w pliku była zmiana, wyciągnięcie go do working dir,
+        nie nadpisze jej. Po prostu plik zostanie wykasowany ze staging a pozostanie ten z working
+
+        git reset HEAD japko.txt
+________________________________________________________________________________________
+61)  reset --soft
+
+      Undo komita. Znika zapis komita w git logu  ( w reflogu jest nadal )
+      Pliki wracają na staging, ale nie ulegają żadnej zmianie
+      To samo co git commit amend
+
+      git reset --soft HEAD^      //  undo 1 commit before HEAD (newest version)
+      git reset --soft df4532      //  undo commita o haszu df..
+
+      Aby wrócić po ww resetach do stanu wyjściowego, ustal do którego HEADa:
+        git reflog
+      .. a potem:
+      git reset HEAD@{4}     // jeśli wykonałeś wcześniej kilka resetów
+
+      Przykład:
+
+          a) touch z && git init && git add .
+          b) echo 'adding 1' >> z           // 1
+          c) git commit  -am 'added 1'
+          d) echo 'adding 2' >> z           // 1  2
+          e) git commit  -am 'added 2'
+          f) git log                                 //  komit 1    komit 2
+          g) git status                           // pusto - nie ma pliku z
+          h) git reset  --soft HEAD~1   // zejdź 1 komit w dół
+          i) git log                                 //  komit 1
+          j) git status                            // z
+          k) cat z                                 //  1  2  - nic nie jest stracone, tylko wycofane z komita
+
+________________________________________________________________________________________
+62) reset  ( --mixed )
+
+        sufix  --mixed mozna pominąć,  bo to domyślna metoda polecenia reset
+
+        Undo komita. Znika zapis komita w git logu  ( w reflogu jest nadal )
+        Pliki wracają do working dir, ale nie ulegają żadnej zmianie
+
+        Jedyna różnica między reset --soft i --mixed,  to taka, że przy:
+             --soft  -  plik pojawia sie w staging
+             --mixed  -  plik pojawia sie w working  ( i by go komitnąć, trzeba najprzód go dodać do staging przez 'git add .' )
+
+        git reset --soft HEAD^      //  undo 1 commit before HEAD (newest version)
+        git reset --soft df4532      //  undo commita o haszu df..
+________________________________________________________________________________________
+63)  reset --hard
+
+      CodeSchool -  Git 2: 6. Reflog
+
+     Przestawiany jest wskaźnik HEAD,  nic nie jest tracone
+
+       git reset --hard HEAD^      //  undo 1 commit before HEAD (newest version)
+       git reset --hard df4532      //  undo commita o haszu df..
+       git reset --hard HEAD@{4}      //  ustawienie HEADA{4}  ( z refloga )
+
+       Przykład:
+
+           a)  touch z && git init && git add .
+           b)  echo 'adding 1' >> z           // 1
+           c)  git commit  -am 'added 1'
+           d)  echo 'adding 2' >> z           // 1  2
+           e)  git commit  -am 'added 2'
+           f)  git log                                 //  komit 1    komit 2
+           g)  git status                           // pusto - nie ma pliku z
+           h)  git reset  --soft HEAD~1   // zejdź 1 komit w dół
+           i)  git log                                 //  komit 1
+           j)  git status                            // z
+           k)  cat z                                 //  1  - czyli '2' poszła w chmury tak jak i komit w git logu
+
+       W ten sam sposób można odzyskać do skasowanego komita
+       A raczej wrócić, bo komit nie jest fizycznie usuwany,
+       a zmieniany jest tylko wskaźnik HEAD, pokazujący najnowszego obecnie komita
+
+       git reflog              // pokaże hasza komita do którego chcemy wrócić,
+       git reset --hard hasz  //  spowoduje ustawienie HEAD'a na niby-skasowanym komicie
+       git log                //  pokaże na górze odzyskanego komita
+________________________________________________________________________________________
+64) clean
+
+      Lynda -  Git Essential Training \ 07. Undoing Changes #10 Removing untracked files
+
+      Fizycznie usuwa pliki które nie mają być gitowane
+      Ale tylko z bieżącego katalogu
+
+        git clean -n    // pokazuje które wyrzuci
+        git clean -f    // fizycznie wyrzuca
+
+        Przy katalogu:
+          git clean -d -f jsdoc/
+
+________________________________________________________________________________________
+65)  remote
+
+        Lynda - Git Essential Training\13. Remotes  #1 - 4
+
+        git fetch            // zrób go najpierw, by pokazał stworzone ostatnio na remote, branche
+        git branch  -r  //  teraz widzisz ich aktualną liste  ( lub  -a to pokaże lokalne i remotowe)
+
+        git remote add  <alias> <url>
+
+        git remote add origin https://bitbucket.org/nabu1312
+
+        git remote         // origin
+
+        git remote -v    //  origin  httpgits://bitbucket.org/nabu1312 (fetch)
+                         //   origin  https://bitbucket.org/nabu1312 (push)
+
+        cat .git/config   //  [remote "origin"]
+                                            url = https://bitbucket.org/nabu1312/git1
+                                            fetch = +refs/heads/*:refs/remotes/ origin/*
+                                       [branch "master"]
+                                            remote = origin
+
+       cat .git/refs/remotes/origin/master   // hasz komita brancha master, leżącego na remote repo
+                                                                  // 354e3ccd1759a565c90b6ac824dbc69dae1cac99
+
+       git branch            // master
+       git branch  -r      //  origin / master   ( remote )
+
+       git branch  -a      //  master                ( all )
+                                  //   origin / master
+___________________________________________________________________________________________
+66) remote --track
+
+        Lynda - Git Essential Training\13. Remotes  #6 Tracking remote branches
+
+        cat .git/config  // [remote "origin"]
+                              url = https://gitlab.mobica.com/mams/projectList.git
+                              fetch = +refs/heads/*:refs/remotes/origin/*
+                            [branch "master"]
+                              remote = origin
+                              merge = refs/heads/master
+                            [branch "grids"]
+                              remote = origin
+                              merge = refs/heads/grids
+
+        git branch --track myProfile origin/myProfile  // ustawienie myProfile jako brancha tra
+                                                       // to samo co opcja  -u przy push
+        cat .git/config  //  ( ... )
+                            [branch "myProfile"]
+                                remote = origin
+                                merge = refs/heads/myProfile
+
+        git commit -am 'Temp commit to switch branch to myProfile'
+
+        git checkout myProfile
+
+        git branch    //  all
+                          grids
+                          inputComponents
+                          master
+                          * myProfile
+___________________________________________________________________________________________
+67) remote -push
+
+        Lynda - Git Essential Training\13. Remotes  #7 Pushing changes to remote repo
+
+        git push origin master   // wysyła komita na origin  ( remote repo )
+        lub
+        git push     // jeśli jest to tracking branch  ( działa też przy fetch - oszczędza pisania )
+________________________________ ___________________________________________________________
+68) remote -fetch
+
+        Lynda - Git Essential Training\13. Remotes  #7 Pushing changes to remote repo
+
+        Aby obejrzeć aktualne logi na remote repo  ( origin ), trzeba uaktualnić ich lokalną wersję
+        Do tego właśnie służy fetch
+
+        Synchronizuje lokalne 'origin/master'  ze zdalnym repo  ( całym - z wszystkimi branchami )
+        Pobiera branche i tagi  ( razem zwane 'refs' ),
+        ale lokalny 'master' - w ogóle się nie zmienia
+
+        Fetchu niczego nie zmienia,  nie jest w żaden sposób szkodliwy
+        Best practises:
+            a) fetch nim zaczniesz prace
+            b) fetch przed każdym pushem
+            c) fetchuj często
+
+        git log  --oneline  -3 origin/master
+        git log  --oneline  -3 master             // w lokalnej master może być mniej niż w ww,  dlatego ..
+
+        git fetch   // jeśli repo jest trackowane,  albo jeśli nie jest trackowane to pełna wersja
+
+___________________________________________________________________________________________
+69) remote -merge
+
+        Lynda - Git Essential Training\13. Remotes  #9 Merging in, fetched changes
+
+        Skopiowanie zmian ściągniętych z remote repo fetchem, z  ( lokalnym branchem ) 'master'
+        Dlatego najpierw wykonaj git fetch  ( poprzedzając go komitem lub stashem )
+
+        git diff origin/master..master   // pokazuje diffy między remote repo a lokalnym
+
+        git merge origin/master         // dodać 'origin' bo chodzi o zdalne repo
+
+        git pull = git fetch + git merge  // wygodne, ale na początku lepiej unikać i robić 2 ww ruchy
+
+___________________________________________________________________________________________
+80) push
+
+        Lynda - Git Essential Training\13. Remotes  #6 Tracking remote branches,
+                                                                              #7 Pushing ..
+
+        Pcha lokalne repo na zdalne
+        -u  - pozwala zapamiętać domyslny remote  ( tworzy tracking branch )
+        Potem wystarczy tylko push,  fetch lub  pull
+
+        git push  -u <remote_repo>  <local_branch>
+
+        git push -u origin master
+
+        cat .git/config   //  [remote "origin"]
+                              url = https://bitbucket.org/nabu1312/git1
+                              fetch = +refs/heads/*:refs/remotes/ origin/*
+                              [branch "master"]
+                              remote = origin
+
+___________________________________________________________________________________________
+81) push  --force
+
+        Wymuszenie zapisania mojego komita na serwerze, bez względu na ew konflikty wersji
+
+        git push -f origin branch
+___________________________________________________________________________________________
+82) fetch
+
+      Tworzona jest lokalna kopia origin/master która stara się być zsynchronizowana z wersją zdalną
+      Nie wpływa ona na lokalnego brancha - master
+
+      Good practices:
+          1) Fetch before you work
+          2) Fetch before you push
+          3) Fetch often
+
+      git log --oneline  -5 origin/master   // ostatnich 5 linii z loga zdalnego repa
+
+      git fetch
+          lub
+      git fetch origin // jeśli mamy ich więcej i origin nie został opcją  -u ustawiony jako domyslny
+___________________________________________________________________________________________
+83) pull
+
+        pull   = fetch + merge
+
+        By uniknąć konfliktów przy codziennym pulowaniu świeżej wersji:
+          git status
+              i jeśli są jakiekolwiek pliki  ( czyli są zmiany w nich ):
+                  git stash save 'numerBrancha @ dzisiejszaData'
+                  git pull origin master
+                  git stash list    // tylko by przypomnieć sobie składnię 'stash@ { 0 }'
+                  git stash apply stash@{0}
+                  git status
+___________________________________________________________________________________________
+84) pull (rebase)
+
+      git config pull.rebase true
+
+      git config --global pull.rebase true
+
+        lub:
+
+      git.rebaseWhenSync
+
+      "merge" (instead of rebase), which creates ugly merge commits
+      why do you consider merge commits ugly?
+      When you work with open source projects, you want the history to be straight forward
+
+
+___________________________________________________________________________________________
+90) branch
+
+        Lynda - Git Essential Training\10. Branching  #1
+
+        git branch    // lista gałęzi w projekcie
+                      // *master   * - oznacza nasz aktualny branch
+
+        git branch  -v  // z opisami ostatniego komita. *  -  ten w którym jesteś teraz
+              ManageViews       7c0f148 fix: DEL button, adding confirm alert, adding "Edit View viewName" header
+            * ManageViewsRevert 7a9a94c fix: click on EDIT takes view, based on its ID (rather than its name)
+              dropdownFiltersOn d4eeb7c done: sorting by single column (click on header column, toggles order of sorting)
+              grids             3474ced Real data based on .csv mock included in pro view
+
+        cat .git/HEAD      //  ref: refs/heads/master
+                                    //  tu jest HEAD - tip of current branchgit
+
+        git branch nowa  // stworzenie nowej gałęzi
+
+        git branch           // *master    nowa
+
+        ls -la .git/refs/heads   // makn 1049089 41 Sep 20 15:34 master
+                                 // makn 1049089 41 Sep 20 16:20 nowa
+___________________________________________________________________________________________
+91) checkout
+
+        Lynda - Git Essential Training\10. Branching  #5
+
+        Przełączanie się na inną gałąź
+
+        git checkout nowa
+        git branch                   // master   *nowa
+
+        touch gruszka.txt
+        echo 'Gruszka 1' >> gruszka.txt  // do chwili komita,  sam plik jak i jego zmiany
+                                                            // widoczne będą w obu branchach
+
+        git add .
+        git commit -m 'Gruszka 1'   // teraz git log pokaże nowego komita
+                                                      //  w  branchu 'nowa' , ale w 'master' - nie
+                                                      //  Pliku nie będzie też w żadnym working dir
+
+       git checkout -b szybka         // stworzenie i przełączenie na nową gałąź - 'szybka'
+                                                    // UWAGA !! ważne z jakiego brancha tworzysz branch
+                                                    // jeśli z mastera, to będzie zaweirać tylko jego pliki
+                                                    // jeśli z nowej - to pliki nowej
+
+       git checkout -b CWA-1179-Remove-ATI-Tags  // spacje w nazwie trzeba zamienić na inne znaki, np myślniki. I wywal nawiasy okrągłe
+
+      $ git log --graph --oneline --decorate --all    // pokazuje loga z grafem powiązań gałęzi
+
+          * 6b04d4f (HEAD -> szybka) Banan 1
+          * d8486bf (nowa) Gruszka 1
+          | * c6bcd70 (master) Sliwka 1
+          |/
+          * 5515f82 (origin/master) Japko 2
+          * 354e3cc Japko 1
+___________________________________________________________________________________________
+92) diff branch_1  branch_2
+
+        Lynda - Git Essential Training\10. Branching  #6
+
+        Porównanie plików gałęzi diff'em
+
+        git diff master..nowa    // w masterze jest 1 plik gruszka,  a w nowej - sliwka
+
+            diff --git a/gruszka.txt b/gruszka.txt
+                --- /dev/null
+                +++ b/gruszka.txt
+                @@ -0,0 +1 @@
+                +Gruszka 1
+
+                diff --git a/sliwka b/sliwka
+                --- a/sliwka
+                +++ /dev/null
+                @@ -1 +0,0 @@
+                -Sliwka 1
+
+___________________________________________________________________________________________
+93) branch --merged
+
+        Pokazuje,  które branże zostały całkowicie zmergowane z bieżącą  ( oznaczoną przez * )
+        Możemy wykasować gałąź 'nowa',  a gałąź 'szybka' nie ucierpi,  bo wszystko z niej zmergowała
+
+            git branch --merged
+                nowa
+                * szybka
+___________________________________________________________________________________________
+94) branch --move
+
+      renaming
+
+       git branch --move dupa
+
+___________________________________________________________________________________________
+95) branch  --delete
+
+      git branch -d dupa           // error: The branch 'dupa' is not fully merged.
+                                              //  If you are sure you want to delete it, run 'git branch -D dupa'.
+
+      git branch remove dupa  // chyba to samo co ww
+
+      git branch -D dupa           // Deleted branch dupa (was 6b04d4f).
+      git push origin:dupa         //  wysłanie skasowania na remote repo
+___________________________________________________________________________________________
+96) branch:  odzysk skasowanego brancha
+
+      Po skasowaniu brancha przez:
+          git branch  - D nazwaBrancha
+
+        można go odzyskać,  znajdując w reflogu  ( albo walk-reflogu ) hasza ostatniego komita
+
+      Potem tworzymy nowego brancha o dowolnej nazwie i dodajemy na końcu hasza:
+        git branch odzysk ostatniHaszStaregoBrancha
+
+        git checkout odzysk
+        git log // wszystki komity skasowanego brancza są odzyskane
+_________________________________________________________________________________________ merge
+100) merge
+
+      Najpierw zakomituj wszystko w gałęzi do której będziesz mergował
+
+      Potem przełącz się na gałąź do której mergujemy  (typowo  -  master) :
+
+        git checkout master       //  jedyna różnica to brak pliku 'gruszka' w masterze
+
+        git branch                // pokaże ci wszystkie branche byś mergował właściwą
+
+        git merge nowa             // Merge made by the 'recursive' strategy.
+                                        gruszka.txt | 1 +
+                                        1 file changed, 1 insertion(+)
+                                        create mode 100644 gruszka.txt
+
+        git diff master..nowa   // pusto
+
+        git branch --merged   // *master   nowa  ( została zmergowana do mastera)
+
+        git branch -D nowa  // wycięcie branczki nowa
+
+        git branch   // jest tylko master
+___________________________________________________________________________________________
+101) merge --squash
+
+        GitHub foundations  ( video kurs ) : Forks and Pull Requests
+
+        Zamiast mergowania każdego pojedyńczego komita, mergowany jest jeden wynikowy komit
+___________________________________________________________________________________________
+102) merge --abort
+
+      Jeśli w trakcie merga, wywali ci coś takiego:
+          ~/Desktop/ui (Replacing-absolute-paths|MERGING)
+      .. to wyjść stąd możesz, przez:
+        git merge --abort
+___________________________________________________________________________________________
+103) mergetool
+
+      Zainstaluj winmerga i zdefiniuj go jako narzedzie mergetoola
+        git config --global merge.tool winmerge
+        git config --global merge.tool 'C:/Program Files (x86)/WinMerge/winmergeU.exe'
+
+      Jeśli git pull zwróci konflikt, odpal
+        git mergetool
+
+      Uruchomi on WinMerga
+
+      Po zakończeniu poprawek każdego pliku w WinMergu, klik w X w prawym górnym
+      i automatycznie otworzy się kolejny plik.
+
+      Po ostatnim prompt zostanie zwrócony ConEmu. Wtedy:
+      git commit  ( samo, bez niczego )
+
+      .. otwarte zostanie okno vim'a z możliwościa edycji komentarza. Zamknij je przez:
+          :wq
+      i git push --force origin branchName
+___________________________________________________________________________________________
+110) rebase
+
+      I merge i rebase służą do składania do kupy komitów z różnych branchy
+      Mergem można składać zarówno komity publiczne jak i lokalne
+      Rebasem - tylko lokalne
+
+      Merge nie zmienia historii, bo komity składane są chronologicznie
+      Rebase najpierw umieszcza komity mastera, potem brancha
+
+      Merge tworzy dodatkowy komit
+      Rebase - nie
+
+      Kroki rebase'a:
+        git checkout brancz
+        git rebase master
+        git checkout master
+        git merge branch
+
+      a)  master:       brancz:
+                          brancz 3
+            master 3      brancz 2
+            master 2      brancz 1
+            master 1      master
+
+      b) git checkout brancz
+         git rebase master
+
+            brancz 3
+            brancz 2
+            brancz 1
+            master 3
+            master 2
+            master 1
+
+      c) git checkout master
+         git merge branch
+
+            brancz 3
+            brancz 2
+            brancz 1
+            master 3
+            master 2
+            master 1
+
+___________________________________________________________________________________________
+111) rebase -i  ( swapping commits order )
+
+        CodeSchool - Git 2 #1 Rebase @ 2:33
+        Tuba: Interactive Rebasing - packtpub
+        Tuba: Watch me use git rebase interactive
+        Tuba: Git Tutorial Part 4 - Git Rebase and Interactive Rebase
+
+        Patrz plik vscode.txt: 56) GitLens - git rebase -i
+
+        Działanie na iluś ostatnich komitach, robiąc :
+          a) zmianę kolejności (order)
+          b) zbicie kilku w 1 ze sklejeniem ich messages (squash)
+          c) zbicie kilku w 1 z edytowalnym messagem (fixup)
+          d) zmianę message'a  (reword)
+          e) usunięcie         (drop)
+
+         Zaczyna od komita następującego PO wymienionym w komendzie. Np:
+         git rebase -i hasz   // zaczyna od kolejnego komita po wskazanym przez hasza
+
+         git rebase  -i HEAD    // nie zrobi nic, bo nie ma komitów po HEAD'zie
+         git rebase  -i HEAD^  // wykona ostatniego komita
+
+         Po odpaleniu komendy  ( rebase -i .. ) git otwiera okno z nazwami komitów
+         Niezależnie od dalszych szczegółów komendy, po zamknięciu okna,
+         git przenosi wszystkie komity do obszaru tymczasowego  ( temp ),
+         po czym odpala jedną po drugiej linię z pliku
+
+         a) zmiana kolejności linii
+
+              git log --oneline
+                b3defb3 unicorns 1
+                1b6398a mastah 2
+                88e99ee Init
+
+              git rebase  -i 88e99ee
+
+              Wyświetli okno edytora a w nim komity
+              ( w odwróconej w stosunku do git log'a kolejności) :
+
+                pick b3defb3 unicorns 1
+                pick 1b6398a mastah 2
+
+            Zmień kolejność linii:
+
+                pick 1b6398a mastah 2
+                pick b3defb3 unicorns 1
+
+             Teraz zapisz i zamknij okno.
+             Git wyświetli 'Rebase successful ..'
+
+             git log  --oneline       // poniżej odwrócona kolejność
+                2475093 mastah 2
+                848a526 unicorns 1
+                88e99ee Init
+___________________________________________________________________________________________
+112) rebase -i  reword
+
+        https://www.youtube.com/watch?v=qh9KtjfjzCU
+        CodeSchool - Git 2 #1 Rebase @ 5:36
+
+        a) git log --oneline
+                d764f89 mastah 2
+                848a526 unicorns 1
+                88e99ee Init
+
+       b) git rebase -i 88e99ee    // otworzy edytor z ..
+                pick 848a526 unicorns 1
+                reword d764f89 mastah 2
+
+        c) zmienimy 1 - szy z pick'ów na 'reword'
+                reword d764f89 mastah 2
+                pick 848a526 unicorns 1
+
+        d) save & exit. Git otworzy nowe okno do edycji nowego message'a
+            Dopiszemy na końcu 'reworded'
+                d764f89 mastah 2 rewirded
+
+        e) save & exit
+
+        f) git log --oneline
+                d764f89 mastah 2 reworded
+                848a526 unicorns 1
+                88e99ee Init
+___________________________________________________________________________________________
+113) rebase -i  edit
+
+        youtube.com/watch?v=qh9KtjfjzCU
+
+        CodeSchool - Git 2 #1 Rebase @ 6:20
+
+        Służy podzieleniu  ( split ) komita na 2+ komity
+
+        a) git log --oneline
+                d764f89 mastah 2 reworded
+                848a526 unicorns 1
+                88e99ee Init
+
+         b) git rebase -i 88e99ee    // otworzy edytor z ..
+                  pick 848a526 unicorns 1
+                  pick d764f89 mastah 2
+
+         c) zmienimy 1 - szy z pick'ów na 'edit'
+                 edit d764f89 mastah 2
+                 pick 848a526 unicorns 1
+
+         d) save & exit. Git wypisze:
+                warning: Stopped at d764f89... mastah 2 reworded
+                You can amend the commit now, with
+                  git commit --amend
+                Once you are satisfied with your changes, run
+                  git rebase --continue
+
+         e) git status  ( pusto )
+
+         f)  git reset HEAD^   // wycofanie ostatniego komita
+                Unstaged changes after reset:
+                M       mastah
+
+         g) edytujesz 1-szy raz i robisz komita:
+                git commit -am 'Split: mastah 1'
+
+         h) edytujesz 2-gi raz i robisz komita:
+                git commit -am 'Split: mastah 2'
+
+          i) git rebase --continue
+                Successfully rebased and updated ..
+
+          j) git log --oneline
+                4f73749 Split: mastah 1 & mastah 2  // 2-ga część początkowego komita
+                772fdf7 Split: mastah 1                      // 1-sza część początkowego komita
+                848a526 unicorns 1
+                88e99ee Init
+
+___________________________________________________________________________________________
+114) rebase -i  squash
+
+        https://www.youtube.com/watch?v=qh9KtjfjzCU
+        CodeSchool - Git 2 #1 Rebase @ 8:08
+
+        Scalanie kilku komitów w jeden
+
+        UWAGA !!
+            Przy scalaniu iluś komitów w 1, na wyświetlonej liście,  wstawiaj 's'  ( jak squash )
+            od góry we wszystkich, aż do ostatniego na dole  ( zostaw w nim 'pick' )
+
+        a) git log --oneline
+              4f73749 Split: mastah 1 & mastah 2  // 2-ga część początkowego komita
+              772fdf7 Split: mastah 1                      // 1-sza część początkowego komita
+              848a526 unicorns 1
+              88e99ee Init
+
+            Scalmy komita 'Split: mastah 1' z komitem 'Split: mastah 1 & mastah 2'
+
+         b) git rebase -i  88e99ee
+
+         c) zmień w ostatniej linii 'pick' na 'squash':
+
+                pick 848a526 unicorns 1
+                pick 772fdf7 Split: mastah 1
+                squash 4f73749 Split: mastah 1 & mastah 2
+
+         d)  save & exit
+
+         e) wyświetli się okno zmiany message'a
+             Zostaw niezakomentowaną tylko linię nowego message'a:
+                'Split: mastah 1 & mastah 2  - squoszniety'
+
+         f) save & exit
+
+         g) git log --oneline
+
+              3cba815 Split: mastah 1 & mastah 2  - squoszniety
+              848a526 unicorns 1
+              88e99ee Init
+___________________________________________________________________________________________
+115) rebase - naprawianie błędu
+
+      Jeśli pobłądzisz i będziesz chciał wrócić do stanu sprzed rebase'a,
+      znajdź w reflogu numer HEAD'a tego komita i odpal
+      git reset  --hard HEAD@ { numerKomita }
+
+      git log nazwaTwegoBrancha  --not nazwaParentaBrancha  // by wyswietlały sie tylko komity z Twojego
+
+      Teraz możesz spróbować z rebasem znowu
+___________________________________________________________________________________________
+120) stash save
+
+        Lynda - Git Essential Training\12. Stashing changes  #1
+
+        Przydaje się, jeśli nie chcę komitnąć zmian przed mergem z innym branchem
+        (lokalnym lub zdalnym )
+
+        Konflikt wystąpi, jeśli zmiany dotyczą tego samego pliku.
+        Jeśli innych -  zostaną zmergowane
+
+        git status   // po zmianach które zrobiłeś widać plik 'gruszka.txt' na czerwono
+
+        git merge nowa  // error: Your local changes to the following files would be overwritten by merge:
+                                       gruszka.txt
+                                       Please, commit your changes or stash them before you can merge
+
+        git stash save "gruszka_linia_3_mastah"
+
+        git status              // pusto,  'gruszka.txt' została przeniesiona stąd i dlatego ...
+        git merge nowa   // .. mógł się odbyć
+
+        git log  --oneline // widać komita zrobionego w branchu nowa i zmergowanego do master
+___________________________________________________________________________________________
+121) stash list
+
+        Lynda - Git Essential Training\12. Stashing changes  #2:  Viewing stash files
+
+        Stashnięte zmiany są widoczne niezależnie od branchu  ( w całym repie )
+        stash list  - pokazuje treści wszystkich staszów i branch gdzie był zrobiony
+        W którym pliku - pokazuje stash show  ( patrz punkt poniżej )
+
+        git stash list   // stash@{0}: On master: gruszka_linia_3_mastah
+
+        git stash list  // listowanie leci od najnowszego :
+                                    stash@{0}: On master: Linia 'Japko 3' w pliku japko
+                                    stash@{1}: On master: Linia 'Japko 2' w pliku japko
+___________________________________________________________________________________________
+122) stash show
+
+        Lynda - Git Essential Training\12. Stashing changes  #2:  Viewing stash files
+
+        UWAGA !!
+            git stash  //  staszuje coś tam więc nie jest bezpieczny
+
+        Pokazuje w jakim pliku był staś zrobiony  ( patrz punkt powyżej )
+        Opcja  -p  ( od 'patch' pokazuje pełnego diffa przed stasiem i po)
+
+        git stash list   // stash@{0}: On master: gruszka_linia_3_mastah
+
+        git stash show stash@{0}  //   gruszka.txt | 1 +
+                                                    1 file changed, 1 insertion(+)
+
+        git stash show -p stash@{0}  //   diff --git a/gruszka.txt b/gruszka.txt
+
+                                            index 09e1404..ed7d767 100644
+                                            --- a/gruszka.txt
+                                            +++ b/gruszka.txt
+                                            @@ -1 +1,2 @@
+                                            Gruszka 1
+                                            +Gruszka 3 - dodanie z brancha "mastah"
+___________________________________________________________________________________________
+123) stash pop i apply
+
+        Lynda - Git Essential Training / 12. Stashing changes  #3:  Retrieving stashed changes
+
+        Odzyskują staszka do bieżącego brancha
+        Wszystkie staszki są widoczne i dostepne z dowolnego brancha
+
+        pop i apply różnią się tylko tym, że po odzyskaniu staszka, pop usuwa go, a apply - nie
+        Dlatego używając apply, można odzyskiwać staszka wielokrotnie
+        Mogą wystąpić konflikty.
+        Np robiąc 2 razy popa czy apply  ( lub raz pop i raz apply )
+
+        git stash pop                 // bierze 1 - go staszka z listy  ( czyli najnowszego )
+        git stash pop stash @ {2}     // bierze staszka nr 2
+
+        git stash list                // nima go
+___________________________________________________________________________________________
+124) stash drop i clear
+
+        Lynda - Git Essential Training\12. Stashing changes  #4:  Deleting stashed changes
+
+        git stash drop  stash @ {2}  // wywala go
+
+        git stash clear                       // wywala wszystkie staśki
+___________________________________________________________________________________________
+130) tag
+
+        https://git-scm.com/book/en/v2/Git-Basics-Tagging
+
+        Dołączanie opisu,  np 'Prezentacja dla MG'. Są 2 typy tagów  ( obecny komit ) :
+            lekki:           git tag v1.4
+            annotated : git tag -a v1.4 -m "my version 1.4"
+
+       Po czasie  ( dawny komit )
+            git tag -a -m 'Prezentacja dla Marcina G' 431fb8b
+
+       Oglądanie tagów:
+            git tag
+___________________________________________________________________________________________
+131) blame
+
+        alblue.bandlem.com/2011/07/git-tip-of-week-assigning-blame.html
+
+        git blame file
+
+        Odpowiada na pytanie, kto zrobił zmianę w pliku
+
+        git blame file
+            566a0863 (Alex Blewitt 2011-07-12 09:43:39 +0100 1) First line
+            ed0a7c55 (Alex Blewitt 2011-07-12 09:43:51 +0100 2) Second line
+            8372b725 (Alex Blewitt 2011-07-12 09:44:06 +0100 3) Third line
+            ed0a7c55 (Alex Blewitt 2011-07-12 09:43:51 +0100 4)
+
+        git blame file  -w   // pomija linie ze zmianą w formie spacji
+
+        git blame plik -L 250  // zaczyna wyświetlanie od linii 250
+
+        W Sublimie, zainstaluj plugina 'git' > stań kursorem na pliku > ctrl + shift + p: 'git:blame current file' > Default
+___________________________________________________________________________________________
+132) cherry-pick
+
+      Kopiuje pojedyńczego komita z jednego brancha do innego
+      Przydaje się, gdy nie chcemy mergować całej gałęzi bo jest w niej kupa śmiecia,
+      tylko pojedyńcze dobre komity
+
+      Jest branch master a w nim 2 komity: majster1 i majster 2
+
+      Robimy brancha 'slave', a w nim prócz odziedziczonych z mastera ww komitów,
+      tworzymy 2 nowe: slave 1 i slave 2.
+
+      Zapamiętujemy hasha komita 'slave 2
+
+      Wracamy na branch master i kopiujemy komita 'slave2' do obecnego brancha (master)
+        git cherry-pick  hash
+
+      W efekcie, w branchu slave są:
+        majster1,
+        majster2,
+        slave1,
+        slave2
+
+      A w branchu master:
+        majster1,
+        majster2,
+        slave2
+
+      git reflog // wyświetla wszystkie ww zmiany
+
+
+___________________________________________________________________________________________
+140) update-index
+
+    This will tell git,  you want to start ignoring the changes to the file
+
+    git update-index --assume-unchanged   path/to/file
+___________________________________________________________________________________________
+141) clone
+
+        git  clone  https://nabu1@bitbucket.org/nabu1/symfonytest.git
+        git  clone  git://github.com/schacon/grit.git mojKatalog               // umieści w katalogu mojKatalog
+
+___________________________________________________________________________________________
+300) github Pages
+
+      Przy projektach o małej liczbie plików, możesz drag'n'dropować pliki do przegladarki
+
+      W tym celu otwórz repo githuba:
+
+          https://github.com/nabu13/nabu13.github.io
+
+       .. nagnieć batona 'Upload Files' i przeciągnij tam plik ( i ) i nagnieć zielony guzik 'Commit changes'
+
+      a) sciagnij i zainstaluj apke Github Desktop, z adresu:
+            desktop.github.com
+
+      b) stwórz na desktopie katalog o nazwie w formacie:
+             twojLogin.github.io
+
+      c) zainicjalizuj w nim gita:
+            cd twojLogin.github.io
+            git init
+
+      d) stwórz w nim przykładowy plik index.html
+
+      e) odpal apke desktop.github
+
+      f)  File > Add local repo > twojLogin.github.io
+
+      g) w polu Summary wpisz np '1szy komit' > klik 'Commit to master'
+
+      h) z poziomu desktop.github klik w Push origin
+
+      i) chrome twojLogin.github.io i poczekać 30 - 60s
+
+      j) z poziomu swojego edytora tekstowego, zmodyfikuj plik index.html
+
+      k) w polu Summary wpisz np '2gi komit' > klik 'Commit to master'
+
+      l) z poziomu desktop.github klik w Push origin i 30-60s
+
+     m) klik w taba History // widać zmiany zrobione w pliku
+
+     n) można też z command line'a pushować zmiany:
+            git status
+            git add
+            git commit  -am 'nowy komit'
+            git push git push https://github.com/nabu13/nabu13.github.io
+              ( nabu13 / hasło )
+
+      o) jeśli chcesz przyjazną nazwę domeny, to szukaj 'freenom' w node.txt
+
+___________________________________________________________________________________________
+301) github - hello weird
+
+      UWAGA !
+          Kasowanie repo:
+              Wbić się w nie > w górnym menu klik w Settings  ( 1 - sza z prawej ) > scroll down > Delete repoadb
+
+        git remote set-url origin git@github.com:username/repo.git
+
+          a) zarejestruj się na gitHubie
+          b) utwórz nowe repo klikając batona '+' w prawym górnym  ( np  'arek5' )
+          c) wklikaj się weń
+          d) klik w zielonego batona Clone or download
+          e) ustaw Clone with HTTPS  ( a nie SSH )
+
+          f) skopiuj ścieżkę do clipborda:
+                https://github.com/nabu13/arek5.git
+
+          g) odpal GitBasha  ( np z conEmu )
+          h) mkdir arek5 && cd arek5
+          i) git init
+          j) git remote add origin https://github.com/nabu13/arek5.git
+
+          k) otwórz plik C: / Users / makn / .gitconfig i dodaj tą linię
+               (niebezpieczne, ale nie bedzie za każdym puszem pytał o login i haslo ) :
+                 [remote "origin"]
+                 url = https://nabu13:password@github.com/nabu13/arek5.git
+
+               albo wbij poniższe, to Twoj login i hasło będą kaszowane przez 1h:
+                 git config --global credential.helper "cache --timeout=3600"
+
+          l) touch plik1.js
+          m) napisz w nim co
+          n) git status
+          o) git add *.js
+          p) git commit  -m  '1st komit'
+          q) git push -u origin master
+           r) chrome https://github.com/nabu13/arek5  - zobacz czy jest dodany plik
+
+         Przy testowym projekcie:
+            jeśli się gdzieś zapędzisz, można wyciąć podkatalog /.git i zacząć od nowa: git init
+
+         Przy prawdziwym projekcie, dodaj też:
+            r) zrób plik .gitignore
+            s) git config --global user.name nabu1 // by commit zapisał kto go zrobił
+            t) git config --global user.email nabu1312@gmail.com
+
+            git commit --amend --author="Maciej.Kandalski <maciej.kandalski@delphi.com>"
+
+___________________________________________________________________________________________
+302) github - fork & pull request
+
+        GitHub foundations  ( video kurs ) : Forks and Pull Requests
+
+        Dodanie własnego kodu do istniejącego projektu
+
+            a) znajdź na githubie interesujący projekt
+            b) kilk w batona 'Fork' - nowy projekt o nazwie ww projektu znajdzie się w moim repo na githubie
+            c) git clone intersujący projekt
+            d) zmiany kodu > commit > push  ( idzie do mojego repo na githubie )
+            e) klik w batona 'Pull Request'  ( dodanie opisu zmian i ew uwag ) > baton 'Send Pull Request'
+            f) request leci do skrzynki właściciela interesującego projektu
+            g) może nastąpić wymiana wiadomości
+            h) w końcu właściciel nagniata baton 'Merge pull request'
+___________________________________________________________________________________________
+303) github - git clone fatal ... timed out
+
+       Problem: ściaganie publicznego repo przez git clone https:// .. kończyło się j/w
+                      To samo przy puszowaniu do swojego publicznego repo na GitHubie
+                      Maciek może git clone'ować
+
+       Kroki:       sprawdziłem w Control Panel > interfejs > IPv4 > zakładki oraz w
+                       Control Panel > Internet, że nie jestem za jakimś firmowym proxy
+
+                       Zrobiłem git init a potem git config  -l i obejrzałem konfigurację
+                       Zastanowiła mnie linia:
+                            http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+
+                       Dwuklikłem ten plik i okazało się że datę ważności From i To ma tą samą, sprzed 2 lat
+
+       Rozw:      Pomogło ściągnięcie od Maćka ww pliku który miał datę ważności do 2020
+
+                       Okazało,  że pomagało też odpalenie komendy:
+                            git config --global http.sslVerify false
+                                confluence.atlassian.com/fishkb/unable-to-clone-git-repository-due-to-self-signed-certificate-376838977.html
+___________________________________________________________________________________________
+304) Jak wyrzucić pomyłkowo zakomitowany plik
+
+        git reset --soft HEAD^
+        git reset HEAD plikDoWywalenia
+___________________________________________________________________________________________
+310) filtrowanie commitów po datach i stringach
+
+       UWAGA !!
+          Do tworzenia skryptów baszowatych, mocno zalecane jest używanie innej składni gita, tzw git plumbing
+
+        a) po datach
+              git log --since "APR 21 2017" --until "JUN 7 2017" --pretty=format:"%h %an %ad %s"
+
+        b) po datach i stringu
+              git log --since "APR 21 2017" --until "JUN 7 2017" --pretty=format:"%h %an %ad %s" --author-date-order | grep 'Merge'
+
+        c) po datach i braku stringa  ( grep -v )
+              git log --since "APR 21 2017" --until "JUN 7 2017" --pretty=format:"%h %an %ad %s" --author-date-order | grep -v 'Merge'
+
+        d) po datach, braku stringa i save na plik
+              git log --since "MAR 1 2017" --until "JUL 7 2017" --pretty=format:"%h %an %ad %s" --author-date-order| grep  -v 'Media' > ../../komity_Media.txt
+
+        e) po datach, stringu, braku stringa i stringu lower lub uppercase  ( 'hd' lub 'HD' )
+              $ git log --since "MAR 1 2017" --until "JUL 7 2017" --pretty=format:"%h %an %ad %s" --author-date-order | grep 'Media' | grep -v 'Merge' | grep -i 'hd'
+
+         f) poniższy skrypt, filtruje wg ww warunków i dla każdego znalezionego komita,
+            wypisuje jego hasza, opis i nazwy zmienionych plików
+
+              for i in $( git log --since "JAN 1 2016" --until "JUL 30 2017" --pretty=format:"%h %s"  | grep 'Media' | grep -v 'Merge' | grep -i 'focus' | grep -Eo '^[^ ]+' ); do
+                  git show  --name-only $i | egrep  'commit|Media|src'
+                  echo '____________________________________________________________________________________'
+              done
+___________________________________________________________________________________________
+311) Jak sklonować repo do określonego commita
+
+      https://stackoverflow.com/questions/3489173/how-to-clone-git-repository-with-specific-revision-changeset
+
+        git clone
+        cd nazwaProjektu
+        git reset --hard hasz
+
+      To again go back to the most recent commit:
+
+        git pull
+
+___________________________________________________________________________________________
+312) jak skasować wypuszowane komity
+
+      https://stackoverflow.com/questions/22682870/git-undo-pushed-commits
+
+      Apka przestała działać:
+
+        Są 2 możliwości:
+
+          1) revert - tworzy komita odwracającego wskazane; nie zmienia historii
+          2) reset --hard i push --force - wycina komity, a więc zmienia historię
+
+          Revert jest bezpieczniejszy, bo:
+
+            i) ktoś inny może z powrotem wprowadzić usuniętego komita
+            ii) ktoś inny może zależeć od usuniętego komita
+            iii) w publicznych repo force pushing do mastera jest no-go
+
+
+        a) w GitLensie, stanąłem na ostatnim komicie, prawy klik > Revert Commit i odpaliłem apkę (yarn dev)
+
+        b) powtarzałem te kroki aż znalazłem komit na którym apka chodziła
+
+        c) znalazłem hasz chodzącego komita np abcd12
+
+        d) git reset --hard abcd
+
+        e) w vs codzie, złe komity zniknęły, a dobry (od tego hasza) ukazał się u góry
+
+        f) git push -f origin master  (-f = force)
+
+        will push and force remote to consider this push and remove the previous one
+        (specifying remote-name and branch-name is not mandatory but is recommended
+        to avoid updating all branches with update flag).
+
+        ! watch-out some tags may still be pointing removed commit !
+
+___________________________________________________________________________________________
+313) Kopiowanie repa na githubie
+
+      git clone --bare https://github.com/exampleuser/old-repository.git
+
+      cd old-repository.
+
+      git push --mirror https://github.com/exampleuser/new-repository.git
+___________________________________________________________________________________________
+314) Przełączanie się między repami (credentials)
+
+      Jeśli przy pushowaniu dostajesz komunikat, że nie wyśle spod takiego logina:
+
+      a) git remote -v
+      b) git config -l | grep user
+
+      c) git config --global user.name login
+      d) git config credential.username twojLogin
+      e) logoff w windowsach
+      f) git push -u origin master   // spyta o password
+
+      Jak to nie pomaga, to usuń zaklęcie do githuba z windows credentials:
+        Control Panel\All Control Panel Items\Credential Manager
+___________________________________________________________________________________________
+315) Co można wyczytać z hasha SHA1
+
+      git log -2 --pretty=format:%aD:%cn:%an:%H 0f8293d7daad3838fc30801078fd38394b4d8fdb
+
+      Thu, 10 Jan 2019 21:11:51 +0100:maciekkand:nabu1:0f8293d7daad3838fc30801078fd38394b4d8fdb
+      Sun, 20 Jan 2019 12:27:02 +0100:gyubal:gyubal:68030bc613e668ee6bf4c13d3221cd09da47ed2f
+
+___________________________________________________________________________________________
+316) Aliasy basha
+
+      nano ~/.bashrc
+        lub:
+      vim ~/.bashrc   // wyjście - Esc > :wq czy :q
+
+      alias a='alias'
+      alias c='clear'
+      alias cu='curl 192.168.99.100:3000'
+      alias d='docker'
+      alias db='docker build -t'
+      alias dc='docker-compose'
+      alias dd='docker run --rm -d -p 3000:3000'
+      alias di='docker images'
+      alias dm='docker-machine'
+      alias dr='docker rm $(docekr ps -aq)'
+      alias k='kubectl'
+      alias m='minikube'
+      alias n='node app'
+      alias nn='nodemon app'
+      alias p='ping 1.1.1.1'
+      alias y='yarn dev'
+      alias n='yarn build && cd dist && now && cd ..'
+      alias mk='git remote remove origin && git remote add origin https://github.com/maciekkand/shopsring.git && git config user.email maciek.kand@gmail.com && git config user.name maciekkand'
+      alias na='git remote remove origin && git remote add origin https://github.com/nabu1/shopsring.git && git config user.email nabu1312@gmail.com && git config user.name nabu1'
+
+
+      By zaczęły działaś, zwykle trzeba się przelogować
+      By unikąć przelogowywania, odpal plik .bashrc:
+        . ~/.bashrc
+
+___________________________________________________________________________________________
+317) Skrypty gita
+
+      a) otwórz plik  ~/.bashrc  (C:\Users\abc\.bashrc)
+      b) wklej ponizsze
+      c) wykonaj: . ~/.bashrc  (dzięki temu nie musisz się przelogować)
+      d) wykonaj dowolną komendę, wpisując np: 'test'
+
+      Komendy nie-gitowe np bashowe wymagają wykrzyknika
+      Łączy się je '&&' - patrz alias mk, poniżej
+
+      alias a='alias'
+      alias c='clear'
+      alias cu='curl 192.168.99.100:3000'
+      alias d='docker'
+      alias db='docker build -t'
+      alias dc='docker-compose'
+      alias dd='docker run --rm -d -p 3000:3000'
+      alias di='docker images'
+      alias dm='docker-machine'
+      alias dr='docker rm $(docekr ps -aq)'
+      alias k='kubectl'
+      alias m='minikube'
+      alias n='node app'
+      alias nn='nodemon app'
+      alias p='ping 1.1.1.1'
+      alias y='yarn dev'
+      alias n='yarn build && cd dist && now && cd ..'
+      alias mk='git remote remove origin && git remote add origin https://github.com/maciekkand/shopsring.git && git config user.email maciek.kand@gmail.com && git config user.name maciekkand'
+      alias na='git remote remove origin && git remote add origin https://github.com/nabu1/shopsring1.git && git config user.email nabu1312@gmail.com && git config user.name nabu1'
+      alias test='git config -l|grep user && git remote -v'
+
+
+___________________________________________________________________________________________
+318) Format daty
+
+    git log -n 1 --date=
+                        default  = Mon Aug 20 20:19:19 2018 +0100
+                        local    = Mon Aug 20 21:19:19 2018
+                        iso      = 2018-08-20 20:19:19 +0100
+                        short    = 2018-08-20
+                        relative = 6 hours ago
+                        raw      = 1534792759 +0100
+
+    Ustawienie w configu:
+      git config log.date iso           // lokalne
+      git config --global log.date iso  // globalne
+
+___________________________________________________________________________________________
+319) Zmiana daty commita
+
+      UWAGA !
+        Ustaw najprzód format daty (najlepiej iso) - jak w punkcie powyżej
+        Ponieważ zmiana daty commita, zmienia historię, trzeba wykonać
+          git push -f
+
+      Author date - czas wykonania komita,
+      Commit date - Przy rebasie czy mergu
+
+      Jeśli nie było rebasa, merga itd, obie daty są takie same
+
+      Obie możesz zobaczyć, przez:
+        git log --format=fuller
+
+      1)  Zmiana daty na bieżącą
+            GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(date)"
+
+      2)  Zmiana daty ostatniego komita na dowolną
+            GIT_COMMITTER_DATE="2018-12-13 20:19:19 +0100" git commit --amend --no-edit --date "2018-12-13 20:19:19 +0100"
+
+      3)  Zmiana daty dowolnego komita na dowolną - rebase -i
+
+            a) git rebase -i hasz
+            b) w wybranych liniach zmienić 'p'(ick) na 'e'(dit) i zamknąć okno
+
+            c) git rebase --continue
+            d) git commit --amend --date "2018-01-01 20:19:19 +0100"
+
+            e) git rebase --continue
+            f) git commit --amend --date ..  // itd tyle razy ile było 'e'
+
+            g) git rebase --committer-date-is-author-date  // ustawienie tych samych dat,
+                                                           // czyli nie było nic majstrowane
+                                                           // typu merge, rebasy itd
+
+      4)  Zmiana daty dowolnego komita na dowolną - skrypt redate.sh - patrz p. 323)
+          Nie trzeba odpalać: git rebase --committer-date-is-author-date
+          bo obie daty ustawia na takie same
+
+___________________________________________________________________________________________
+320) Skrypty autor
+
+      W gitbashu można odpalać skrypty bashowe. Wpisz poniższe i odpal komendą:
+        bash autor.sh
+
+      Poniższy skrypt zmienia autora każdego commita
+
+      Po jego wykonaniu, wykonaj
+        git push -f
+
+      ---------- autor.sh ------------------------------------
+      #! usr/bin/sh
+
+      git filter-branch -f --env-filter '
+
+      OLD_EMAIL="nabu1312@gmail.com"
+      CORRECT_NAME="maciekkand"
+      CORRECT_EMAIL="maciek.kand@gmail.com"
+
+      if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+      then
+          export GIT_COMMITTER_NAME="$CORRECT_NAME"
+          export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+      fi
+      if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+      then
+          export GIT_AUTHOR_NAME="$CORRECT_NAME"
+          export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+      fi'
+
+___________________________________________________________________________________________
+322) Skrypt redate
+
+      https://github.com/PotatoLabs/git-redate/blob/master/git-redate
+
+     Do interaktywnej zmiany dat w iluś komitach. Wyświetla komity w nano i pozwala edytować daty
+     Wrzuć na plik i odpal: ./redate.sh --commits 10 (ilość komitów)
+
+     Jeśli nie odpala się, upewnij się czy plik nie ma rozszerzenia '.sh.txt',
+     a win pomija rozszerzenia znanych plików.
+
+     Najlepiej sprawdzić na czymś prostym:
+
+        #! /usr/bin/bash
+        echo 'Tu 1.sh ! Bashu działa'
+
+
+    ---- redate.sh ----------------------------------------
+
+      #! usr/bin/bash
+
+      is_git_repo() {
+          git rev-parse --show-toplevel > /dev/null 2>&1
+          result=$?
+          if test $result != 0; then
+              >&2 echo 'Not a git repo!'
+              exit $result
+        fi
+      }
+
+      is_git_repo
+
+      make_editor_choice() {
+
+          echo "Which editor do you want to use for this repo?\n";
+          echo "1. VI\n";
+          echo "2. NANO\n";
+          echo "3. Your own\n"
+          echo "You Choose: ";
+
+          read CHOOSE_EDITOR
+      }
+
+      get_editor_executable() {
+
+          echo "What is the path to your prefered test editor?\n";
+          read EDITOR_PATH
+      }
+
+
+      is_has_editor() {
+        OUR_EDITOR="nano";
+      }
+
+      is_has_editor
+
+      ALL=0
+      DEBUG=0
+      LIMITCHUNKS=20
+
+      while [[ $# -ge 1 ]]
+      do
+      key="$1"
+
+      case $key in
+          -c| --commits)
+          COMMITS="$2"
+          if [ -z "${COMMITS}" ]; then COMMITS="5"; fi;
+          shift
+          ;;
+          -l| --limit)
+          LIMITCHUNKS="$2"
+          if [ -z "${LIMITCHUNKS}" ]; then LIMITCHUNKS="20"; fi;
+          shift
+          ;;
+          -d| --debug)
+          DEBUG=1
+          shift
+          ;;
+          -a| --all)
+          ALL=1
+          shift
+          ;;
+          *)
+          # unknown option
+          ;;
+      esac
+      shift
+      done
+
+      die () {
+          echo >&2 `basename $0`: $*
+          exit 1
+      }
+
+      tmpfile=$(mktemp gitblah-XXXX)
+      [ -f "$tmpfile" ] || die "could not get tmpfile=[$tmpfile]"
+      trap "rm -f $tmpfile" EXIT
+
+
+      datefmt=%cI
+      if [ "`git log -n1  --pretty=format:"$datefmt"`" == "$datefmt" ];
+      then
+          datefmt=%ci
+      fi
+
+      if [ "${ALL}" -eq 1 ];
+      then
+          git log --pretty=format:"$datefmt | %H | %s" > $tmpfile;
+      else
+          if [ -n "${COMMITS+set}" ];
+          then git log -n ${COMMITS} --pretty=format:"$datefmt | %H | %s" > $tmpfile;
+          else git log -n 5 --pretty=format:"$datefmt | %H | %s" > $tmpfile;
+          fi
+      fi
+
+      ${VISUAL:-${EDITOR:-${OUR_EDITOR}}} $tmpfile
+
+
+      ITER=0
+      COLITER=0
+      declare -a COLLECTION
+
+      COUNTCOMMITS=$(awk 'END {print NR}' $tmpfile)
+
+      while read commit || [ -n "$commit" ]; do
+
+          IFS="|" read date hash message <<< "$commit"
+          shopt -s nocasematch
+          if [[ "$date" == 'now' ]]; then
+              date=$(date +%Y-%m-%dT%H:%M:%S%z);
+          fi
+          shopt -u nocasematch
+          if [ "$datefmt" == "%cI" ]
+          then
+              DATE_NO_SPACE="$(echo "${date}" | tr -d '[[:space:]]')"
+          else
+              DATE_NO_SPACE="$(echo "${date}")"
+          fi
+
+
+          COMMIT_ENV=$(cat <<-END
+      if [ \$GIT_COMMIT = $hash ];
+      then
+          export GIT_AUTHOR_DATE="$DATE_NO_SPACE"
+          export GIT_COMMITTER_DATE="$DATE_NO_SPACE";
+      fi;
+      END
+      )
+
+          ((ITER++))
+
+          if [ "${DEBUG}" -eq 1 ] && [ $((ITER % LIMITCHUNKS)) == $((LIMITCHUNKS - 1)) ];
+          then
+              echo "Chunk $COLITER Finished"
+          fi
+
+          if [ $((ITER % LIMITCHUNKS)) == 0 ]
+          then
+              ((COLITER++))
+
+              if [ "${DEBUG}" -eq 1 ];
+              then
+                  echo "Chunk $COLITER Started"
+              fi
+
+          fi
+
+          COLLECTION[$COLITER]=${COLLECTION[COLITER]}"$COMMIT_ENV"
+          if [ "${DEBUG}" -eq 1 ]
+          then
+              echo "Commit $ITER/$COUNTCOMMITS Collected"
+          fi
+
+      done < $tmpfile
+
+      ITERATOR=0
+      for each in "${COLLECTION[@]}"
+      do
+
+          ((ITERATOR++))
+
+          if [ "${ALL}" -eq 1 ];
+          then
+              if [ "${DEBUG}" -eq 1 ];
+              then
+                  echo "Chunk $ITERATOR/"${#COLLECTION[@]}" Started"
+                  git filter-branch -f --env-filter "$each" -- --all
+                  echo "Chunk $ITERATOR/"${#COLLECTION[@]}" Finished"
+              else
+                  git filter-branch -f --env-filter "$each" -- --all >/dev/null
+              fi
+          else
+              if [ "${DEBUG}" -eq 1 ];
+              then
+                  echo "Chunk $ITERATOR/"${#COLLECTION[@]}" Started"
+                  git filter-branch -f --env-filter "$each" HEAD~${COMMITS}..HEAD
+                  echo "Chunk $ITERATOR/"${#COLLECTION[@]}" Finished"
+              else
+                  git filter-branch -f --env-filter "$each" HEAD~${COMMITS}..HEAD >/dev/null
+              fi
+          fi
+      done
+
+      if [ $? = 0 ] ; then
+          echo "Git commit dates updated. Run 'git push -f BRANCH_NAME' to push your changes."
+      else
+          echo "Git redate failed. Please make sure you run this on a clean working directory."
+      fi
+
+
+___________________________________________________________________________________________
+323) Fejk repo (starego na nowe)
+
+      UWAGA !
+        Unikaj revertów, bo potem nie można ich scalić rebasem
+
+      i) Po ew git clonie, trzeba wbić dane właściciela repa:
+
+           git config user.email nabu1312@gmail.com
+           git config user.name nabu1
+
+           Sprawdzenie:
+             git remote -v
+             git config -l | grep user
+
+     ii) Zrób plik z listą istniejących komitów
+
+          git log --pretty=format:"%ai %h %s"
+
+      a) Zrób plik z mapowaniem istniejących komitów na nowe:
+
+            Listę z punktu wyżej, podziel na dni i komity do scalenia:
+
+            ---------------------------------------------------------------------------------
+            DZIEŃ 11 - Śr   6 mar
+
+            2019-03-12      18:18:51   1  Fix - klik w New Deva po kliku w Edit (ołówek) i Save
+            2019-03-12      12:08:54      Fix - About pod mobilki
+
+            2019-03-11      19:18:43   2  About i cleaning
+            2019-03-11      18:26:51      Fix - variable shadowing
+
+            ---------------------------------------------------------------------------------
+            DZIEŃ 10 - Wt   5 mar
+
+            2019-03-11      15:46:49  3   Fix smiecie
+            2019-03-11      15:46:18      WiP Eslint, wyciecie logow i komentarzy
+
+            (...)
+            ---------------------------------------------------------------------------------
+
+      b) Scalaj komity kierując się ww rozpiską
+
+          git rebase -i   // Scalenie iluś komitów w 1 (bez scalania ich opisów) - rebase fixup
+                         // Stań prawym na np 5-tym komicie _od góry_ w GitLens
+                         // > Rebase to Commit
+
+                         // Pierwszemu od góry zmień 'pick' na 'r'(eword)
+                         // kolejnym na 'f'(ixup) i zamknij okno
+
+                         // Jak pojawi się kolejne wpisz opis podsumowujący co zrobiło tych 5 komitów
+                         // Jeśli nawet tych po zgrupowaniu rebasem będzie dużo, by się nie pogubić
+                         // numeruj je kolejnymi liczbami, a nazwy dopiszesz w kolejnym ruchu
+
+                         // Zmiana opisów komitów na kolejne numery, by potem łatwo się nadawało właściwe opisy
+                         // w GitLens, stań prawym na drugim od dołu komicie > Rebase to Commit
+
+                         // Każdemu z wyświetlonych zmień 'pick' na 'r'(eword) i zamknij taba
+                         // Kolejno wyświetlane będą taby z opisami kolejnych komitów
+                         // (jeśli je ponumerowałeś wg instrukcji jak wyżej, to będą to kolejne numerki)
+
+                         // Zmieniaj kolejne opisy i zamykaj taba
+
+                r a74519b Done linting    // 1-sza linia ma mieć 'r' -
+                f e0b93af Done - Eslint   // 2-ga i ew kilka kolejnych 'f'
+                pick c4a8b22 1            // ostatniej się nie rusza
+
+      c) Zmień opisy komitów
+
+          Z Gitlensów lecąc od góry, bierz kolejne paczki komitów.
+          Narpief stań na komicie 10 czyli wyświetli 10 górnych, potem na 20 - wyświetli 20 itd
+          Wszystkie picki zmień na 'r' i zamknij plik
+          Git będzie po kolei otwerał okno z kazdym pojedyńczym komitem pozwalając zmienic opis
+          Zmień i zamknij okno
+
+          git rebase -i
+
+      d) ../redate.sh --commits 58
+
+          Zmień dni i godziny komitów, kierując się ww rozpiską
+          Zmień najpierw 1 datę i zrestartuj skrypt, by zobaczyć czy się zasejwowała
+          Potem same daty, a na końcu godziny (nie wszystko naraz, by w razie awarii za dużo nie stracić)
+
+          https://github.com/PotatoLabs/git-redate
+
+          Zakomentuj linię 50:
+             echo ${OUR_EDITOR} > ${SETTINGS_FILE}
+
+          ../redate.sh --commits 58 // WAŻNE: o 1 mniej niż ilość wszystkich.
+                                    // Odpal go z jakąć przykładową liczbą np 1000
+                                    // a zaraz po odpaleniu, u dołu ekranu będzie msg 'Read 59 lines'. Weź 58 (jedną mniej)
+
+          Trzymaj plik na desktopie i stamtąd go wołaj (stąd '../'), bo inaczej redate krzyknie że nie ma czystego czegośtam
+
+          Zmień 1 dzień i zasejwuj, by się upewnić czy skrypt działa
+          Jeśli tak, to potem rozdziel wszystkie linie na dni
+          Zmieniaj same daty, dopiero potem godziny
+          Po sejwie, na ekranie będzie szybko wyświetlane dużo linii tekstu
+          Czekaj do końca, nawet 2-3 minuty
+
+      e) ../autor.sh
+
+          Zmiana autora  // uaktualnij i odpal skrypt z 317) Skrypty bashowe gita (zmiana autora komita)
+
+      f) ustawienie tych samych dat (czyli nie było nic majstrowane typu merge, rebasy itd)
+          git filter-branch --env-filter 'export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"' -f
+
+      g) git log --format=fuller  // sprawdzenie czy ww zadziałało - dokładne logi komitów
+
+      h) git reflog expire --expire=0 --all &&  git prune  // wyczyszczenie refloga,
+                                                           // choć github repo nie zawiera lokalnego katalogu .git
+
+      i) git remote remove origin  // (aliasy komend) zmiana danych repa, loginu i maila - niezbędne do pusha
+
+         git remote add origin https://github.com/maciekkand/skillbill.git
+         git remote add origin https://github.com/maciekkand/tvui.git
+
+         git remote add origin https://github.com/nabu1/tvui.git
+         git remote add origin https://github.com/maciekkand/shopsring.git
+
+         git config user.email maciek.kand@gmail.com
+         git config user.name maciekkand
+
+      j) git remote -v  // sprawdzenie czy jest już właściwe repo
+
+      k) git config -l | grep user  // sprawdzenie czy jest już właściwy login i mail
+
+      l) git push -u origin master  // do nowego repa
+
+      m) jeśli wyskoczy błąd:
+           remote: Permission to maciekkand/skillbill.git denied to nabu1
+         .. idź do Control Panela > Credentials Manager > wynij linijkę z github / nabu1
+         i ponów git pusha
+
+      n) idź na githuba i obejrzyj czy ok
+
+      o) zarchiwizuj oryginalny katalog, zrób git clone'a repa i zobacz czy chodzi
+
+      p) aby yarn nie ściągał 140 MB puppeteera z chromem, wytnij go najpierw z package.json
+
+___________________________________________________________________________________________
+324) Wielkość liter w nazwie katalogu
+
+      Problem:
+        Sklonowałem swoje repo. Nie odpalało się, krzycząc że brak pliku Search.vue w katalogu Serach
+        Zamiast katalogu 'Search' był 'search'. Zmieniłem 's' na duże i chciałem zakomitować,
+        ale git nie wykrył żadnej zmiany do komitowania
+
+      Rozw:
+        Wbij komendę:
+          git config core.ignorecase false
+
+___________________________________________________________________________________________
+330) Working while waiting for pending PR
+
+      https://stackoverflow.com/questions/35790561/working-while-waiting-for-pending-pr
+
+      Jeśli wypuszowałeś stworzonego w branch_1 komita i czekasz na klepnięcie PR'a, masz 2 możliwości:
+        a) czekać na merga, a potem zassać nowe zmergowany projekt przez: git pull
+
+        b) spod branch_1 stworzyć subbrancha branch_2:
+             git checkout -b branch_2 branch_1
+           w vscodzie będzie to:
+             klik w nazwę brancha w lewym dolnym > Create new branch from .. > Select a ref to branch from
+
+
+
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+
+

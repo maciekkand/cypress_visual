@@ -1,0 +1,383 @@
+1) Instalacja
+2) Tips & Troubleshooting
+3) Hello World
+4) Variables
+5) Variables scope
+6) Variables scope  -  !global
+7) Nesting
+8a) Import / Partials
+9) Variable !default
+10) Math
+11) Wbudowane funkcje
+12) Extend
+13) Placeholder
+14) Mixin
+15) Dyrektywy funkcyjne  ( function directive )
+
+
+________________________________________________________________________________________________________________
+0) Lista funkcjonalności
+
+    a) zmienne
+    b) @import
+    c) !default
+    d) extend
+    e) placeholder %
+    f) mixin
+    g) komentowanie //
+    h) dyrektywy funkcyjne
+    i) Math
+    j) funkcje
+
+________________________________________________________________________________________________________________
+1) Instalacja
+
+    a) vs code - live sass compiler
+    b) vs code - live server
+    c) stwórz index.html i style.scss jak w p.3
+    4) w dolnej belce kliknij na 'Watch Sass' (compiler)
+    5) i na 'Go Live' (server)
+    6) zrób jakąś zmianę w kodzie i obserwuj zmiany
+
+________________________________________________________________________________________________________________
+2) Troubleshooting
+
+    a)  https://scotch.io/tutorials/getting-started-with-sass
+    b)  znacznik komentarza (jak w js)   //
+    c)  http://www.sassmeister.com  -  sandbox / playground (jak jsbin)
+
+_______________________________________________________________________________________________________________
+3) Hello World
+
+      a) wbij poniższe
+      b) klik w 'Watch Sass' na dolnej belce
+      c) klik w 'Go Live' na dolnej belce
+
+ -  -  -  -  -  -  -  -  -  - a) index.html  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf8">
+        <link rel = "stylesheet" href = "style.css"
+    </head>
+    <body>
+         <div class="shape" id="shape1">  <h1> 1 </h1> </div>
+         <div class="shape" id="shape2">  <h1> 2 </h1> </div>
+         <div class="shape" id="shape3">  <h1> 3 </h1> </div>
+         <div class="shape" id="shape4">  <h1> 4 </h1> </div>
+    </body>
+    </html>
+
+
+ -  -  -  -  -  -  -  -  -  - b) style.scss  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+    $display: inline-block;
+    $width: 200px;
+    $height: 200px;
+    $color1: red;
+    $margin: 16px;
+
+
+    .shape {
+      display: $display;
+      width: $width;
+      height: $height;
+      background: $color1;
+      margin: $margin;
+    }
+
+________________________________________________________________________________________________________________
+4) Variables
+
+    Patrz 3) Hello World
+
+    $color1: blue;
+    $margin: 16px;
+
+    .shape {
+      display:inline-block;
+      width:200px;
+      height:200px;
+      background: $color1;
+      margin: $margin;
+    }
+
+________________________________________________________________________________________________________________
+5) Variables scope
+
+    Zmienna lokalna nadpisuje globalną.
+    W przykładzie poniżej, w body będzie green, a w shape3 - red
+
+    $newColor: red;
+
+    body {
+      $newColor: green;
+      background: $primaryColor;
+    }
+
+    #shape3 {
+      color: $newColor;
+    }
+________________________________________________________________________________________________________________
+6) Variables scope  -  !global
+
+    !global  - zmienia zmienną z lokalnej na globalną
+
+    Teraz,  shape3 będzie green
+
+    @import 'colors.scss';
+    $margin: 16px;
+
+    $primaryColor: red;
+
+    body {
+      $primaryColor: green !global;
+      background: $primaryColor;
+    }
+
+    #shape3 {
+      color: $primaryColor;
+    }
+________________________________________________________________________________________________________________
+7) Nesting
+
+    Nie zagnieżdżaj głębiej, niż do 4 poziomów  ( zalecenie sass'aków )
+    Zamiast:
+
+      .container { width: 100%; }
+      .container h1 { color: red; }
+
+    Lepiej:
+      .container {
+          width: 100%;
+          h1 {
+              color: red;
+          }
+      }
+________________________________________________________________________________________________________________
+8a) Import 1
+
+    Można importować plik zewn:
+      @import 'colors.scss';
+
+    Po imporcie,  wszystkie zdefiniowane w nim zmienne są dostępne z poziomu pliku głównego
+    Jeśli nazwę pliku poprzedzi się underscorem (_plik.scss ),
+    to pominięty będzie etap kompilacji do css'a  (oszczędność czasu)
+
+    index.html jak z 3) Hello World
+
+ -  -  -  -  -  -  -  -  -  colors.scss  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+    $color1: blue;
+    $color2: yellow;
+
+ -  -  -  -  -  -  -  -  -  style.scss  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+ @import 'colors.scss';
+ $margin: 16px;
+
+ .shape {
+     display:inline-block;
+     width:200px;
+     height:200px;
+     background: $color1;
+     margin: $margin;
+ }
+
+ #shape1,  #shape4  {
+     background: $color2;
+ }
+________________________________________________________________________________________________________________
+8b) Import 2
+
+    -------- index.html -------------------------------------------
+
+      <div>111</div>
+      <div>222</div>
+      <div class='hi'>333</div>
+
+    -------- style.scss -------------------------------------------
+
+      @import 'typo.scss';
+
+      body { color: white; background: grey}
+
+      div {
+        width: 200px;
+        height: 200px;
+        background: green;
+        box-shadow: 3px 5px 10px black;
+        padding: 15px;
+      }
+
+
+    -------- typo.scss --------------------------------------------
+
+      .hi {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #521752;
+      }
+
+
+________________________________________________________________________________________________________________
+9) Variable !default
+
+    !default ustala wartość domyślną zmiennej.
+    Jeśli przed nią lub po niej zostanie zadeklarowana inna, ta inna nadpisze domyślną
+
+    $firstValue: 1em;
+    $firstValue: 2em !default;  // wygra 1em,  mimo że 2em jest póżniej
+
+    font-size: $firstValue;
+ ________________________________________________________________________________________________________________
+10) Math
+
+    4 działania artymetyczne,  modulo  ( % ), równość  ( == ), nierówność  ( != )
+
+    $shape-width: 100%;
+
+    #shape1 { width: $shape-width;  }
+    #shape2 { width: $shape-width / 4; }
+
+    UWAGA 1
+      Przy dzieleniu gdzie nie uczestniczą zmienne, działanie musi być ujęte w nawias,
+      by nie gryzło się ze skróconą notacją css'owa np:
+
+        $fontDiff: (14px/16px);
+
+    UWAGA 2
+      Nie można mieszać jednostek
+
+      $container-width: 100% - 20px;  // zamiast tego użyj css'owej funkcji calc
+________________________________________________________________________________________________________________
+11) Wbudowane funkcje
+
+      http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+      Mnóstwo funkcji: koloru, stringowe, matematyczne, listy, mapy
+
+      $buttonColor: yellow;
+      $buttonDark: darken($buttonColor, 20%);
+      $buttonDarker: darken($buttonDark, 10%);
+________________________________________________________________________________________________________________
+12) Extend
+
+       Służy dziedziczeniu
+
+     -  -  -  -  -  -  -  -  index.html  -  -  -  -  -  -  -
+
+     <div  id="shape5"><h1> 5 </h1> </div>
+
+ -  -  -  -  -  -  -  -  -  -  style.css  -  -  -  -  -  -  -
+
+    .shape {
+        display:inline-block;
+        width:200px;
+        height:200px;
+        margin: 20px;
+        background: $color1;
+    }
+
+    #shape5 {
+        @extend .shape;
+        border: 5px solid white;
+    }
+
+________________________________________________________________________________________________________________
+13) Placeholder
+
+      Analogia do klasy abstrakcyjnej
+      Blok o nazwie poprzedzonej '%' jest placeholderem tzn, że on sam nie jest kompilowany do css'a
+      Kompilowane są za to bloki  (klasy, id, selectory) które z niego dziedziczą
+
+      %input-style {
+        border-radius: 3px;
+        color: #555;
+        font-size: 17px;
+        padding: 10px 20px;
+        display: inline-block;
+        outline: 0;
+      }
+
+      .input {
+        @extend %input-style;
+        border: 4px solid #ddd;
+      }
+
+      .error-input {
+        @extend %input-style;
+        border:4px solid #e74c3c;
+      }
+________________________________________________________________________________________________________________
+14) Mixin
+
+     Mixin to funkcja zwracająca kod
+     Może być w tym samym pliku,  lub importowane z pliku zewn
+
+  _______________ a) style.scss ______________________________________________________
+
+      @mixin media($queryString) {
+        @media #{$queryString} {     // zawartość $queryString jako będąca w nawiasach {}  jest interpolowana
+          @content;                 // zawartość body mixina  ( width:  100% )
+        }
+      }
+
+      .container {
+        width: 900px;
+        @include media("(max-width: 767px)") {
+          width: 100%;
+        }
+      }
+
+  _______________ b) style.css _______________________________________________
+
+    .container {
+      width: 900px;
+    }
+
+    @media (max-width: 767px) {
+      .container {
+        width: 100%;
+      }
+    }
+________________________________________________________________________________________________________________
+15)  Dyrektywy funkcyjne (function directive)
+
+ -  -  -  -  -  -  -  -  -  -  -  style.css  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+    $container-width: 100%;
+    $column-count: 4;
+    $margin: 1%;
+
+    @function getColumnWidth($width, $columns, $margin){
+      @return ($width / $columns) - ($margin * 4);  // 100% / 4 - 1% * 4 = 21%
+    }
+
+    .shape {
+      display:inline-block;
+      //width:200px;
+      width: getColumnWidth($container-width, $column-count, $margin);
+      height:200px;
+      margin: 20px;
+      background: green;
+    }
+________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

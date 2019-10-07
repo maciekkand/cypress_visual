@@ -1,0 +1,44 @@
+https://docs.cypress.io/api/commands/clearcookies.html#Syntax
+https://docs.cypress.io/api/commands/clearlocalstorage.html#Syntax
+https://docs.cypress.io/api/commands/reload.html#Force-Reload
+https://stackoverflow.com/questions/50711829/cypress-browser-state-maintains-log-in-how-do-i-stop-this-from-occurring
+https://stackoverflow.com/questions/50747503/why-do-i-need-to-explicitly-clear-sessionstorage-when-using-cypress
+https://stackoverflow.com/questions/49530795/in-cypress-how-do-i-clear-the-appcache-before-a-test-run
+https://stackoverflow.com/questions/50820732/in-cypress-set-a-token-in-localstorage-before-test/50820733#50820733
+https://stackoverflow.com/questions/46850694/in-cypress-how-to-count-a-selection-of-items-and-get-the-length/51907113#51907113
+
+
+https://stackoverflow.com/questions/53050294/how-to-set-cookies-within-cypress-testing
+https://docs.cypress.io/api/cypress-api/cookies.html#Preserve-Once
+https://docs.cypress.io/api/commands/setcookie.html#Command-Log
+https://stackoverflow.com/questions/50711829/cypress-browser-state-maintains-log-in-how-do-i-stop-this-from-occurring
+https://stackoverflow.com/questions/50747503/why-do-i-need-to-explicitly-clear-sessionstorage-when-using-cypress
+https://stackoverflow.com/questions/49530795/in-cypress-how-do-i-clear-the-appcache-before-a-test-run
+https://stackoverflow.com/questions/50820732/in-cypress-set-a-token-in-localstorage-before-test/50820733#50820733
+https://stackoverflow.com/questions/46850694/in-cypress-how-to-count-a-selection-of-items-and-get-the-length/51907113#51907113
+
+
+google: how to cookies in cypress
+________________________________________________________________
+Joe's repo
+
+Here's an example from my public journals.  
+I just upload them to github so I can update them from anywhere.  https://github.com/joedski/musings/blob/master/Typescript/Journal%202019-09-18%20-%20Lazy%20Type%20Resolution.md
+GitHubGitHub
+joedski/musings
+Coalesced Musings across Many Things. Contribute to joedski/musings development by creating an account on GitHub.
+
+Maciej Kandalski  30 minutes ago
+I see now. So let me email you on Monday and if its good enough I may put it on some github repo
+
+The Wizard:coffee:  27 minutes ago
+Sure thing.  Who knows, maybe it’ll eventually make it to a Confluence page for UI devs or something.
+Note that I also do keep a separate journals  repo in GE github on my GE account for journalling on things that are specific to my work here.  Obviously anything posted there has to be allowed to viewed within the company...
+________________________________________________________________
+
+Action points: 
+     1) Jer chce by odpalić to na jakims firmowym endpoincie - pogadać z Mariuszem
+        Spróbować zrobić taką samą instalację jak u mnie u J lub M i wtedy będzie jasne który z workaroundów zadziałał
+        
+     2) Wysłać slajdy w pon
+     3) Joemu wysłać notki o moich work aroundach z cyprem

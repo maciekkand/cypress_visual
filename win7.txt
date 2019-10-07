@@ -1,0 +1,2256 @@
+﻿
+0) BIOS  - klawisze
+1) Dodanie usera do grupy lokalnej
+2) Wycięcie usera z grupy lokalnej
+3) Wyłączanie lewego panela z win explorera
+4) Ustawianie domyślnego widoku folderów
+5) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
+6) Wybór tła pulpitu
+7) Utyliszcza
+8) Wyłączenie autorozciągania okna
+9) Powiększanie kursora i zmiana jego koloru
+10) Konfiguracja mikrofonu
+11) Przyszybszanie Win7  (Power Options - zasilanie)
+12) Snipping Tool
+13) WiFi Hotspot z laptoka
+
+14) Sprawdzenie stanu baterii
+15) Pobór prądu z netem i bez
+16) Wyłączanie defaultowych ustawień (m.in Customer Experience)
+17) USB Tethering (smark > laptok)
+18) USB Reverse tethering ( laptok > smark)
+19) Cmd line na katalogu w eksplorerze
+20) Zipowanie z cmd line
+21) Wyłaczanie serwisu żrącego CPU
+22) Aero 3 - nowy manager Aero2
+23) Dzielenie wifi smark > laptok i odwrotnie
+24) Bootowalny pendrak z instalką win 7
+
+25a) Batch
+25b) Batch - tworzenie katalogu projektu w Nodzie
+
+26) Autostart folder
+27) Kill proces - pskill utility
+28) Status w Skypie
+29) Skype troubleshooting
+30) Przyspieszanie grafiki w przeglądarce (WebGL)
+31) Download resumption - wznawianie pobierania
+
+32) Jasność ekranu - tryb pracy kąpia
+33) Tryb awaryjny
+34) Sharp keys - redefiniowanie klawiszy (wyłączanie Inserta)
+35) Wyszukiwanie paczki windows update pod numerze KB
+36) Uptime:  Task Mgr > tab Performance
+
+40) Zniknięcie okna cmd z zewn monitora, przy odłączeniu go
+41) GitBash
+42) GitBash - dodanie wget'a
+43) GitBash - dodanie nano
+44) GitBash - history
+
+45) Norton Ghost - Lightout Restore
+46) Norton Ghost - obraz
+47) Aomega Backupper  ( wersja darmowa )
+
+53) ConEmu - config
+54) ConEmu - zaznaczanie kolumny tesktu
+55) ConEmu - nowe poziome/pionowe okno
+56) ConEmu - ubijanie procesu
+57) ConEmu - otwieranie nowego okna w określonym katalogu
+
+60) Zmiana file associations w win7
+62) Dropbox vs GoogleDrive
+63) Kopiowanie vs przenoszenie plików
+64) VLC
+65) VLC - brak dźwięku
+
+66) AutoHotKey
+67) AutoHotKey - klawisze i opóźnienie
+68) AutoHotKey - mysz i kursory
+69) AutoHotKey - okno apki, kółko myszy
+
+70) Osadzanie obrazka w mp3
+71) winscp
+72) inkscape - .svg na .png  ( GUI i cmd line )
+73) imageMagic - operacje na obrazkach  ( cmd line )
+74) photoshop features - od której wersji
+75) screenToGif
+76) cloc  ( lines of code )
+77) avidemux
+78) finereader
+79) Python 3
+80) msconfig
+81) ivona
+82a) Procesory w laptokach
+82b) Laptok dla Oli (do edycji wideo, używany )
+83) Edytor exif
+84) Zmiana timestampa pliku
+85) ChomikBox
+86) Free Screen Recorder 8.0.0
+87) Obejście braku hasła logowania
+88) Bład - D3DCompiler_47.dll is missing
+
+89) Eizo - drugi monitor zewn
+90) Eizo - brightness
+91) Eizo - troubleshooting
+92) Głośny wentylator
+93) Ustawienie Canary jako domyślnej przeglądarki
+94) DesktopOK.ini - współrzędne ikon
+
+100) Camtasia - zgrywanie osadzonych filmów
+101) Camtasia - oczyszczanie dźwięku (camtasia, ffmpeg i audacity)
+
+102) FlashBack Express Recorder
+103) VirtualBox (6.0.4)
+104) Kali na VBoksie
+105) Bardzo wolno reagujący win 7
+106) Odzysk hasła do wifi
+107) Aliasy w .bashrc (gitBash)
+108) Reinstalacja win 7
+109) Wyłączanie zbędnych usług win7 (Black Viper)
+110) Wyłączenie hibernacji
+111) Windows Search
+112) Shutdown from command line
+113) youtube-dl
+
+119) Win 10 - black viper
+120) Win 10 - odchudzanie
+121) Win 10 - delaying updates
+122) Win 10 - disabling telemetry
+123) Win 10 - disabling other settings
+
+124) Win 10 - fixing net conn issues
+125) Win 10 - best utils
+
+
+
+_________________________________________________________________
+0) BIOS
+      F2 - wejście do BIOSa
+      F8 - tryb awaryjny win
+      F10 - boot menu
+      F12 - boot z USB
+_________________________________________________________________
+1) Dodanie usera do grupy lokalnej
+
+        net localgroup administrators John /add
+_________________________________________________________________
+2) Wycięcie usera z grupy lokalnej
+
+        net localgroup administrators John /delete
+_________________________________________________________________
+3) Wyłączanie lewego panela z win explorera
+
+        a) Press the "Windows" and "R" keys simultaneously on your keyboard to load the Run box.
+        b) Type "Explorer" and press the "Enter" key.
+        c) Click "Organize," and then "Layout." This expands the layout options
+        d) Click to uncheck "Navigation Pane" in the layout options. This change takes effect immediately.
+_________________________________________________________________
+
+4) Ustawianie domyślnego widoku folderów
+
+   a) otwórz folder
+   b) Z górnego toolbara kliknij o prawej stronie ikonę More Options
+   c) zjedź na Details
+   d) przesuń kolumnę Size na początek
+   e) górne menu : Organize -> Folder and Search options -> View -> Apply to all folders
+
+   Można zgasić / wyświetlić kolumny :
+   Prawy w środku folderu -> Sort by -> More ...
+____________________________________________________________________
+
+5) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
+
+   Prawy klik na desktopie -> View -> Align icons to grid : uncheck
+_____________________________________________________________________
+
+6) Wybór tła pulpitu
+
+   Prawy klik na desktopie ->  Personalize -> Desktop background (ikona na dole)
+_____________________________________________________________________
+
+7) Utyliszcza
+
+       a) dimmer http://www.nelsonpires.com/software/dimmer/ - przygasza ekran
+       b) autohotkey - ogólnowindowsowe skróty klawiszowe
+       c) stickies (by Zhorn) - żółte karteczki
+       d) shellexview - wycinanie opcji z menu kontekstowego (prawy klik na desktopie)
+       e) capture screenshot lite - odpowiednik windowsowych Snippets
+       f) netspeedmonitor - pokazuje w treju bieżące szybkości downloadu i uploadu
+       h) desktopok - zapamiętuje układ ikon na pulpicie
+       i) realtemp - pokazuje dane proca : szybkość, obciążenie i temperaturę
+       j) foxit - pdf viewer
+       k) foxit phantom - pdf edytor
+       l) finereader - ocr
+       m) avidemux - przycinanie i konwersja formatów video
+       n) ffmpeg - przycinanie, podgłaśnianie i konwersja formatów audio i video
+       o) fileseek - wyszukiwanie stringów w plikach i plików
+       p) file renamer - masowy zmieniacz nazw plików
+       q) bullzip - drukarka ekranu na pdfa
+       r) poweriso - tworzenie i otwieranie obrazów
+       s) magic disc - montowanie obrazów
+       t) registrar registry manager - edytor rejestru
+       u) sdformatter - formatuje karty sd
+       v) sigil edytor .epub'ów
+       x) vlc - video player
+     xx) mpc-hc - video player
+       y) winrar - (de)kompresor
+       z) pytacz - prosta zgadula do ang i nie tylko
+       A) winscp - graficzny manager plików stacja <-> serwer
+       B) keepass - manadżer haseł
+       C) topnetinfo - aero2 manager
+       D) play online -  sterownik do modemu
+       E) mp4a to mp3 converter
+       F) mptrim pro - przycinanie mp3
+       G) calibre - konwerter ebooków
+       H) rarma radio - radio netowe
+       I) utorrent
+       J) teamviewer - zdalny pulpit
+       K) win dir stat portable - pokazuje co zajmuje najwiecej dysku
+       L) tightvnc - zdalny pulpit linuksowego
+       N) node - server js
+       O) sublime text
+       P) malwarebytes antimalware
+       Q) batterybar - stan naładowania i zużycia baterii; ikona z % w treju
+       S) netlimiter - przycinacz pasma per program, pokazuje kto żre pasmo bandwidth
+       T) source tree - git gui
+       U) flux - przyciemnia kolory po zachodzie słońca
+       V) cyberghost - kilkadziesiąt darmowych serwerów proxy
+       W) mobilego - do smarka (tylko 3)0)2 z pirateBaya nie ma wirucha)
+       X) ultrasearch - wyszukiwacz plików po nazwach
+       Y) wondershare video editor - nakładanie grafik na film (np chwytów gitary)
+       Z) gitBash  -  namiastka linuksa instalowana przy okazji instalacji gita  ( przy instalacji, zaznacz użyj narzędzi linuksa )
+      Za) ConEmu  - lepsze cmd
+      Zb) gitBash - linuks w win,  najlepiej razem z ConEmu
+      Zc) screenToGif - nagrywa to co sie dzieje na desktopie i robi z tego animowanego gifa. Ma wbudowany edytor
+      Zd) HiSuite - winodwsowy manager smarka
+      Ze) inkscape - edytor obrazków z savem w .svg  ( wektorowy ) + konwersja .svg na .png  ( GUI i cmd line )
+      Zf) Screen Recorder Pro 7.3.0  (Free Screen Recorder 8.0.0 - wkleja watermarka )
+      Zg) sharpkeys - redefiniowanie klawiszy
+      Zh) Lazesoft Recovery Suite - Windows Recovery, Password Recovery - live usb
+      Zi) kon-boot - gdy zapomniales hasla admina
+      Zj) 4k Video Downloader - youtube downloader
+      Zk) truecrypt 7.1a - najlepszy (snowden)
+      Zl) core temp - monitoring temperatury rdzeni i dysków
+      Zm) speed fan - monitoring temperatury rdzeni i dysków - ustawia smart fana
+      Zn) driver easy 5.6.10 - ładnie zainstalował nowe drivery (pojedyńczo bo wersja free)
+      Zo) youtube-dl - command line utyliszcze jak ffmpeg, do ściągania z tuby
+_____________________________________________________________________
+8) Wyłączenie autorozciagania okna
+
+    Control Panel -> Ease of Access -> Ease of Access Center ->
+    -> Make the mouse easier to use -> Prevent windows from being automatically ... uncheck !
+_____________________________________________________________________
+9) Powiększanie kursora i zmiana jego koloru
+
+    Control Panel -> Ease of Access -> Ease of Access Center ->
+    -> Make the mouse easier to use -> Mouse pointers
+_____________________________________________________________________
+10) Konfiguracja mikrofonu
+
+    a) Control Panel > Hardware & Sound > Sound > zakładka Recording
+    b) będą tam 2 identyczne ikony. Jedna działa ok, druga b cicho
+        Metodą prób i błędów trzeba dojść która działa źle i ją prawym klikiem zdisablować
+    c) Zaznaczyć właściwą ikonę i kliknij w batona Properties > zakładka Levels
+    d) Pozostawić domyślne Microphone na 49
+    e) Microphone Boost dać na maksa = +30dB
+
+    f) Start > All Programs > Accessories > Sound Recorder (wypuścić linkę na desktop)
+    g) nagrać klika sekund, zasejwować na desktopie i odtworzyć
+    h) Skajp - nagraj rozmowę testową. Jeśli będzie za cicho tzn że trzeba ustawić:
+         i) mikrofon: 100%
+         ii) boost:      20% lub 30%
+_____________________________________________________________________
+11) Przyszybszanie win 7 (Power Options)
+
+    Control Panel\Hardware and Sound\Power Options > Hi Performance
+
+_____________________________________________________________________
+12) Snipping Tool
+
+    Żeby działał, musi istnieć katalog  C:\Users\ab\Pictures
+
+    wskazany tym kluczem rejestru:
+
+    "HKEY_CURRENT-USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
+
+    Wyedytuj ww i zamiast końcowego 'Pictures' wbij 'Desktop'. Teraz możesz wyciąć katalog Pictures
+    a sniptool będzie działał
+
+_____________________________________________________________________
+13) WiFi Hotspot z laptoka
+
+    Zasięg pozwalający połaczyć się z hotspotem na laptoku to jakieś 20m od domu w kierunku łąki
+
+    a) Wejść w Device Mgra > Network Adapters > Atheros > prawy klik > Properties >
+        i) tab Power Mgt > uncheck Allow to turn off ..
+       ii) tab Advanced > AdHoc 11n > Enable
+
+    b) zrobić 2 bacze leżące na desktopie:
+
+            i) hocpot.bat
+                netsh wlan set hostednetwork mode=allow ssid=dupa key=12345678 keyUsage=persistent
+                pause
+                netsh wlan start hostednetwork
+                pause
+
+           ii) stop.bat
+                   netsh wlan stop hostednetwork
+                   pause
+
+    c)  Po odpaleniu hocpota, spojrzeć czy w Control Panel \ Network and Internet \ Network Connections
+         czy utworzona została ikonka nowego połączenia:
+
+             "Wireless Network Connection 2
+             dupa
+             Microsoft Virtual WiFi Miniport Adapter"
+
+        Zrobić jej skrót na desktop
+
+    d) Znaleźć tam ikonę przez którą chodzi net
+        np Wireless Connection UPC131281, Aero2 albo PLAY albo Orange
+
+    e) Prawy klik > Properties > Sharing:
+
+            i) checknij Allow other users
+
+           ii)  wybierz  "Wireless Network Connection 2" - czyli tą na której jest połaczenie 'dupa'
+
+                Jeśli wybrane i wyszarzone  jest coś innego, zdejmij ptaka z checkboxa powyżej,
+                > OK > wyjdź z tej szmatki, wejdź znowu itd aż ustawisz ww
+                Może być konieczne wyłączenie i powtórne włączenie połaczenia internetowego
+
+    f) Odpalić neta na smarku, wybrać SSID nowego hotspota ('dupa') i sprawdzić czy jest połącenie
+
+    g) jeśli po jakimś czasie połaczenie zostanie zerwane:
+        Network Conns > prawy klik na ikonie 'dupa' > disable > enable > ww 2 komendy dosa
+
+    h) w treju w prawym dolnym jest biała ikonka kompa z kablem - pokazuje połączenia sieciowe
+
+    i) Control Panel > Network and Internet > Network Connections > prawym na 'dupa' > utwórz skrót i wyciągnij go na desktopa
+
+    j) batch odpalający 2 ww komendy (hotspot.bat):
+
+            netsh wlan set hostednetwork mode=allow ssid=dupa key=12345678 keyUsage=persistent
+            netsh wlan start hostednetwork
+            pause
+
+       !!   Okno bacza nie wyłaczać tylko zminimalizować
+
+    Troubleshooting:
+
+    Podsumowując, muszą być ustawione 3 rzeczy:
+        i)   na ikonie połaczenia z którego idzie net (np Netia, Play czy Orange) - Shared i wybrana Wless Conn 2
+        ii)  ikona Wless Conn 2 enabled (w tym celu odpal bacza hocpot.bat)
+        iii) smark połaczony do hocpota
+
+    i) Jeśli:
+        a) odpaliłeś ww batcha (hotpsot.bat) ew ww 2 komendy
+        b) właczyłeś WiFi na smarku
+        c) smark się połączył ('status połaczono') w AP 'dupa'
+        d) biało-szara ikona kompa w lewym dolnym pokazuje 'dupa - Internet access'
+        e) kilk w skrót na pulpicie do 'dupa' pokazuje: 'IP v4 conn: Internet'
+
+        a neta dalej nie ma (Network Tester.apk i Speedtest.apk nie chodzą),
+
+        1) to wejdź w Network Conns, prawy klik na ikonie połączenia sieciowego 'dupa' > disable > enable
+        2) jak to nic nie daje, albo po disable nie można go zenablować, wytnij ikonę połączenie (klawisz del) i restart kąpa
+
+    ii) UWAGA !! Smark po minucie-dwu odcina tubę (pewnie przez jakieś wewn ustawienia oszczednosci energii)
+_____________________________________________________________________
+14) Sprawdzenie stanu baterii
+
+        a) cmd:   powercfg -energy
+        b) otwórz raport z wynikami: energy-report.html
+        c) znajdź sekcję: Battery Information
+        d) policz Last Full Charge / Design Capacity
+
+        Nowe aku > 95%. Jeśli 50% to pociągnie tylko kilka miesięcy
+_____________________________________________________________________
+15) Pobór prądu z netem i bez
+
+      (na podstawie apki BatteryBar 3)6)3 @ 11 wrz 2014)
+
+      Kąp miał ustawiony Power Mgt na Balanced, tzn 95% jechał na 1)2GHz,
+      a w razie potrzeby podnosił je stopniowo do 3)2GHz.
+
+      Przy 1)2GHz (poniżej 10% obciążenia CPU), apka RealTemp wskazywała pobór przez CPU 6-7W
+
+      Jasność monitora = minimum
+
+      Z netem kąp chodził 2)5h, bez neta 3h 3min
+      Pobór mocy bez neta = 14-16 W, z netem 18-19, czyli net = 3-4 W, co przy 5V USB oznacza prąd = 600-800 mA
+      Z arta o modemie Huawei do LTE wyczytałem że w peaku bierze 220 mA
+      Ładowanie od 0% do 98% (w czasie pracy na kąpie) = 1)5h (pozostałe 2% - 15 minut)
+      Bateria ma pojemność 49Wh, co podzielone przez 3h i 3 minuty działania kąpia, oznacza pobieranie mocy = 16W
+
+_____________________________________________________________________
+16) Wyłączanie defaultowych ustawień (m.in Customer Experience)
+
+    a) Control Panel\System and Security\Action Center\Change Action Center settings
+
+    b) klik Customer Experience Improvement (link na dole) > wyłącz
+_____________________________________________________________________
+17) USB Tethering (smark > laptok)
+
+        a) Podłącz smarka do USB
+            U góry ekranu wyświetli się ikona USB i powiadomienie Podłączono jako urządzenie multimedialne lub Podłączono jako aparat
+
+        b) Na smarku nagnieć (prawa dolna ikona na obudowie):
+            Ustawienia > Więcej ustawień > Udostępnianie internetu > Router USB
+_____________________________________________________________________
+18) USB Reverse tethering ( laptok > smark)
+
+      a)  http://forum.xda-developers.com/showthread.php?t=2632471
+
+           Cały nw soft jest na  E:/Instalki/Reverse tethering
+
+           i) download & install na kąpie Reverse tethering 3)19 (w arcie jest starsza wersja)
+           ii) download & install na smarku USB tunnel -  service.tracetool.apk 12)4)2
+           iii) download & install na smarku de.robv.android.xposed.installer_v25_36cbbc_(3).apk
+           iii) download & install na smarku HackConnectivityService.apk
+           iv) odpal Xposed > Framewrok > Install or Update > restart smark
+            v) odpal Xposed > Modules > czeknij Hack Conn Service
+           vi) smark > Ustawienia > Opcje programisty > Debugowanie USB
+          vii) podłącz smarka pod USB
+         viii) uruchom apke USB Tunnel (service.tracetool)
+           ix) kąp > cd Reverse tethering katalog > uruchom AndroidTool.exe > Connect
+            x) W oknie Debug poleci dużo logów, przełączy sie na okno Speed i u góry
+                wypisze porty na których jest transmisja
+            xi) Uruchom apke OOKLA Speedtest na smarku
+
+           xii) Dodatkowe info :
+                   http://forum.xda-developers.com/showthread.php?t=1371345
+
+            OOKLA  Speedtest chodzi, BBO też, ale tuba wywala że unavailable offline
+            Nie pomaga właczenie tego tam haka
+__________________________________________________________________________________________________
+19) Cmd line na katalogu w eksplorerze
+
+        a) Stań kursorem na np C:/windows
+        b) ctrl + shift + right click
+        c) Open command window here
+__________________________________________________________________________________________________
+20) Zipowanie z cmd line
+
+        a) dodać ścieżkę do winrara do path
+        b) winrar a -r c:\php.zip c:\php                // robi .rar
+        c) winrar a -afzip c:\test.zip c:\test.csv    // robi .zip  -  przydatne dla linuksa który standardowo obsługuje zipy
+__________________________________________________________________________________________________
+21) Wyłaczanie serwisu żrącego CPU
+
+        Nagle wiatrak zaczynał bardziej szumieć.
+        Task Mgr pokazywał CPU=15% z czego prawie wszystko svchost
+
+        a) Task Mgr > tab Performance > klik Resource monitor > tab CPU > proces PID = 1312
+        b) prawy klik na procesie o wysokim użyciu CPU (svhost SSDP discovery) > Search Online (startowanie urządzeń UPnP)
+        c) Task Mgr > Processes > prawy > klik baton End process
+        d) Task Mgr > Services > klik baton Services > znajdź go i zastopuj
+        e) Napisz kartke że zastopowałeś taki a taki proces
+        f) Popracuj upewniając się że wszystko działa OK
+        g) Jeśli tak, to idź do service.msc (lub Task Mgr > Services > Services) i ustaw go na Disabled
+        h) Jeśli nie, odblokuj proces
+__________________________________________________________________________________________________
+22) Aero 3 - nowy manager Aero2
+
+        Na 1-szy rzut ucha, o niebo lepszy od PlayOnline 11)002 (Mobile Partnera)
+        Stąd: http://chomikuj.pl/sebus1201/Aero3
+__________________________________________________________________________________________________
+23) Dzielenie wifi smark > laptok i odwrotnie
+
+         Do tego kto udostępnia włóż kartę z netem (aero na Youngu działa)
+
+        a) smark
+            i) odpalić Dane komórkowe - górny panel
+            ii) sprawdzić apką Network Test
+            iii) odpalić Router WiFi (Ustawienia > Więcej > Udostępnianie internetu)
+
+        b) laptok
+            i) klik w w prawym dolnym na ikonie połączeń wifi czy jest połączenie kuciacek
+            ii) jeśli nie ma, to klik w skrót w ikonę kuciacek na pulpicie w prawym dolnym
+            iii) jak to nic nie da to wbić się w ikonę kuciacek i disable / enable
+            iv) sprawdzić pingiem
+____________________________________________________________________________________________________
+24) Bootowalny pendrak z instalką win 7
+
+        a) wsadź pendraka
+
+        b) cmd > diskpart > list disk > select disk 1 (sprawdź czy to pendrak pendrak) > clean (usuwa wszystko) >
+               > create partition primary > active > format fs=ntfs quick > assign (bedzie widoczny w win)
+
+        c) rozpakować iso z win 7 64 Home Premium
+
+        d) skopiować katalogi i pliki na pendraka
+__________________________________________________________________________________________________
+25a) Batch
+
+        UWAGA !!
+            Używając komend zawierających znak '%'  ( np git pretty formats ) w baczach windowsowych, eskejpuj znak '%' poprzedzając go jeszcze jednym. Innymi słowy, tam gdzie jest '%' ma być '%%'
+
+        a) opóźnienie 10 sekund
+                ping -n 10 localhost > null
+
+       b)  pętla
+
+            C:\> FOR /l %i in (1,1,1000) DO myProg.exe   // Starting = 1, stepping = 1 , until 1000
+
+            for /l %%i in (1,1,100) do echo %%i   // Add another % sign before i to work
+
+            adb shell "su -c ps | grep " %1    // jeśli plik zwie się p.bat i uruchomimy go z parametrem np. p example
+                                                             // to wykona się komenda adb shell "su -c ps | grep example"
+
+       c)  wyswietlanie zawartości pliku (odpowiednik linuksowego cat)
+                type
+
+       d)  wyswietlenie napisu
+                echo Dupa  // Dupa
+
+       e) wyłaczenie wyświetlania napisów
+                @echo off
+
+        f) pobranie zmiennej z jednego pliku i podstawienie jej w drugim
+
+                a.bat
+                    set mojaZmienna=test
+
+                b.bat
+                    @echo off
+                    call a.bat
+                    echo %mojaZmienna%
+
+       g) find
+
+            type dupa.txt | find "120:"
+
+            find "martin hendrikx" C:\Users\Martin\Desktop\exercise.txt
+
+            /v – any lines that don’t contain the string of words you specified.
+            /c – count how many lines contain your search terms.
+            /n – shows the numbers that correspond with the lines.
+            /i –  ignore  case
+
+       h) baczu z parametrem
+
+            a) stwórz plik a.bat
+                mkdir C:\Users\ab\Desktop\%1
+
+            b) cmd:> a dupa
+
+                utworzy na desktopie katalog dupa, bo 'dupa' zostanie podstawione pod %1
+
+        i) baczu z parametrem  -  parametr domyślny
+
+            Aby baczu się nie wywalał,  gdy nie dostanie parametru,  trzeba mu dać parametr domyslny:
+
+            @ECHO OFF
+            echo *** Parametr liczby linii, poprzedz myslnikiem ***
+            set %1=1
+
+            @ECHO ON
+            git log --numstat %1
+
+__________________________________________________________________________________________________
+25b)  Batch - tworzenie katalogu projektu w Nodzie
+
+       Odpalenie komendy
+          cmd:>  n kicha
+
+       Utworzy na desktopie katalog /kicha,
+       stworzy w nim plik index.js
+       otworzy go Sublimem i wykona npm inita
+
+-------------- n.bat ----------------------------------------
+
+      mkdir C:\Users\ab\Desktop\%1
+      cd C:\Users\ab\Desktop\%1
+      echo.>index.js
+      "C:\Program Files (x86)\Sublime Text 3\sublime_text.exe" C:\Users\ab\Desktop\%1\index.js
+      npm init -y
+_____________________________________________________________
+26) Autostart folder
+
+    C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+_____________________________________________________________
+27) Kill process - pskill utility
+
+    startup script using SysInternals "pskill" that waits for Skype to start and immediately kills it!
+_____________________________________________________________
+28) Status w Skypie
+
+    Jeśli mimo zmian ustawień, Skype na laptoku cały czas uruchamia się ze statusem Online,
+    to dlatego że równolegle podłączony przez wifi skype na smarku jest w trybie Online.
+    Przestaw na smarku na Offline i na laptoku i będzie wstawał jako Offline
+__________________________________________________________________________________________________
+29) Skype troubleshooting
+
+    Jeśli ikona wygląda OK, a komunikacji mimo to nie ma (kręci kółka obok wysłanych wieści),
+    to sprawdź czy nie wybrałeś trybu offline zamiast invisible, bo ikona jest taka sama
+__________________________________________________________________________________________________
+30) Przyspieszanie grafiki w przeglądarce (WebGL)
+
+    Test czy karta graficzna w przeglądarce obsługuje WebGL:
+          get.webgl.org/
+
+    W Chrumie włącza się go przez  chrome://flags i wszystko co ma w nazwie
+    2D, 3D, ale też fura innych - przeleć 1/3 scrolla
+
+    UWAGA !!
+        Nie włączaj "Włącz interfejs WebGL" - bo ww strona testowa przestanie wyświetlać obracającą się kostkę
+__________________________________________________________________________________________________
+31) Download resumption - wznawianie pobierania
+
+        chrome://flags > #enable-download-resumption
+                                    Włącz wznawianie pobrań Mac, Windows, Linux, Chrome OS
+
+           Po przerwaniu pobrań zezwól na ich kontynuowanie lub ponowne uruchomienie przy użyciu elementu menu kontekstowego Wznów.
+__________________________________________________________________________________________________
+32) Jasność ekranu - tryb pracy kąpia
+
+    Jeśli kąp przestawił się na nadmiernie jasny ekran, to pewnie dlatego, że wrócił z oszczędnego trybu pracy do normalnego
+__________________________________________________________________________________________________
+33) Tryb awaryjny
+
+        Po wejściu, fixmbr i fixboot
+__________________________________________________________________________________________________
+34) Sharp keys - redefiniowanie klawiszy (wyłączanie Inserta)
+
+        a) zainstaluj sharpkeys (strona codeplex mikrego)
+        b) odpal i w lewym oknie znajdź i zaznacz Insert
+        c) w prawym oknie zaznacz 1-sze od góry '-- Turn key off'
+__________________________________________________________________________________________________
+35) Wyszukiwanie paczki windows update pod numerze KB
+
+        Dowolne z nw
+
+        wmic qfe get hotfixid | find "KB2731284"
+        systeminfo
+        dism /online /get-packages   // admin required
+__________________________________________________________________________________________________
+36) Uptime:  Task Mgr > tab Performance
+__________________________________________________________________________________________________
+40) Zniknięcie okna cmd które było na zewn monitorze, przy odłączeniu go
+
+        Prawy klik na ikonie cmd w dolnym pasku > Properties > Open file location >
+        .. > prawy klik > Create shortcut  ( on desktop )
+
+        I korzystaj z tego skrótu. Analogicznie z innymi oknami których nie widać
+        po odłączeniu zewn monitora
+
+__________________________________________________________________________________________________
+41) GitBash
+
+      Instalowany razem z gitem, linuksowy shell
+      Aby nie była tracona history, wychodź przez exit a nie x-em w prawym górnym okna
+
+      alt + kropka - ostatnio argument (przydaje się do chodzenia po katalogach)
+      ctrl + minus - wróć do poprzedniego katalogu
+      ctrl + l     - clear screen
+      ctrl + t     - zamiana liter (naprawa czeskiego błędu)
+
+__________________________________________________________________________________________________
+42) GitBash - dodanie wget'a
+
+        a) ściągnij go z
+            eternallybored.org/misc/wget/
+
+        b) skopiuj do:
+            C:\Program Files\Git\mingw64\bin
+
+        c) przetestuj np szybkość ściągania pakietu z npm'a
+             wget  registry.npmjs.org/react/-/react-15.4.2.tgz
+
+__________________________________________________________________________________________________
+43) GitBash - dodanie nano
+
+      curl -L -O http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
+      unzip  nano-2.2.6.zip -d nano
+__________________________________________________________________________________________________
+44) GitBash - history
+
+    By nie gubił historii, wykonaj:
+      echo "PROMPT_COMMAND='history -a'" >> ~/.bash_profile
+
+    .. i przed zamknięciem vs code'a, odpal komendę:
+      exit
+__________________________________________________________________________________________________
+45) Norton Ghost - Lightout Restore
+
+        a) zainstaluj D:/Norton Ghost 15.0
+
+        b) rozpakuj plik .iso leżący na
+             D:/Norton Ghost 15.0/Symantec Recovery Disk 15.0.1.36526 SP1.iso
+
+        c) odpal Ghosta
+
+        d) Menu > Zadania > Skonfiguruj LightOut Restore
+
+        e) Would you like to use current folder ? No
+
+        f) W oknie Symantec media location, wskaż na podkatalog z plikiem z b)
+              D:\Norton Ghost 15\Symantec Recovery Disk 15.0.1.36526 SP1
+
+__________________________________________________________________________________________________
+46) Norton Ghost - obraz
+
+      a) w windowsach na czas backupu, umożliw robienie restore pointów
+          My computer > prawy > Properties > System Protection > stań na dysku (D) > Configure i zostaw domyślne 5%
+
+      b) na dysku docelowym utwórz katalog w którym zasejwowany będzie backup (np data bieżąca)
+
+      c) Ghost > Zadanie > Jednorazowa kopia zapasowa > i na domyślnych (36 minut)
+
+      d) wejdź do katalogu z backupem i (ew bo nie sprawdzone czy ok), jeśli są tam backupy 2 dysków
+         wytnij plik zbędnego
+
+      e) zablokuj tworzenie kopii zapasowych ()
+__________________________________________________________________________________________________
+47) Aomega Backupper (wersja darmowa)
+
+      O niebo lepszy od Ghosta. Patrycje 34 giga zrzucił mi bez kompresji na dysk F  ( ssd )
+      w ciągu 8 minut (ze sprawdzeniem obrazu ok 15)
+      Odtworzył ją w jakieś 7
+      Nagrywanie i odtwarzanie odbywa sie z win, wiec nie tworzy żadnego dual boota
+      Tylko chyba nie ma odpowiednika LightOut Restore'a (?)
+
+      UWAGA !!
+        Przez zrobieniem obrazu, warto zlikwidować pliki:
+          a) hiberfil.sys  ( po roku miał u mnie 14 giga )
+              powercfg /h off
+
+          b) page.sys
+              Control Panel\System and Security\System > Advanced > Performance > Advanced >
+              > Virtual memory: Wyłącz > restart
+
+      Po  zrobieniu obrazu można page.sysa włączyć, na jakąś małą wartość typu 200 mega,
+      bo niektóre programy tego wymagają
+
+__________________________________________________________________________________________________
+53) ConEmu  - config
+
+        conemu.github.io/en/TableOfContents.html
+
+        O niebo lepsze cmd
+
+        UWAGA:
+            Po zmianie w konfiguracji  ( Settings ) nie trzeba go restartować
+            Całą konfigurację trzyma w pliku C:\Program Files\ConEmu\ConEmu.xml
+            Można go też wygenerować na bieżąco:  Settings > baton Export w prawym górnym
+
+        a) ściągnij,  zainstaluj i odpal  ConEmuSetup.160710.exe
+
+        b) wybierz:  Single instance,  Stable, Monokai theme
+
+        c) ikona settings  ( 3 poziome krechy ) > Settings > Startup > check Auto save/restore opened tabs > Save
+
+        d) Settings > Startup > Tasks > 1  {  Shells:: cmd } > baton Startup Dir > .. Desktop > Save Settings
+
+            Batony u dołu zakładki 'Tasks'  ( Tab,  startupDir FilePath i Active tabs ) są tylko podpowiedziami
+            aktualnego stanu Twoich plików ( ścieżki i nazwy ),  by na ich podstawie w dużym oknie wbić
+            właściwą komendę.
+
+            A właściwa jest jedna ze znalezionych po kliku w batona 'Active Tabs':
+                * -cur_console:t:git1 "%ConEmuDir%\..\Git\git-cmd.exe" --no-cd --command=usr/bin/bash.exe -l -i
+
+            Czeknij czekboksa 'Default task for new console'
+            Save settings
+
+        e) w tym samym miejscu jest konfiguracja GitBasha, ale nic nie chce działać
+
+        f) Startup > Auto save / restore opened tabs
+
+        g) Main > font:  Segoe UI  16 > Anti-aliasing:  Clear Type  ( default )
+
+        h) Ikona Settings  ( w prawym górnym ) i 'Always on Top'
+
+        j) Settings > Main / Confirm > sekcja Close confirmations / uncheck When running process was detected
+        l) Settings > Main > uncheck Compress long strings
+
+        i) Settings > Features / Colors > Scheme:  Cobalt2
+        k) Settings > Features / Status bar: uncheck
+
+
+        m) Settings > Integrations: Default term > check Force conEmu as default terminal
+
+      n) ConEmu zabiera ctrl + tylda
+                Settins > Keys & Macro > stań na 1 linii: ctrl + ` > u dołu w okienku z tyldą  - wykasuj ją > Save
+
+       o) otwieranie nowego okna git basha w określonym katalogu   ( patrz punkt 44 poniżej )
+
+
+        Można zaznaczyć tekst myszą i  ( bez wciśnięcia Entera ) od razu jest w schowku
+        Stamtąd ctrl + v,  lub prawy myszy i Paste
+
+        Dwuklik w górną belkę otwiera nowe okno  ( prawy na zakładce okienka i Close  - zamyka )
+__________________________________________________________________________________________________
+54) ConEmu - zaznaczanie kolumny tesktu
+
+        Można też zaznaczyć kolumne tekstu, trzymając podczas ruchu myszy Ctrl
+__________________________________________________________________________________________________
+55) ConEmu - nowe poziome/pionowe okno
+
+        Ctrl + Shift + e = poziome okno   //  Settings > Keys & Macro
+        Ctrl + Shift + o = pionowe           // można kilka razy
+
+        Znika się je,  zamykając taby w górnym pasku ekranu
+__________________________________________________________________________________________________
+56) ConEmu - ubijanie procesu
+
+        Ponieważ przy pracy w GitBashu po dłuższej chwili od odpalenie grunt serva,
+        ctrl + c przestaje reagować, można ubić go przez:
+            context menu > Active console > Close or kill ...
+
+        albo wejść do Settings > Key & Macro > okienko szukania w lewym górnym: 'terminate' >
+
+        Znajdzie 2 linie. Zaznaczyć klikiem:
+          'Terminate  ( kill ) active process in the current console'
+        i u dołu w jednym dropdownie stanać i kliknąć 'z' a w drugim wybrać 'LCtrl' i Save Settings
+
+        Od teraz leftControl + z ubija zadanie, ale nie ubija ConEmu
+__________________________________________________________________________________________________
+57) ConEmu - otwieranie nowego okna w określonym katalogu
+
+        By po kliku w górną belkę otwierała się zakładka z nowym oknem gitBasza w katalogu arek5:
+
+            a) Settings > Main / Tab bar > Console: 'git'     -  ustawia stałą nazwę zakładki, dla każdego noweg okna
+
+            b) Settings > Startup / Tasks > klik w batona '+' > pokaże się nowy task o nazwie np 'Group 11' > wklej do dużego okna:
+
+                    * -cur_console:d:C:\Users\abc\Desktop\arek5 "%ConEmuDir%\..\Git\git-cmd.exe" --no-cd --command=usr/bin/bash.exe -l -i
+
+            c)  czeknij: 'Default task for new console'
+
+            d) Save Settings
+
+__________________________________________________________________________________________________
+60) Zmiana file associations w win7  ( przypisanie programu który ma odpalać plik o danym rozszerzeniu  )
+
+    a) Start > okno Search, wpisz: default programs
+            Albo klik w MyComputer i w linii adresu,  wbij:
+                Control Panel\Programs\Default Programs\Set Associations
+
+    b) znajdź rozszerzenie  ( np: cmd ) i przypisz mu program odpalający  ( np ConEmu )
+__________________________________________________________________________________________________
+62) Dropbox vs GoogleDrive
+
+        24 marca 17, ransom.pclock zaszyfrował mi wszystkie pliki .txt, łącznie z tymi na Google drivie,
+        bo miałem do nich skróty na desktopie
+        GDrive ma możliwość odzyskania poprzednich wersji pliku, ale tylko dla Google Sheet, Docs i Presentations
+
+        Dropbox za to trzyma poprzednie wersje dowolnego typu pliku i można go nadpisać, albo nawet skasować
+        a i tak, wchodząc na stronę Dropboxa, można go odkasować do dowolnej wersji (sprawdzone 15 marca 19)
+        Wersja darmowa = 2 GB
+
+        Problem w tym, że Dropbox nie pozwala podhaczyć swego folderu jako dysku sieciowego
+        i wypuścic na ekran skrótów do poszczególnych plików
+
+        Ale można zrobić to samemu:
+          a) założyć konto na Dropboksie i zainstalować desktopową apke
+
+          b) mkdir c:/dropbox
+
+          c) cmd:
+              subst x: c:\dropbox   // utworzy dysk System  ( X:)
+
+          d) apka desktopowa Dropboxa  ( trej w prawym dolnym) >
+              Settings  ( prawy górny ) >Preferencje > tab Konto > Lokalizacja: C:\dropbox > OK
+
+          e) zrestartować apkę Dropboxa
+
+          f) w katalogu c:/dropbox stworzyć plik a.txt o zawartości  '1'
+
+          g) utwórz do niego skrót i połóż go na desktopie
+
+          h) otworzyć okno webowe naszego dysku dropboksa > F5  ( refresh ) > Po chwili zobaczysz plik a.txt
+
+          i) dwukilk w skrót i dopisz poniżej  '2'
+
+          j) F5  ( refresh ) w oknie webowym i dwuklik w a.txt > będzie  '1  2'
+
+__________________________________________________________________________________________________
+63) Kopiowanie vs przenoszenie plików
+
+    <Shift> while dragging your files enforces a Move.
+    <Ctrl> enforces COPY
+    <Alt> enforces COPY A SHORTCUT ONLY
+__________________________________________________________________________________________________
+64) VLC
+
+      Ustawianie przewijanie co ileś sekund przez wciśnięcie jakiegoś klawisza
+
+      UWAGA !
+          Aby poniższa kombinacja klawiszy ctrl + alt + right  ( left ) nie gryzła się ze sterownikiem grafiki,
+          kliknij na nim prawym w treju > Opcje grafiki > Klawisze dostępu > Wyłącz
+
+          Albo zredefiniuj je na inne skróty w VLC
+
+      a) Ustawienie ilości sekund skoków
+              Narzędzia > Preferencje > lewy dolny róg - klik w 'Pełne' > Interferjs / Ustawienia skrótów klawiszowych:
+                  w prawej dolnej części okna jest 'Weilkości przeskoku'
+                  Ustaw: 1, 3, 5 i 10  ( sekund )
+               > Zapisz
+
+      b)  Znalezienie klawiszy wykonujących skokowe przewijanie filmu
+            Narzędzia > Preferencje > Skróty klawiszowe:
+
+                Bardzo mały przeskok w przód:  shift + right
+                Bardzo mały przeskok wstecz:     shift + left
+
+                Mały przeskok w przód:  alt + right
+                Mały przeskok wstecz:    alt + left
+
+                Średni przeskok w przód:  ctrl + right
+                Średni przeskok wstecz:    ctrl + left
+
+                Duży przeskok w przód:  ctrl + alt + right
+                Duży przeskok wstecz:    ctrl + alt + left
+
+      c)  Dodawanie bookmarków do filmu
+            a) VLC menu: Playback > Custom Bookmarks > Manage (Ctrl+B)
+            b) Media > Save Playlist to File .xspf    -  do tego samego katalogu co film
+            c) klik w plik.xspf otworzy film na 1-szej zakładce
+
+      d)  Plik bookmarków do filmu
+
+            Zamiast sejwować bookmarki jak w punkcie powyżej, można edytować plik.
+            Definicja siedzi w tagu:
+
+                <vlc:option>bookmarks={name=Rodział 1,time=30},
+                                                                    {name=Rozdział 2,time=800}
+                </vlc:option>
+
+        -  -  -  -  -  -  -  -  -  -  -  -  -  cały plik  .xspf -  -   -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+                        <title>Playlist</title>
+                        <trackList>
+                            <track>
+                                <location>file:///E:/Inne/Leki%20naturalne/Lubicki/Si%C5%82a%20ro%C5%9Blin%20i%20zi%C3%B3%C5%82%20w%20uzdrawianiu%20ludzi%20-%2012.07.2016.mp4</location>
+                                <duration>4228491</duration>
+                                <extension application="http://www.videolan.org/vlc/playlist/0">
+                                    <vlc:id>0</vlc:id>
+                                    <vlc:option>bookmarks={name=Rodział 1,time=30},
+                                                                                        {                                    </vlc:option>
+                                </extension>
+                            </track>
+                        </trackList>
+                        <extension application="http://www.videolan.org/vlc/playlist/0">
+                                <vlc:item tid="0"/>
+                        </extension>
+                    </playlist>
+
+
+
+__________________________________________________________________________________________________
+65) VLC - brak dźwięku
+
+        .. w mp4, a w Windows Media Player i w MPC-HC  - jest
+
+        a) odpal .mp4 w vlc
+        b) prawy klik na ikonie głośnika w prawym dolnym
+        c) Open Volume Mixer
+        d) zdejmij czerwony krzyż z ikony głośnika VLC
+
+__________________________________________________________________________________________________
+66) Autohotkey
+
+      Tworzenie makr podłączanych pod skróty klawiszowe
+
+      W tym celu, po instalacji autohotkey.exe:
+        a) stwórz na desktopie plik plik.ahk
+
+        b) wklej doń:
+            ^j::
+              Send, Hello World       ; jakiś koment
+              Return
+
+        c) prawym na ikonie pliku > Open with > AutoHotKey
+        d) w treju znajdź zieloną ikonę z 'H' i ustaw by była zawsze widoczna
+        e) stań kursorem gdzieś w edytorze i wciśnij ctrl + j
+
+      Po każdej modyfikacji pliku, prawym na ikonie w treju i 'Reload this script'
+
+      Chwilowe wyłączenie odpalania skryptów: prawy na ikonie > Suspend HotKeys
+
+      Help - prawym na ww ikonie > Help
+
+      Kistrołek                 Kod
+        ctrl + s                ^s    lub   {ctrl down}s{ctrl up}
+        tabulacja               {TAB down}{TAB up}
+        kursor góra             {Up down}{Up up}
+        kółko myszy góra        {WheelUp}
+        mysz - prawy            {RButton}
+        wciśnięcie F5           {F5}
+
+      WinActivate, MMC Panel  - uaktywnienie okna o tytule 'MMC Panel'
+      Sleep, 1000                        - opóźnienie przed kolejną akcją
+
+    // wyświetlanie MsgBoxa z obecnymi współrzędnymi myszy
+      MouseGetPos, xpos, ypos
+      Msgbox, The cursor is at X%xpos% Y%ypos%
+__________________________________________________________________________________________________
+67) Autohotkey - klawisze i opóźnienie
+
+        Np na potrzeby chodzenia po GUI unita, trzeba dziesiątki razy dziennie klikać sekwencję:
+            F5  ( chrome refresh )
+            S   O   O   S     Z   O   S   N  S
+
+         Prócz tego,  trzeba metodą prób i błędów znaleźć i podać opóźnienia dla każdego kistrołka
+
+ -  -  -  -  -  - h2copy.ahk -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+        ^j::
+           Send, {F5}       ; jakiś koment
+           Sleep, 4000
+           Send, S           ; jakiś koment
+           Sleep, 1000
+           Send, O
+           Sleep, 1000
+           Send, O
+           Sleep, 1000
+           Send, S
+           Sleep, 1000
+           Send, Z
+           Sleep, 1000
+           Send, O
+           Sleep, 1000
+           Send, S
+           Sleep, 1000
+           Send, N
+           Sleep, 1000
+           Send, S
+           ;Sleep, 1000
+           ;Send, O
+        Return
+
+__________________________________________________________________________________________________
+68) AutoHotKey - mysz i kursory
+
+      Tworzenie skryptów odgrywających sekwencję wciskanych klawiszy czy kliki myszy
+      Można dorzucać opóźnienia  ( Sleep,  )
+      Stwórz np na desktopie plik o rozszerzeniu .ahk w klej poniższe
+
+      Stań na nim myszą > prawy klik > Open with > Autohotkey  ( to uruchomi silnik AHK )
+      Otworz jakiś edytor, linię poleceń lub nawet poniższy plik i wciśnij ctrl + kursor Up
+
+      Po każdej edycji pliku > prawym myszy na zielonej ikonie 'H' > Reload this script
+
+ -  -  -  -  -  - 1.ahk  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+; help.chm : Send / SendRaw / SendInput / SendPlay / SendEvent: Send Keys & Clicks
+
+^Up::  ; podhaczenie poniższego skryptu pod kursor w górę
+   Send, Pressed Up arrow
+   Send, {WheelDown}   ; mouse wheel down
+Return
+
+^Down::
+   Send, Pressed Down arrow
+   Send, {WheelUp}  ; mouse wheel up
+Return
+
+^Right::
+   Send, Pressed Right arrow  ( simulating mouse right button click )
+   Send, {RButton}   ; mouse right button click
+Return
+
+^Left::     ; otwiera okienko i wypisuje bieżące współrzędne kursora myszy
+   MouseGetPos, xpos, ypos
+   Msgbox, The cursor is at X%xpos% Y%ypos%
+Return
+__________________________________________________________________________________________________
+69) AutoHotKey - okno apki, kółko myszy
+
+ -  -  -  -  -  - 88946.ahk  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+; odpal okno konsole MMC  ( jej położenie na ekranie ani na którym monitorze, nie ma znaczenia )
+; help.chm : Send / SendRaw / SendInput / SendPlay / SendEvent: Send Keys & Clicks
+
+Up::  ; podhaczenie poniższego skryptu pod kursor w górę
+   WinActivate, MMC Panel
+   MouseMove, 530, 180
+   Send, {WheelUp}
+Return
+
+Down::
+   WinActivate, MMC Panel
+   MouseMove, 530, 180
+   Send, {WheelDown}
+Return
+
+Right::
+   WinActivate, MMC Panel
+   MouseMove, 530, 180
+   Send, {RButton}   ; mouse right button click
+Return
+
+^Left::
+   MouseGetPos, xpos, ypos
+   Msgbox, The cursor is at X%xpos% Y%ypos%
+Return
+
+__________________________________________________________________________________________________
+70) Osadzanie obrazka w mp3
+
+        mp3tag.de/en
+__________________________________________________________________________________________________
+71) winscp
+
+      a) nie łączy po ftp  ( a totalcmd - tak )
+
+        total commander łączy się z unitem przez ftp, a winscp  ( też przez ftp ) - nie
+        albowiem total próbuje przez pare sekund dłużej niż winscp
+        aby wydłużyć czas nawiązywania połączenia przez winscp:
+        winscp > zaznacz o które połączenie chodzi w lewym oknie > Advanced > Connection > Timeouts: 30 > OK
+
+      b) zamiast do zdefiniowanego katalogu, włazi czasem pare katalogów wyżej
+
+          Wyłączyć keszowanie:
+            Edit > Advanced > Directories > uncheck all in 'Directory reading options'  ( cache )
+
+__________________________________________________________________________________________________
+72) inkscape - .svg na .png  ( GUI i cmd line )
+
+      a) zainstaluj inkscape'a
+      b) otwórz plik .svg
+      c) File > Export PNG Image > zmieniaj scrollbarem width lub height by dobrać proporcjonalny drugi wymiar
+      d) uzyskane parametry zastosuj w poniższym skrypcie
+
+    for /R %%A IN (*.svg) DO "C:\Program Files\Inkscape\inkscape" -z %%A -e %%A.png -w150 -h218
+    pause
+__________________________________________________________________________________________________
+73) imageMagick - operacje na .jpg i .png  ( cmd line )
+
+      imagemagick.org/script/command-line-processing.php
+
+      1) konwersja z jpg na png i odwrotnie
+          magick image.jpg image.png
+
+      2) tworzenie animowanego gif'a z jpg'ów lub png'ów
+          magick *.jpg images.gif
+
+      3) konwersja z pdf'a do .png (strona tekstu = 90 kB png)
+          magick convert -density 150 -antialias "1.pdf" -append -strip -background white -colorspace RGB "Z150.png"
+
+      4) konwersja z pdf'a do .jpg (strona tekstu = 90 kB png)
+          magick convert -density 150 -antialias "1.pdf" -append -strip "1.jpg"
+
+      5) info o pliku
+
+          imagemagick.org/script/identify.php
+
+          Domyślnie podczas instalacji ścieżka zostanie dopisana do PATH
+
+          magick identify 400na300.jpg
+              // JPEG 400x300 400x300+0+0 8-bit sRGB 80201B 0.000u 0:00.000
+
+          magick identify -verbose _400na300.jpg
+              // 3 ekrany danych
+
+          magick identify -format '%f: %Q' _400na300.jpg
+              //  _400na300.jpg: 94   ( compression ratio )
+
+__________________________________________________________________________________________________
+74) photoshop features - od której wersji
+
+      JavaScript - ostatnio był podrasowany w CS5
+      Save'owanie .svg - od CC  2014.2.2
+__________________________________________________________________________________________________
+75) screenToGif
+
+      Nagrywa to co sie dzieje na desktopie i robi z tego animowanego gifa.
+      Ma wbudowany edytor
+__________________________________________________________________________________________________
+76) cloc  ( lines of code )
+
+      Standardowe utyliszcze do liczenia ilości linii kodu, pustych linii,  komentarzy i plików
+
+      Typowe odpalenie:
+          ./cloc-1.72.exe /          // wszystkie podkatalogi
+          ./cloc-1.72.exe sass   // podkatalog sass
+
+      Language                     files          blank        comment      code
+      -------------------------------------------------------------------------------
+      Sass                            12            744             79                 4168
+
+      Kolumna 'code' ujmuje tylko linie kodu,  tzn nie ujmuje linii pustych i komentarzy
+      Czyli wszystkich linii w ww katalogu jest: 744 + 79 + 4, 168  =  ok 5, 000
+
+      Uwaga !
+        a) console.log jest uznawany za coce,  a nie comment
+        b) rozbicie linii deklaracji zmiennych z:
+                var reka = [ ], piki = [ ], kiery = [ ], kara = [ ], trefle = [ ]
+             na:
+                var reka = [ ]
+                var piki = [ ]
+                var kiery = [ ]
+                var kara = [ ]
+                var trefle = [ ]
+
+               .. spowoduje zwiększenie sumy linii kodu o 4  ( 5 - 1 )
+
+     Wniosek:
+        Jeśli klient płaci za linie kodu ( a za komentarze ? a co console.logami ? ),
+        to warto pisać pod najwygodniejszym stylem  ( np StandardJS ), a przed oddaniem do klienta, zmienić go na taki który wymusza składnie maksymalizujące linie kodu
+__________________________________________________________________________________________________
+77) avidemux
+
+        1. Save
+           a) Video Output:  MPEG 4 x264
+           b) Audio Output:  AAC lav
+           c) Output format: MP4 Muxer
+
+        2. Osadzanie (embedding) napisów z zewn pliku
+            a) Jeśli napisy są w .srt trzeba je skonwertowac do .ssa (programem convertSrt2Ssa)
+            b) Avidemux 2.6.6 pod Video Output -> Filters -> Subtitles
+__________________________________________________________________________________________________
+78) finereader
+
+      v 12 Corpo pozwala automatyzować ocr'owanie wielu plików
+      Tools > Hot Folder
+      W ustawieniach epuba, wybierz:
+         v 3.0
+         Picture quality: Best
+         Text: Formatted
+
+      Na służbowym laptoku  ( 2 core'y, 8 GB i ssd ),  10 stron / minutę
+__________________________________________________________________________________________________
+79) Python 3
+
+      learnpython.org/pl
+      python.rk.edu.pl/w/p/wprowadzenie-do-pythona/
+
+      UWAGA !!
+          W odróżnieniu od Pytona 2, 3-jka wymaga użycia nawiasów przy instrukcji print (  )
+          Większość tutków jest jednak oparta na Pytku 2,  więc trzeba pamiętać o dopisaniu nawiasów
+
+      a) ściągnij i zainstaluj Pytona 3
+
+      b) w Sublimie zainstaluj pakiet Python 3
+
+      c) stwórz plik z rozszerzeniem .py, wpisz doń:
+              print ( 'hello' )
+            .. i odpal - powinien chodzić
+
+       d) by chodziło wyświetlanie polskich znaków w Sublimie:
+
+              Tools > Build System > New Build System > wklej poniższe i zasejwuj jako 'Pyton'  ( bez 'h' )
+
+                {
+                    "shell_cmd": "python \"$file\"",
+                    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+                    "selector": "source.python",
+                    "env": {"PYTHONIOENCODING": "utf8"}
+                }
+
+         e) Tools > Build System > wybierz 'Pyton'  ( bez 'h' )
+
+         f) odpal linię:
+                print  (  "zażółć gęślą jaźń" )
+
+         g)  z cmd skrypt pytonowy odpala się komendą:
+                py plik.py
+
+         h) różnice między pytonem 3 a 2
+             1) print
+                  w 2-jce: print zmienna,  w 3-jce i 2.7: print ( zmienna )
+
+             2) unicode:
+                    w 3-ce utf8 jest domyslny, nie trzeba więc stringa poprzedzać literą u - jak w 2-jce
+
+             3) dzielenie integerów:
+                    w 2-ce 5/2 = 2  ( floor division ) ,  więc trzeba było zamiast tego użyć 5.0 / 2.0
+                    w 3-ce = 2.5
+
+         i) przykłady typowych komend
+
+                znak komentarza pojedyńczej linii:  #
+                znak komentarza wielu linii:  '''
+
+          ----------------------- pyton1.py  ( pyton1.html ) ---------------------------------------
+
+                <pre><code class="javascript">
+                <a href = 'http://www.python.rk.edu.pl/w/p/wprowadzenie-do-pythona/' >Wprowadzenie do Pytona </a>
+                <a href = 'https://www.learnpython.org/pl/' >learnpython.org</a>
+                <a href = 'https://docs.python.org/3/' >docs.python.org</a>
+
+                <a href = '#0'> 0.  = vs == </a>
+                <a href = '#1'> 1. print </a>
+                <a href = '#2'> 2. if </a>
+                <a href = '#3'> 3. for-in  ( pętla )  </a>
+                <a href = '#4'> 4. while  ( pętla )  </a>
+                <a href = '#5'> 5. Tablica  ( list, tuple )  </a>
+                <a href = '#6'> 6. Słownik  ( dictionary )  </a>
+                <a href = '#7'> 7. Funkcja  </a>
+                <a href = '#8'> 8. Moduł  </a>
+                <a href = '#9'> 9. Funkcje wbudowane </a>
+
+
+                <div id = '0'> </div>
+                ########################### 0. '=' vs '==' ############################
+
+                # Pojedyńczy równaś,  sluży do przypisania wartości zmiennej,  np:
+                # a = 2
+
+                # Podwójny, do sprawdzenia czy dana zmienna równa jest czemuś, np:
+                # if a  == 2
+                # if imie == 'Zocha'
+
+                # Zresztą łatwo się tego nauczyć, bo jak użyjesz złego, od razu dostaniesz błąd:
+                # powitanie  ==  'Witaj Andziula !'
+                # NameError: name 'powitanie' is not defined
+                # bo wg Pytona, zamiast przypisania robisz sprawdzenie
+
+                #  if powitanie = 'kupa':
+                # SyntaxError: invalid syntax
+                # Wniosek:  jak piszesz if, to potem zawsze 2 równasie. W pozostałych przypadkach - jeden
+
+                <div id = '1'> </div>
+                ########################### 1. print  ############################
+
+                print   ( "zażółć gęślą jaźń" )
+                a = 2
+                b = 3
+                c  = 'kicha'
+                print   ( a + b )       #5
+                print   ( a + b, c  )  #5 kicha
+
+                <div id = '2'> </div>
+                ########################### 2. if  ############################
+
+                a = 5
+
+                if a > 5:
+                    print ( 'Liczba jest większa niż 5' )
+                elif a < 5:       # elif to skrót od 'else if'
+                    print ( 'Liczba jest mniejsza niż 5' )
+                else:
+                    print ( 'Liczba =  5 ' )
+
+                <div id = '3'> </div>
+                ########################### 3. for-in  ( pętla ) #####################
+                # Pojedyńczy przelot pętli zwie się iteracja, a czynność - iterowanie
+
+                for i in range ( 10, 100, 10 ):
+                    print ( i )  # 10, 20, 30,  ... 90 - stówa się nie łapie, bo ma być 'do 100' tzn nie włącznie
+
+                bar = "Anusia Kuciacek"
+                for i in bar:
+                        print  ( i )
+
+                tablica = [ "foo", "bar", "yaz" ]
+                for i in tablica:   # 'i' to skrót od item - konwencja szeroko używana w programowaniu
+                    print ( i )
+
+                <div id = '4'> </div>
+                ########################### 4. while  ( pętla )  #####################
+
+                licznik = 0
+                while licznik < 5:
+                    print  ( licznik )
+                    licznik += 1  # skrócona forma zapisu: licznik  =  licznik + 1
+
+                <div id = '5'> </div>
+                ########################### 5. Tablica  ( list, tuple )  #####################
+
+                bar = [ "foo", "bar", "yaz" ]
+
+                print ( bar )  #  "foo", "bar", "yaz"
+
+                for i in bar:
+                    print  ( i )
+
+                bar.append ( 'dupa' )
+                print ( bar )  # "foo", "bar", "yaz", "dupa"
+
+                even_numbers = [ 2, 4, 6, 8 ]
+                odd_numbers = [ 1, 3, 5, 7 ]
+                all_numbers = odd_numbers + even_numbers
+                print ( all_numbers )   # [ 1, 3, 5, 7, 2, 4, 6, 8 ]
+
+                # W pytonie tablice występują pod dwiema nazwami: lista i tuple
+                # Jedyna różnica,  to że tuple są read-only ( nic do nich nie dodasz, odejmiesz ani nie zmienisz )
+                # Tablice są read-write więc można z nimi wszystko
+
+                #Składnia:
+                # tupla =  ( 1, 2, 'ania', True )   - nawias okrągły
+                # tablica = [ 1, 2, 'ania', True ] - nawias kwadratowy
+
+                <div id = '6'> </div>
+                ########################### 6. Słownik  ( dictionary ) ###########
+
+                bar = { "imie" : "jurek", "nazwisko" : "lepper" }  # nawias klamrowy  ( curly bracket )
+                print ( bar [ "imie" ] )
+
+                <div id = '7'> </div>
+                ########################### 7. Funkcja #####################
+
+                def nasza_funkcja ( argument1, argument2 ):
+                    argumenty = argument1+" - "+argument2
+                    return argumenty   # wynik działania całej funkcji,  który zostanie zwrócony temu kto ją woła
+
+                print  ( nasza_funkcja ( "Poczatek", "Koniec") )  # Poczatek - Koniec
+
+                <div id = '8'> </div>
+                ########################### 8. Moduł  ( import z pliku zewn )  ##########
+
+                import mojabiblioteka
+
+                print ( doda.dodaj ( 2, 5 ) )  # importuje funkcję z modułu  ( pliku zewn )
+
+                ### plik mojabiblioteka.py ##########
+
+                def dodaj ( a, b ):
+                    return a+b
+
+                <div id = '9'> </div>
+                ########################### 9. Funkcje wbudowane  ( przykładowe )   #####
+                # docs.python.org/3/library/functions.html
+
+                ######### a) tekstowe ####################
+
+                powitanie = 'Witaj Andziula !'
+
+                # replace
+                nowePowitanie  =  powitanie.replace ( 'Andziula', 'Ola' )
+                print ( nowePowitanie )  # Witaj Ola !
+
+                #count
+                print ( powitanie.count ( 'a' )  )  # 2  - zlicza ilość wystąpień znaku ( ów ) w napisie ( aka stringu )
+
+                ######### b) tablicowe ####################
+
+                numerki = [ 6, 1, 3, 5, 4, 2, 1, 1 ]
+
+                # len
+                print ( len ( numerki )  ) # 8 - długość tablicy czyli ilość jej elementów
+
+                # sorted
+                print ( sorted ( numerki ) ) # [1, 1, 1, 2, 3, 4, 5, 6]
+
+                # count
+                print ( numerki.count ( 1 )  )  # 3 - ilość wystąpień 1-ki
+
+                #remove
+                numerki.remove( 6 )  # odnajduje argument  ( czyli 6-tkę )  i usuwa go z listy
+                print ( numerki )          # [1, 3, 5, 4, 2, 1, 1] - nima 6-tki
+
+                #max
+                print ( max ( numerki )  )  # 6
+
+
+                </pre></code>
+
+__________________________________________________________________________________________________
+80) msconfig
+
+        cmd line > msconfig
+
+        Służy do wyłączania startujących razem z bootem programów
+        Prócz tego można wyłaczyć startowanie wybranych usług (Normal startup / Daignostic / Selective)
+
+__________________________________________________________________________________________________
+81) ivona
+
+        Z pliku z tekstem (pdf, doc, txt) robi mp3
+        Z pdf'em sobie nie poradził nawet po skonwertowaniu go na czytelny FineReaderem
+        Za to z .doc'em poszło ok
+
+        Książka maczkiem 33 strony  ( 3.5 minuty )
+        Jakość 'Najlepsza' =  60 MB
+        Jakość 'Dobra' = 39 MB - taka sama jw
+        Jakość 'Średnia' = 23 MB - ociupine gorzej
+
+        Najlepsze ustawienia:
+
+            Strona startowa > Zapisz do mp3 > Okno ustawień:
+                zakładka Format nagrania:
+                    Zastosowanie:  mp3
+                    Jakość: Najlepsza
+
+            Menu > Konfiguracja programu > Mowa > Jacek > Konfiguracja > Ustawienia:
+                Długość przerw między zdaniami: długa
+                Długość przerw między akapitami: długa
+                Sposób interpretacji tekstu: dokładny
+
+__________________________________________________________________________________________________
+82a) Procesory w laptokach
+
+      Hardware info, CPU benchmark
+        https://ark.intel.com/content/www/pl/pl/ark/products/71459/intel-core-i7-3630qm-processor-6m-cache-up-to-3-40-ghz.html
+        hwinfo.com
+        https://www.cpubenchmark.net/laptop.html  @ 17th of March 2019
+
+                  Passmark
+                  i5-2520 M   3,592    ciut szybszy od Mobikowego
+        Dom       i7-3630 QM  7,601    0%  (2.4/3.4 GHz, 6 MB cache, DDR3/L/-RS 1333/1600, Intel HD 4000, Hyperthreading, VT-x, 22 nm, rodzina Ivy Bridge, Q3/12, 45W)
+        Mobica    i5-5200 U   3,478 - 55%
+        Typowany  i7-7700 HQ  8,894 + 17%
+                  i5-8300 H   9,493 + 25%  LENOVO IDEAPAD 330-17 GTX1050 i5 (8 GB RAM, HDD 1TB , 17", 1920x1080, matowy, bez OS)= 2,650 zł
+                                           + 8 GB RAM = 125
+                                           + SSD 128  = 125
+                                           RAZEM = 2,900
+                                           8300H - najlepszy proc w laptokach do 3,500
+                  i7-8850 H   13,000
+
+        Top 5 CPU  ( 3630QM jest 5-ty, wszystkie i7 ):
+            8300 H           9,493 + 25%
+            7700 HQ  @ 2.8   8,894  (17% szybszy od 3630 QM )
+            6700 HQ  @ 2.6   8,048  ( 6% szybszy od 3630 QM )
+            4710 HQ  @ 2.5   7,821
+            4700 MQ  @ 2.4   7,729
+            3630 QM  @ 2.4   7,601
+            3740 QM  @ 2.7   8,346 (10% szybszy; dla Oli do edycji video, Q2 2012)
+__________________________________________________________________________________________________
+82b) Laptok do edycji wideo  ( używany )
+
+        allegro.pl/lenovo-w530-i7-4-rdzenie-ssd-fullhd-nvidia-quadro-i6951768905.html
+        2,080 z dostawą @ paź 2017
+
+        allegro.pl/lenovo-w530-i7-3740qm-12gb-180ssd-fhd-k1000m-fv-gw-i7140676180.html
+        2,094 z dostawą @ sty 2018
+
+        Lenovo W530 i7 4 RDZENIE SSD FULLHD NVIDIA QUADRO
+        i7 3740 QM / 4 x 3.7 GHz (Turbo)
+        8 GB DDR3
+        128 GB SSD - możliwość zmiany na większy ( dostępne na innej naszej aukcji )
+        15,6" / Full HD / 1920 x 1080
+        NVIDIA QUADRO K1000M / 2GB / 128 bit
+        DVD-RW
+        WiFi, LAN, Bluetooth
+        Kamera
+        ExpressCard, 2x USB 2.0, 2x USB 3.0, VGA, DisplayPort, Audio IN/OUT,
+        SD/MMC CZYTNIK KART, Czytnik linii papilarnych, Xrite Color calibration
+        WINDOWS 7 PL ( Z LICENCJĄ + RECOVERY )
+        Gwarancja   6 miesięcy
+__________________________________________________________________________________________________
+83) Edytor exif
+
+    Edytor do edycji danych exif zdjęcia
+    http://www.colorpilot.com/exif.html
+__________________________________________________________________________________________________
+84) Zmiana timestampa pliku
+
+    http://www.nirsoft.net/utils/nircmd.html
+
+    One of the commands allows you to specify either or both of created time and modified time:
+
+    nircmd.exe setfiletime "c:\temp\myfile.txt" "24-06-2003 17:57:11" "22-11-2005 10:21:56"
+
+__________________________________________________________________________________________________
+85) ChomikBox
+
+    Zainstaluj, wejdź na stronę z listą chomików, przewiń na dół i kliknij w ikonę 'Pobierz folder'
+    Odpali się apka chomikBoxa
+__________________________________________________________________________________________________
+86) Free Screen Recorder 8.0.0
+
+    Wkleja watermarka. Wersja pełna 39 USD
+__________________________________________________________________________________________________
+87) Obejście braku hasła logowania
+
+    youtube.com/watch?v=h4iaC-X_keI
+
+    IF YOU CANNOT FIND SETHC: Hissan Khalid has a solution.
+      "Just look at bottom of window, click drop-down arrow , then click "All-files""
+
+     a) Disrupt boot cycle by turning off computer while booting into windows
+
+     b) Launch windows startup repair
+
+     c) Click cancel when it asks you to restore
+
+     d) Click 'view problem details' tab when it says it cannot repair you're computer
+
+     e) Scroll to the bottom to find the link - Click the link 'X:\windows\system32.....'
+
+     f) This should open a text file
+
+     g) Click file then open in the corner of the text file Locate
+
+     h) then open the 'Local Disk'
+
+     i) Change 'Files of type' drop down menu to 'All file types'
+
+     j) Click on Windows > System 32
+
+     k) Locate 'SETHC' (application)
+
+     l) rename it to 'SETHC0'
+
+     m) Locate CMD, copy it and paste it at the bottom of the list
+
+     n) Change the name of the copied CMD to 'SETHC'
+
+     o) Close all the windows
+
+     p) Click finish and reboot your computer normally
+
+     q) Press shift 5 times quickly
+
+     r) The command prompt window should appear
+
+     s) Type into th  e command prompt window: 'net user'
+
+     t) Then type 'net user [YOU'RE USERNAME] *
+
+     u) Type your new password (the characters will not appear)
+
+     v) Repeat you're new password
+
+     w) Login to that account using the new password
+
+__________________________________________________________________________________________________
+88) Bład - D3DCompiler_47.dll is missing
+
+    Simply installing Microsoft KB4019990 resolved the issue!
+    http://www.catalog.update.microsoft.com/Search.aspx?q=KB4019990&ranMID=24542&ranEAID=TnL5HPStwNw&ranSiteID=TnL5HPStwNw-7RTy_cFDUPKa4oNQtm31ng&tduid=(64609566ce5607b458bea758e4499a06)(256380)(2459594)(TnL5HPStwNw-7RTy_cFDUPKa4oNQtm31ng)()
+
+__________________________________________________________________________________________________
+89) Eizo - drugi monitor zewn
+
+    Zewn karta graficzna na USB 3.0
+    i-tec USB 3.0 Display Adapter Trio
+
+    1) uaktualnić stery USB 3.0 odpalając instalkę
+        Intel(R)_USB_3.0_eXtensible_Host_Controller_Driver v 1.10 cośtam
+
+    2) zainstalować DisplayLink USB Graphics Software for Windows 9.0 M0
+
+    3) Mimo ww monitor Eizo przez USB 3.0 i zewn karte graficzną i-tec
+       nie poszedł (na żadnym z portów USB 3.0)
+
+    4) poszedł dopiero przez bezpośredni kabel HDMI z kompa
+       Drugi monitor (Samsung) poszedł z USB 3.0 przez zewn kartę itec
+       i przejściówkę VGA na wejście VGA Samsunga
+
+__________________________________________________________________________________________________
+90) Eizo - brightness
+
+    Żeby pomimo ustawienia brightnessa nisko, po chwili nie wracał na wysoko,
+    wyłącz tryb eco - patrz manual
+
+__________________________________________________________________________________________________
+91) Eizo - troubleshooting
+
+      Przeinstalować DsiplayLinka
+__________________________________________________________________________________________________
+92) Głośny wentylator
+
+    Od dawna wentylator głośno chodzić. Powodem było, że nawet tuż po starcie świeżej instalki win7
+    albo linucha, cpu = 17%. Nie pomogło guglowanie i eksperymenty z biosem
+
+    Wygląda za to że pomogło ustawienie czekboksa Automatic Fan Speed z apki SpeedFan 4.52
+    Inna przydatna apka do monitorowania teperatury to Core Temp
+
+__________________________________________________________________________________________________
+93) Ustawienie Canary jako domyślnej przeglądarki
+
+    W ustawieniach, Canarek pisze, że jest drugą przeglądarką Chroma, więc nie może być domyślną
+
+    Rozw:
+      Win > Panel sterowania > Programs > Default programs > Set yor default programs
+
+__________________________________________________________________________________________________
+94) DesktopOK.ini - współrzędne ikon
+
+    Całość podzielona jest na rozdzielone pustą linią kolejne bloki:
+    lewa kolumna ekranu, prawa, góra i dół
+    A potem rzędami od góry
+
+    ----------- Desktop.ini 28 marca 19 -----------------------------------
+
+[5200x1200 2]
+Computer=1924,1
+Recycle Bin=1926,90
+Control Panel=1928,180
+Programs=1924,270
+DesktopOK=1928,360
+AppData=1928,450
+FileSeek=1922,540
+C=1922,620
+F=1922,700
+D=1922,780
+
+Instalki=3455,3
+IT learning=3455,90
+Czytaj=3455,180
+Hakierk=3455,270
+Node (2)=3455,430
+JS (2)=3455,520
+Vue (2)=3455,610
+MP3=3453,700
+
+
+Tuba=2020,784
+nativescript=2100,784
+hakierka=2180,784
+docker=2240,784
+css=2300,784
+Code 2=2400,774
+Code 1=2490,784
+vue=2650,784
+js=2730,784
+node=2800,784
+vs=2900,784
+cy=2970,784
+git=3030,784
+mongo=3140,784
+raspberry=3215,784
+chrome=3315,784
+win7=3390,784
+Dropbox=3453,784
+
+
+wywal.js=2050,4
+ToDo=2140,4
+autor.sh=2310,4
+redate.sh=2390,4
+Credential=2590,4
+bashrc=2800,4
+.gitconfig=2890,4
+mp3.bat=3070,4
+mp4.bat=4000,4
+_Templatki=3160,4
+vs extensions=3250,4
+0000698079  7924=3340,4
+
+
+vue1=2583,686
+Advanced Vue=2975,308
+Hacking Web Apps=2815,315
+Schwarz- Vue=2718,312
+Vue Qs - Shortcut=2896,309
+
+
+:Zeit=3/28/2019 10:43:56 AM|1553766236
+[DesktopOK]
+m_lang_id=8
+m_usertext=%OS% No-Name %VD%
+disable_at_ctrl_alt_strg=1
+auto_disable_autoarange=1
+savemode=2
+ignoring_min=1
+only_changes=1
+autosave=0
+autosave_mode=1
+last_t=0
+autosave_keep=0
+by_startup=0
+start_totray=0
+by_shutdown=0
+keep_sort=0
+sort_col=-1
+sort_des=1
+to_tray_if_close=1
+autosave_start=0
+autosave_shutdown=0
+dok_use_resolution=1
+dok_use_date=1
+dok_use_time=1
+dok_use_reverse_date=1
+OVERWRITE_PROMPT=0
+auto_hide_icons_sec=5
+auto_hide_cursor_sec=5
+use_auto_hide_cursor=0
+show_icons_by_l_mouse=1
+show_icons_by_r_mouse=0
+show_icons_by_m_mouse=0
+show_icons_mouse_move=0
+use_auto_hide_icons=0
+use_to_tray_by_close=0
+use_screenschottor=1
+use_url_cnt=1
+hide_taskbar=0
+for_startup=
+use_user_name=0
+use_host_name=0
+use_os_version=0
+use_always_mouse_wheel=0
+use_always_mouse_wheel_focus=0
+use_task_volmouse=0
+show_soundvol=0
+use_lmouse_drag=0
+use_alt_f4=0
+use_rmouse_resize=0
+poweroptions_in_tray=0
+use_screen_shot_feature=0
+
+
+
+
+__________________________________________________________________________________________________
+100) Camtasia - zgrywanie osadzonych filmów
+
+      Sposób by film na grywał się na wyłączonym monitorze i nie przeszkadzał w pracy
+
+      0) by dźwięk nie leciał z głośników, podłącz słuchawki i przykryj je czymś
+      1) zaznacz w opcjach że nie będzie nagrywany dźwięk z mikrofonu, byś mógł gadać
+      2) odpal film na monitorze którego nie używasz
+      3) odpal okienko recording
+      4) kliknij w nim obszar do nagrywania i zaznacz go na ekranie
+      5) klik w record
+      6) wyłącz monitor
+      7) na końcu filmu zastopuj nagrywanie i zasejwuj w wersji 720p
+      8) jeśli plik jest za duży, to avidemuxem go
+
+__________________________________________________________________________________________________
+
+101) Camtasia - oczyszczanie dźwięku (camtasia, ffmpeg i audacity)
+
+      1) camtasia 8.6.0 (9 co chwila się wywala mimo poprawenj instalacji)
+          a) nagraj film z neta
+
+          b) Share > Custom Production > New Custom Production > MP4 >
+                     Size > Video Size: 1280 x 720
+                     Video Settings: Quality 75%, H264 profile: High
+                     Create Production Preset '720 75% H264 High'
+
+      2) wyciągnij ffmpegiem ścieżkę dźwiękową (odpal poniższego bacza):
+          for /R %%A IN (*.*) DO C:\ffmpeg.exe -i "%%A" -qscale 0 "%%A.mp3"
+          pause
+
+      3) audacity
+          a) przeciągnij plik mp3
+
+          b) zaznacza myszą obszar samych szumów (gdzie nikt nic nie mówi)
+
+          c) Effect > Noise Reduction > Get Noise Profile > OK
+
+          d) zaznacz całość: ctrl + a
+
+          e) Effect > Noise Reduction >
+              Noise reduction: 40
+              Sensitivity: 7
+              Freq smoothing: 6
+
+          f)  File > Export > MP3 > Variable > 95-135 > Stereo > OK
+
+      4) camtasia
+          a) stań na pasie 'Track 1' na dole ekranu > Separate Audio and Video > OK
+
+          b) stań na utworzonej ścieżce audio i Del
+
+          c) przeciągnij z pulpitu mp3-kę do camtasii i wciągnij ją na dół jako 'Track 2'
+
+          d) Share > Local File > 720
+
+__________________________________________________________________________________________________
+102) FlashBack Express Recorder
+
+      Jak Camtasia, tylko obrabia i zapisuje nagrany film w 1/4 czasu trwania filmu
+      Minuta filmu (1,280 x 800, 10 klatek) = 2 MB czyli OK
+      Ma Scheduled / Unattended recording
+      Może nagrywać z dowolnego monitora
+      Ma wersję free która nie ma edycji, ale do zapisywania ma wszystko
+
+__________________________________________________________________________________________________
+103) VirtualBox (6.0.4)
+
+      a) instalacja ok, ok, finish (dysk: 1-sza opcja od góry, potem dynamiczny, 24 GB, RAM 4GB)
+      b) instalacja Extension Pack
+      c) instalacja Guest Additions
+          przy wyłączonej vm > prawym na Tools > manager nośników wirtualnych
+          > tab napędy optyczne > prawy > dodaj .. .iso
+      d) odpal vm > urządzenia > napędy optyczne > widać to .iso
+
+      d) wyjście z trybu pełnoekranowego: prawy ctrl + f ('host' + f)
+      e) przełączanie myszy: prawy ctrl
+      f) start gui'a: startx
+      g) ustawienia skrótów klawiszowych: Globalne ustawienia > Wejście > tab Maszyna wirtualna
+           Ustaw 'Wyskakujące menu' na 'Host + z'
+           I ma być domyślnie czeknięte 'Automatyczne przechwytywanie klawiatury'
+
+      h) jak ci zniknie górne menu okna uruchomionej vm (Plik, Maszyna, Widok ...)
+         nagnieć prawy ctrl + z, wybierz z menu cośtam i przywróc menu
+
+      i) schowek (clipboard)
+           okno vm > Urządzenia > Wspólny schowek - nie działa chyba przez nie działające Guest Additions
+
+      Ponieważ za skarby nie chciały się zainstalować Guest Additions, wykosiłem tą wersję
+      a zainstalowałem 5.2.26 (najnowszą z 5-tek). Ale to też nie pomogło
+
+__________________________________________________________________________________________________
+104) Kali na VBoxie
+
+      a) echo deb http://http.kali.org/kali kali-rolling main non-free contrib >> /etc/apt/sources.list
+      b) apt-get update
+
+      Odechciało mi się z nim użerać, bo nie dało się przez pół dnia zaimstalować
+      Guest Additions, a potem nie chciał widzieć zewn katy wifi (alfa)
+
+__________________________________________________________________________________________________
+105) Bardzo wolno reagujący win 7
+
+      Po odpuszczeniu z Kalim na VBoksie okazało się, że win na akcje myszy reagują z dużym opóźnieniem
+      a prócz tego front page youtube'a w chrome canary stracił thumbnaile filmów
+      Co ciekawe, w regularnym chromie było ok
+
+      Odinstalowanie VBoxa nie pomogło, Malwarebytes nic nie wykrył
+      Pomogło dopiero zainstalowanie DriverEasy 5.6.10 i zaktualizowanie większości sterowników
+      Nie instalowałem tylko ważących po 300 mega sterów grafiki i trochę mniejszych audio
+
+      Parę dni było ok, po czym znowu (15/3/19)
+      Charaktrystyczny objaw wolności: prawy klik na ikonkę DesktopOK w treju
+      i czekanie paręnaście sekund na reakcję. Podobnie lagowało odpalanie 4k Video Downloadera
+
+      W msconfig > services > wyłaczyłem więc parę usług:
+
+        Bitlocker
+        Bluetooth
+        Intel ME (autor unknown)
+        Malwarebytes
+        Mobile Broadband HL Service
+
+      Pomogło, więc wygląda że chodziło o chodzacy w tle Malwarebytes
+
+__________________________________________________________________________________________________
+106) Odzysk hasła do wifi
+
+      a) netsh wlan show profiles                  // pokazuje wszystkie loginy do różnych wifiaków
+      b) netsh wlan show profile Redmiak key=clear // hasło do wybranego
+
+__________________________________________________________________________________________________
+107) Aliasy w .bashrc (gitBash)
+
+      a) otwórz plik  ~/.bashrc  (C:\Users\abc\.bashrc)
+      b) wklej ponizsze
+      c) wykonaj: . ~/.bashrc  (dzięki temu nie musisz się przelogować)
+      d) wykonaj dowolną komendę, wpisując np: 'test'
+
+      # przeladuj odpalając: . ~/.bashrc  - kropka na początku
+      alias a='alias'
+      alias c='clear'
+      alias de='cd C:/Users/abc/Desktop'
+      alias cu='curl 192.168.99.100:3000'
+      alias d='docker'
+      alias db='docker build -t'
+      alias dc='docker-compose'
+      alias dd='docker run --rm -d -p 3000:3000'
+      alias di='docker images'
+      alias dm='docker-machine'
+      alias dr='docker rm $(docekr ps -aq)'
+      alias e='. ~/.bashrc'
+      alias ee='nano ~/.bashrc'
+      alias fd='firebase deploy'
+      alias fs='firebase serve'
+      alias j='yarn jest --watch'
+      alias k='kubectl'
+      alias n='nodemon ./wywal.js'
+      alias nn='node app'
+      alias no='yarn build && cd dist && now && cd ..'
+      alias pa='parcel'
+      alias paa='parcel index.html'
+      alias p='ping 1.1.1.1'
+      alias rr='git remote remove origin'
+      alias y='yarn serve'
+
+      alias s='yarn init -y && git init && touch index.html style.scss index.js .gitignore .eslintrc wywal.js'
+      alias t='touch index.html style.scss index.js .gitignore .eslint.rc wywal.js'
+
+      alias m='git config -l|grep user && git remote -v'
+      alias mk='git config user.email maciek.kand@gmail.com && git config user.name maciekkand'
+      alias mkk='git remote remove origin && git remote add origin https://github.com/maciekkand/shopsring.git'
+
+      alias na='git config user.email nabu1312@gmail.com && git config user.name nabu1'
+      alias naa='git remote remove origin && git remote add origin https://github.com/nabu1/bch.git'
+
+      alias test='git config -l|grep user && git remote -v'
+__________________________________________________________________________________________________
+108) Reinstalacja win 7
+
+     UWAGA !
+       Żadnych updateów. Ani win ani sterowników.
+       Wykasuj zawartość katalogów temp:
+        a) windows/temp
+        b) C:\Users\abc\AppData\Local\Temp
+
+     Instalka (z poniższymi apkami) + Ofis + Android Studio + docker pentesty = 40 GB
+     (obraz Ghosta = 20 GB; save = 12 min, restore = 10)
+
+     Trzeba tylko wcześniej wyciąć:
+       a) 75 ze 170 serwisów (patrz p. 109 Black Viper)
+       b) katalog temp z C:/Windows/Temp i C:/Users/abc/AppData/Local/Temp
+       c) plik C:/hiberfil.sys (patrz p.110 Wyłączenie hibernacji)
+
+      1) ghost - restore (10 minut)
+      2) avg - update
+      3) dropbox
+      3) git
+      4) node
+      5) now
+      6) vs code (settings, kbd shortcuts, snipki i extensions - z backupowego katalogu)
+      7) ofis
+      8) chrome canary
+      9) displayLink (monitor eizo)
+     10) aliasy w .bashrc
+     11) 4k video downloader
+     12) skype
+     13) netspeedpro
+     14) net limiter
+     15) file seek
+     16) flashback express
+     17) file renamer
+     18) hi suite NIE ! zachowuje się jak wiruch, nie chce się dać wykasować
+     19) winrar
+     20) vlc
+
+      UWAGA !
+        Zablokuj uaktualnianie w całości. Nawet parę paczek bezpieczeństwa strasznie spowolniło windowsy
+
+      Ruska wersja DriverEasy 5.6.1 poszedł OK, ale bootuje się 10s dłużej, a QuickLink od monitora Eizo
+      jak krzyczał że nie uaktualniony sterownik USB 3, tak krzyczy dalej. Ale monitory chodzą ok
+      Instalowałem tylko rzeczy max kilkumegowe
+
+__________________________________________________________________________________________________
+109) Wyłączanie zbędnych usług win7 (Black Viper)
+
+    http://www.optimizingpc.com/windows7/optimizing_windows_7_services.html
+    http://www.blackviper.com/service-configurations/black-vipers-windows-7-service-pack-1-service-configurations/
+
+    UWAGA !
+      Nie wyłączaj CNG Isolation Key i Exytensible Auth Proto, bo stracisz WiFi
+      By chodziło WiFi, usługa WLAN Autoconfig musi być na 'Running'
+
+      Używaj services.msc a nie msconfig, bo services.msc nie pozwoli Ci zdisablować istotnych serwisów
+      (albo jak w ww przypadku z WiFi Cię ostrzeże)
+
+      Jeśli wahasz się ze zdisablowanie, najpierw przestaw serwis w tryb Manual
+
+      Można zdisablować za to:
+        ActiveX Installer (AxInstSV)
+        Adaptive Brightness
+        Application Layer Gateway Service
+        ASP.NET State Service **
+        BitLocker Drive Encryption Service
+        Block Level Backup Engine Service
+        Bluetooth Support Service
+        Certificate Propagation
+        Diagnostic Policy Service
+        Diagnostic Service Host
+        Diagnostic System Host
+        Distributed Link Tracking Client
+        Encrypting File System (EFS)
+        Fax
+        Function Discovery Provider Host
+        Function Discovery Resource Publication
+        Health Key and Certificate Management
+        Human Interface Device Access
+        Interactive Services Detection
+        IP Helper
+        Link-Layer Topology Discovery Mapper
+        Media Center Extender Service **
+        Microsoft iSCSI Initiator Service
+        Net.Msmq Listener Adapter **
+        Net.Pipe Listener Adapter **
+        Net.Tcp Listener Adapter **
+        Net.Tcp Port Sharing Service **
+        Netlogon
+        Network Access Protection Agent
+        Parental Controls
+        Peer Name Resolution Protocol
+        Peer Networking Grouping
+        Peer Networking Identity Manager
+        PnP-X IP Bus Enumerator
+        PNRP Machine Name Publication Service
+        Portable Device Enumerator Service
+        Problem Reports and Solutions Control Panel Support
+        Program Compatibility Assistant Service
+        Quality Windows Audio Video Experience
+        Remote Desktop Configuration
+        Remote Desktop Services
+        Remote Desktop Services UserMode Port Redirector
+        Remote Procedure Call (RPC) Locator
+        Remote Registry
+        Secure Socket Tunneling Protocol Service
+        Smart Card
+        Smart Card Removal Policy
+        SNMP Service **
+        SNMP Trap
+        Tablet PC Input Service
+        TPM Base Services
+        WebClient
+        Windows Biometric Service
+        Windows CardSpace
+        Windows Color System
+        Windows Connect Now - Config Registrar
+        Windows Error Reporting Service
+        Windows Media Center Receiver Service **
+        Windows Media Center Scheduler Service **
+        Windows Media Player Network Sharing Service **
+        Windows Presentation Foundation Font Cache 3 **
+        Windows Remote Management (WS-Management)
+        Windows Search **
+        WinHTTP Web Proxy Auto-Discovery Service
+        Wired AutoConfig
+        WWAN AutoConfig
+__________________________________________________________________________________________________
+110) Wyłączenie hibernacji
+
+      Dzięki temu, skasować można 10 gigowy plik C:/hiberfil.sys
+        powercfg -h off
+      Odtworzyć można przez
+        powercfg -h on
+__________________________________________________________________________________________________
+111) Windows Search
+
+      Siedzi w Control Panel > Windows Programs > Windows Features
+__________________________________________________________________________________________________
+112) Shutdown from command line
+
+    shutdown.exe /s /t 00   // /t 00  - to ilość sekund do restartu
+    shutdown.exe /r /t 00  // /r - restart
+__________________________________________________________________________________________________
+113) youtube-dl
+
+      https://github.com/ytdl-org/youtube-dl
+      https://ytdl-org.github.io/youtube-dl/supportedsites.html
+
+      UWAGA !
+        Odpalaj z temrminala vs code'a, bo z tajemniczych względów z pliku .bat wywala błąd tego kawałka składni:
+          $(c:/youtube-dl
+
+        Parametr '-F' wyświetla listę dostępnych dla danego filmu formatów wraz z ich kodem
+          c:/youtube-dl -F 'https://www.youtube.com/watch?v=K0IHD-xB-Bc'  // 22 mp4 1280x720  hd720 , avc1.64001F, mp4a.40.2@192k (best)
+                                                                          // 135 = 480; 18 = 360;  133 = 240; 160 = 144
+
+        Parametr '-r 30K' podobno robi bandwith limiting, ale nie działał, jak spróbowałem
+
+
+      Utyliszcze do ściagania z wielu sajtów, w tym tuby, vimeo
+      Można ściagać wg przedziału czasu
+      Można przerwać w trakcie (ctrl + c) a i tak ten kawałek który się ściągnął się odtworzy
+      Przechodzi przez proxy
+      Daje rade z blokadą regionalną (patrz Geo Restriction: --geo-bypass, --geo-bypass-country CODE i --geo-bypass-ip-block IP_BLOCK)
+      CODE = ISO 3166-2  np US-CA, US-NY, US-IL
+      Można określać numery z playlisty, tytuły (regexem), wg rozmiaru (min i max), daty (przed, po), ogladań (min, max),
+      szybkości ściagania i innych
+      Można wyciągać samo audio i to w zamówionym formacie itp dzięki współpracy z ffmpegiem, osadzać subttile i thumbnaile, naprawieć pliki
+
+      a) przedział czasu (czas startu / czas mety)
+          c:/ffmpeg -ss 1:08:00 -i $(c:/youtube-dl -f 22 -g 'https://www.youtube.com/watch?v=7RfteeSQZxo') -t 1:14:20  output.mp4
+
+      b) przedział czasu (czas startu / ilość sekund)
+          c:/ffmpeg -ss 1:08:00 -i $(c:/youtube-dl -f 22 -g 'https://www.youtube.com/watch?v=7RfteeSQZxo') -t 375 output.mp4
+
+      c) przedział czasu (sekunda startu / ilość sekund)
+          c:/ffmpeg -ss 300 -i $(c:/youtube-dl -f 22 -g 'https://www.youtube.com/watch?v=7RfteeSQZxo') -t 375 output.mp4
+
+      d) przedział kawałków playlisty - mp4 (wyedytuj ścieżkę; ma być: '..watch?list..')
+          c:/youtube-dl -f 22 --playlist-start 14 --playlist-end 15 https://www.youtube.com/watch?list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP   // po 'watch?' ma być od razu 'list..', środek wyciąć
+
+      e) resuming przerwanego ściągania (dodanie parametru '-c')
+          c:/youtube-dl -f 22 --playlist-start 14 --playlist-end 15 -c https://www.youtube.com/watch?list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP   // po 'watch?' ma być od razu 'list..', środek wyciąć
+
+      f) przedział kawałków playlisty - mp3 (wyedytuj ścieżkę; ma być: '..watch?list..')
+          c:/youtube-dl -x --audio-format mp3 --playlist-start 22 --playlist-end 23 https://www.youtube.com/watch?list=PLEcunsVhOMELIgQS_tHyba50PB3uamkMY
+
+      g) wyłaczanie kompa na koniec ściągania (shutdown nie działa, pewnie bo wyłączyłem usługi win)
+          c:/youtube-dl -f 22 --playlist-start 14 --playlist-end 15 https://www.youtube.com/watch?list=PLRAV69dS1uWT-ooTYHCqgxMTGA233JMrP && shutdown.exe /s /t 00
+
+      h) ściąganie samej mp3
+          c:/youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=TIC5RaKqDSU
+
+      i) określanie jakości filmu (480 = 50% pliku przy 720)
+          c:/youtube-dl -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'   //  Download best format available but no better than 480p
+
+      j) określanie rozmiaru pliku
+          c:/youtube-dl -f 'best[filesize<50M]'   // # Download best video only format but no bigger than 50 MB
+
+__________________________________________________________________________________________________
+119) Win 10 - black viper
+
+      http://www.blackviper.com/service-configurations/black-vipers-windows-10-service-configurations/
+__________________________________________________________________________________________________
+120) Win 10 - debloating
+
+    https://www.christitus.com/2018/09/09/debloat-windows-10/
+
+    a) ściągnąć zipa i rozpakować z:
+        https://github.com/Sycnex/Windows10Debloater
+
+    b) cmd > 'Set-ExecutionPolicy Unrestricted -Force'
+
+    c) prawym na wybrany skrypt > run
+
+    d) Windows10SysPrepDebloater.ps1 -Sysprep -Debloat -Privacy
+__________________________________________________________________________________________________
+121) Win 10 - delaying updates
+
+      UWAGA !
+        Najlepsza @ maj 19, 2019 = 1709; nie updatuj do 1809 lub 1903 !
+
+      Settings > Advanced options > Semi-Annual Channel
+                                  > feature updates can be deferred for this many days: 365
+                                  > security updates can be deferred for this many days: 30
+__________________________________________________________________________________________________
+122) Win 10 - disabling telemetry
+
+      https://www.youtube.com/watch?v=yXaYszT11CA&t=6s
+
+      services.msc > Connected User Experience and Telemetry > disable
+                   > DMWapppushsvc > disable
+
+      Methods
+      -Change to Basic or Security in Settings
+      -O&O Shutup
+      https://www.oo-software.com/en/shutup10
+
+      -Disable Telemetry through GPO
+      Go to Computer Configuration -  Administrative Templates - Windows Components - Data Collection
+      -Regedit Data Collection
+
+      **HKEY_LOCAL_MACHINE-SOFTWARE-Policies-Microsoft-Windows-DataCollection
+      **DWORD 32-bit Value --- AllowTelemetry 0
+      -Disable Services
+
+      **Connected User Experiences, dmwappushsvc, and Telemetry
+      -Disable Scheduled Tasks
+
+      Task Scheduler >  Task Scheduler Library > Microsoft > Windows > Application Experience > disable all 3 entries
+                                                                     > Customer Experience Imp > disable all 2 entries
+
+__________________________________________________________________________________________________
+123) Win 10 - disabling other settings
+
+      Settings > Privacy > General > disable all
+                           Speech > disable all
+                           Inking > disable
+                           Diagnostics and Feedback > disable  / never
+                           Activity > disable
+                           Location > disable
+                           Background Apps > disable all
+                           App diagnostics > disable all
+
+      Settings > Power Options > Additional Power Settings > Hi perf
+
+      Prawy klik na dysku > Properties > uncheck Allow files .. indexed (5-15 minut)
+__________________________________________________________________________________________________
+124) Win 10 - fixing net conn issues
+
+      a) Powershell > netsh int ip reset > netsh winsock reset > reboot
+      b) Settings > Network and Internet > Network reset
+      c) cmd > ipconfig release > ipconfig flushdns > ipconfig renew
+
+      Jeśli nie możesz znaleźć właściwego drivera, użyj
+        https://www.3dpchip.com/3dpchip/3dp/net_down_en.php   - network
+        https://www.3dpchip.com/3dpchip/3dp/chip_down_en.php  - chipset
+
+__________________________________________________________________________________________________
+125) Win 10 - best utils
+
+      https://www.youtube.com/watch?v=BXXgbGwEnYw&t=12s
+
+      1) O&O ShutUp10
+          Rekomendowane: Actions > Apply only recommended actions
+
+      2) Ninite
+          Automatyczna instalacja zaznaczonych typowych programów (chrome, skype, dropbox itd)
+
+      3) BleachBit
+          Disk cleaner, privacy, performance
+          Prepare whole disk images for compression (common for "ghost" backups and virtual machines) by wiping free disk space
+
+
+
+
+__________________________________________________________________________________________________

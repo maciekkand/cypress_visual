@@ -1,0 +1,1919 @@
+00) tips
+01) hello world
+02) struktura testu
+03) intro (visit, pause, contains, click, url, should, get, type)
+04) demo z cypress.io
+05) Text inputs (beforeEach, it.only, focused, cypress.json, type, should)
+06) Form submission and XHRs (server, route, and)
+07) Loading Data with Fixtures
+08) custom commands 1
+09) custom commands 2
+10) as, invoke
+11) selektory proste
+12) selektory złożone
+13) selektory DOM
+
+14) timeout
+15) blur, focus, clear, check, uncheck, select, dblclick, trigger, visit, its
+16) request
+17) then
+18) alias (as)
+19) hooks (before, after, beforeEach, afterEach)
+20) only i skip
+22) trigger
+23) keyboard events
+24) mouse events
+25) exec i log
+
+26) DOM traversal
+27) nth-child
+28) spinner
+29) select box by index
+30) conditional testing
+31) each
+
+38) regex (contains)
+
+40) asercje (should)
+41) asercje - chaining
+42) expect (be.visible, contains)
+43) złożone asercje
+
+60) tvui - testy
+61) tvui - helper
+62) alert i confirm
+63) Assert content of cell based on content of a cell in the same row with Cypress
+64) Niespójne wyniki testów
+65) klawisze specjalne (kursory, del, backspace)
+66) wyciąganie wartości z komórki
+
+100) cypress-vue-unit-test
+101) cypress-vue-unit-test - hello world
+
+110) percy
+112) cypress-visual-regression
+
+120) 'unable to get local issuer certificate' - podczas istalacji cypressa
+121) logi
+122) cookies
+
+--------------------------------------------------------------------------------------------
+00) tips
+
+    i) https://example.cypress.io/commands/actions  - sample kodu testów
+       https://github.com/bahmutov/cypress-vue-unit-test
+       https://learntdd.in/vue/
+
+    o) wersja 3.1.5 nie pokazuje okna workflowa, tylko samą apkę
+       Zdownowałaem do 3.1.4
+       Teraz najnowsza 3.2 wywala bład po instalacji, za to 3.1.5 działa
+
+    a) by stworzyć selektor, w Chromie (nie w cypress-elektronie)
+        prawym kliknij na wybrany element > wybierz 'Zbadaj'
+        > znajdź właściwą linijkę w dev toolsach > prawy klik
+        > Copy selector > Paste w vs codzie i wykasuj znaczki '>'
+        > wstaw do .get()
+
+    b) 11 filmów z kanału cypress.io na tubie
+
+    c) adres do localhosta jest z http, a nie https
+
+    d) screenshoty chodzą tylko w headfullu, a filmy - nigdy
+        .get('#stockTable').screenshot()
+
+    e) get i contains chwytają element DOMu, a więc kolejne elementy
+       już tylko do niego się odnoszą.
+       Jeśli chcesz złapać inny element, przerwij chaining i zacznij
+       od komendy z 'cy': cy.get(..) lub cy.contain(..)
+
+    f) Selektory cyprysa są co prawda oparte o Mocha, Chai, Chai-jQuery i
+       Sinon-Chai, ale tworzą z nich własny dialekt
+
+       Mocha: describe(), context(), it() and specify().
+       context() is identical to describe() and specify() is identical to it()
+
+       describe.only(..) - można użyć wielokrotnie
+       describe.skip(..) - można użyć wielokrotnie
+
+    g) nie ma jeszcze selekcji select boksa wg indeksu
+       (np weź opcję nr 3 z selecboksa Dzień)
+
+    h) metoda check, czekuje tylko <input> typu checkbox albo radio
+       Czekbox bootstrap-vue to:
+         b-form-checkbox  albo
+         b-form-checkbox-group
+       .. więc metoda check na nim nie zadziała.
+       Dlatego trzeba uzyć metody click()
+
+    i) jeśli cyprysiak nie chwyta jakiegoś selektora, to hoveruj w górę po kolejnych
+       linijkach jego okna z krokami testów, a zobaczysz w browserze jakie pola kolejno podświetla
+
+    j) domyślnie cyprys próbuje dostać się do elementu przez 4 sekundy
+
+    k) (skillbill) w vuetify jest <v-select> który okazuje się połączeniem inputa
+       i kilku pionowych divów które początkowo są ukryte bo ich parent jest display:none
+       a ukazują się po kliku we wspomnianego inputa
+
+       Cholernie trudno było znaleźć selektora, bo okno kroków cyprysa nie znajdując
+       szukanego stringa 'JS', nie pisało co znalazło zamiast niego
+
+       Okazało się że trzeba zamiast click(), użyć 'focus()
+
+    l) by po zakończeniu testu, okno browsera nie opuszczało się,
+        dodaj na końcu: cy.scrollTo(0, 0)
+
+    m) cypress cache clear
+
+    n) F5 - wykonaj test
+
+    o) cy.log('__________ 1 ________')  // pozwala łatwo połapać się między ekranem, a kodem testu
+
+    q) The Electron browser is a version of Chromium that comes with Electron
+         We host chromium.cypress.io with links to download a specific released
+         version of Chrome (dev, Canary and stable) for every platform
+
+         The Electron browser has two unique advantages:
+
+         It can be run headlessly.
+         It comes baked into Cypress and does not need to be installed separately.
+         By default, when running cypress run from the CLI, we will launch Electron headlessly
+
+     r) cypress open --browser C:\Users\503152573\Desktop\chrome-win\chrome.exe
+
+     s) Copy CSS Selector (plugin do chroma) - b ułatwia wydostanie właściwego selektora elementu html
+          najedź na element na stronie > prawy > Copy CSS Selector
+
+--------------------------------------------------------------------------------------------
+01) hello world
+
+    https://docs.cypress.io/guides/getting-started/installing-cypress.html#Direct-download
+
+    UWAGA !
+      Headfull - npx cypress open
+      Headless - npx cypress run
+
+      npx cypress run -s cypress/integration/skillbill.spec.js
+
+    o) nowy projekt:
+         yarn add cypress
+       istniejący:
+         vue add @vue/e2e-cypress
+
+    a) vue create nowyProjekt (e2e - cypress)
+
+    b) do package.json dodaj:
+
+        "scripts": {
+          "cy": "npx cypress open",
+          "cyrun": "npx cypress run",
+        },
+
+    c) w /tests/e2e/specs stwórz newTest.js i wbij:
+
+        describe('My First Test', () => {
+          it('Does not do much', () => {
+            expect(true).to.equal(true)
+          })
+        })
+
+    d) odpal: yarn dev (i ew json-server db.json)
+
+    e) odpal: yarn cy
+
+    f) otworzy się GUI z 1 testem newTest - odpal go
+
+    g) zmień ostatnie true na false
+
+    h) po zmianie test odapli się automatycznie
+
+    i) jeśli po upgradzie coś jest nie tak:
+        npx cypress cache clear
+        npx cypress install --force
+
+        Nie pomogło, więc zainstalowałem go globalnie i odpaliłem globalnie
+        yarn global add cypress
+        cypress open
+
+--------------------------------------------------------------------------------------------
+02) struktura testu
+
+    describe('My First Test', () => {
+      it('Does not do much', () => {
+        1. Arrange - setup initial app stage
+            a) visit a web page
+            b) query for an element
+
+        2. Act - take action
+            a) interact with an element
+
+        3. Assert - make assertion
+            a) make assertion about page content
+
+      })
+    })
+
+--------------------------------------------------------------------------------------------
+03) intro (visit, pause, contains, click, url, should, get, type)
+
+      describe('My First Test', () => {
+        it('Clicks an element', () => {
+          cy.visit('https://example.cypress.io')
+
+          cy.pause()
+
+          cy.contains('type').click()  // klika linkę i otwiera jej stronę
+
+          cy.url().should('include', '/commands/actions')
+
+          cy.get('.action-email')
+            .type('dupa@gmail.com')
+            .should('have.value', 'dupa@gmail.com')
+        })
+      })
+
+--------------------------------------------------------------------------------------------
+04) demo z cypress.io
+
+    a) git clone https://github.com/cypress-io/cypress-tutorial-build-dodo-starter
+
+    b) package.json
+
+        scripts": {
+          "watch": "webpack --watch",
+          "serve": "json-server db.json",
+          "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+          "cy": "cypress open"
+        }
+
+    c) z package.json, wytnij: "cypress": "^1.0.2"
+       i zainstaluj najnowszą wersję (3.1.4)
+
+    d) yarn dev
+
+    e) a w drugim oknie: yarn cy
+
+--------------------------------------------------------------------------------------------
+05) Text inputs (beforeEach, it.only, focused, cypress.json, type, should)
+
+    Tuba - Cypress.io #4 Text inputs
+
+    Jeśli zawsze uderzamy do tego samego urla, zamiast umieszczać w befeoreEach pełną ścieżkę:
+      cy.visit('http://localhost:3030')
+
+    można wbić do cypress.json:
+      {
+        "baseUrl": "http://localhost:3030"
+
+      }
+
+    .. i używać skróconej:
+        cy.visit('/')
+
+  ------- input-form.spec.js -----------------------------------
+
+    describe('Input form', () => {
+      beforeEach(() => {
+        //cy.visit('http://localhost:3030')
+        cy.visit('/')
+      })
+
+      it('focuses input on load', () => {
+        cy.focused().should('have.class', 'new-dodo')
+      })
+
+      it.only('accepts input', () => {
+        const typedText = 'Buy Milk'
+
+        cy.get('.new-dodo')
+          //.type(typedText)
+          //.should('have.value', typedText)
+
+      })
+    })
+--------------------------------------------------------------------------------------------
+06) Form submission and XHRs (server, route, and)
+
+    and = should
+
+   ---------------------------------------------------------
+
+    describe('Input form', () => {
+      beforeEach(() => {
+        cy.visit('/')
+      })
+
+      it('focuses input on load', () => {
+        cy.focused().should('have.class', 'new-dodo')
+      })
+
+      it('accepts input', () => {
+        const typedText = 'Buy Milk'
+
+        cy.get('.new-dodo')
+          .type(typedText)
+          .should('have.value', typedText)
+      })
+
+      context('Form submission', () => {
+        beforeEach(() => {
+          cy.server()
+        })
+
+        it('adds a new dodo on submit', () => {
+          const itemText = 'Buy eggs'
+
+          cy.route('POST', '/api/dodos', {
+            name: itemText,
+            id: 1,
+            isComplete: false
+          })
+
+          cy.get('.new-dodo')
+            .type(itemText)
+            .type('{enter}')
+            .should('have.value', '')
+
+          cy.get('.dodo-list li')
+            .should('have.length', 1)
+            .and('contain', itemText)
+        })
+
+        it('Shows an error on a failed submission', () => {
+          cy.route({
+            url: '/api/dodos',
+            method: 'POST',
+            status: '500',
+            response: {}
+          })
+
+          cy.get('.new-dodo')
+            .type('test{enter}')
+
+          cy.get('.dodo-list li')
+            .should('not.exist')
+
+          cy.get('.error')
+            .should('be.visible')
+
+        })
+    })
+
+--------------------------------------------------------------------------------------------
+07) Loading Data with Fixtures (have-length)
+
+    Tablicę users można przerzucić do zewn pliku w katalogu Fixtures
+
+   --------- app-init.spec.js --------------------------------
+
+    describe('App init', () => {
+      it('Loads users on page load', () => {
+        cy.server()
+        cy.route('GET', './api/dodos', 'fixture:dodos')
+        cy.visit('http://localhost:3030')
+
+        cy.get('.dodo-list li')
+          .should('have-length', 4)
+      })
+    })
+
+  --------- Fixtures/dodos.json ----------------------------
+
+    [
+      { "id": 0, "name": "jan", age: 11, "city": "wwa"},
+      { "id": 1, "name": "adam", age: 22, "city": "gda"},
+      { "id": 2, "name": "ada", age: 33, "city": "poz"},
+      { "id": 3, "name": "mark", age: 44, "city": "lod"}
+    ]
+
+--------------------------------------------------------------------------------------------
+08) custom commands 1
+
+     https://on.cypress.io/custom-commands
+
+     Ponieważ dla wielu testów powtarza się sekwencja cy.:
+      server, route, visit
+     można ją wydzielić do zewn pliku commands:
+
+   ------ /support/commands.js --------------------------------
+
+    Cypress.Commands.add('seedAndVisit', () => {
+      cy.server()
+      cy.route('GET', './api/dodos', 'fixture:dodos')
+      cy.visit('http://localhost:3030')
+    })
+
+   --------- app-init.spec.js --------------------------------
+
+    describe('App init', () => {
+      it('Loads users on page load', () => {
+        cy.seedAndVisit()
+
+        cy.get('.dodo-list li')
+          .should('have-length', 4)
+      })
+    })
+
+--------------------------------------------------------------------------------------------
+09) custom commands 2
+
+    Aby czyścić z dodanych itemów przed kolejnym testem,
+    trzeba użyć domyślnego argumentu, a seeAndVisit powinno przekazywać pustą tablicę
+
+    ------ /support/commands.js --------------------------------
+
+    Cypress.Commands.add('seedAndVisit', (seedData = 'fixture:dodos') => {
+      cy.server()
+      cy.route('GET', './api/dodos', seedData)
+      cy.visit('http://localhost:3030')
+    })
+
+   --------- app-init.spec.js --------------------------------
+
+    describe('App init', () => {
+      it('Loads users on page load', () => {
+        cy.seedAndVisit([])
+
+        cy.get('.dodo-list li')
+          .should('have-length', 4)
+      })
+    })
+
+--------------------------------------------------------------------------------------------
+10) as, invoke
+
+    describe('App init', () => {
+      it('Loads users on page load', () => {
+        cy.seedAndVisit
+      })
+
+      it('Properly displays completed items', () => {
+        cy.get('.dodo-list li')
+          .filter('.completed')
+          .should('have.length', 1)
+          .and('contain', 'Eggs')
+          .find('toggle')
+          .should('be.checked')
+          // .should('not.be.checked')
+      })
+
+      it('Shows remaining dodos in the footer', () => {
+        cy.get('.dodo-count')
+          .should('contain', 3)
+      })
+
+      it('Removes a dodo', () => {
+        cy.route({
+          url: '/api/dodos/1',
+          method: 'DELETE',
+          status: 200, // domyślny, wiec można pominąć
+          response: {}
+        })
+
+        cy.get('.dodo-list li')
+          .as('list')
+
+        cy.get('@list')
+          .first()
+          .find('.destroy')
+          .invoke('show')
+          .click()
+
+        cy.get('@list')
+          .should('have.length', 3)
+          .and('not.contain', 'Milk')
+
+      })
+    })
+
+
+--------------------------------------------------------------------------------------------
+11) selektory proste
+
+      Jak w jQuery (cypress zawiera jQuery)
+
+      cy.get('#search') - id
+      cy.get('.search') - class
+      cy.contains('Search') - element zawierający tekst 'Search'
+
+      Jeśli element o jakiejś nazwie jest unikalny na ekranie, to wystarczy:
+
+        cy.contains('Razem')
+          .should('not.exist')
+
+      Jeśli nie jest uikalny, to trzeba wskazać jego lokalizację:
+
+        cy.get('[data-test="stockTable"] thead tr th')
+          .contains(/Chleb/)
+          .should('not.exist')
+
+
+--------------------------------------------------------------------------------------------
+12) selektory złożone
+
+      Wszystkie 3 poniższe są różnoważne:
+
+      .get('#stockTable')
+      .find('tbody')
+      .find('tr')
+
+      .get('#stockTable')
+      .get('tbody')
+      .find('tr')
+
+      .get('#stockTable tbody tr')
+
+--------------------------------------------------------------------------------------------
+13) selektory DOM
+
+      a) weryfikacja, że w nagłówku żadnej z kolumn nie ma słowa 'Total'
+
+        .get('#stockTable thead tr th:nth-child(even)')
+        .should('not.contain', 'Total')
+        .get('#stockTable thead tr th:nth-child(odd)')
+        .should('not.contain', 'Total')
+
+--------------------------------------------------------------------------------------------
+14) timeout
+
+      Per command:
+        cy.get('.my-slow-selector', { timeout: 10000 })
+        cy.get( selector, { timeout: 10000 }).should("not.exist")
+
+      Globalnie:
+        "defaultCommandTimeout": 10000  // w cypress.json
+
+
+      cy.visit() loads a remote page and does not resolve until all of the external
+                 resources complete their loading phase. This may take awhile,
+                 so its default timeout is set to 60000ms
+
+      cy.exec() runs a system command such as seeding a database. We expect this to potentially
+                take a long time, and its default timeout is set to 60000ms.
+
+      cy.wait() actually uses 2 different timeouts. When waiting for a routing alias,
+                we wait for a matching request for 5s, and then additionally for the server’s
+                response for 3s. We expect your application to make a matching request quickly,
+                but we expect the server’s response to potentially take much longer.
+
+--------------------------------------------------------------------------------------------
+15) blur, focus, clear, check, uncheck, select, dblclick, trigger, visit, its
+
+      .blur() - Make a focused DOM element blur
+
+      .focus() - Focus on a DOM element
+
+      .clear() - Clear the value of an input or textarea
+
+      .check() - Check checkbox(es) or radio(s)
+
+      .uncheck() - Uncheck checkbox(es)
+
+      .select() - Select an <option> within a <select>
+
+      .dblclick() - Double-click a DOM element
+
+      .trigger('mousedown') - lub 'mousedown', 'mouseover', 'mouseleave',
+
+      cy.get('button').trigger('contextmenu', 15, 40)
+
+      .visit() expects the page to send text/html content with a 200 status code
+
+      .its() expects to eventually find a property on the current subject
+
+--------------------------------------------------------------------------------------------
+16) request
+
+      https://docs.cypress.io/api/commands/request.html#Method-and-URL
+
+      cy.request() załatwia to, co ręczne logowanie zakończone naduszeniem batona Wyślij, ale można i tak:
+
+        cy.visit('http://localhost:8080/app')
+        cy.request('users/1.json') //  url is  http://localhost:8080/users/1.json
+
+      cy.request(url)
+      cy.request(url, body)
+      cy.request(method, url)
+      cy.request(method, url, body)
+      cy.request(options)
+
+      cy
+        .request('POST', 'http://localhost:8888/users/admin', { name: 'Jane' })
+        .then((response) => {
+          // response.body is automatically serialized into JSON
+          expect(response.body).to.have.property('name', 'Jane') // true
+        })
+
+      Sometimes it’s quicker to test the contents of a page rather than cy.visit()
+      and wait for the entire page and all of its resources to load:
+
+        cy.request('/admin').its('body').should('include', '<h1>Admin</h1>')
+
+--------------------------------------------------------------------------------------------
+17) then
+
+      cy
+      // Find the el with id 'some-link'
+      .get('#some-link')
+
+      .then(($myElement) => {
+        // ...massage the subject with some arbitrary code
+
+        // grab its href property
+        const href = $myElement.prop('href')
+
+        // strip out the 'hash' character and everything after it
+        return href.replace(/(#.*)/, '')
+      })
+      .then((href) => {
+        // href is now the new subject
+        // which we can work with now
+      })
+
+--------------------------------------------------------------------------------------------
+18) alias (as)
+
+      cy
+        .get('.my-selector')
+        .as('myElement') // sets the alias
+        .click()
+
+      /* many more actions */
+
+      cy
+        .get('@myElement') // re-queries the DOM as before (only if necessary)
+        .click()
+
+    -------------------------------------------------
+
+      cy.get('table').find('tr').as('rows')
+      (...)
+      cy.get('@rows').first().click()
+
+    -------------------------------------------------
+
+      cy.server()
+      cy.route('POST', '/users', { id: 123 }).as('postUser')
+      cy.get('form').submit()
+
+      cy.wait('@postUser').its('requestBody').should('have.property', 'name', 'Brian')
+
+--------------------------------------------------------------------------------------------
+19) hooks (before, after, beforeEach, afterEach)
+
+      describe('Hooks', function() {
+        before(function() {
+          // runs once before all tests in the block
+        })
+
+        after(function() {
+          // runs once after all tests in the block
+        })
+
+        beforeEach(function() {
+          // runs before each test in the block
+        })
+
+        afterEach(function() {
+          // runs after each test in the block
+        })
+      })
+
+      The order of hook and test execution is as follows:
+
+        1) All before() hooks run (once)
+        2) Any beforeEach() hooks run
+        3) Tests run
+        4) Any afterEach() hooks run
+        5) All after() hooks run (once)
+
+--------------------------------------------------------------------------------------------
+20) only i skip
+
+      it.only - wykonuje tylko ten test
+      it.skip - pomija ten test
+
+--------------------------------------------------------------------------------------------
+22) trigger
+
+      cy.get('a').trigger('mousedown')
+      cy.get('button').trigger('mouseover')
+
+      Simulate a “long press” event
+        cy.get('.target').trigger('mousedown')
+        cy.wait(1000)
+        cy.get('.target').trigger('mouseleave')
+
+      Interact with a range input (slider)
+        cy.get('input[type=range]').as('range')
+          .invoke('val', 25)
+          .trigger('change')
+        cy.get('@range').siblings('p').should('have.text', '25')
+
+      Position
+        cy.get('button').trigger('mousedown', 'topRight')
+        cy.get('button').trigger('mousemove', { clientX: 200, clientY: 300 })
+
+      Context menu
+        cy.get('button').trigger('contextmenu', 15, 40)
+
+      Stop bubbling
+        cy.get('button').trigger('mouseover', { bubbles: false })
+
+      .trigger(eventName, options)
+          log	    true	   - displays the command in the Command log
+          force	  false	   - forces the action, disables waiting for actionability
+          bubbles	true	   - whether the event bubbles
+          cancelable	true - whether the event is cancelable
+          timeout	         - time to wait for .trigger() to resolve before timing out
+
+      .trigger(eventName, x, y) // 100, 200
+
+      .trigger(eventName, position)
+        center - default
+        topLeft,
+        top,
+        topRight,
+        left,
+        center,
+        right,
+        bottomLeft,
+        bottom,
+        bottomRight
+
+--------------------------------------------------------------------------------------------
+23) keyboard events
+
+      cy.get('.action-email')
+      .type('fake@email.com').should('have.value', 'fake@email.com')
+
+      // .type() with special character sequences
+      .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
+      .type('{del}{selectall}{backspace}')
+
+      // .type() with key modifiers
+      .type('{alt}{option}') //these are equivalent
+      .type('{ctrl}{control}') //these are equivalent
+      .type('{meta}{command}{cmd}') //these are equivalent
+      .type('{shift}')
+
+      // Delay each keypress by 0.1 sec
+      .type('slow.typing@email.com', { delay: 100 })
+      .should('have.value', 'slow.typing@email.com')
+
+--------------------------------------------------------------------------------------------
+24) mouse events
+
+      cy.get('.action-div').dblclick().should('not.be.visible')
+
+
+--------------------------------------------------------------------------------------------
+25) exec i log
+
+    .exec - wykonuje komendę linuksa, jaką mu podasz
+
+    .log  - robi to co console.log
+            Jeśli poprzedzisz i zakończysz treść loga 2-ma gwiazkami (ale bez spacji!), będzie bold, np:
+              cy.log('**Skopiuj poniżej aktualne wartości cookie i tokena**')
+
+    cy.exec('echo Jane Lane')
+      .its('stdout').should('contain', 'Jane Lane')
+
+    cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`)
+
+    if (Cypress.platform === 'win32') {
+      cy.exec('print cypress.json')
+        .its('stderr').should('be.empty')
+    }
+    else {
+      cy.exec('cat cypress.json')
+        .its('stderr').should('be.empty')
+
+      cy.exec('pwd')
+        .its('code').should('eq', 0)
+    }
+
+--------------------------------------------------------------------------------------------
+26) DOM traversal
+
+      context('Traversal', () => {
+        beforeEach(() => {
+          cy.visit('https://example.cypress.io/commands/traversal')
+        })
+
+        it('.children() - get child DOM elements', () => {
+          // https://on.cypress.io/children
+          cy.get('.traversal-breadcrumb')
+            .children('.active')
+            .should('contain', 'Data')
+        })
+
+        it('.closest() - get closest ancestor DOM element', () => {
+          // https://on.cypress.io/closest
+          cy.get('.traversal-badge')
+            .closest('ul')
+            .should('have.class', 'list-group')
+        })
+
+        it('.eq() - get a DOM element at a specific index', () => {
+          // https://on.cypress.io/eq
+          cy.get('.traversal-list>li')
+            .eq(1).should('contain', 'siamese')  // same as :nth-child() in jQuery
+        })
+
+        it('.filter() - get DOM elements that match the selector', () => {
+          // https://on.cypress.io/filter
+          cy.get('.traversal-nav>li')
+            .filter('.active').should('contain', 'About')
+        })
+
+        it('.find() - get descendant DOM elements of the selector', () => {
+          // https://on.cypress.io/find
+          cy.get('.traversal-pagination')
+            .find('li').find('a')
+            .should('have.length', 7)
+        })
+
+        it('.first() - get first DOM element', () => {
+          // https://on.cypress.io/first
+          cy.get('.traversal-table td')
+            .first().should('contain', '1')
+        })
+
+        it('.last() - get last DOM element', () => {
+          // https://on.cypress.io/last
+          cy.get('.traversal-buttons .btn')
+            .last().should('contain', 'Submit')
+        })
+
+        it('.next() - get next sibling DOM element', () => {
+          // https://on.cypress.io/next
+          cy.get('.traversal-ul')
+            .contains('apples').next().should('contain', 'oranges')
+        })
+
+        it('.nextAll() - get all next sibling DOM elements', () => {
+          // https://on.cypress.io/nextall
+          cy.get('.traversal-next-all')
+            .contains('oranges')
+            .nextAll().should('have.length', 3)
+        })
+
+        it('.nextUntil() - get next sibling DOM elements until next el', () => {
+          // https://on.cypress.io/nextuntil
+          cy.get('#veggies')
+            .nextUntil('#nuts').should('have.length', 3)
+        })
+
+        it('.not() - remove DOM elements from set of DOM elements', () => {
+          // https://on.cypress.io/not
+          cy.get('.traversal-disabled .btn')
+            .not('[disabled]').should('not.contain', 'Disabled')
+        })
+
+        it('.parent() - get parent DOM element from DOM elements', () => {
+          // https://on.cypress.io/parent
+          cy.get('.traversal-mark')
+            .parent().should('contain', 'Morbi leo risus')
+        })
+
+        it('.parents() - get parent DOM elements from DOM elements', () => {
+          // https://on.cypress.io/parents
+          cy.get('.traversal-cite')
+            .parents().should('match', 'blockquote')
+        })
+
+        it('.parentsUntil() - get parent DOM elements from DOM elements until el', () => {
+          // https://on.cypress.io/parentsuntil
+          cy.get('.clothes-nav')
+            .find('.active')
+            .parentsUntil('.clothes-nav')
+            .should('have.length', 2)
+        })
+
+        it('.prev() - get previous sibling DOM element', () => {
+          // https://on.cypress.io/prev
+          cy.get('.birds').find('.active')
+            .prev().should('contain', 'Lorikeets')
+        })
+
+        it('.prevAll() - get all previous sibling DOM elements', () => {
+          // https://on.cypress.io/prevAll
+          cy.get('.fruits-list').find('.third')
+            .prevAll().should('have.length', 2)
+        })
+
+        it('.prevUntil() - get all previous sibling DOM elements until el', () => {
+          // https://on.cypress.io/prevUntil
+          cy.get('.foods-list').find('#nuts')
+            .prevUntil('#veggies').should('have.length', 3)
+        })
+
+        it('.siblings() - get all sibling DOM elements', () => {
+          // https://on.cypress.io/siblings
+          cy.get('.traversal-pills .active')
+            .siblings().should('have.length', 2)
+        })
+      })
+
+--------------------------------------------------------------------------------------------
+27) nth-child
+
+      Zamiast selektora css'owego przeklejonego z dev toolsów:
+        .get('#table > tbody > tr:first > td:nth-child(7)')
+
+      .. można użyć selektora cyprysiaka:
+
+        .get('#table')
+        .find('tr')
+        .eq(1)
+        .find('td')
+        .eq(6)
+
+     -------------------------------------------
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(5)', { timeout: 6000 })
+      .contains(/magazyn/i)
+      .should('exist')
+
+     -------------------------------------------
+
+      cy.get("[data-test='stationsTvpTvn']")
+      .find('input')
+      .eq(0)
+      .click({force: true})
+
+--------------------------------------------------------------------------------------------
+28) spinner
+
+      Na starcie strona przez parę sekund ściaga dane, wyświetlając w tym czasie spinnera
+      Cypress zakłada że wszystko jest już dostepne, a ponieważ tak nie jest - wywala się
+
+      Rozw hacky:
+        .wait(5000)
+
+      Rozw ok:
+        .get('spinner').should('not.be.visible')
+
+--------------------------------------------------------------------------------------------
+29) select box by index
+
+    Wybranie n-tego elementu select boksa
+
+      .get('[data-test="day"] > option')
+      .eq(5)
+      .then(element => cy.get('[data-test="day"]').select(element.val()))
+
+--------------------------------------------------------------------------------------------
+30) Conditional testing
+
+      https://docs.cypress.io/guides/core-concepts/conditional-testing.html
+
+--------------------------------------------------------------------------------------------
+31)  each
+
+      https://docs.cypress.io/api/commands/each.html#Usage
+
+      Pętla do sprawdzania iluś elementów
+
+      Poniżej, sprawdzam czy wśród wyświetlonych rekordów, każdy jest z kategorii
+      'rozrywka'. Jeśli nie - rzucam błędem, failując test
+      Reszta przykładów jest przekeljona z weba
+
+      ------------------------------------------------------------
+
+      .get('#table > tbody > tr > td:nth-child(7)')
+      .each(($el, index, $list) => {
+        cy.wrap($el).invoke('text').then((text) => {
+          cy.log(text)
+          if(text !== 'rozrywka') throw new Error('nie rozrywka')
+        })
+      })
+
+      ------------------------------------------------------------
+
+      const buttonButton = '[data-cy-component=button-button]';
+
+      cy.get(buttonButton).each(($el, index, $list) => {
+        cy.log(`index: ` + index);
+        if (index === 5) {
+          cy.wrap($el)
+            .should('have.value', 'Save')
+            // Click Save button.
+            .click();
+        }
+      });
+
+      ------------------------------------------------------------
+
+      cy.get('a.auth0-lock-alternative-link')
+      .each(($elm) => {
+        cy.wrap($elm).invoke('text').then((text) => {
+          if (text === "Not your account?") {
+            // do somthing
+          }
+        })
+      })
+
+      ------------------------------------------------------------
+
+      cy.get('ul>li')
+        .each(($el, index, $list) => {
+          // $el is a wrapped jQuery element
+          if ($el.someMethod() === 'something') {
+            // wrap this element so we can
+            // use cypress commands on it
+          cy.wrap($el).click()
+        } else {
+          // do something else
+        }
+      })
+
+  ------------------------------------------------------------
+
+    cy.get('.datatable').find('tr').should(($listOfElements) => {
+      expect($listOfElements).to.have.length(4)
+      // any other assertions, for example the below one
+      // expect($listOfElements).to.have.any.keys('key1', 'key2')
+    })
+
+  ------------------------------------------------------------
+
+    cy
+      .get('li').should('have.length', 3)
+      .each(($li, index, $lis) => {
+        return 'something else'
+      })
+      .then(($lis) => {
+        expect($lis).to.have.length(3) /
+
+--------------------------------------------------------------------------------------------
+38) regex (contains)
+
+      https://docs.cypress.io/api/commands/contains.html
+
+      Regexem jest contains() razem z should():
+
+        a)
+          .get('#stockTable thead tr th')
+          .contains(/Chleb/)
+          .should('not.exist')
+
+        b)
+          .should('have.text', '22:00')  // meczuje cały string
+            lub:
+          .contains(/00/).should('exist')  // regex; te 2 człony muszą być razem
+
+        c)
+          .get('#table > tbody > tr:first > td:nth-child(7)')
+          .contains(/inne|serial/)    //  | (pipe) = OR
+          .should('exist')
+
+        d)
+          const currentHour = new RegExp(new Date().getHours() - 1)
+          cy.get(tableCell(1, 4)).contains(currentHour).should('exist')
+
+
+--------------------------------------------------------------------------------------------
+40) asercje (should)
+
+    a) eq
+          cy.get('.datatable').find('tr').its('length').should('eq', 4)
+
+    b) be.checked
+          cy.get('.dodo-list li').should('be.checked')
+
+    c) be.gte
+          cy.get('.datatable').find('tr').its('length').should('be.gte', 4)
+
+    d) be.visible
+          cy.get('.error').should('be.visible')
+
+    e) contain / not
+          cy.get('.dodo-count').should('contain', 3)
+          cy.get('.dodo-count').should('not.contain', 3)
+
+    f) exist / not
+          cy.get( selector, { timeout: 10000 }).should("exist")
+          cy.get( selector, { timeout: 10000 }).should("not.exist")
+
+    g) have.attr
+          cy.get('#header a').should('have.class', 'active').and('have.attr', 'href', '/users')
+    h) have.class
+          cy.focused().should('have.class', 'new-dodo')
+
+    i) have.id
+          cy.focused().should('have.id', 'name')
+
+    j) have.length
+          cy.get('.dodo-list li').should('have.length', 1)
+
+    k) have.property
+          cy.wait('@postUser').its('requestBody').should('have.property', 'name', 'Brian')
+
+    l) have.value
+          cy.get('.action-email').should('have.value', 'dupa@gmail.com')
+    m) should('not.have.value'
+        cy.get('input').should('not.have.value', 'Jane')
+    n) have.text
+          cy.get('@range').siblings('p').should('have.text', '25')
+
+    o) include
+          cy.url().should('include', '/commands/actions')
+
+--------------------------------------------------------------------------------------------
+41) asercje - chaining
+
+      cy.get('.assertions-link')
+        .should('have.class', 'active')
+        .and('have.attr', 'href')
+        .and('include', 'cypress.io')
+
+--------------------------------------------------------------------------------------------
+42) expect (be.visible, contain)
+
+      cy.get('tbody tr:first').should(($tr) => {
+        expect($tr).to.have.class('active')
+        expect($tr).to.have.attr('href', '/users')
+      })
+
+      cy
+        .get('.mobile-nav')
+        .should('be.visible')
+        .and('contain', 'Home')
+
+      expect(true).to.be.true
+--------------------------------------------------------------------------------------------
+43) asercje złożone
+
+      cy
+      .get('p')
+      .should(($p) => {
+        // massage our subject from a DOM element
+        // into an array of texts from all of the p's
+        let texts = $p.map((i, el) => {
+          return Cypress.$(el).text()
+        })
+
+        // jQuery map returns jQuery object
+        // and .get() converts this to a simple array
+        texts = texts.get()
+
+        // array should have length of 3
+        expect(texts).to.have.length(3)
+
+        // with this specific content
+        expect(texts).to.deep.eq([
+          'Some text from first p',
+          'More text from second p',
+          'And even more text from third p'
+        ])
+      })
+
+--------------------------------------------------------------------------------------------
+44) asercje - end
+
+    // cy.end is useful when you want to end a chain of commands
+    // and force Cypress to re-query from the root element
+
+    cy.get('.misc-table').within(() => {
+      // ends the current chain and yields null
+      cy.contains('Cheryl').click().end()
+
+      // queries the entire table again
+      cy.contains('Charles').click()
+    })
+
+
+--------------------------------------------------------------------------------------------
+45) wrap
+
+    const arr = Array.from({ length:25 }, (v, k) => k + 1)
+
+    cy.wrap(arr).each((index) => {
+        cy.get("#button-" + index).click()
+    })
+
+
+--------------------------------------------------------------------------------------------
+60) tvui - testy
+
+    /* eslint-disable*/
+    /// <reference types="Cypress" />
+    import { dayAndHours, category, station, tableCell } from './cyhelper'
+
+    describe('I. Selection by hours', () => {
+      it.only('1. Entering nothing gets "Śr 13 Luty" in last row and 0 hour in the one', () => {
+
+        dayAndHours('Śr 13 Luty', '', '')
+        cy.wait(3000)
+        cy.get("[data-test='btnSearch']").click()
+          .get(tableCell(1, 4)).contains(/0.+/).should('exist')
+          .get(tableCell('last', 2)).should('have.text', 'Śr 13 Luty')
+      })
+
+      it('2. Entering "Śr 13 Luty", "7" as startHour,  \
+              "10" as endHour gest "6" or "7"in the first rows "Czas" column \
+              and "9" or "10" in the last one', () => {
+
+        dayAndHours('Śr 13 Luty', '7', '10')
+        cy.wait(5000)
+        cy.get("[data-test='btnSearch']").click()
+        .get(tableCell(1, 4)).contains(/[6, 7].*/).should('exist')
+        .get(tableCell('last', 4)).contains(/[9, 10].*/).should('exist')
+
+      })
+    })
+
+    describe('II. Selection by hours and categories', () => {
+      it('1. Selecting "Śr 13 Luty", startHour = "10", endHour="12", \
+              checking "Serial" and "Inne", gets "serial" in the first row \
+              and "inne" as a category name, in the last one. \
+              There is over 100 documents returned', () => {
+
+        dayAndHours('Śr 13 Luty', '10', '12')
+        cy.wait(5000)
+        cy.get("[data-test='btnSearch']").click()
+
+        category(2)
+        category(7)
+
+        cy.get(tableCell(1, 7)).contains('inne').should('exist')
+        .get(tableCell('last', 7)).contains('serial').should('exist')
+        .get('#table > tbody > tr').its('length').should('be.gte', 100)
+      })
+
+      it('2. Selecting "Śr 13 Luty", startHour = 18, endHour = 22, \
+        checking "Wiadomości" and "Sport", gets "sport" in the first row \
+        and "wiadomosci" as a category name, in the last one. \
+        There is over 50 documents returned', () => {
+
+        dayAndHours('Śr 13 Luty', '18', '22')
+        cy.wait(5000)
+        cy.get("[data-test='btnSearch']").click()
+
+        category(3)
+        category(4)
+
+        cy.get(tableCell(1, 7)).contains('sport').should('exist')
+        .get(tableCell('last', 7)).contains('wiadomosci').should('exist')
+        .get('#table > tbody > tr').its('length').should('be.gte', 50)
+
+      })
+    })
+
+    describe('IV. Selection by stations and hours', () => {
+
+      it('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
+          checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
+          "TVP 1" and "ATM Rozrywka", as stations names \
+          in the 1st and last row of the table', () => {
+
+          cy.visit('http://localhost:8080/stations')
+          station('TvpTvn', 0)
+          station('Polsat', 1)
+          station('Polskie', 2)
+          cy.get("[data-test='btnOK']").click().wait(2000)
+
+          dayAndHours('Śr 13 Luty', '10', '24')
+          cy.wait(2000)
+          cy.get("[data-test='btnSearch']").click().wait(500)
+
+
+          cy.get('#table > tbody > tr > td:nth-child(3)')
+          .each(($el, index, $list) => {
+            cy.wrap($el).invoke('text').then(text => {
+              //cy.log(text)
+
+              if(text !== 'TVP 1' && text !== 'POLSAT' && text !== 'ATM Rozrywka') {
+                //cy.log(text)
+                throw new Error('Incorrect station')
+              }
+            })
+          }).should('exist')
+
+        })
+    })
+
+    describe('V. Selection by stations, categories and hours', () => {
+      it('1. Entering "Śr 13 Luty", startHour = 9, endHour = 13, \
+                  checking "Serial" and "Inne" as categories and \
+                  "TVP 1", "CANAL+ Film" and "Nat Geo People HD" as stations, \
+                  gets "TVP 1" and "Nat Geo People HD" as a stations names \
+                  in the 1st and last row of the table', () => {
+
+          cy.visit('http://localhost:8080/stations')
+          station('TvpTvn', 0)
+          station('Canal', 2)
+          station('DiscoveryNational', 3)
+          cy.get("[data-test='btnOK']").click().wait(2000)
+
+          category(2)
+          category(7)
+
+          dayAndHours('Śr 13 Luty', '9', '13')
+          cy.wait(1000)
+          cy.get("[data-test='btnSearch']").click().wait(1000)
+
+          cy.get(tableCell(1, 7)).contains('serial').should('exist')
+          .get(tableCell(12, 7)).contains('inne').should('exist')
+
+          .get(tableCell(1, 3)).contains('TVP 1').should('exist')
+          .get(tableCell('last', 3)).contains('Nat Geo People HD').should('exist')
+        })
+    })
+
+    describe('VI. Selection by favorites, categories and hours', () => {
+      it('1. Entering "Śr 13 Luty", startHour = 13, endHour = 17, \
+              checking "TVP2", "Canal+ Film" and "Nat Geo People", checking \
+              "Serial" and "Inne", and selects 2 favorite programs, \
+              doubleclicking on them. Gets you "Opowieść.." and "Ostatni", \
+              once "Pokaż" button is clicked', () => {
+
+          cy.visit('http://localhost:8080/stations')
+          station('TvpTvn', 0)
+          station('Canal', 2)
+          station('DiscoveryNational', 3)
+          cy.get("[data-test='btnOK']").click().wait(1000)
+
+          category(2)
+          category(7)
+
+          dayAndHours('Śr 13 Luty', '9', '13')
+          cy.wait(500)
+          cy.get("[data-test='btnSearch']").click()
+
+          .get(tableCell(1, 5)).dblclick()
+          .get(tableCell(4, 7)).dblclick()
+
+          .get("[data-test='btnShow']").click()
+
+          .get(tableCell(1, 5)).should('exist')
+          .get(tableCell(2, 5)).should('exist')
+
+          .get("[data-test='btnResetFavorites']").click().wait(100)
+          .get('#table > tbody > tr:first').should('not.exist')
+
+          .get("[data-test='btnResetAll']").click()
+
+          .get("[data-test='day']").should('have.value', '')
+          .get("[data-test='startHour']").should('have.value', '')
+          .get("[data-test='endHour']").should('have.value', '')
+
+          .get('#categories > div:nth-child(2) > label > span').should('not.be.checked')
+          .get('#categories > div:nth-child(7) > label > span').should('not.be.checked')
+      })
+    })
+
+    describe('VII. Selection by text search, stations, categories and hours', () => {
+      it('1. Entering keyword "report" to the text search box gets entries \
+          containing this word in the "title" column', () => {
+
+        cy.visit('http://localhost:8080')
+        .get("[data-test='textSearch']").type('report').wait(2000)
+        .get("[data-test='btnSearch']").click()
+
+        cy.get('#table > tbody > tr > td:nth-child(6)').wait(100)
+
+        .each(($el, index, $list) => {
+          cy.wrap($el).invoke('text').then(text => {
+            if(!text.match(/report/i)) {
+              cy.log(text)
+              throw new Error('Incorrect station')
+            }
+          })
+        }).should('exist')
+
+      })
+    })
+
+--------------------------------------------------------------------------------------------
+61) tvui - helper
+
+      Przykład helpera który się importuje i woła jego funkcje, np:
+
+        dayAndHours('Śr 13 Luty', '9', '13')
+
+        category(2)
+
+        station('TvpTvn', 0)
+
+        .get(tableCell(1, 6)).contains(/komed/i).should('exist')
+
+      -----------------------------------------------------------
+
+      export const dayAndHours = (day, startHour, endHour) => {
+        cy.visit('http://localhost:8080')
+          .get("[data-test='day']").select(day)
+          .get("[data-test='startHour']").select(startHour)
+          .get("[data-test='endHour']").select(endHour)
+      }
+
+      export const category = (categoryIndex, timeout = 200) => {
+        const query = '#categories > div:nth-child(' + categoryIndex + ') > label > span'
+        cy.get(query).click().wait(timeout)
+      }
+
+      export const station = (groupName, stationIndex ) => {
+        const query = "[data-test='stations" + groupName + "']"
+        cy.get(query).find('input').eq(stationIndex).click({ force: true })
+      }
+
+      export const tableCell = (tr, td) => {
+        if (typeof tr === 'string') {
+          return '#table > tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
+        }
+
+        return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
+      }
+
+
+
+--------------------------------------------------------------------------------------------
+62) alert i confirm
+
+    Cypres domyślnie klika w nich ok, nie wyświetlając ich na ekranie, a tylko w logu
+    i idzie dalej. Można to sprawdzić cy.logiem
+
+      cy.on('window:confirm', message => {
+        expect(message).to.equal(`Na pewno chcesz usunąć ten rekord ?`)
+      })
+
+      cy.log('Poszło !')
+
+
+--------------------------------------------------------------------------------------------
+63) Assert content of cell based on content of a cell in the same row with Cypress
+
+      cy.get('.module-user--list tr').find('td').contains('usermanagementtest@test.com').prev().prev().should('contain', '-')
+
+      Another way would be to get the parent element and find your way from there:
+
+      cy.get('.module-user--list tr').find('td').contains('usermanagementtest@test.com').parent().as('row')
+      cy.get('@row').find('td:nth-child(1)').should('contain', 'foo')
+
+--------------------------------------------------------------------------------------------
+64) Niespójne wyiki testów
+
+      Mimo że docsy mówią, że to bad practice, dopiero dorzucenie waita dało powtarzalne wyniki testów:
+
+        cy.visit('http://localhost:8080').wait(4000)
+
+      Wcześniej, pętla 5 testów dawała wynik 5 zielonych (niepoprawny)
+      Dopiero po niej, ta sama pętla i to powtórzona min z 6 azy za kazdym razem
+      pokazywała 5 czerwonych
+
+      Dodatkowo, spójne wyniki daje dopiero headless mode
+
+--------------------------------------------------------------------------------------------
+65) klawisze specjalne (kursory, del, backspace)
+
+    https://example.cypress.io/commands/actions  // przykładowe kody testów
+
+    .type('{leftarrow}{rightarrow}{uparrow}{downarrow}')
+    .type('{del}{selectall}{backspace}')
+
+--------------------------------------------------------------------------------------------
+66) wyciąganie wartości z komórki
+
+    a)
+      cy.get('#stockTable > tbody > tr:first > td:nth-child(7)').then($cell => {
+        cy.log($cell.text())
+      })
+
+    b)
+      cy.get("[data-testid=credit-balance]").as("creditBalance")
+      cy.get("@creditBalance").should("contain", 10)
+
+    c)
+      cy.get('selector').invoke('text').should('eq', 7)
+      cy.get('selector').invoke('val').should('eq', 10)
+
+--------------------------------------------------------------------------------------------
+100) cypress-vue-unit-test
+
+    https://github.com/bahmutov/cypress-vue-unit-test
+
+    a) yarn add @cypress/webpack-preprocessor cypress-vue-unit-test vue-loader vue-template-compiler css-loader
+         vue i vue-template-compiler powinny mieć ten sam numer wersji np 2.5.22
+
+    b) /cypress/plugins/index.js
+
+          const webpack = require('@cypress/webpack-preprocessor')
+
+          const webpackOptions = {
+            module: {
+              rules: [
+                {
+                  test: /\.vue$/,
+                  loader: 'vue-loader'
+                }
+              ]
+            }
+          }
+
+          const options = {
+            // send in the options from your webpack.config.js, so it works the same as your app's code
+            webpackOptions,
+            watchOptions: {}
+          }
+
+          module.exports = on => {
+            on('file:preprocessor', webpack(options))
+          }
+
+--------------------------------------------------------------------------------------------
+101) cypress-vue-unit-test - hello world
+
+      Wersja stara tzn przy projekcie tworzonym przez vue init, a nie vue create (cli 3)
+      Wbić poniższe i yarn cy
+
+      -------- /cypress/integration/unit4.spec.js --------------------
+
+      /* eslint-disable */
+      import Hello from './Hello.vue'
+
+      const mountVue = require('cypress-vue-unit-test')
+
+      describe('Several components', () => {
+        const template = `
+          <div>
+            <hello></hello>
+            <hello></hello>
+            <hello></hello>
+          </div>
+        `
+        const components = {
+          hello: Hello
+        }
+
+        beforeEach(mountVue({ template, components }))
+
+        it('greets the world 3 times', () => {
+          cy.get('p').should('have.length', 3)
+        })
+      })
+
+      -------- /cypress/integration/Hello.vue --------------------
+
+        <template>
+          <p>{{ greeting }} World!</p>
+        </template>
+
+        <script>
+        export default {
+          data () {
+            return {
+              greeting: 'Hello'
+            }
+          }
+        }
+        </script>
+
+        <style scoped>
+        p {
+          font-size: 2em;
+          text-align: center;
+        }
+        </style>
+
+--------------------------------------------------------------------------------------------
+110) percy
+
+      docs.percy.io/docs/percyscript
+
+      a) yarn add @percy/script
+
+      b) do pliku /cypress/support/commands.js, dodaj:
+          import '@percy/cypress'
+
+      c) na początku pliku z testami (.spec.js), wstaw:
+          import '@percy/cypress'
+
+      d) w ww pliku, po linii cy.visit, wbij:
+           cy.percySnapshot('Nazwa testu 1')
+         a na końcu:
+          cy.percySnapshot('Nazwa testu 2')
+
+      e) na percy.io stwórz nowy projekt np. skillbill1
+
+      f) wejdź w niego kilkiem w w link z jego nazwą w lewym górnym
+          > linka Integrations u góry > znajdź PERCY TOKEN i skopiuj do schowka
+
+      g) wbij w terminalu:
+          export PERCY_TOKEN=eb1992622b26910b572b581edc5413339f4ba2c3733a228b2df34a9068692971
+
+      h) odpal projekt w pierwszym oknie terminala:
+          yarn dev
+
+      i) w drugim oknie terminala, odpal:
+          npx percy exec -- cypress run
+
+      j) poczekaj aż ww skończy i kliknij w wyświetloną linkę
+         by zobaczyć raport na stronie percy.io
+
+      k) zrób jakąś zmianę w grafice, np dopisz cyferkę do nagłówka
+
+      l) wykonaj kroki i) i j)
+
+--------------------------------------------------------------------------------------------
+112) cypress-visual-regression
+
+    Lokalna wersja percy
+    https://github.com/mjhea0/cypress-visual-regression
+
+
+    a) yarn add cypress-visual-regression
+
+    b) wklej do cypress.json:
+        {
+          "screenshotsFolder": "cypress/snapshots/actual",
+          "trashAssetsBeforeRuns": true
+        }
+
+    c) wklej do cypress/plugins/index.js:
+
+        const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
+
+        module.exports = (on) => {
+          getCompareSnapshotsPlugin(on)
+        }
+
+    d) wklej do cypress/support/commands.js:
+
+        const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+        compareSnapshotCommand()
+
+    e) na początku i na końcu testu, wbij:
+        cy.compareSnapshot('home')
+
+    f) zrób snapshota bazowego (początkowego):
+        npx cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base
+
+    g) zrób jakąś drobną zmianę graficzną i snapshota kolejnego (porównawczego):
+        cypress run --env type=actual
+
+    h) w katalogu cypress/snapshots znajdziesz podkatalogi
+         base i actual/diff/ ze snapszotem z różnicą
+--------------------------------------------------------------------------------------------
+120) 'unable to get local issuer certificate' - podczas istalacji cypressa
+
+        Podobno często chodzi w corpo, bo tam stoi proxy mieszający z certami
+
+        Rozw:
+          ustaw zmienną środowiskową, odpalając:
+            export NODE_TLS_REJECT_UNAUTHORIZED=0
+          potem usuń ją:
+            unset NODE_TLS_REJECT_UNAUTHORIZED
+          upewnij się, że jej tu już nie ma
+            set > set.txt
+
+
+        Stuff like setting NODE_TLS_REJECT_UNAUTHORIZED=0 or similar is out of the question
+        and defeats the whole purpose of secure connections
+
+          https://github.com/cypress-io/cypress/issues/1401
+
+        Podobno można też:
+          a) download the binary manually here: https://download.cypress.io/desktop
+          b) SET CYPRESS_INSTALL_BINARY=/path/to/zipfile/cypress.zip npm install cypress
+
+--------------------------------------------------------------------------------------------
+121) logi
+
+      https://docs.cypress.io/guides/guides/command-line.html#Debugging-commands
+
+--------------------------------------------------------------------------------------------
+122) cookies
+
+        https://docs.cypress.io/api/cypress-api/cookies.html#Syntax
+
+        Cypress gives you a simple interface to automatically preserve cookies for multiple tests.
+        Cypress automatically clears all cookies before each new test starts by default.
+
+        By clearing cookies before each test, you are guaranteed to always start from a clean slate.
+        Starting from a clean state prevents coupling your tests to one another and prevents situations
+        where mutating something in your application in one test affects another one downstream
+
+        beforeEach(function () {
+          // before each test, we can automatically preserve the 'session_id' and 'remember_token' cookies.
+          // this means they will not be cleared before the NEXT test starts.
+
+          Cypress.Cookies.preserveOnce('session_id', 'remember_token')
+        })
+
+--------------------------------------------------------------------------------------------
+123) single sign-on (sso like oauth2)
+
+      https://github.com/cypress-io/cypress/issues/1342#issuecomment-366747803
+
+        Also best practice is never to visit or test 3rd party sites not under your control.
+        You don't control microsoftonline, so there's no reason to use the UI to test this.
+
+        You can programmatically test the integration between it and your app with cy.request -
+        which is far faster, more reliable, and still gives you 100% confidence
+
+        cy.request acts as if it comes from the browser but is not bound to any CORS restrictions.
+        There is no difference between making a cy.request and using the browser - zero.
+        As long as you provide to cy.request what the browser would have sent it will work the same and avoid using the UI.
+
+--------------------------------------------------------------------------------------------
+130) Cicada login - test
+
+      a) utwórz lub wklej do poniższych plików
+      b) odpal vpn (f5)
+      c) odpalić apkę
+      d) npx cypresse open
+      e) klik w mojTest.js
+
+    --------- mojTest.js -----------------------------------------------
+
+      describe('Cicada', () => {
+        beforeEach(function () {
+          // Cypress.Cookies.preserveOnce()
+          // cy.log('**Skopiuj poniżej aktualne wartości cookie i tokena**')
+        })
+
+        it('Login mocking', () => {
+          cy.loginMocking()
+          cy.visit('http://localhost:3000')
+        })
+      })
+
+    --------- /cypress.env.json -------------------------------------
+
+      {
+      "fsdCookie": "s%3A0M2472rv3zHmQxs3pDYZIQ6cPiNQhAJv.UpfnAnCux4boNsvqbtA21GOg7YrksCl%2BdX2%2BmBYaCA4",
+      "userToken": {"accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJhMmI1MDVmYjFkYmQ0MDI2OGU3MGFmZDUxOTI3ODZiYiIsInN1YiI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsInNjb3BlIjpbImcwMTI4Mzc1NCIsImcwMTMxNzIzOCIsIm9wZW5pZCIsImcwMTMyODIxOSJdLCJjbGllbnRfaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImF6cCI6ImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwidXNlcl9pZCI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX25hbWUiOiI1MDMxNTI1NzMiLCJlbWFpbCI6Ik1hY2llai5LYW5kYWxza2lAZ2UuY29tIiwiYXV0aF90aW1lIjoxNTcwMzU5ODU4LCJyZXZfc2lnIjoiYTFiM2E2ZjkiLCJpYXQiOjE1NzAzNTk4NzMsImV4cCI6MTU3MDM2NzA3MiwiaXNzIjoiaHR0cHM6Ly9hOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUucHJlZGl4LXVhYS5ydW4uYXdzLXVzdzAyLXByLmljZS5wcmVkaXguaW8vb2F1dGgvdG9rZW4iLCJ6aWQiOiJhOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUiLCJhdWQiOlsiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsIm9wZW5pZCJdfQ.BMr_5CwjMYtHJRWIbK4xASWaW-6IPaLyiHAT8mKfANihoD5xUvUqO-I26gXOX_Zoudfqx5wSd-jKaxFLBWf7UcaIoN6K70syJ89bzMv19G0I2KMSzCYZDtUMmEoI2EeloHrRJWPLHPxVXNz19KgBXEbV7iBQnR-bq2UCKPwOgNw7VeN72qzDtxGaxT3qvAvRYHscaBoyayupGajPHZXWWmusRL190rmUuswaal0B5JKi5JAFgJKOfiwbcjppMYyYnLpM_izFhbubcHE4ISEUMoHcTh0P8pj1O9OZstw7w16dex0-bVu0aE4qhvIvHH5bieuCPzFhj1WvITe89ff7Pw","refreshToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJmODM3NTdlNjcxZDc0M2NiOGJjYWY4NTU3ZGU2ZTFhNC1yIiwic3ViIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwic2NvcGUiOlsiZzAxMjgzNzU0IiwiZzAxMzE3MjM4Iiwib3BlbmlkIiwiZzAxMzI4MjE5Il0sImlhdCI6MTU3MDM1OTg3MywiZXhwIjoxNTcwMzgxNDcyLCJjaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2xpZW50X2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImlzcyI6Imh0dHBzOi8vYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1LnByZWRpeC11YWEucnVuLmF3cy11c3cwMi1wci5pY2UucHJlZGl4LmlvL29hdXRoL3Rva2VuIiwiemlkIjoiYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1IiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfbmFtZSI6IjUwMzE1MjU3MyIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX2lkIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwicmV2X3NpZyI6ImExYjNhNmY5IiwiYXVkIjpbImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJvcGVuaWQiXX0.pA6jc1gCWLSjgE8tgSfaZwtVj_O1taeD1NAsMVtheCWlrD6F70ZWut1GD9JPBlnTcx3S2fjmfXrxitl9ryHIePizyVtiv2gZ1J5fSzcSFsbdQKKnXLBjGtNvUu3fmovrZkoBZLA3lSinXMcSCn6UNcJB-H7aUttqkEMWq8uEjbd6b_ny8FQnO0LjjUvAG283q59wl8mP4AlYyrTQZdahz0-lr886XTLC5qpwnoVQdePz5LOvl-bI2u1yvV8-8onCpmwKEtKH0oEs2BI9C_j9u6X8Y5jUuIuhZ1yh66ZlYT0zfyDwn36jqQvTkPGAEoGy1o_M-MC9ouV9GQMNG3u-7g","accessTokenExpiration":1570367072000,"refreshTokenExpiration":1570381472000}
+}
+
+    --------- tests / e2e / support / commands.js -------------------------------------
+
+      const env = {
+        jwt: {
+          accessToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJjZmZjZGM4NWYxYjA0YzUzOGQ3YmRjNWM2Mzc4ZGY0MyIsInN1YiI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsInNjb3BlIjpbImcwMTI4Mzc1NCIsImcwMTMxNzIzOCIsIm9wZW5pZCIsImcwMTMyODIxOSJdLCJjbGllbnRfaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImF6cCI6ImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwidXNlcl9pZCI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX25hbWUiOiI1MDMxNTI1NzMiLCJlbWFpbCI6Ik1hY2llai5LYW5kYWxza2lAZ2UuY29tIiwiYXV0aF90aW1lIjoxNTcwMzA2MDM5LCJyZXZfc2lnIjoiYTFiM2E2ZjkiLCJpYXQiOjE1NzAzMDYwNDEsImV4cCI6MTU3MDMxMzI0MCwiaXNzIjoiaHR0cHM6Ly9hOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUucHJlZGl4LXVhYS5ydW4uYXdzLXVzdzAyLXByLmljZS5wcmVkaXguaW8vb2F1dGgvdG9rZW4iLCJ6aWQiOiJhOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUiLCJhdWQiOlsiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsIm9wZW5pZCJdfQ.Lty59QyPOr-4rctFq1kkHtl-bliNdiPmJ_y8Rs3WeyTuct_oCATBPaTKUHa6SaXvzV0ed-wfqnL5cBVU78Z-Xsk4gs-xgXq0rFGiT97n6zz74lpguK3g9Yl_eabDRks80nsfEsJ3tM-X76WMHbRtp2oA0xfWizex-h32GUE42myk-Z8Sc_bGoUP_euPs2533xGFoY71eTD2nC4qbJj1HZgriIYyN3rMC6ZgUv5fYzBYKBeRxsRIF_I5cTfwD56E0GzShwOYKU0gsyq4jRDf5NL5IKi8hQmCRQv6ELExPSO0Bh3w2o8XXJPzn1QECnzBrEixfYe7Ed66musdpu-YKQw",
+          refreshToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJlOWI3OGJhMGNjZDM0NTdhYTNmMTBhMjQwNmMzZWFmMS1yIiwic3ViIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwic2NvcGUiOlsiZzAxMjgzNzU0IiwiZzAxMzE3MjM4Iiwib3BlbmlkIiwiZzAxMzI4MjE5Il0sImlhdCI6MTU3MDMwNjA0MSwiZXhwIjoxNTcwMzI3NjQwLCJjaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2xpZW50X2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImlzcyI6Imh0dHBzOi8vYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1LnByZWRpeC11YWEucnVuLmF3cy11c3cwMi1wci5pY2UucHJlZGl4LmlvL29hdXRoL3Rva2VuIiwiemlkIjoiYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1IiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfbmFtZSI6IjUwMzE1MjU3MyIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX2lkIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwicmV2X3NpZyI6ImExYjNhNmY5IiwiYXVkIjpbImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJvcGVuaWQiXX0.tlUu_cM83T-EGvqPq9PmNkwoYw92Asvu-dw0ui7IcG3QYSL4evXrfbFwgq6It1JS8RmMf3pf2HU-TxjXBEb1Ut8F8WaOkCZro5y7PuevCCCoSjsoc9kE_CwXrRyoq9CF2gLcXIL_71m9GFExMjCmQ8NqFPZwnxKl_FycjzpiTIrcwMGT6gdDg_YsIfRzI_Ms8xlge1_7VEl2RmRuDs2fC_ssAtHk2Kh6R8uCKEJEYvzWXWsfX0gfoFAHnj9lJilGC2lUlS80NzocYBeZdUQvf-wb0ThJM5lGPTsZjNgJ_Is5iQRy1oSOn-C42yLOhgexH_OcbIJTjz7BtCgIUBt4fA",
+          accessTokenExpiration: 1570313240000,
+          refreshTokenExpiration: 1570327640000
+        },
+        matomoId: null,
+        apiUrl: "https://dev-services-core-cicada.cicada.digital.ge.com"
+      }
+
+      const announcements = {"announcements":[]}
+
+      const productSummaries = {"productSummaries":[
+        {
+          "id":468,
+          "githubUrl":"https://github.build.ge.com/cicada-test",
+          "name":"asdfaaaa",
+          "statusMessage":"STOPPED",
+          "statusProgress":"0 of 0",
+          "actionInProgress":false,
+          "allowedOperations":["START","REBUILD","READ","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","UPDATE","TERMINATE"]
+        },
+        {
+          "id":372,
+          "githubUrl":"https://github.build.ge.com/cicada-test",
+          "name":"cicada-test",
+          "statusMessage":"FAILED",
+          "statusProgress":"0 of 0",
+          "actionInProgress":false,
+          "updated":"2019-10-05T17:29:14.777Z",
+          "allowedOperations":["START","REBUILD","READ","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","UPDATE","TERMINATE"]
+        },
+        {
+            "id":475,
+            "githubUrl":"https://github.build.ge.com/lukas",
+            "name":"lukas-demo",
+            "statusMessage":"SUCCESS",
+            "statusProgress":"0 of 0",
+            "actionInProgress":false,
+            "allowedOperations":["START","READ","REBUILD","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","TERMINATE","UPDATE"]
+        },
+        {
+            "id":434,
+            "githubUrl":"https://github.build.ge.com/cicada",
+            "name":"oeuaueoaueo",
+            "statusMessage":"DEFINED",
+            "statusProgress":"0 of 0",
+            "actionInProgress":false,
+            "allowedOperations":["START","REBUILD","READ","STOP","CREATE_COMPONENT","DELETE","READ_SENSITIVE_VALUES","UPDATE","TERMINATE"]
+        },
+        {
+            "id":469,
+            "githubUrl":"https://github.build.ge.com/cicada-test",
+            "name":"srchaoeusrchauoeschr",
+            "statusMessage":"DEFINED",
+            "statusProgress":"0 of 0",
+            "actionInProgress":false,
+            "allowedOperations":["START","REBUILD","READ","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","TERMINATE","UPDATE"]
+        }
+      ]}
+
+      const userProfile = {
+        "firstName":"Maciej",
+        "lastName":"Kandalski",
+        "ssoId":"503152573",
+        "memberOfDistributionLists":[
+          "dtedchydrogen@ge.com",
+          "cicada.support.dev@ge.com",
+          "maizerunners@ge.com"
+        ],
+        "disabledFeatures":[],
+        "allowedOperations":["CREATE_PRODUCT"]
+      }
+
+      const detail = {"id":468,"business":"Aviation","ci":"123456789","adminDistributionList":"cicada.support@ge.com","developerDistributionList":"cicada.support@ge.com","exportControl":false,"githubBranches":"master","githubUrl":"https://github.build.ge.com/cicada-test","githubUsername":"502659028","jenkinsUrl":"https://asdfaaaa-pipeline.cicada.digital.ge.com","name":"asdfaaaa","operatorDistributionList":"cicada.support@ge.com","pipelineStatus":{"serviceId":1507,"statusMessage":"STOPPED","statusProgress":"0 of 0","actionInProgress":false,"version":"1.0"},"platform":"Amazon Web Services","riskClass":"Low","supportDistributionList":"cicada.support@ge.com","uai":"uai1234567","allowedOperations":["START","REBUILD","READ","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","UPDATE","TERMINATE"]}
+      const links = {"links":[{"description":"Github","url":"https://github.build.ge.com/cicada-test"},{"description":"Jenkins","url":"https://asdfaaaa-pipeline.cicada.digital.ge.com"},{"description":"SonarQube","url":"https://asdfaaaa-pipeline.cicada.digital.ge.com/sonarqube"}]}
+      const summaries = {"componentSummaries":[]}
+
+      const businesses = {"businesses":[{"id":1,"domain":"av.ge.com","displayName":"Aviation","name":"aviation","businessProviderProfiles":[{"id":9,"businessId":1,"providerProfileId":10},{"id":1,"businessId":1,"providerProfileId":1},{"id":6,"businessId":1,"providerProfileId":7},{"id":7,"businessId":1,"providerProfileId":8},{"id":4,"businessId":1,"providerProfileId":5},{"id":5,"businessId":1,"providerProfileId":6},{"id":10,"businessId":1,"providerProfileId":11},{"id":2,"businessId":1,"providerProfileId":2},{"id":3,"businessId":1,"providerProfileId":4},{"id":8,"businessId":1,"providerProfileId":9}]}]}
+      const productPlatformCandidates = {platformCandidates: [{id: 17, catalogItemId: 301, catalogItemName: "aws_deployment", description: "Amazon Web Services" }]}
+      const risk_class = {"id":5,"name":"risk_class","systemTableItems":[{"id":717,"sysKey":"L","sysVal":"Low"},{"id":718,"sysKey":"M","sysVal":"Medium"},{"id":719,"sysKey":"H","sysVal":"High"}]}
+
+      const upgrades = {"serviceUpgrades":[{"id":1,"catalogItemId":30,"upgradeCatalogItemId":29,"description":"2.0"}]}
+
+
+      Cypress.Commands.add("loginMocking", () => {
+        cy.log('**Skopiuj poniżej aktualne wartości cookie i tokena**')
+        Cypress.Cookies.debug(true)
+
+        cy.setCookie('fsd-node-server', Cypress.env('fsdCookie'))
+        // window.localStorage.setItem('userToken', userToken)
+        // window.localStorage.setItem('userToken', env.jwt)
+        window.localStorage.setItem('userToken', Cypress.env('userToken'))
+
+        cy.server()
+        cy.route('GET', '/env', env)
+        cy.route('GET', '/api/cicada/announcements', announcements)
+        cy.route('GET', '/api/cicada/products/summaries', productSummaries)
+        cy.route('GET', '/api/cicada/user/profile', userProfile)
+
+        cy.route('GET', '/api/cicada/products/468/detail', detail)
+        cy.route('GET', '/api/cicada/products/468/links', links)
+        cy.route('GET', '/api/cicada/products/468/components/summaries', summaries)
+
+        cy.route('GET', '/api/cicada/businesses', businesses)
+        cy.route('GET', '/api/cicada/catalogproducts/productPlatformCandidates', productPlatformCandidates)
+        cy.route('GET', '/api/cicada/systables/byName/risk_class', risk_class)
+
+        cy.route('GET', '/api/cicada/services/1507/upgrades', upgrades)
+
+      })
+
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+    Cyprys wywala się na 1-szej linii testu:
+      cy.visit('http://localhost:3000')
+
+    .. wyświetlając:
+
+    CypressError: cy.visit() failed trying to load:
+
+http://localhost:3000/
+
+We attempted to make an http request to this URL but the request failed without a response.
+
+We received this error at the network level:
+
+  > Error: getaddrinfo ENOTFOUND a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io:443
+
+Common situations why this would fail:
+  - you don't have internet access
+  - you forgot to run / boot your web server
+  - your web server isn't accessible
+  - you have weird network configuration settings on your computer
+
+The stack trace for this error is:
+
+Error: getaddrinfo ENOTFOUND a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io:443
+    at errnoException (dns.js:50:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+
+
+
+    https://forum.predix.io/questions/6296/you-should-not-see-this-page-set-up-your-redirect.html
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+
+
+

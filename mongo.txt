@@ -1,0 +1,1040 @@
+00) tips & gotchas
+01) instalacja w win7
+02) hello world - js
+03) hello world - cmd
+
+04) komendy: CRUD 1
+05) komendy:  CRUD 2
+06) .mongorc - własne komendy
+07) hello world ( CRUD )
+
+10) Studio 3T
+11) Studio 3T - Query Builder
+
+15) mLab
+
+20) Batch import JSONów w win7 (mongoimport.exe)
+21) Batch import JSONów w Ubuntu 14.04
+22) Batch import JSONów programowo
+23) Batch import csv
+24) Export JSONów
+25) Export i import z linuksa
+26) Export całej db i backup na odległym serwerze
+27) Deinstalacja Mongo
+
+30) Tworzenie bazy w mongo z tabel SQL'owych
+31) Mongo z shella - apka diagnostyka - choroby
+32) Mongo z shella - apka diagnostyka - objawy
+
+33) mongo + express  ( CRUD )
+
+
+___________________________________________________________________________
+00) tips & gotchas
+
+     o) insert jest depryknieta, używaj insertOne lub insertMany
+          Analogicznie z update, delete i findOne*
+
+     a) odpalenie komendy insert, powoduje domyślne utworzenie db i tabeli, jeśli nie istnieją
+          Nie trzeba więc, tworzyć jej ręcznie spod cmd line'a
+
+     b) remove( { } ) - opróżnienie wszystkich kolekcji
+
+           mongo bugsy --eval "db.getCollectionNames().forEach(function(n){db[n].remove( { } ) } )"
+
+           If you actually want to remove all documents in a collection it is faster to a do a collection.drop().
+           The remove() operation will delete documents individually & update indexes as the documents are deleted
+           A drop() will immediately delete all documents & indexes for the collection
+
+     c) dropDatabase()  - Usunięcie całej bazy danych
+
+            mongo bugsy --eval "db.dropDatabase()"
+
+     d) czas wykonania - time
+
+            Komenda po --eval musi być ujęta w skobki pojedyńcze, więc ew parametry samego query w podwójne
+
+            time mongo meteor --eval 'db.diag.find({objaw: /Fever/},{_id:0}).count()'   // 1,057 wystąpień wsród 220k rekordów
+            time mongo meteor --eval 'db.diag.find( {objaw: /Fever/},{_id:0} ).count()'   // 1,057 wystąpień wsród 220k rek (real  159 - 220 ms)
+            time mongo meteor --eval 'db.choroby.find( { objawy: { $all: [ /Fever/, "Cough", "Sneezing" ] } } , { _id: 0, choroba: 1 } )'   // 50-60 ms
+
+            Dodałem index, ale czasy nie zmieniły się. Pewnie 11k chorób to za mało, by index pokazał przewagę nad skanowaniem rekordów
+
+            db.choroby.createIndex( { "objawy": "text" } )
+
+        //     {
+                  "createdCollectionAutomatically" : false,
+                  "numIndexesBefore" : 1,
+                  "numIndexesAfter" : 2,
+                  "ok" : 1
+                }
+
+    e)  odpalanie zapytania skryptem
+          i) zrób plik np script.js:
+
+              var objawy = []
+              var cursor = db.diag.find({ diseaseName: "influenza" }, {_id: 0, symptomName: 1 })
+
+              while( cursor.hasNext() ) {
+                  objawy.push( cursor.next().symptomName )
+              }
+
+              printjson( objawy )
+
+          ii) uruchom go:
+                mongo  --quiet --host 127.0.0.1 meteor mongo.js > mongo.sql
+
+     f) wyświetlanie ilości dokumentów
+          db.diag.find( { diseaseName: "Pneumonia"}, {_id: 0 } ).toArray( ).length
+
+     g) zmiana domyślnej ilości wyświetlanych przez mongo wyników (nim wypisze 'type it for more')
+          DBQuery.shellBatchSize = 100
+
+___________________________________________________________________________
+01) Instalacja w win7
+
+     a) ściągnąć i zainstalować mongodb  ( 3.4.2 )
+
+     b) odpalić z cmd line'a  mongod.
+          Jeśli nie ruszy, wbij do PATH ścieżkę do katalogu bin, mongo i logoff/logon
+
+     c) stwórz wymagany przez mongo katalog c:/data/db
+
+     d) z dowolnej ścieżki odpal:
+          mongod  albo
+          mongod --dbpath=c:/data/db --port 27017
+
+     e) z drugiego okna, odpal: mongo (wyjście przez ctrl + c)
+
+___________________________________________________________________________
+02) hello world - js
+
+      mongodb.github.io/node-mongodb-native/3.1/api/Collection.html
+
+      Zapytanie zwraca kursor, więc należy zrobić zeń tablicę, metodą .toArray()
+      Domyślnie mongo zwraca 20 dokumentów i wyświetla 'wpisz it - po więcej'
+
+      Zapytanie działa jako callback, albo async / await
+      update = updateOne, czyli zmienia tylko 1-szy napotkany dokument (tak samo insert, update)
+
+      UWAGA !
+        Projections mogą być albo wszystkie = true, albo wszystkie = false
+        Metoda .toArray() uzywana jest tylko przy .find() i musi być ostatnia
+        Pamiętaj o zamknięciu bazy - db.close()
+
+      a) z cmd odpal:
+          mongo
+          show dbs
+          use test  // wybiera ją, lub tworzy jeśli nie ma
+
+      b) wklej poniższe i enter:
+
+          db.dummy.insert([
+            { name: 'adam', age: 11, city: 'wwa'},
+            { name: 'adam', age: 11, city: 'gda'},
+            { name: 'adam', age: 11, city: 'gda'},
+            { name: 'adam', age: 22, city: 'poz'},
+
+            { name: 'jan', age: 11, city: 'wwa'},
+            { name: 'jan', age: 11, city: 'poz'},
+            { name: 'jan', age: 22, city: 'gda'},
+            { name: 'jan', age: 22, city: 'gda'},
+
+            { name: 'piotr', age: 33, city: 'poz'},
+            { name: 'piotr', age: 33, city: 'poz'},
+            { name: 'piotr', age: 33, city: 'gda'},
+            { name: 'piotr', age: 22, city: 'gda'}
+          ])
+
+       c) upewnij się, że się wkleiło:
+            db.dummy.find()   // LUB
+            db.dummy.find({},{_id: 0})
+
+       d) kasowanie kolekcji
+            db.dummy.drop()
+
+      ---------  find() -------------------------------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const projection = { projection: { _id: 0, __v: 0 }}
+
+          // const query = { name: 'jan', age: 11 }
+          // const query = { name: 'jan', age: { $gt : 11, $lt: 50 } }
+          // const query = { $or: [{ name: 'jan'}, { city: 'gda'}] }
+          // const query = { name: /ar/ }  // mark
+          // const query = { city: { $in: [ 'wwa' ] } }
+
+          const query = { city: { $in: [ 'wwa' ] } }
+
+          const res = await dbo.collection('dummy')
+            .find(query, projection)
+            .skip(0)
+            .limit(5)
+            .sort({ 'age': -1 })
+            .toArray()
+
+          console.log('res = ', res)
+
+          db.close()
+        })
+
+      ---------  insert() -------------------------------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const query = [
+            { name: 'hans', age: 11, city: 'wwa'},
+            { name: 'herman', age: 22, city: 'gda'}
+          ]
+
+          try {
+            const res = await dbo.collection('dummy')
+              .insertMany(query)
+
+            console.log(res)
+          }
+          catch(err) { console.error(err) }
+
+          db.close()
+        })
+
+      ---------  update() -------------------------------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const selector = { name: 'HAAANS' }
+          const replacement = { $set: { name: 'HA'}}
+
+          try {
+            const res = await dbo.collection('dummy')
+              .updateMany(selector, replacement)
+
+            console.log(res.result)
+          }
+          catch(err) { console.error(err) }
+
+          db.close()
+        })
+
+      ---------  upsert() -------------------------------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const selector = { "name": "HA", "age": 11, "city": "wwa" }
+          const modifier = { 'name': 'kupa', 'age': 123 }
+          const upsert = true
+
+          try {
+            const res = await dbo.collection('dummy')
+              .update(selector, modifier, upsert)
+
+            console.log(res.result)
+
+          }
+          catch(err) { console.error(err) }
+
+          db.close()
+        })
+
+      ---------  delete() -------------------------------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const query = {}
+
+          try {
+            await dbo.collection('dummy')
+              .remove(query)
+          }
+          catch(err) { console.error(err) }
+
+          db.close()
+        })
+
+      ---------  delete() kilka pierwszysch rekordów --------------------
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('test')
+
+          const query = {}
+
+          try {
+            const res = await dbo.collection('dummy')
+              .find(query)
+              .skip(2)
+              .toArray()
+
+            const junk =  res.map(el => el._id)
+
+            console.log(res)
+            console.log(junk)
+
+            await dbo.collection('dummy').remove({ _id: { $in: junk }})
+          }
+          catch(err) { console.error(err) }
+
+          db.close()
+        })
+
+      ----  findOneAndUpdate, findOneAndDelete and findOneAndReplace ----
+
+        // Ww 3 komendy zwracaja wynik, kosztem założenia write-locka, by operacja była atomic
+
+        const selector = { name: 'jan' }
+        const changer = { $set: { city: 'poz' }}
+
+        const result = await dbo.collection('dummy')
+          .findOneAndUpdate(selector, changer)  // lub updateOne
+
+        console.log('result = ', result)
+
+      ----  aggregate ----------------------------------------------------
+
+        Odpowiednik SQL'owego GROUP BY
+
+        const MongoClient = require('mongodb').MongoClient
+        const url = 'mongodb://localhost:27017'
+
+        MongoClient.connect(url, async (err, db) => {
+          if (err) throw err
+          const dbo = db.db('users')
+
+          const projection = { projection: { _id: 0, __v: 0 }}
+
+          const query = { $group: {
+            _id: '$city',
+            total: { $avg: '$age' }
+          }}
+
+          const query2 = { $group: {
+            _id: '$city',
+            total: { $sum: 1 }
+          }}
+
+          const res = await dbo.collection('users')
+            .aggregate(query, projection)
+            //.aggregate(query2, projection)
+            .toArray()
+
+          console.log('\n', res, '\n')
+
+          db.close()
+        })
+
+___________________________________________________________________________
+03) hello world - cmd
+
+      a) z dowolnej ścieżki odpal: mongod
+
+      b) z drugiego okna, odpal: mongo  ( wyjście przez ctrl + c )
+
+      c) utwórz nową ( lub przełącz się na istniejącą ) bazę  'kupa'
+              use kupa
+
+      d) insertnij dokument
+
+          db.kupa.insert ( { x: 1 } )  // jeśli kolekcja nie istnieje, to insert ją w tle utworzy
+                                      //  pole _id zostanie dodane domyślnie
+
+          db.inventory.insertMany( [
+              { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
+              { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
+              { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
+          ])
+
+      e) wyświetl istniejące dokumenty
+            db.kupa.find (  )  // { "_id" : ObjectId("589af53a1d9c4a0a0be3f087"), "x" : 1 }
+
+______________________________________________________________________________________________________
+04) komendy: CRUD 1
+
+      docs.mongodb.com/manual/crud
+
+      a) help
+      b) show dbs
+      b) db          // wyświetla obecną db
+      c) show tables
+      d) show collections
+      e) use kupa    // ustawia bazę do pracy, lub tworzy ją jeśli nie istnieje
+
+      f) db.his.drop()                       // dropuje tabelę his
+      g) use jakasBaza db.dropDatabase()    // dropuje db tzn czyści
+
+      h) insert  - patrz 2)
+
+      i) db.his.find()                         // select * from his
+          db.dummy.find( { },  { _id: 0 } )   //  wyswietli wszystkie pola, prócz _id
+          db.his.find().pretty(  )            //  jw ale w formie jsonów
+
+      j) db.find().count()                         // ilość rekordów
+      k) db.his.find({value: 50})                 //  select * from his where value = 50
+      l) db.his.find({value: { $in: [6,7]}} )    //   select * from his where value = 6 OR 7
+      m) db.his.find({ date: '13-12-84', value: { $lt: 80 } })  // AND .. less than ..
+
+      n) db.inventory.find( { type: 'food', $or: [ { qty: { $gt: 100 } }, { price: { $lt: 9.95 } } ] } )  // AND + OR
+
+      o) db.inventory.find( { producer:  { company: 'ABC123',  address: '123 Street' } } )  //  in the exact order
+
+      p) db.inventory.find( { 'producer.company': 'ABC123' } )
+
+      q) db.inventory.find( { ratings: { $elemMatch: { $gt: 5, $lt: 9 } } } )
+
+      r) db.inventory.update(
+          { category: "clothing" },
+          {
+            $set: { category: "apparel" },
+            $currentDate: { lastModified: true }
+          },
+          { multi: true }  // updatuje > 1 dokument
+          )
+
+      s) db.inventory.update(
+          { item: "TBD2" },
+          {
+            $set: {
+              details: { "model" : "14Q3", "manufacturer" : "IJK Co." },
+              category: "houseware"
+            }
+          },
+          { upsert: true }         // jeśli nie będzie item: "TBD2", to zrób inserta
+          )
+
+      t) db.books.update(
+              { item: "XYZ123" },
+              {
+                item: "XYZ123",
+                stock: 10,
+                info: { publisher: "2255", pages: 150 },
+                tags: [ "baking", "cooking" ]
+              }
+      )
+
+      u) db.changedCollections.update(
+              { },                                         // pierwszy pusty nawias  = update wszystkich rekordów
+              { $set: { Configeditor: false } }
+          )
+
+      v) db.his.insert({value: 123, date: "13-12-81"})
+
+      w) db.his.remove({})                         // wywala wszystkie rekordy
+      x) db.his.remove({value: 123})
+      y) db.inventory.remove( { type : "food" }, 1 )  // wywala 1 rekord
+      z) db.paczki.remove({"_id":ObjectId("8c5ddf1dd1bcac0598d656f0")})   // przy MongoId zamiast zwyklego
+
+
+      za) db.paczki.find({token: 'b_b_com', timestamp: {$gt:"1442611152000"}},{_id:0, adres: 0})
+
+      zb)  use nazwaDb
+            db.dropDatabase()
+___________________________________________________________________________
+05) Mongo CRUD 2
+
+        docs.mongodb.com/manual/crud
+
+        db.dummy.insert([
+          { name: 'jan', age: 11, city: 'wwa'},
+          { name: 'adam', age: 22, city: 'gda'},
+          { name: 'mark', age: 33, city: 'wwa'},
+          { name: 'jan', age: 33, city: 'gda'},
+          { name: 'adam', age: 55, city: 'wwa'},
+          { name: 'mark', age: 55, city: 'gda'}
+        ])
+
+
+      FIND
+
+        o) db.dummy.find({},{_id:0, age:1, color:1})   // wyświetl wszystkie rekordy ale tylko pola age i color (_id trzeba recznie wykluczyć)
+
+        i) db.dummy.find({ age: 20 })
+       ii) db.dummy.find({ age: {$gt: 10} } )
+       ii) db.dummy.find({ age: {$gt: 10, $lt: 40} } )
+      iii) db.dummy.find( {age: {$gt: 10, $lt: 40} },  { id: 1, age: 1 } )   // wyswietli tylko pola _id, id i age
+       iv) db.dummy.find( {age: {$gt: 10, $lt: 40} },  { _id: 0, id: 1, age: 1 } )   // wyswietli tylko id i age
+        v) db.dummy.find({ age: {$ne: 30} } )
+       vi) db.dummy.find( {age: 30, color: 'black' } )
+
+      vii) db.dummy.find( {$or:  [ {age: {$gte: 70}}, {color: 'black'} ] } )  // greater or equal
+     viii) db.dummy.find( { name: /ar/} )  // Darek
+       ix) db.dummy.find( { name: /^Ar/} )  // Arek
+        x) db.dummy.find( { age: {$gt: 20} }).sort({ id: -1} )   // sort by id - desc
+       xi) db.dummy.count()  // 9
+      xii) db.dummy.count( { age: { $gt: 60 } } )   // 3
+     xiii) db.dummy.findOne()  // daj 1 rekord o najniższym indeksie
+      xiv) db.dummy.distinct('color')   // black, black, black
+       xv) db.dummy.find().limit(3)  // 1-sze 3 rekordy o najniższych indeksach
+      xvi) db.dummy.find().skip(2)  // pomiń 1-sze 2
+     xvii) db.dummy.find().skip(2).limit(3)  // kolejność skip i limit - dowolna
+    xviii) db.dummy.find( { age: { $exists: true, $nin: [20,30] } } )  // not in
+      xix) db.paczki.find().skip(db.paczki.count() - 2)  // ostatnie 2 rekordy rosnąco (tzn w kolejności ich insertowania)
+       xx) db.diag.find({objaw: /Fever/},{_id:0}).count()    // każdy rekord który gdzieś zawiera stringa Fever (z duzej)
+      xxi) db.users.find({name: /^pa/})                            // każdy rekord który zaczyna się od pa (paulo, patric, paolo)
+     xxii) /Fever/i - ignore case
+    xxiii) /^Fever/ - starts with Fever
+     xxiv) /$Fever/ - ends with Fever
+
+    UPDATE
+        i) db.dummy.update(
+             { age: { $gt: 30 } },
+             { $set: {color: 'white'} },
+             { multi: true }
+            )
+
+        ii) db.dummy.update(
+              { age: { $lt: 30 } },
+              { $inc: {age: 3} },
+              { multi: true }
+            )
+
+    REMOVE
+        i)  db.dummy.remove(
+              { age: { $lt: 30 } }
+            )
+
+       ii) db.dummy.remove({})  // truncate = wywala wszystkie rekordy
+
+    UPSERT (jeśli jest - update, jeśli nie ma - insert)
+
+        Teams.upsert(
+            { name: 'Różowy'},
+            { $set: { name: 'Różowy'} }
+        )
+
+        UWAGA !!
+        Jeśli pytania wywalają błędy, podojrzyj dane w Robomongo.
+        Np pytałem o timestampa:
+             $gte: 1430470800000  - bo tak wyglądał w wyświetlanej tabelce.
+             Po prawym > Edit doc zobaczyłem że timestamp wygląda tak:  "1430470800000" (cudzysłowy)
+             i teraz query "$gte: 1430470800000" - poszło ok
+
+______________________________________________________________________________________________________
+06) .mongorc - własne komendy
+
+       Wbij do ~/.mongorc.js.
+
+       function last(N) {
+           return db.paczki.find().skip(db.paczki.count() - N)
+       }
+
+       then from a mongo shell just type last(5)
+
+______________________________________________________________________________________________________
+07) hello world 2 ( CRUD )
+
+        mongodb.github.io/node-mongodb-native/2.2/tutorials/crud/
+
+        i) Minimalny przykład CRUD'a
+            a) stwórz poniższe 2 pliki  ( db.js i data.js )
+            b) yarn add mongodb
+            c) okno ConEmu:  mongod
+
+        ii) Podziel ekran ConEmu na 2 pionowe części, przez:
+                ctrl + shift + o  ( czy e ? )
+
+        iii) odpal w nich
+            a) mongo
+            b) cd katalogProjektu && db.js
+
+        iv) Żongluj komentowaniem funkcji ins (  ) i del (  )
+                i w oknie mongo śledź efekty przez:
+
+                    db.cars.find ( { }, { _id: 0 } )
+
+       UWAGA !
+            Jeśli baza czy tabela nie istnieje, odpalone w skrypcie polecenie 'insert', je stworzy
+            Jeśli zadziałać na pojedyńczym rekordzie, użyj insertOne i deleteOne
+            Jeśli na 2+, użyj insertMany i deleteMany
+
+ -  -  -  -  -  -  -  -  -  -  -  -  db.js -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+ const express = require ('express')
+ const router = express.Router()
+ const MongoClient = require('mongodb').MongoClient
+ const url = 'mongodb://localhost:27017/dupa'
+
+ const dataIns = require('./data').dataIns
+ const dataDel = require('./data').dataDel
+ const dataFind = require('./data').dataFind
+ const dataUpdate = require('./data').dataUpdate
+
+ router.get('/', function(req, res, next) {
+   res.render('index')
+ })
+
+ console.log ('dataIns = '  + JSON.stringify ( dataIns ) )
+ console.log ('dataDel = ' + JSON.stringify ( dataDel ) )
+ console.log ('dataFind = ' + JSON.stringify ( dataFind ) )
+ console.log ('dataUpdate = ' + JSON.stringify ( dataUpdate ) )
+
+ const ins = function ( db, cb, data, table ) {
+   table.insertMany( data, function( err, result ) {
+      console.log("Inserted !");
+      cb ( result )
+   })
+ }
+
+ const del = function ( db, cb, data, table ) {
+   table.deleteMany( data, function(err, r) {
+      if (err)  { console.log(  err ); return false }
+      console.log(  'deleted = ' + r.deletedCount )
+      cb()
+   })
+ }
+
+ const find = function ( db, cb, data, table ) {
+   table.find ( data ).limit ( 2 ).toArray ( function ( err, res ) {
+       if ( err )  { console.log(  err ); return false }
+       console.log(  'res = ' + JSON.stringify ( res )  )
+       db.close ( )
+   })
+ }
+
+ const update = function ( db, cb, dataFind, dataUpdate, table ) {
+     table.updateMany( dataFind,  { $set: dataUpdate }, function ( err, r ) {
+         if ( err ) { console.log( err ); return false }
+         console.log( 'matched = ' + r.matchedCount  )
+         console.log( 'modified = ' + r.modifiedCount  )
+         db.close ( )
+      } )
+ }
+
+ MongoClient.connect ( url, function ( err, db ) {
+     const cars = db.collection('cars')
+
+     if ( err )  { console.log(  err ); return false }
+
+      ins ( db, function ( ) { db.close ( ) }, dataIns, cars )
+      del ( db, function ( ) { db.close ( ) }, dataDel, cars )
+
+      find ( db, function ( ) { db.close ( ) }, dataFind, cars )
+      update ( db, function ( ) { db.close ( ) }, dataFind, dataUpdate, cars )
+ } )
+
+ -  -  -  -  -  -  -  -  -  -  -  -  data.js -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+ module.exports =  {
+     dataIns: [
+         { imie: 'jan', wiek: 4 },
+         { imie: 'zocha', wiek: 4 }
+     ],
+     dataDel: { imie:  'jan' },
+     dataFind: { imie:  'jan' },
+     dataUpdate: { imie:  'ziutek' }
+ }
+
+___________________________________________________________________________
+10) Studio 3T
+
+    a) odpal komendę: mongod
+
+    b) odpal Studio 3T
+
+    c) połączenie lokalne - ustaw ścieżkę na localhost:27017
+
+    c) select box po prawej - wybierz Table View
+
+    d) połączenie do vpsa:
+         zakładka SSL - odczekuj wszystko
+         zakładka SSH - czeknij Use ssh tunnel i wypełnij pola (port 22)
+
+    e) z drugiego cmd zaimportuj jsony (ich format - patrz 20b):
+          mongoimport --db tvui --collection tvui --type json --file 1.json -h 127.0.0.1:27017 --jsonArray
+
+    f) w Studiu stań na linii 'localhost: 27017' i nagnieć ctrl + r (przydaje się też F5)
+
+    g) rozwiń nową kolekcję
+
+    h) Studio 3T - kasowanie rekordu/ów: F8 lub del
+
+___________________________________________________________________________
+11) Studio 3T - Query Builder
+
+      Pisanie http queries z ręki jest upierdliwe (choćby ilości nawiasów).
+      Lepiej zaimportować bazę jsonów do Studia, użyć Query Buildera,
+      odpalić stworzone query upewniając się że zwraca dobry wynik, a potem
+      skopiować linijkę z okna 'Query' do VS Code'a i:
+
+        1) zaimportuj jsony jak w punkcie powyżej
+
+        2) ustaw Tree View
+
+        3) otwwórz np 1-szy rekord
+
+        4) kliknij na pole np title i przeciąhnij je na pole Query, Query Buildera
+
+        5) zrób zwracające właśiwy wynik query, Builderem, np:
+            { "title": /.*komedia.*/i, $or: [ { "type": /.*komedia.*/i } ] }
+
+        6) w niżej leżącej sekcji Projection, wpisz pola które mają zawierać rekordy wynikowe
+            {"title": 1, "channel": 1, "dateTimestamp": 1}
+
+        7)  w dolnej belce na środku ekranu jest mały wtopiony przycisk 'Count document'
+            Kliknij go, to pokaże ilość zwróconych dokumentów
+
+        8) skopiuj linijkę z okna 'Query' do VS Code'a
+
+        9) dopisz: `q= na początku (z backtikiem !)
+
+       10) wywal 'NumberLong i okrągłe nawiasy
+
+       11) zamień timestampy na ${startHour} i ${endHour}
+
+       12) wywal wszystkie spacje
+
+       13) parametry fields i sortowania wpisz z ręki, bo tu są osobno
+
+
+Projection:
+{"title": 1, "channel": 1, "dateTimestamp": 1, "type": 1}
+
+____________________
+{ "type": /.*komed.*/i }         //  3,914 docs     // Builder: contains, value: komed
+
+{ "type": /.*komed.*/i, $or: [ { "title": /.*komed.*/i } ] }   //  8 docs !!
+
+
+
+
+___________________________________________________________________________
+15) mLab
+
+    i) REST API
+        https://docs.mlab.com/data-api/
+
+    a) połączenie
+         z shella:
+           mongo ds249992.mlab.com:49992/diag -u <dbuser> -p <dbpassword>
+
+         driverem mongo
+           mongodb://<dbuser>:<dbpassword>@ds249992.mlab.com:49992/diag
+
+    b) import / export
+
+         UWAGA !
+            Narpief stwórz usera, bo to jego nazwe i hasło wbijesz poniżej
+
+         Składnia komend (json, csv i binary) jest w zakładce Tools, np:
+
+           mongoimport -h ds249992.mlab.com:49992 -d diag -c diag -u <user> -p <password> --file <input file>
+           mongoimport -h ds249992.mlab.com:49992 -d diag -c diag -u <user> -p <password> -o <output file>
+
+         Wymienione tam user i password są hasłami na poziomie bazy (tu: diag), a nie loginu do całego mLaba
+         Dlatego by zrobić import czy export, trzeba najprzód ustawić je dla wybranej bazy:
+
+           https://mlab.com/home > klik w nazwę bazy > klik w Users > klik Users > klik w Add database users
+
+___________________________________________________________________________
+20) Batch import JSONów w win7 ( mongoimport.exe )
+
+      a) W mongo 3.4.2 community przejdź do punktu b)
+
+          Standardowa instalacja meteora 1.1.0.2 zawiera tylko 2 pliki mongo.exe i mongod.exe (v 2.6.7)
+          Dlatego trzeba ściągnąć zipa z mongo 2.6.7 i brakujące pliki (np mongoexport.exe i mongoimport.exe) wkleić do C:/
+          Upewnij się że masz C:/ w PATH, jeśli nie, to dodaj i otwórz nowe okno cmd
+              http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2.6.7.zip
+
+          Jak nie będzie, to niuchaj w:
+              https://www.mongodb.org/dl/win32   i   mongodb-win32-x86_64-2.6.7.zip
+
+      b) domyślnie monogoimport zakłada taką strukturę jsonów:
+          similar to JSON format except that only one document per line is allowed with no comma after each of them - something like:
+
+            { "name":  "Hans", "age": 12 }
+            { "name":  "Kloss", "age": 34 }
+
+          ale można mu dodać flagę --jsonArray i wtedy zassie taką:
+
+            [
+              { "name":  "Hans", "age": 12 },
+              { "name":  "Kloss", "age": 34 }
+            ]
+
+        c) odpal: mongod
+             W razie problemu, zobacz czy chodzi na porcie 27017
+
+        d) z drugiego okna cmd odpal:
+             mongoimport --db baza --collection kolekcja --type json --file kolekcja.json -h 127.0.0.1:27017 --jsonArray
+
+        e) sprawdź czy się dodały:
+             i) Studio 3T > ctrl + r (czasem F5)
+             ii)
+               mongo
+               use kupa
+               db.kupa.find (  )  // { "_id" : ObjectId("589afc1465fd9fc15f7187de"), "name" : "Hans", "age" : 12 }
+                                              { "_id" : ObjectId("589afc1465fd9fc15f7187df"), "name" : "Kloss", "age" : 34 }
+
+___________________________________________________________________________
+21) Batch import JSONów w Ubuntu 14.04
+
+       a) wrzuć zipnięty plik z jsonami na /root
+       b) cd /root
+       c) nie stopuj mongo (stopowanie przez service mongod stop / start / status)
+       d) mongoimport --db meteor --collection diag --type json --file ds_backup_5.json -h 127.0.0.1:3001 --jsonArray
+
+       UWAGA !!
+         Jeśli po curly braces nie ma przecinka { ... }, to pomiń parametr --jsonArray
+
+         Szybkość importu = ok 200 rekordów/s, więc przy większych importach dodaj nohup i &, na wypadek jak sie zwali sesja ssh
+
+         nohup mongoimport --db meteor --collection diag --type json --file ds_backup_5.json -h 127.0.0.1:3001 --jsonArray &
+___________________________________________________________________________
+22) Batch import JSONów programowo
+
+ -  -  -  -  -  -  a) private / janek265.json  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+      [
+          {
+            "accuracy" : "144",
+            "adres" : "Dolna 6-8, Warsaw, null, Poland, 00-773 1",
+            "battery" : "50",
+            "cpu" : "1008",
+            "latitude" : "52.2013",
+            "longitude" : "21.0323",
+            "secsFromPrevious" : "1.42791307E9",
+            "speed" : "1.5",
+            "time" : "11:00:00  30-04-15",
+            "timestamp" : "1430384400000",
+            "ttf" : "57",
+            "usedMemory" : "8.0"
+          },
+          {
+            "accuracy" : "137",
+            "adres" : "Belwederska 1, Warsaw, null, Poland, null 1",
+            "battery" : "30",
+            "cpu" : "1008",
+            "latitude" : "52.2019",
+            "longitude" : "21.0351",
+            "secsFromPrevious" : "1288.0",
+            "speed" : "4.0",
+            "time" : "11:00:00  01-05-15",
+            "timestamp" : "1430470800000",
+            "ttf" : "42",
+            "usedMemory" : "9.0"
+          }
+      ]
+
+ -  -  -  -  -  -  -  -   b) server / seed.js  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+      Meteor.startup(function() {
+
+        if ( Paczki.find().count() === 0 ) {
+
+          console.log("Importing private/janek265.json to db")
+          var data = JSON.parse(Assets.getText("janek265.json"))
+
+          data.forEach(function (item) {
+              console.log('item.latitude = '  + item.latitude + ', item.longitude = '  + item.longitude )
+              Paczki.insert(item)
+          })
+        }
+      })
+
+___________________________________________________________________________
+23)  Batch import csv
+
+      a) Stwórz plik dupa.csv o zawartości:
+          Hans,42
+          Berek,23
+          Ziutek,13
+
+      b) z cmd line odpal:
+
+          mongoimport --db temp --collection objawy --type csv --file objawy.csv --fields objaw   // import do innej db
+          mongodump
+          cd dump/temp ( pod ls widać plik objawy.bson )
+          mongorestore --db diag objawy.bson         // restore do docelowej
+
+      W efekcie powstanie tablica jsonów  { imie: "Hans", wiek: 42 }, ...
+___________________________________________________________________________
+24) Export JSONów
+
+      a) standardowa (lokalna) instalacja meteora 1.1.0.2 zawiera tylko 2 pliki mongo.exe i mongod.exe (v 2.6.7)
+          Dlatego trzeba ściągnąć zipa z mongo 2.6.7 i niektóre brakujące pliki (np mongoexport.exe) wkleić do C:/
+          https://www.mongodb.org/dl/win32/x86_64/win32/mongodb-win32-x86_64-2.6.7.zip
+
+      b) ponieważ mongo nie pozwala na pominięcie w exporcie pola _id, potrzebne jest zewn narzędzie:
+              npm install -g ramda-cli
+
+      c) cd nazwaProjektu
+
+      d) mongoexport -d bugsy -c paczki -q "{token: 'b_b_com'}" | R 'omit ["_id"]' > paczki.json
+
+      e) otwórz paczki.json, dodaj nawias [ na początku i nawias ] na końcu i przecinek po każdej linii
+
+      f) sformatowane jw importują się przez mongoimport poprawnie
+___________________________________________________________________________
+25)  Export i import z linuksa
+
+        a) export
+            ponieważ mongo nie pozwala na pominięcie przy exporcie pola _id, potrzebne jest zewn narzędzie:
+              npm install -g ramda-cli
+              cd nazwaProjektu
+              mongoexport -d bugsy -c paczki -q "{token: 'b_b_com'}" | R 'omit ["_id"]' > paczki.json
+              otwórz paczki.json Sublimem i dodaj nawias [ na początku i nawias ] na końcu
+
+         b) import
+              mongoimport --db bugsy --collection paczki --type json --file oslo.json --jsonArray
+___________________________________________________________________________
+26) Export całej db i backup na odległym serwerze
+
+      a) najprzód trzeba zrobić logowanie password-less
+          http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/
+
+      b) mongodump -d bugsy > bugsy_dump
+          albo zrobić bacza backupującego po kolei każdą tabelę i zipującego je:
+
+          mongoexport -d bugsy -c paczki > paczki.json
+          mongoexport -d bugsy -c users > users.json
+          mongoexport -d bugsy -c configeditor > configeditor.json
+          mongoexport -d bugsy -c gfeditor > gfeditor.json
+          mongoexport -d bugsy -c changedCollections > changedCollections.json
+
+
+      c) scp paczki.json root@vps194685.ovh.net:/root
+          ( scp nazwaPliku nazwaKonta@adresSerwera:katalogSerwera  na który ma pójść plik )
+___________________________________________________________________________
+27) Deinstalacja Mongo
+
+        service mongod stop
+        apt-get remove mongodb* --purge
+        cat /etc/mongodb.conf //  dbpath = /var/lib/mongodb - i wywal stamtąd pliki o nazwach tych co twoje db
+        i po reinstalacji mup setup'em - service mongod start
+___________________________________________________________________________
+30)  Tworzenie bazy w mongo z tabel SQL'owych
+
+        Są 3 tabele:
+             a) objawy.csv: 11304   ( np kaszel )
+             b) choroby.csv: 12345  ( np  grypa )
+             c) diag                          ( łącznik many-to-many między nimi )
+
+        Przez Accessa (ale lepiej zrobić skrypt w nodzie), przełożyłem tabelę diag na format: kaszel, grypa
+
+        Ale teraz jest tak:
+            kaszel, grypa
+            katar, grypa
+            temperatura, grypa
+
+        Zaimportowałem je do mongo i  poniższym skryptem node'a (p.31), z ww zrobiłem plik choroby.json:
+            grypa: [kaszel, katar, temperatura]
+
+        Analogicznie, poniższym skryptem node'a (6b2), zrobiłem plik objawy.json:
+            kaszel: [grypa, angina, gruźlica]
+
+        Teraz importuję je obie do mongo i mogę przysłać smarkiem querasa:
+            objawy: [katar, kaszel]
+
+___________________________________________________________________________
+31) Mongo z shella - apka diagnostyka - choroby
+
+    Z tabeli:
+        { diseaseName: "Noma", symptomName: "objaw 1" },
+        { diseaseName: "Noma", symptomName: "objaw 2" },
+        { diseaseName: "Noma", symptomName: "objaw 3" }
+    robi
+        { diseaseName: "Noma", symptomName: ["objaw 1", "objaw 2", "objaw 3"  ]
+
+    Najprzód dla próbki 2 chorób, a potem dla wszystkich (db, diag.distinct)
+
+    -----------------
+    //var cursorWszystkieChoroby = db.diag.distinct( "diseaseName" )
+
+    var cursorWszystkieChoroby = ['Insomnia', 'Noma']
+
+    function Choroba(nazwaChoroby, tablicaObjawow) {
+        this.nazwaChoroby = nazwaChoroby
+        this.tablicaObjawow = tablicaObjawow
+    }
+
+    for (var i = 0 i < cursorWszystkieChoroby.length i++) {
+
+        var objawy = []
+        var cursor = db.diag.find({ diseaseName:  cursorWszystkieChoroby[i] }, {_id: 0, symptomName: 1 })
+
+        while( cursor.hasNext() ) {
+            objawy.push( cursor.next().symptomName )
+        }
+
+        var obiekt = new Choroba(cursorWszystkieChoroby[ i ], objawy)
+        printjson( obiekt )
+    }
+
+    -------
+         mongo  --quiet --host 127.0.0.1 meteor mongo.js > mongo.sql
+___________________________________________________________________________
+32) Mongo z shella - apka diagnostyka - objawy
+
+    //var cursorWszystkieObjawy = db.diag.distinct( "symptomName" )   // odkomentować o zakomentować poniższą
+
+    var wszystkieObjawy = ['Fever', 'Sneezing']
+
+    function Objaw(nazwaObjawu, tablicaChorob) {
+        this.nazwaObjawu = nazwaObjawu
+        this.tablicaChorob = tablicaChorob
+    }
+
+    for (var i = 0 i < wszystkieObjawy.length i++) {
+      var choroby = []
+
+      var objawy = db.diag.distinct( "diseaseName", { symptomName: wszystkieObjawy[i] } )
+
+      for( var j = 0 j < objawy.length j++  ) {
+          choroby.push( objawy[j] )
+      }
+
+      var obiekt = new Objaw(wszystkieObjawy[i], choroby)
+
+      printjson( obiekt )
+    }
+
+     -------
+       mongo  --quiet --host 127.0.0.1 meteor mongo.js > mongo.sql
+
+___________________________________________________________________________________________________________________
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________
+
+
+___________________________________________________________________________________________________________________

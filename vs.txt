@@ -1,0 +1,2563 @@
+01) Settings
+02) Keyboard Shortcuts
+
+03) Snipki - js
+04) Snipki - html
+05) Snipki - vue
+06) Pluginy
+
+07) Tips
+08) Debugger - hello world
+09) Debugger - node + frontend
+10) Debugger - vue
+
+11)  Uruchamianie lokalnie skryptu - code runner
+12)  Wyłączenie automatycznego akceptowania sugerowanego słowa
+13)  Blokowe zaznaczanie
+14)  Jest
+15)  jsconfig.js
+16)  Otwieranie plików
+17)  Makra
+18)  Ligatures
+19)  Prettier
+20)  Auto save
+21)  Ukrywanie plików w Explorerze
+
+22) Git
+23) git diff
+24) git reset
+25) git revert
+
+30) Settings Sync
+31) TODO Highlight
+32) Instalacja starszej wersji extension (np wrap-console-log)
+33) Modyfikacja plugina 'wrap-console-log'
+34) Modyfikacja plugina 'Snippet Maker'
+
+40) Ukrywanie i odkrywanie widoczności plików w explorerze
+41) Formatowanie html'a
+42) code spell checker
+
+43) ESLint i Prettier w Vue - tips
+44) ESLint i Prettier w Vue  - git commit hook
+45) ESLint i Prettier w Vue
+
+49) Opróżnianie cache'a
+50) git commit hook (eslint)
+51) Aliasy
+52) Porównywanie plików (diff compare)
+53) Komity: autopush i smart
+54) git błąd crlf
+
+55) GitLens
+56) GitLens - git rebase -i
+
+57) Wyłączanie wbudowanych snippetów
+58) Utrata kolorowania składni (syntax highlighting)
+
+60) build chodzi, a dev - nie
+61) nagle czekboksy działają jak radia
+62) Utrata intellisensa
+63) Rest-client plugin
+
+64) Regexy
+65) Regexy - komentarze i console.logi
+66) Regex Previewer
+67) word separators
+68) title bar
+69) open in browser
+70) emmet
+
+________________________________________________________________________________________________________
+01) Settings
+
+   {
+       "better-comments.tags": [
+           {
+           "tag": "!",
+           "color": "#FF2D00",
+           "strikethrough": false,
+           "backgroundColor": "transparent"
+           },
+           {
+           "tag": "?",
+           "color": "#3498DB",
+           "strikethrough": false,
+           "backgroundColor": "transparent"
+           },
+           {
+           "tag": "//",
+           "color": "#008000",
+           "strikethrough": false,
+           "backgroundColor": "transparent"
+           },
+           {
+           "tag": "todo",
+           "color": "#FF8C00",
+           "strikethrough": false,
+           "backgroundColor": "transparent"
+           },
+           {
+           "tag": "*",
+           "color": "#98C379",
+           "strikethrough": false,
+           "backgroundColor": "transparent"
+           }
+       ],
+
+       "checkpoints.askForCheckpointName": false,
+       "checkpoints.showCheckpointsInExplorer": true,
+
+       "codemetrics.nodeconfiguration.ReturnStatement": 0,
+
+       "code-runner.showRunCommandInEditorContextMenu": false,
+       "code-runner.showRunIconInEditorTitleMenu": false,
+
+       "bookmarks.navigateThroughAllFiles": true,
+       "bookmarks.saveBookmarksInProject": true,
+
+       "dart.flutterDebuggerRestartBehaviour": "hotRestart",
+       "dart.flutterHotReloadOnSave": true,
+
+       "diffEditor.renderSideBySide": false,
+
+       "editor.acceptSuggestionOnCommitCharacter": false,
+       "editor.acceptSuggestionOnEnter": "off",
+       "editor.autoClosingBrackets": "always",
+       "editor.cursorSmoothCaretAnimation": true,
+       "editor.detectIndentation": false,
+       "editor.emptySelectionClipboard": true,
+       "editor.folding": true,
+       "editor.foldingStrategy":"auto" ,
+       "editor.fontFamily": "Fira Code, Hack, Consolas, 'Courier New', monospace",
+       "editor.fontSize": 16,
+       "editor.fontLigatures": true,
+       "editor.formatOnPaste": false,
+       "editor.formatOnSave": false,
+       "editor.formatOnType": false,
+       "editor.hover.enabled": false,
+       "editor.minimap.enabled": false,
+       "editor.mouseWheelScrollSensitivity": 2,
+       "editor.multiCursorModifier": "ctrlCmd",
+       "editor.renderIndentGuides": false,
+       "editor.renderLineHighlight": "all",
+       "editor.renderWhitespace": "none",
+       "editor.showFoldingControls": "always",
+       "editor.snippetSuggestions": "top",
+       "editor.tabSize": 2,
+       "editor.useTabStops": true,
+       "editor.wordWrap": "off",
+       "editor.wordSeparators": "\\()\"',;<>~!@^&*|+[]{}`~",
+
+       "eslint.alwaysShowStatus": true,
+       "eslint.autoFixOnSave": false,
+       "eslint.enable": true,
+       "eslint.provideLintTask": true,
+       "eslint.validate": [ "javascript", "vue", "html" ],
+       "eslint.workingDirectories": [ "./src" ],
+
+       "explorer.confirmDelete": false,
+       "explorer.confirmDragAndDrop": false,
+       "explorer.openEditors.visible": 0,
+
+       "extensions.autoUpdate": false,
+       "extensions.ignoreRecommendations": false,
+
+       "files.autoSave": "afterDelay",
+       "files.autoSaveDelay": 1000,
+       "files.eol": "\n",
+       "files.exclude": {
+           "**/babel*": true,
+           "**/.git": true,
+           "**/.svn": true,
+           "**/.hg": true,
+           "**/CVS": true,
+           "**/.DS_Store": true,
+           "yarn-error.log": true,
+           "yarn.lock": true,
+           "package-lock.json": true,
+           "README.md": true,
+           "node_modules": true,
+           ".vscode": true
+       },
+
+       "files.hotExit": "onExit",
+       "files.insertFinalNewline": true,
+       "files.trimTrailingWhitespace": true,
+
+       "git.confirmSync": false,
+       "git.enableSmartCommit": true,
+       "git.postCommitCommand": "none",
+
+       "gitlens.advanced.messages": {
+         "suppressShowKeyBindingsNotice": true
+       },
+
+       "gitlens.currentLine.enabled": false,
+       "gitlens.views.repositories.files.layout": "tree",
+
+       "html.format.wrapAttributes": "force-aligned",
+       "html.format.enable": true,
+       "html.format.preserveNewLines": true,
+
+       "javascript.updateImportsOnFileMove.enabled": "always",
+       "javascript.validate.enable": false,
+
+       "partialDiff.commandsOnContextMenu": {
+         "markSection1": false,
+         "markSection2AndTakeDiff": false,
+         "diffSelectionWithClipboard": true,
+         "diffVisibleEditors": true,
+         "togglePreComparisonTextNormalizationRules": false
+       },
+
+       "problems.decorations.enabled": true,
+
+       "search.exclude": {
+         "**/.git": true,
+         "**/node_modules": true,
+         "**/cypress": true,
+         "**/tmp": true,
+         "**/dist": true,
+         "**/tests": true
+       },
+
+       "search.usePCRE2": true,
+
+       "terminal.integrated.rendererType": "dom",
+       "terminal.integrated.scrollback": 5000,
+       "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+
+       "todohighlight.isCaseSensitive": false,
+       "todohighlight.include": [
+           "**/*.js",
+           "**/*.html",
+           "**/*.css",
+           "**/*.scss",
+           "**/*.vue"
+       ],
+
+       "todohighlight.keywords": ["todo", "fixme", "!!", "??"],
+
+       "typescript.validate.enable": false,
+       "typescript.tsserver.trace": "verbose",
+
+       "update.channel": "none",
+
+       "window.menuBarVisibility": "toggle",
+       "window.title": "${rootName}${separator}${activeEditorShort}",
+       "window.zoomLevel": -1,
+
+       "workbench.colorTheme": "Monokai",
+       "workbench.editor.tabSizing": "shrink",
+       "workbench.iconTheme": "material-icon-theme",
+       "workbench.panel.defaultLocation": "bottom",
+       "workbench.settings.editor": "json",
+       "workbench.startupEditor": "newUntitledFile",
+       "editor.suggestSelection": "first",
+       "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+       "workbench.sideBar.location": "left"
+
+   }
+
+
+
+________________________________________________________________________________________________________
+02) Keyboard Shortcuts
+
+ Settings > Keyboard shortcuts > keybindings.json
+
+ Kilka skrótów ma przed nazwą komendy minus,
+
+   "key": "ctrl+alt+n",
+   "command": "-gitProjectManager.openProjectNewWindow"
+
+ Wyłaczają one działanie przypisanej do nich komendy
+ by nie blokować polskich liter, np 'ł' i 'ń' odpalanych prze alt + l lub n
+
+ Szukając skrótu zawierającego klawisz plus lub minus, szukaj po tych słowach,
+ tzn 'minus', a nie '-' albowiem skrót alt z minusem, kodowany jest:
+   "alt+oem_minus"
+
+
+  [
+    {
+      "key": "F1",
+      "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+      "key": "F2",
+      "command": "workbench.action.terminal.toggleTerminal"
+    },
+    { "key": "F4", "command": "bookmarks.toggle" },
+    {
+      "key": "F7",
+      "command": "checkpoints.addCheckpoint",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "F12",
+      "command": "code-runner.run"
+    },
+    {
+      "key": "ctrl+alt+/",
+      "command": "macros.commentDown"
+    },
+    {
+      "key": "ctrl+shift+v",
+      "command": "pasteAndIndent.action",
+      "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+      "key": "ctrl+alt+l",
+      "command": "-toggleFindInSelection",
+      "when": "editorFocus"
+    },
+    {
+      "key": "ctrl+alt+l",
+      "command": "-bookmarks.jumpToNext",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+alt+n",
+      "command": "-code-runner.run"
+    },
+    {
+      "key": "ctrl+alt+s",
+      "command": "-checkpoints.addCheckpoint",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+1",
+      "command": "workbench.action.maximizeEditor"
+    },
+    {
+      "key": "ctrl+2",
+      "command": "workbench.action.evenEditorWidths"
+    },
+    {
+      "key": "alt+left",
+      "command": "workbench.action.navigateBack"
+    },
+    {
+      "key": "alt+right",
+      "command": "workbench.action.navigateForward"
+    },
+    {
+      "key": "alt+1",
+      "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+      "key": "alt+2",
+      "command": "workbench.action.focusSecondEditorGroup"
+    },
+    {
+      "key": "ctrl+alt+n",
+      "command": "-gitProjectManager.openProjectNewWindow"
+    },
+    {
+      "key": "alt+y",
+      "command": "extension.openInBrowser"
+    },
+    {
+      "key": "alt+l",
+      "command": "-console.log.wrap.input"
+    },
+    {
+      "key": "numlock",
+      "command": "console.log.wrap.down",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "scrolllock",
+      "command": "console.log.wrap.up",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "capslock",
+      "command": "console.log.wrap.up",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+alt+w down",
+      "command": "-console.log.wrap.down",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+shift+alt+w down",
+      "command": "-console.log.wrap.down.input",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "numlock",
+      "command": "console.log.wrap.down.prefix",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+alt+w ctrl+alt+down",
+      "command": "-console.log.wrap.down.prefix",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "alt+shift+f",
+      "command": "workbench.action.findInFiles"
+    },
+    {
+      "key": "ctrl+shift+a",
+      "command": "workbench.action.findInFiles"
+    },
+    {
+      "key": "ctrl+shift+f",
+      "command": "editor.action.formatDocument",
+      "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+      "key": "shift+alt+f",
+      "command": "-editor.action.formatDocument",
+      "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+      "key": "ctrl+m ctrl+r",
+      "command": "-regionfolder.wrapWithRegion",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+right",
+      "command": "bookmarks.jumpToNext"
+    },
+    {
+      "key": "ctrl+left",
+      "command": "bookmarks.jumpToPrevious",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+alt+j",
+      "command": "-bookmarks.jumpToPrevious",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "alt+c",
+      "command": "-extension.removeConsoleLogs",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+shift+alt+q",
+      "command": "rest-client.generate-codesnippet",
+      "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+      "key": "ctrl+alt+c",
+      "command": "-rest-client.generate-codesnippet",
+      "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+      "key": "ctrl+shift+alt+q",
+      "command": "rest-client.generate-codesnippet",
+      "when": "editorTextFocus && editorLangId == 'http'"
+    },
+    {
+      "key": "ctrl+alt+c",
+      "command": "-rest-client.generate-codesnippet",
+      "when": "editorTextFocus && editorLangId == 'http'"
+    },
+    {
+      "key": "ctrl+shift+alt+t",
+      "command": "rest-client.rerun-last-request",
+      "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+      "key": "ctrl+alt+l",
+      "command": "-rest-client.rerun-last-request",
+      "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+      "key": "ctrl+shift+alt+t",
+      "command": "rest-client.rerun-last-request",
+      "when": "httpResponsePreviewFocus"
+    },
+    {
+      "key": "ctrl+alt+l",
+      "command": "-rest-client.rerun-last-request",
+      "when": "httpResponsePreviewFocus"
+    },
+    {
+      "key": "ctrl+shift+alt+t",
+      "command": "rest-client.rerun-last-request",
+      "when": "editorTextFocus && editorLangId == 'http'"
+    },
+    {
+      "key": "ctrl+alt+l",
+      "command": "-rest-client.rerun-last-request",
+      "when": "editorTextFocus && editorLangId == 'http'"
+    },
+    {
+      "key": "ctrl+shift+alt+u",
+      "command": "rest-client.switch-environment"
+    },
+    {
+      "key": "ctrl+alt+e",
+      "command": "-rest-client.switch-environment"
+    },
+    {
+      "key": "pausebreak",
+      "command": "regionfolder.wrapWithRegion",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "insert",
+      "command": "editor.foldAll",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+3",
+      "command": "editor.foldLevel1",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+4",
+      "command": "editor.foldLevel2",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+5",
+      "command": "editor.foldLevel3",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+6",
+      "command": "editor.foldLevel4",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+7",
+      "command": "editor.foldLevel5",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+8",
+      "command": "editor.foldLevel6",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+9",
+      "command": "editor.foldLevel7",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+0",
+      "command": "editor.foldLevel8",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+k ctrl+4",
+      "command": "-editor.foldLevel4",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "numpad_divide",
+      "command": "console.log.wrap.string.down",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "shift+alt+w down",
+      "command": "-console.log.wrap.string.down",
+      "when": "editorTextFocus"
+    },
+    {
+      "key":"ctrl+oem_3",
+      "command": "rest-client.request",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "ctrl+alt+r",
+      "command": "-rest-client.request",
+      "when": "editorTextFocus && editorLangId == 'plaintext'"
+    },
+    {
+      "key": "ctrl+oem_3",
+      "command": "-workbench.action.terminal.toggleTerminal"
+    },
+    {
+      "key": "ctrl+q",
+      "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
+      "when": "inQuickOpen && inViewsPicker"
+    },
+    {
+      "key": "ctrl+q",
+      "command": "workbench.action.files.openFolder"
+    },
+    {
+      "key": "ctrl+k ctrl+o",
+      "command": "-workbench.action.files.openFolder"
+    },
+    {
+      "key": "ctrl+q",
+      "command": "-workbench.action.quickOpenView"
+    },
+    {
+      "key": "ctrl+w",
+      "command": "workbench.action.navigateEditorGroups"
+    },
+
+    {
+        "key": "alt+1",
+        "command": "vikyd.FoldLevel.level1"
+    },
+    {
+        "key": "alt+2",
+        "command": "vikyd.FoldLevel.level2"
+    },
+    {
+        "key": "alt+3",
+        "command": "vikyd.FoldLevel.level3"
+    },
+    {
+        "key": "alt+4",
+        "command": "vikyd.FoldLevel.level4"
+    },
+    {
+        "key": "alt+5",
+        "command": "vikyd.FoldLevel.level5"
+    },
+    {
+        "key": "alt+6",
+        "command": "vikyd.FoldLevel.level6"
+    },
+    {
+        "key": "alt+-",
+        "command": "editor.foldAll"
+    },
+    {
+        "key": "alt+=",
+        "command": "editor.unfoldAll"
+    }
+  ]
+________________________________________________________________________________________________________
+03) Snipki - js
+
+     Zębatka w lewym dolnym > Snippets
+
+      {
+        "console.log": {
+          "prefix": "cl",
+          "body": [
+            "console.log($1)"
+          ],
+          "description": ""
+        },
+
+        "router.get": {
+          "prefix": "get",
+          "body": [
+            "router.get('/$1', async (req, res) => {\n  \n  res.send($1)\n})"
+          ]
+        },
+
+        "router.post": {
+          "prefix": "pos",
+          "body": [
+            "router.post('/$1', async (req, res) => {\n  \n  res.send()\n})"
+          ]
+        },
+
+        "express": {
+          "prefix": "exp",
+          "body": [
+            "const mongoose = require('mongoose')\nconst express = require('express')\nconst app = express()\n\napp.get('/', (req, res) => {\n  $1\n  res.send('Siemanko')\n})\n\napp.listen(3000, () => console.log('Serwer na 3000 ..'))"
+          ]
+        },
+
+        "mongoose": {
+          "prefix": "mon",
+          "body": [
+            "const express = require('express')\nconst router = express.Router()\nconst mongoose = require('mongoose')\n\nmongoose.connect('mongodb://localhost/$1persons')\n  .then(() => console.log('Connected'))\n  .catch(err => console.log('Siespsuło: ', err))\n\nconst pplSchema = new mongoose.Schema()\nconst pplModel = mongoose.model('pplModel', pplSchema, 'ppl')\n\nrouter.get('/', async (req, res) => {\n  const result = await pplModel\n  .find()\n  .select({\n  _id: 0\n})\n\n  console.log(result)\n  res.send(result)\n})\n\nmodule.exports = router"
+          ]
+        },
+
+        "router": {
+          "prefix": "rou",
+          "body": [
+            "const express = require('express')\nconst router = express.Router()\n\nrouter.get('/$1', async (req, res) => {\n\n})\n\nmodule.exports = router "
+          ]
+        },
+
+        "res.status.send": {
+          "prefix": "res",
+          "body": [
+            "res.status(400).send($1)"
+          ]
+        },
+
+        "require": {
+          "prefix": "req",
+          "body": [
+            "require('$1')"
+          ]
+        },
+
+        "console.log string - wartosc": {
+          "prefix": "cc",
+          "body": [
+            "console.log('\\n$1 = ', $1)\n$2"
+          ]
+        },
+
+        "console.log(1) ": {
+          "prefix": "cccc",
+          "body": [
+            "console.error('\\n******* 1$1 ************')"
+          ]
+        },
+
+        "() => {})": {
+          "prefix": "cb",
+          "body": [
+            "($1) => {\n  $2\n}"
+          ]
+        },
+
+        "const x = require('x)": {
+          "prefix": "rr",
+          "body": [
+            "const $1 = require('$1')"
+          ]
+        },
+
+        "then()  catch()": {
+          "prefix": "th",
+          "body": [
+            ".then(() => {\n  $1\n})\n.catch(err => { throw Error(err)})"
+          ]
+        },
+
+        "describe(...)": {
+          "prefix": "des",
+          "body": [
+            "describe('$1', () => {\n  beforeEach(() => {\n\n})\n\n  afterEach(() => {\n\n})\n\n  it('should $2', () => {\n  const result = $3\n  expect(result$4).to$5\n})\n})"
+          ]
+        },
+
+        "it(...)": {
+          "prefix": "it(",
+          "body": [
+            "it('should $1', () => {\n  $2\n})"
+          ]
+        },
+
+        "it(const .. expect ..)": {
+          "prefix": "itt(",
+          "body": [
+            "it('should $1', () => {\n  const result = $2\n  expect(result).to$3\n})"
+          ]
+        },
+
+        "throw new Error": {
+          "prefix": "thr",
+          "body": [
+            "throw new Error('***** THROWNIĘTY ERORUCH *****$1')"
+          ]
+        },
+
+        "try catch": {
+          "prefix": "try",
+          "body": [
+            "try {\n  $1\n}\ncatch(err) { console.error(err) }"
+          ]
+        },
+
+        "const": {
+          "prefix": "c",
+          "body": [
+            "const $1 "
+          ]
+        },
+
+        "function short": {
+          "prefix": "ff",
+          "body": [
+            "const x$2 = () => console.log('$1')$3"
+          ]
+        },
+
+        "function long": {
+          "prefix": "fff",
+          "body": [
+            "const x$2 = () => {\n  $1\n}$3"
+          ]
+        },
+
+        "expect": {
+          "prefix": "exp",
+          "body": [
+            "expect(result$1).to$2()"
+          ]
+        },
+
+        "array": {
+          "prefix": "arr",
+          "body": [
+            "const arr = [1, 2, 3, 4]"
+          ]
+        },
+
+        "object": {
+          "prefix": "obj",
+          "body": [
+            "const user = { name: 'jan', age: 11, city: 'wwa'}"
+          ]
+        },
+
+        "objects": {
+          "prefix": "objs",
+          "body": [
+            "const users = [\n  { id: 0, name: 'jan', age: 11, city: 'wwa'},\n  { id: 1, name: 'adam', age: 22, city: 'gda'}\n] "
+          ]
+        },
+
+        "const x =": {
+          "prefix": "x",
+          "body": [
+            "const x = $1"
+          ]
+        },
+
+        "axios": {
+          "prefix": "ax",
+          "body": [
+            "const axios = require('axios')\nconst url = 'https://jsonplaceholder.typicode.com/users'\n\naxios.get(url)\n  .then(res => console.log(res.data))\n  .catch(err => console.log('Eror: ', err))"
+          ]
+        },
+
+        "console": {
+          "prefix": "ccc",
+          "body": [
+            "console.log('\\n', res$1, '\\n')"
+          ]
+        },
+
+        "alert": {
+          "prefix": "al",
+          "body": [
+            "<script>alert(1)</script>"
+          ]
+        },
+
+        "function": {
+          "prefix": "fu",
+          "body": [
+            "function() {\n  $1\n}"
+          ]
+        },
+
+        "vue": {
+          "prefix": "vv",
+          "body": [
+            "<div id='app'>\n\n</div>\n\n\n<script>\nconst app = new Vue({\n  el: '#app',\ndata: {\n\n},\n computed: {\n\n},\nmethod: {\n}\n})\n</script>"
+          ]
+        },
+
+        "<p>": {
+          "prefix": "p",
+          "body": [
+            "<p>$1</p>"
+          ]
+        },
+
+        "<a>": {
+          "prefix": "a",
+          "body": [
+            "<a :href='$1'>$2</a>"
+          ]
+        },
+
+        "<button>": {
+          "prefix": "a",
+          "body": [
+            "<button @click='$1'>$2</button>"
+          ]
+        },
+
+        "<div>": {
+          "prefix": "di",
+          "body": [
+            "<div>$1</div>"
+          ]
+        },
+
+        "<h1>": {
+          "prefix": "h1",
+          "body": [
+            "<h1>$1</h1>"
+          ]
+        },
+
+        "json": {
+          "prefix": "json",
+          "body": [
+            "[\n  { \"name\":\"adam\",\"city\":\"wwa\",\"age\": 12},\n  { \"name\":\"ewa\",\"city\":\"wro\",\"age\": 45},\n  { \"name\":\"piotr\",\"city\":\"poz\",\"age\": 78 }\n]"
+          ]
+        },
+
+        "dispatch": {
+          "prefix": "dis",
+          "body": [
+            "this.\\$store.dispatch('$1',)"
+          ]
+        },
+
+        "getter": {
+          "prefix": "ge",
+          "body": [
+            "this.\\$store.getters."
+          ]
+        },
+
+        "region folding": {
+          "prefix": "//#",
+          "body": [
+            "//#region\n//#endregion"
+          ]
+        },
+
+        "cSpell_disable_enable": {
+          "prefix": "cs",
+          "body": [
+            "/* cSpell:disable */ /* $1 */  /* cSpell:enable */"
+          ]
+        },
+
+        "cSpell_ignore_comment": {
+          "prefix": "csp",
+          "body": [
+            "/* cSpell:disable */\n$1/* cSpell:enable */"
+          ]
+        },
+
+        "console.table": {
+          "prefix": "ct",
+          "body": [
+            "console.table($1, ['$2'])"
+          ]
+        },
+
+        "console.log - red": {
+          "prefix": "cr",
+          "body": [
+            "console.log('%c $1','color: red')"
+          ]
+        },
+
+        "console.log - green": {
+          "prefix": "cg",
+          "body": [
+            "console.log('%c $1','color: lime')"
+          ]
+        },
+
+        "console.log - blue": {
+          "prefix": "cb",
+          "body": [
+            "console.log('%c $1','color: lightblue')"
+          ]
+        },
+
+        "console.log - orange": {
+          "prefix": "co",
+          "body": [
+            "console.log('%c $1','color: orange')"
+          ]
+        },
+
+        "console.log - yellow": {
+          "prefix": "cy",
+          "body": [
+            "console.log('%c $1','color: yellow')"
+          ]
+        },
+
+        "console.log - violet": {
+          "prefix": "cv",
+          "body": [
+            "console.log('%c $1','color: violet')"
+          ]
+        },
+
+        "nextTick": {
+          "prefix": "nex",
+          "body": [
+            "this.$nextTick(() => {\r",
+            "  $1\r",
+            "})"
+          ]
+        },
+
+        "console.clear": {
+          "prefix": "ccl",
+          "body": [
+            "console.clear()"
+          ]
+        },
+
+        "for_loop": {
+          "prefix": "fo",
+          "body": [
+            "for (let i = 0; i < $1; i++) {",
+            "  $2",
+            "}"
+          ]
+        },
+
+        "data-": {
+          "prefix": "da",
+          "body": [
+            "(\"[data-test='$1']\")"
+          ]
+        },
+
+        "cy.pause": {
+          "prefix": "cp",
+          "body": [
+            "cy.pause()"
+          ]
+        },
+
+        "JSON.stringify": {
+          "prefix": "J",
+          "body": [
+            "JSON.stringify($1)"
+          ]
+        },
+
+        "jsonplaceholder.typicode.com": {
+          "prefix": "typi",
+          "body": [
+            "axios.get('https://jsonplaceholder.typicode.com/posts/1')",
+            "  .then(res => console.log(res.data))",
+            "  .catch(err => console.log('Erroras:', err))"
+          ]
+        },
+
+        "regex_wywalanie_logow _i_komentow": {
+          "prefix": "reg",
+          "body": [
+            "(;|^)\\s*console\\.log\\(.*?\\)($|;)",
+            "(?:\\/\\*(?:[\\s\\S]*?)\\*\\/)|(?:^\\s*\\/\\/(?:.*)$) - przejrzyj i ew prawy i Dismiss"
+          ]
+        },
+
+        "vuex": {
+          "prefix": "vuex",
+          "body": [
+            "import Vue from 'vue'\nimport Vuex from 'vuex'\n\nVue.use(Vuex)\n\nexport default new Vuex.Store({\n  state: {\n\n  },\n\n  getters: {\n\n  },\n\n  mutations: {\n\n  },\n\n  actions: {\n\n  }\n\n})"
+          ]
+        },
+      }
+
+________________________________________________________________________________________________________
+04) Snipki html
+
+      Tools > User Snippets > New Global Snippets File: 'html' > Save i wklej poniższe
+
+      {
+        "vue": {
+          "prefix": "vv",
+          "body": [
+            "<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>$1\n\n<div id='app'>\n\n</div>\n\n\n<script>\n  const app = new Vue({\n    el: '#app',\n    data: {\n      \n    },\n    methods: {\n\n    } \n  })\n</script>"
+          ]
+         },
+
+        "input": {
+          "prefix": "in",
+          "body": [
+            "<input $1>"
+          ]
+        },
+
+        "{{ }}": {
+          "prefix": "{",
+          "body": [
+            "{{ $1 }}"
+          ]
+        },
+
+        "button": {
+          "prefix": "bu",
+          "body": [
+            "<button @click='$1'>KlikMi$2</button>"
+          ]
+        },
+
+        "bootstrap": {
+          "prefix": "boo",
+          "body": [
+            "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>"
+          ]
+        },
+
+        "<ul> <li v-for": {
+          "prefix": "vf",
+          "body": [
+             "<ul>\n  <li v-for='item in $1'>\n    {{ item }}\n  </li>\n</ul>"
+          ]
+        },
+
+        "methods": {
+          "prefix": "met",
+          "body": [
+             "methods: {\n  $1\n}"
+          ]
+        },
+
+        "components": {
+          "prefix": "com",
+          "body": [
+             "components: {\n  $1\n}"
+          ]
+        },
+
+        "props": {
+          "prefix": "pro",
+          "body": [
+            "props: ['$1']"
+          ]
+        },
+
+        "computed": {
+          "prefix": "compu",
+          "body": [
+           "computed: {\n  $1\n}"
+          ]
+        },
+
+        "data": {
+          "prefix": "dat",
+          "body": [
+           "data() {\n  return {\n    $1\n  }\n}"
+          ]
+        }
+      }
+________________________________________________________________________________________________________
+05) Snipki vue
+
+    Tools > User Snippets > New Global Snippets File: 'html' > Save i wklej poniższe
+
+    {
+     "scaffolding-basic": {
+        "scope": "vue",
+        "prefix": "v",
+        "body": [
+           "<template src='./$1.html'></template>\n\n<script>\n  export default {\n    \n  }\n</script>"
+        ]
+      },
+
+     "scaffolding-medium": {
+        "scope": "vue",
+        "prefix": "vv",
+        "body": [
+           "<template src='./$1.html'></template>\n\n<script>\n  export default {\n    data() {\n      return {\n\n      }\n    }\n  }\n</script>"
+        ]
+      },
+
+      "scaffolding-high": {
+        "scope": "vue",
+        "prefix": "vvv",
+        "body": [
+         "<template src='./$1.html'></template>\n\n<script>\n  import $1 from './$2.vue'\n\n  export default {\n    components: { $1 },\n    computed() {},\n    data() {\n      return {\n\n      }\n    },\n    methods: {},\n    props: ['']\n  }\n</script>"
+        ]
+      },
+
+      "script": {
+        "scope": "vue",
+        "prefix": "sc",
+        "body": [
+           "<script>\n  export default {\n    $1  \n\n\n  }\n</script>"
+        ]
+      },
+
+     "h1": {
+        "scope": "vue",
+        "prefix": "h1",
+        "body": [
+           "<h1>$1</h1>"
+        ]
+      },
+
+     "h2": {
+        "scope": "vue",
+        "prefix": "h2",
+        "body": [
+           "<h2>$1</h2>"
+        ]
+      },
+
+     "h3": {
+        "scope": "vue",
+        "prefix": "h3",
+        "body": [
+           "<h3>$1</h3>"
+        ]
+      },
+
+     "button": {
+        "scope": "vue",
+        "prefix": "bu",
+        "body": [
+           "<button @click='$1'>KlikMi</button>"
+        ]
+      },
+
+     "<ul> <li v-for": {
+        "scope": "vue",
+        "prefix": "vf",
+        "body": [
+           "<ul>\n  <li v-for='item in $1'>\n    {{ item }}\n  </li>\n</ul>"
+        ]
+      },
+
+      "method": {
+        "scope": "vue",
+        "prefix": "met",
+        "body": [
+           "method: {\n  $1\n}"
+        ]
+      },
+
+      "components": {
+        "scope": "vue",
+        "prefix": "com",
+        "body": [
+           "components: {\n  $1\n}"
+        ]
+      },
+
+      "computed": {
+       "scope": "vue",
+        "prefix": "compu",
+        "body": [
+         "computed: {\n  $1\n}"
+        ]
+      },
+
+      "data": {
+       "scope": "vue",
+        "prefix": "da",
+        "body": [
+         "data() {\n      return {\n\n      }\n    }\n"
+        ]
+      },
+
+      "dispatch": {
+       "scope": "vue",
+        "prefix": "dis",
+        "body": [
+          "this.\\$store.dispatch('$1',)"
+        ]
+      },
+
+      "getter": {
+       "scope": "vue",
+        "prefix": "ge",
+        "body": [
+          "this.\\$store.getters."
+        ]
+      },
+
+      "tag div": {
+       "scope": "vue",
+        "prefix": "di",
+        "body": [
+          "<div>\n  $1\n</div>"
+        ]
+      },
+
+      "tag h": {
+       "scope": "vue",
+        "prefix": "h",
+        "body": [
+          "<h$1></h$1>"
+        ]
+      },
+
+      "tag p": {
+       "scope": "vue",
+        "prefix": "p",
+        "body": [
+          "<p>$1</p>"
+        ]
+      },
+
+      "tag a": {
+       "scope": "vue",
+         "prefix": "a",
+         "body": [
+         "<a href='http://$1'>Linka</a>"
+        ]
+      },
+
+      "tag input": {
+        "prefix": "i",
+        "body": [
+          "<input />"
+        ]
+      },
+
+      "tag template": {
+        "prefix": "t",
+        "body": [
+          "<template>\n  $1\n</template>"
+        ]
+      },
+
+      "console.log": {
+        "prefix": "cl",
+        "body": [
+          "console.log($1)"
+        ]
+      }
+    }
+
+________________________________________________________________________________________________________
+06) Pluginy
+
+    Auto Close Tag
+    Auto Rename Tag
+    Better Comments
+    Bookmarks
+    Bracket Pair Colorizer
+    Checkpoints
+    Code Metrics
+    Code Runner
+    // Code Spell Checker - za często się wcina
+    Color Highlight
+    CSS Peek
+    Docker
+    ESLint
+    Filter Line
+    Filter Text
+    Fold Level
+    Formatting Toggle
+    Git Blame    // lepszy git lens
+    Git History
+    Git Lens
+    Git Merger
+    Git Project Manager
+    Git Tree Compare
+    Google Fonts
+    Guides
+    HTML CSS support
+    HTML Format
+    Import Cost  // za dużo literek
+    indent-rainbow
+    Intellicode
+    Jest
+    JS Complexity Analysis
+    JSON Tools
+    Live Server
+    Live Sass Compiler
+    Lorem ipsum
+    macrosRe (by gedsky)
+    Material Icon Theme
+    Node modules intellisense
+    npm
+    npm intellisense
+    open-in-browser (dokadnie tak pisane)
+    Partial Diff
+    Paste and Indent
+    Path Intellisense
+    Prettier - Code formatter
+    Prettify JSON
+    Project Manager
+    Regex Previewer
+    // region folding for VS Code
+    Rest Client
+    Snippet Maker
+    Snyk
+    Sort lines
+    Sort Lines by Selection
+    Sublime Text KeyMap and Settings
+    TODO Highlight
+    TODO Parser
+    vue (by liuji-jim; bo vetur nawalił i nie kolruje składni)
+    Vue CSS Peek
+    Vetur
+    view-in-browser
+    Vue Peek
+    Wrap Console Log
+________________________________________________________________________________________________________
+07) Tips
+
+    o) stabilną wersją jest 1.30 (1.31 gubi intellisensa)
+       A teraz 1.31.1 chodzi ok, hmmm
+
+    a) Settings
+        Po wbiciu " (cudzysłowu), po chwili wyskakuje dropdown ze wszystkimi mozliwymi ustawieniami
+
+    b) package.json
+        ctrl + . (kropka) otwiera dropdowna z pakietami. Zacznij wpisywać nazwę pakietu
+
+    c) zamiast przy otwarciu projektu nagniatać z pulpitu skrót do pliku node.txt czy docker.txt, lepiej:
+        1) kliknąć ikonkę Bookmarks
+        2) kliknąć bookmarka node czy dockera
+        3) po otwarciu go, dwukliknąć na jego taba
+            (w przeciwnym wypadku, każdy plik bedzie wyswietlal sie w tym samym oknie)
+
+    d) w lewym dolnym rogu, jest ikonka krzyżyka w kółku, a obok liczba oznaczająca ilość błędów
+       Po kliku w nią, otwiera się okno Problems z jej listą
+
+    e) powrót do starego menu Settings
+
+        You can still access the JSON settings editor, either by using the command Open Settings (JSON)
+        or by changing your default settings editor with the "workbench.settings.editor" setting.
+
+    f) $ w snipkach
+        Ponieważ $ jest słowem kluczowym, trzeba go poprzedzić eskejpem '//':
+
+           "this.\\$store.getters.$1"
+
+    g) By w konsoli Problems prócz błędów eslinta,
+       nie pojawiały się błędy spellcheckera, dodaj do Settings:
+
+      "cSpell.diagnosticLevel": "Hint",
+
+    h) wyłaczanie spell checkera
+
+        /* spell-checker: disable */
+        /* spell-checker: enable */
+
+        albo
+
+        /* cSpell:disable */
+        /* cSpell:enable */
+
+    i) wyłaczanie eslinta w obszarze kodu
+
+        /* eslint-disable */
+        /* eslint-enable */
+
+    j) foldowanie obszaru kodu
+
+        /* #region */
+        /* #endregion */
+
+    k) remove breaks from selection (ctl+j)
+
+    l) zmiana crlf na lf:
+
+         a) na przyszłość:
+              settings: "files.eol": "\n"
+         b) zmiana obecnych plików:
+               dos2unix *.*
+
+    m) wieloliniowe snipki - składnia:
+
+        "dupa": {
+          "prefix": "dup",
+          "description": "przyklad_multiline_do_wywalenia_potem",
+          "body": [
+            "if (stations.length > 50) {",
+            "  stations = `${stations.slice(0, 50)} ..`",
+            "}"
+          ],
+        }
+
+     n) numerki z ilością błędów eslinta w gutterze explorera
+
+          W wersji 1.31 (sty 19) zniknęły
+          Wróciły po instalacji 1.30.2
+
+     o) wszystko działało, a po nie znaczących zmianach (albo nast dnia) - przestało
+
+          a) odpal yarn devbuild'a (yarn build && serve -s dist)
+          b) odpal w chrome canary
+
+        Często okaże się że w devbuildzie wszystko działa ok
+
+      p) jeśli nie widać ani cyferki ilości zmian przy ikonce gita,
+         ani nazwy bieżącego brancha (w lewym dolnym), odpal:
+           git branch
+         .. i się pojawią
+
+________________________________________________________________________________________________________
+08) Debugger - hello world
+
+    Ikona Debug > Open Configuration (zębatka)
+
+    Jedyne co ew jest sens zmienić to nazwa apki (app.js)
+
+   -------------------------------------------------------------
+
+    {
+      "version": "0.2.0",
+      "configurations": [
+
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Node",
+          "program": "${workspaceFolder}\\wywalto.js",
+          "skipFiles": [
+            "node_modules/**/*.js"
+          ]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Vue",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/src",
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+            "webpack:///./src/*": "${webRoot}/*"
+            }
+        }
+      ]
+    }
+
+
+   ------- wywalto.js ------------------------------------------
+
+        const arr = [ 1, 2, 3, 4 ]
+        let suma = 0
+
+        for (let i = 0; i < arr.length; i++) {
+          suma = suma + arr[i]
+          console.log('suma', suma)
+        }
+
+   -------------------------------------------------------------
+
+    a) otwórz okno debuggera klikając w ikonę robala w lewej kolumnie
+
+    b) otwórz Debug Console:
+          i) klikając ikonę ekranu z linią polecen w prawym górnym okna Debug,
+         ii) lub odpalając terminal (F2) i zmieniając Terminal na Debug Console
+
+    c) wciśnij F10 - u góry wyświetli się belka z kontrolkami
+       śledź wykonanie wciskając F10 ew F11, kończ gniotąc czerwony kwadrat
+
+    d) breakpointa ustawia się klikając w guttera wybranej linii
+
+    e) breakpoint warunkowy
+        prawy klik na czerwonej kropce pozwala wybrać Edit Breakpoint
+        i ustawić warunek przy którym breakpoint jest uruchamiany, np suma > 2
+
+    f) hit count
+        do ww warunku breakpointa, można dodać za którym jego spełnieniem
+        bp ma zadziałać. W tym celu z tego samego okienka gdzie jest dropdown
+        z Expression, wybierz Hit Count i wpisz np 2
+
+        Bp zadziała więc gdy po raz drugi, suma będzie większa niż 2
+
+    g) log message
+        analogicznie można dodać wyświetlanie console.loga, gdy ww warunek
+        zostanie spełniony
+
+    h) kolejność obserwowanych zmiennych w oknie Watch można zmieniać
+
+    i) w trakcie wykonywania debugingu, wartości można zmieniać,
+       wpisując działanie w linijkę na dole okna Debug Console, np:
+        arr[i]=5
+
+    j) klikanie w kolejne linijki Call Stacka, pokazuje przebiego działania programu
+
+    k) by pominąć przechodzenie przez niektóre pliki (np biblioteki systemowe),
+       wpisz do ww konfiguracji, następującą parę k-v:
+
+        "skipFiles": [
+          "node_modules/**/*.js"
+        ]
+
+
+________________________________________________________________________________________________________
+09) Debugger - node + frontend
+
+    UWAGA !
+      Jeśli nic innego nie pomaga, a debugger nie ustawia belki na instrukcji,
+      zrestartuj Postmana, a jak i to nie pomaga, to VS Code'a
+
+    a) git clone https://github.com/gtsopour/nodejs-shopping-cart.git
+    b) yarn
+    c) yarn start (lub nodemon)
+    d) otwórz okno chroma pod adresem: localhost:3000
+
+    e) vs code > klik w robala (debug)
+               > klik w dropdowna przy Debug
+               > Add configuration > Node
+               > z wyświetlonego dropdowna wybierz: Node.js Attach by Process
+               > jeśli wyświetli dropdowna z wyborem procesów do odpalenia,
+                 to wybierz 'node index.js'
+
+    f) ustaw breakpointa w pliku routes/index.js linia 10:
+        res.render('index', ...)
+
+    g) klik w zieloną strzałkę za słowem Debug
+
+    h) chrome > F5 (refresh)
+
+    Od razu podświetlona zostanie linia 10, czyli bp zadziałał
+
+________________________________________________________________________________________________________
+10) Debugger - vue
+
+      a) wklej do pliku launch.json treść z 10a)
+
+      b) odpal apkę (yarn dev)
+
+      c) klikiem w ikonę robala, otwórz okna debuggera
+
+      d) z dropdowna obok zielonej strzałki, wybierz 'Vue'
+
+      e) klik w zieloną strzałkę - otwiera toolbara u góry ekranu i osobnego chroma
+
+      f) ustaw breakdowna w którymś pliku klikiem w guttera (pojawi się czerowna kropka)
+
+      g) wykonaj akcję w apce która spowoduje zatrzymanie na breakpoincie
+
+      h) idź dalej klikając F10 (step over) albo F11 (step into)
+
+________________________________________________________________________________________________________
+11) Uruchamianie lokalnie skryptu - code runner
+
+    a) zainstaluj Code Runner
+    b) nagnieć F12 (oryginalnie ctrl+alt+n)
+    c) wynik będzie w oknie Output
+
+    Można też zaznaczyć wybrany fragment kodu i tylko jego odpalić
+
+________________________________________________________________________________________________________
+12) Wyłaczenie automatycznego akceptowania sugerowanego słowa
+
+    Np po 'req' wyświetlał mi listę z podpowiedziami, a gdy wbilem ',' wybierał mi 1-szą z listy 'requestFor cośtam
+
+    Pomogło ustawienie
+      "editor.acceptSuggestionOnCommitCharacter": false,
+
+________________________________________________________________________________________________________
+13) Blokowe zaznaczanie
+
+    ctrl + alt + down (lub up)
+    a potem shift + right (lub left)
+________________________________________________________________________________________________________
+14) Jest
+
+    Instaluj v 22.4.4 - prosty test = 0.7s
+    A przy wersji 23.3. = 9s
+________________________________________________________________________________________________________
+15) jsconfig.js
+
+    Umieść go na ścieżce głównej
+    Dzięki niemu, intellisense, nie będzie niuchało w node_modules itp
+
+    {
+      "compilerOptions": {
+        "target": "es6"
+      },
+      "exclude": [
+        "node_modules",
+        "assets",
+        "public"
+      ]
+    }
+
+________________________________________________________________________________________________________
+16) Otwieranie plików
+
+    Jeśli w (pionowym z lewej) panelu Explorera, zrobisz pojedyńczego klika na pliku
+    wyświetlisz go, a jego nazwa na zakładce wyświetli się italikiem
+
+    Jeśli teraz znów pojedyńczo klikniesz w Explorerze na inny plik,
+    wyświetli się on w tym samym oknie (a nie w nowym),
+    a jego nazwa (znów italikiem) wyswietli się w w tej samej zakładce.
+
+    A sam plik w tym samym oknie
+
+    Aby plik wyświetlił się na stałe, dwukliknij go
+________________________________________________________________________________________________________
+17) Makra
+
+      Nie chodzi podawanie parametrów, więc search / replace odpada
+
+      Komendy do makr są w keybindings.json
+
+      i) zainstaluj plugina macros (by geddski)
+
+      a) wklej poniższe do zębatka > Settings
+
+          "macros": {
+          "commentDown": [
+            "editor.action.copyLinesDownAction",
+            "cursorUp",
+            "editor.action.addCommentLine",
+            "cursorDown"
+            ]
+          },
+
+      b) zębatka > Settings > keybindings.json
+
+      c) wklej:
+
+            {
+              "key": "ctrl+alt+/",
+              "command": "macros.commentDown"
+            }
+
+      d) restart
+
+      e) stań na linii tekstu i nagnieć:
+           ctrl + alt+ /
+
+________________________________________________________________________________________________________
+18) Ligatures
+
+      Obrazkowe znaki, np ładna strzałka (fat arrow) zamiast równasia i znaku większości
+
+      a) ściągnij z githuba plik z czcionkami Fira Code
+
+      b) rozpakuj, zaznacz wszystkie .ttf i z prawego menu kliknij w Zainstaluj
+
+      c) do Settingsów VS Code'a dodaj 2 rzeczy:
+            i) w "editor.fontFamily" na początku wstaw Fira Code
+           ii) dopisz linię: "editor.fontLigatures" = true
+
+
+________________________________________________________________________________________________________
+20) Auto save
+
+      Przydaje się, by nie trzeba było odpalać testów, każdorazowo wciskając ctrl + s (save)
+
+      Wbij do Settings:
+
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+
+________________________________________________________________________________________________________
+22) Git
+
+     -1) git config --global core.editor "code --wait"
+
+          w pliku C:\Users\abc\.gitconfig, powinno być:
+            [core]
+              editor = code --wait
+
+      0) utwórz repo na githubie. Wyświetli Ci się komunikat,
+         jak skonfigurować pod nie gita, np:
+            git remote add origin https://github.com/nabu1/ShopsRing
+         Wbij to w terminalu projektu
+
+      1) jeśli zaczynasz od sklonowania repa, nie trzeba jak powyżej
+         konfigurować remote repo. VS Code sam to zrobi
+
+      2) dodawać do Stage wciskaniem plusa przy pliku jest sens,
+         jeśli tylko niektóre mają być komitowane
+         Jeśli zaś wszystkie, to lepiej od razu wbić message i nagnieść ikonę czek
+
+    a) w głównym katalogu zrób plik .gitignore:
+
+          build
+          coverage
+          .DS_Store
+          .env
+          .eslintcache
+          node_modules
+          npm-debug.log*
+          package-lock.json
+          yarn-debug.log*
+          yarn-error.log*
+          .yarn-integrity
+
+    b) zrób repo na githubie i skopiuj linkę do git clone'a, np:
+        https://github.com/maciekkand/gittest.git
+
+    c) ctrl + shift + p: git clone
+
+    d) do okna które wyskoczy wklej ww linkę
+
+    e) zrób jakiś plik
+
+    f) nagnieć ikonę gita w lewej kolumnie
+
+    g) kliknij w ten plik, a potem ikonkę plusa, by dodać go do Staged
+
+    h) dodaj opis commita w okienku powyżej
+
+    i) nagnieć ikonkę check powyżej
+
+    j) nagnieć ikonkę chmury w lewym dolnym, by wypuszować komita
+
+
+________________________________________________________________________________________________________
+23) git diff
+
+    a) jeśli chcesz porównania z poprzednim komitem, to klik w ikonkę kółka ze strzałką w lewo
+
+    b) jeśli jakiegokolwiek innego:
+
+        klik w ikonę Git Lens >
+          > Explorer
+          > History
+          > klik w komita >
+          > prawy > Select to Compare
+          > klik w innego komita
+          > prawy > Select to Compare
+
+________________________________________________________________________________________________________
+24) git reset
+
+    klik w ikonę Git Lens
+      > stań komicie do którego chcesz wrócić
+      > prawy
+      > Reset ..
+
+    Komit zniknie, a pliki wrócą na Staging
+________________________________________________________________________________________________________
+25) git revert
+
+    klik w ikonę Git Lens
+      > stań komicie który chcesz skasować
+      > prawy
+      > Revert ..
+
+    Komit zniknie, nic nie wróci na Staging
+
+________________________________________________________________________________________________________
+30) Settings Sync
+
+    Kopiuje ustawienia, snipki, skróty klawiszowe, nazwy, wersje i ustawienia addonów
+
+    a) zainstaluj addona
+    b) github > Settings > Developer settings > Personal access tokens > czeknij boxa Gist > Generate New Token
+    c) skopiuj go do clipboarda
+    d) shift + alt + u > wklej gista
+
+    Importuje się ww przez shift + alt + d
+
+________________________________________________________________________________________________________
+31) TODO Higlhlight plugin
+
+    Do pliku Settings, dodaj poniższe, by uwzględnić pliki vue
+
+    "todohighlight.isCaseSensitive": false,
+
+    "todohighlight.include": [
+      "**/*.js",
+      "**/*.html",
+      "**/*.css",
+      "**/*.scss",
+      "**/*.vue"
+    ],
+
+________________________________________________________________________________________________________
+32) Instalacja starszej wersji extension (np wrap-console-log)
+
+    Wersja 1.7.0 jest zwalona, 1.6.2 - dobra
+
+    2 sposoby:
+
+      a) ściągnąć z githuby pakiet .vsix > otworzyć okno z extensions >
+         > klik w 3 kropki w prawym górnym ww okna > Install from vsix
+
+      b) otworzyć okno z extensions > stanąć na extension
+         > prawy > Install Another Version
+
+________________________________________________________________________________________________________
+33) Modyfikacja plugina 'wrap-console-log'
+
+    Wersja 1.7.0 jest zwalona, 1.6.2 - dobra. Patrz punkt niżej jak zainstalować starą
+
+    UWAGA !!
+      Robiąc zmiany w kodzie, restartuj VS Code'a po każdej, by zobaczyć efekty.
+      Jeśli nie pomaga, to disable / enable plugina
+
+      Pliki pluginów są w:
+        C:/Users/abc/.vscode/extensions
+
+        midnightsyntax.vscode-wrap-console-log-1.6.2
+
+      Po poniższych modyfikacjach:
+        a) w chromie używaj kbd shortcuta: NumLock
+        b) w nodzie (vs codzie): PauseBreak
+        c) checkpointy wstawiaj w obu przez: Numeryczny klawisz dzielenia '/'
+
+    a) najpierw zmień keyboard binding z ctrl+alt+w+down na Num key
+         Settings > Keyboard Shortcuts > wpisz 'ctrl+alt+w+down'
+         dwuklikaj w każdą z wyświetlonych linii i klik w 'Num'
+
+    b) zmień tak, by wyświetlał znak '=' i nie wstawiał średnika na końcu linii
+
+        C:/Users/abc/.vscode/extensions/midnightsyntax(..)wrap-console-log/out/extension.js
+
+        Linie od 35 do 50 mają wyglądać tak:
+
+        ----------
+        else {
+            wrapData.txt = "console.log('%c ".concat(wrapData.item, " = ' , ", wrapData.item, ", 'color: white')")  // NumLock
+            resolve(wrapData)
+          }
+        }
+        else {
+          switch (formatAs) {
+            case FormatAs.String:
+              wrapData.txt = "console.log(".concat("'" , wrapData.item, " = ' , ", wrapData.item, ")")   // Numpad dzielenie: /
+            break;
+            default:
+              wrapData.txt = wrapData.txt.replace('$txt', "'".concat(item, "'"))
+              wrapData.txt = wrapData.txt.replace(';', '')                            // PauseBreak
+              break;
+          }
+
+________________________________________________________________________________________________________
+34) Modyfikacja plugina 'Snippet Maker'
+
+     W katalogu:
+       C:/Users/abc/.vscode/extensions
+     znaleźć:
+       ziishaned.snippetmaker-0.0.5
+
+     a) poniższ linia ma zawierać na końcu ', null, 2':
+          yield writeFileSync(snippetFilePath, JSON.stringify(snippetFileText, null, 2));
+
+     b) zmienić linię zapisu do pliku, na:
+          let snippetFilePath = `${snippetsPath}/javascript.json`;
+
+     c) wyciąć linie mówiące o (prompt) description
+
+     d) wyciąć poniższe linie (linia 73)
+
+          let listOfLanguages = yield vscode_1.languages.getLanguages();
+
+          this.snippetInfo.lang = yield vscode_1.window.showQuickPick(listOfLanguages, {
+            placeHolder: this.editor.document.languageId,
+          });
+
+     e) począwszy od linii:
+          let snippetFileText = JSON.parse(stripJsonComments(text));
+
+        .. reszta do końca funkcji ma wyglądać tak:
+
+          snippetFileText[this.snippetInfo.name] = {
+            prefix: this.snippetInfo.prefix,
+            body: this.snippetInfo.body,
+          }
+
+          snippetFileText = JSON.stringify(snippetFileText, null, 2);
+          snippetFileText = snippetFileText.replace(/\s\s\s+/g, '  ');
+          snippetFileText = snippetFileText.replace(/\s+\}\)/g, '})');
+
+          yield writeFileSync(snippetFilePath, snippetFileText);
+        })
+
+
+     Używanie:
+        Zaznaczany tekst jeśli ma więcej niż 1 linię, powinien zaczynać się od guttera,
+        bo inaczej przy zaznaczaniu załapią się zbędne spacje, których plugin nie wie jak się pozbyć
+
+        Plik javascript.json ze snipkami, trzeba sformatować przez ctrl + shift + f
+
+________________________________________________________________________________________________________
+40) Ukrywanie i odkrywanie widoczności plików w explorerze
+
+      Uczyń .gitignore widocznym, a browserslistrc - niewidocznym
+
+        Settings > User Settings
+
+          "files.exclude": {
+            "**/.gitignore": false
+            ".browserslistrc": true
+
+________________________________________________________________________________________________________
+41) Formatowanie html'a
+
+      Underline, VS Code is using js-beautify.
+
+      Dzięki ponższym ustawieniom:
+
+        "html.format.wrapAttributes": "force-aligned",
+        "html.format.enable": true
+
+      .. tag:
+        <b-form-checkbox-group data-test="stations" v-model="selected" @change="stationsSelected" class="mt-0" options="axn"> </b-form-checkbox-group>
+
+      .. sformatowany zostaje na:
+
+        <b-form-checkbox-group data-test="stations"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="axn"></b-form-checkbox-group>
+
+________________________________________________________________________________________________________
+42) code spell checker
+
+      Mimo iluś prób ignorowania plików .txt w cSpell.ignorePaths, non-stop je sprawdzał.
+      Pomogło ustawienie:
+
+        "cSpell.enabledLanguageIds": ["javascript", "vue"],
+
+      Inne przydatne ustawienia
+        "cSpell.enabled": true,
+        "cSpell.maxNumberOfProblems": 5,
+        "cSpell.showStatus": true,
+
+      Ponieważ plik ustawień eslinta mam w formie .eslintrc.js, cSpell go uwzględnia
+      By nie czepiał się nieznanych słów, warto stworzyć plik /cSpell.json:
+
+      {
+        "version": "0.1",
+        "language": "en",
+        "words": ["stroustrup", "linebreak", "plusplus"],
+        "flagWords": ["hte"]
+      }
+
+
+________________________________________________________________________________________________________
+43) ESLint i Prettier w Vue - tips
+
+      Z jakiegoś gupiego powodu, vs code pokazuje błędy lintingu tylko w aktualnie otwartych plikach
+
+      a) by wyświetlić błędy ze wszystkich plików, zrzuć je na plik, odpalając:
+           yarn lint > _lint.js
+
+         .. albo zmodyfukij linię w package.json i odpalay: yarn lint:
+           "lint": "vue-cli-service lint > _lint.js",
+
+      b) pliki .css, .less, .scss, or .json obrabia tylko prettier, bo eslint nie umie
+
+      c) // prettier-ignore        - ignoruje linię js
+         <!-- prettier-ignore -->  - ignoruje linię html
+
+      d) błędy eslinta pokazywane są jako maleńkie czerwone prostokąciki w scrollbarze (nie w gutterze !)
+
+      e) ponieważ nie da się skłonić prettiera do polubienia else'a Stroustrupa:
+           a) zakomentowałem prettiera w .eslintrc.js i
+           b) zdisablowałem extension prettiera vs code'a
+
+      f) by ESlint nie przeszkadzał, zdisablowałem jego plugina
+
+________________________________________________________________________________________________________
+44) ESLint i Prettier w Vue  - git commit hook
+
+      VS Code przed komitem wykonuje eslintowe hooki i nie puści
+      komita, jeśli się nie zrobi sugerowanych poprawek
+
+      Okazało się, że komendy hookowe były umieszczone na końcu
+      package.json. Po wycięciu ich komity chodzą bez przeszkód
+
+      "gitHooks": {
+        "pre-commit": "lint-staged"
+      },
+      "lint-staged": {
+        "*.js": [
+          "vue-cli-service lint",
+          "git add"
+        ],
+        "*.vue": [
+          "vue-cli-service lint",
+          "git add"
+        ]
+      }
+
+________________________________________________________________________________________________________
+45) ESLint i Prettier w Vue
+
+    Kopia z js.txt - punktu 290) ESLint i Prettier w Vue
+
+      a) yarn global add eslint
+
+      b) yarn add eslint-plugin-vue eslint-config-prettier eslint-plugin-prettier
+
+      c) vs code > zainstaluj pakiet ESlint
+
+      d) vs code > zainstaluj pakiet Prettier - Code formatter
+
+      e) vs code > Settings > wpisz: "editor.formatOnSave": true
+
+      g) do package.json, dopisz:
+
+          "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check"
+
+      h) stwórz plik .prettier.json
+
+          {
+            {
+              "trailingComma": "es5",
+              "tabWidth": 2,
+              "printWidth": 200,
+              "semi": false,
+              "singleQuote": true,
+              "bracketSpacing:": true,
+              "arrowParens": "avoid",
+              "htmlWhitespaceSensitivity": "strict",
+              "endOfLine": "crlf"
+            }
+          }
+
+      i) stwórz plik .eslintrc.js
+
+          /* eslint-disable  */
+          module.exports = {
+            env: { node: true },
+            extends: ['plugin:vue/recommended', '@vue/airbnb', 'prettier', 'plugin:prettier/recommended'],
+            plugins: ['prettier'],
+            root: true,
+            rules: {
+              'no-console': 0,
+              'no-debugger': 'off',
+              'array-bracket-spacing': 0,
+              'array-callback-return': 'warn',
+              'arrow-parens': 0,
+              // 'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
+              'computed-property-spacing': 0,
+              // 'comma-dangle': ['error', 'only-multiline'],
+              'consistent-return': 'off',
+              'func-call-spacing': 0,
+              'import/prefer-default-export': 'warn',
+              // indent: ['error', 2],
+              'linebreak-style': ['error', 'unix'],
+              //'max-len': [1, 200, 1, { ignoreUrls: true, ignoreTrailingComments: true, ignoreTemplateLiterals: true }],
+              'no-alert': 'off',
+              // 'no-multiple-empty-lines': [1, { max: 1 }],
+              'no-param-reassign': 'off',
+              'no-plusplus': 0,
+              'no-spaced-func': 0,
+              'no-warning-comments': 'warn',
+              'no-whitespace-before-property': 0,
+              // 'no-trailing-spaces': 2,
+              'prefer-destructuring': 'warn',
+              'prefer-template': 'warn',
+              'prettier/prettier': ['error'],
+              // semi: ['error', 'never'],
+              'space-in-parens': 0,
+              'space-before-function-paren': 0,
+              'spaced-comment': 0,
+              //'vue/html-self-closing': 'never',
+            },
+
+            parserOptions: {
+              parser: 'babel-eslint',
+            },
+          }
+
+      j) odpal: eslint-check
+          Wyświetli: 'The following rules are unnecessary or might conflict with Prettier'
+          Zakomentuj konfliktujące się reguły
+
+          Te, które rozpoczynają się od 'vue/' pochodzą od eslint-plugin-vue:
+            vue/singleline-html-element-content-newline
+
+            Zostaw je
+
+----------------------------------------------------------------------------
+49) Opróżnianie cache'a
+
+    Po zainstlowaniu pakietu Local History, po chwili przy szukaniu plików przez ctrl + p
+    pokazywały mi się dziesiątki plików o tej samej nazwie
+
+    Pomogło:
+      a) opróżnienie katalogu C:/Users/abc/AppData/Local/temp
+      b) ctrl + shift + p > Clear Editor History
+
+
+
+________________________________________________________________________________________________________
+51) Aliasy
+
+      VS Code przed komitem wykonuje eslintowe hooki i nie puści
+      komita, jeśli się nie zrobi sugerowanych poprawek
+
+      Można je wyciąć z package.json (patrz p.50), albo zignorować
+      wykonując komendę git commit z przełącznikiem '-n'
+
+      By to ułatwić, można zrobić poniższe aliasy.
+      Dzięki nim, wystarczy wbić z ręki 'g' i cały komit pójdzie
+      z automatycznym messagem ('WiP cd')
+
+      Jeśli chce się wpisać inny, odpal 'gg' i wpisz go w wyświetlonym oknie,
+      na końcu zamykając je
+
+
+      nano ~/.bashrc
+
+      alias g='git commit -n -m "WiP cd"'
+      alias gg='git commit -n'
+
+
+----------------------------------------------------------------------------
+52) Porównywanie plików (diff compare)
+
+      a) prawy klik na pierwszym z plików w explorerze > 'Select for Compare'
+      b) prawy klik na drugim z plików w explorerze > 'Compare with Selected'
+      c) w prawym górnym rogu, klik na 3 kropki i 'Toggle cośtam' (1-sza opcja od góry)
+
+    Alternatywą jest użycie plugina Partial Diff:
+      Otworzyć 2 okna > prawy klik w 'Compare Text in Visible Editors'
+
+    Prócz tego dzięki Partial Diff, można porównywać zaznaczone obszary tekstu,
+    a nie całe pliki. W tym celu:
+      a) zaznacz obszar teksty > prawy > Select Text for Compare
+      b) zaznacz drugi i > prawy > Select with Text in Clipboard
+
+
+________________________________________________________________________________________________________
+53) Komity: autopush i smart
+
+     Po wykonaniu komita, jest on automatycznie pushowany do repo, dzięki linijce
+       "git.postCommitCommand": "push",
+
+     Poniższa, pozwala zrobić komita, jeśli na stagingu nie ma plików
+     Wtedy wszystkie są automatycznie uwzględniane
+
+     "git.enableSmartCommit": true,
+
+----------------------------------------------------------------------------
+54) git błąd crlf
+
+      Problem:
+        'warning: LF will be replaced by CRLF in www/index.html.
+        The file will have its original line endings in your working directory.'
+
+       Rozw:
+        git config --global core.safecrlf false
+
+      Przy okazji. Zmiana tego klikaniem w napis 'CRLF' na dolnej belce
+      i zmienianie na 'LF' chyba nie działa do końca
+
+      Lepiej z cmd wejść do każdego katalogu i odpalić:
+        dos2unix *.*
+
+________________________________________________________________________________________________________
+55) GitLens
+
+    "gitlens.currentLine.enabled": false - wyłaczenie blame annotations
+    ctrl + p: 'GitLens: Open Settings' - WYSIWYG editor
+
+    Zmieniając jedyne wystąpienie '--soft' na '--hard' zmieniłem polecenie
+    Reset to Commit (via terminal)
+
+----------------------------------------------------------------------------
+56) GitLens - git rebase -i
+
+      Tuba: Interactive Rebasing - packtpub
+      Tuba: Watch me use git rebase interactive
+      Tuba: Git Tutorial Part 4 - Git Rebase and Interactive Rebase
+
+        a) otwórz okno gitLensa
+
+        b) stań na komicie powyżej którego inne chcesz wyciąć
+
+        c) prawy >Reset to Commit
+
+        d) stań na najniższym od którego (włacznie) powyższe chcesz rebasować
+
+        e) prawy > Rebase to Commit
+
+        f) w wyświetlonym edytorze:
+            1) pierwszy od góry komit zmień pick na r(ewrite)
+            2) pozostałe zmień pick na f(ixup)
+
+        g) zamknij okno
+
+        h) w wyświetlonym teraz nowym oknie, zmień opis komita
+
+        i) zamknij okno
+
+________________________________________________________________________________________________________
+57) Wyłaczanie działania wbudowanych snippetów
+
+    Znajdujący się tu plik javascript.json, zrenamuj na np backup.json.bak
+
+    C:\Users\abc\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\javascript\snippets
+________________________________________________________________________________________________________
+58) Utrata kolorowania składni (syntax highlighting)
+
+    Nie Pomogło:
+      a) Uninstalled Vetur and hit reload button
+      b) Closed VS Code
+      c) Right click VS Code icon in taskbar
+      d) Run as administrator !! Musi to pomogło bo z jego wyjątkiem wszystkiego innego próbowałem
+      e) Reinstall Vetur and hit reload button
+    ani żadna z 2 starszych wersji, w tym .vsix, ani npm install w katalogu Vetura
+
+    Zdisablowałem go więc i zainstalowałem pakiet:
+      vue (vscode-vue)- liuji-jim
+
+----------------------------------------------------------------------------
+60) build chodzi, a dev - nie
+
+      Wczoraj yarn dev odpalał apkę i ona chodziła, dziś przestała
+      Cofnięcie się parę (zresztą i tak tylko kosmetycznych) komitów,
+      do na 100% chodzącego, dziś też nie pomogło
+
+      Za to zrobienie builda (yarn build) i odpalenie go zewnętrznym pakietem serve - zadziałało
+      Googlowanie nic nie dało. Stworzyłem więc workaround, dodając do package.jsona:
+
+        "devbuild": "npm run build && serve -s dist"
+
+      .. i odpalam go po każdej zmianie
+
+________________________________________________________________________________________________________
+61) nagle czekboksy działają jak radia
+
+      Nie da się czeknąć 2+ naraz, bo poprzednie czeknięcie znika.
+      Jak w radio boksach
+
+      Zrobiłem z 10 reset --hardów wstecz i w końcu znalazłem komit, gdzie czekboksy działały ok
+      Komit sprzed 10 dni więc nieprawdopodobne, że tyle czasu tego nie zauważyłem,
+      no ale z faktami się nie dyskutuje
+
+      No to metodą dzielenia przedziałów, cofam się, szukając tego komita który rozwalił czekboksy
+      I okazuje się że ten który się przed chwilą wywalał, teraz chodzi !
+      Mało tego: git pull i też chodzi !
+
+      Musi 211 komitów to za dużo na vs codowego gita
+
+      Wniosek:
+        a) nie majstrować w apce na jednym ekranie podczas gdy cyprys na drugim
+
+        b) jeśli już się zdarzy i czekboksy świrują, wyłączyć wszystko, po czym
+           yarn dev i otworzyć apkę (ale nie cyprysa)
+
+        c) w przypadku ogólnym, jak się coś grubo wywala, wypuszować wszystko
+           na remota i zrobić paręnaście hard resetów
+
+      Po hard resecie, nie trzeba restartować HMR'a, restartuje się sam
+
+      PS Błąd implementacji (maszyna dobra, Żyd zły)
+
+________________________________________________________________________________________________________
+62) Utrata intellisensa
+
+    Nagle 'cl' przestał mi się rozwijać w 'console.log'
+    Wyskakujące okienko nie zawierało go nawet
+
+    Rozw:
+      Zdownowałem się z vs code 1.31 do 1.30
+
+________________________________________________________________________________________________________
+63) Rest-client plugin
+
+    Alternatywa dla Postmana
+
+    a) stwórz plik index.js i wklej jak niżej
+
+    b) odpal serwer: node index.js
+
+    c) do dowolnego pliku np rest.js wpisz poniższe
+        UWAGA !
+          Musi być pusta linia przed json'em
+
+    d) będąc w tym pliku, zmień język:
+        ctrl + shift + p > Change Language Mode > http
+
+    e) kolejne sekcje rozdziela się 3-ma haszami: ###
+       Dzięki temu, nad każdym z ww sekwencji ukaże się linka 'Send Request'
+
+    f) po kliku w nią, otworzy się okno z odpowiedzią serwera
+
+    g) zamiast klikać w linkę, można odpalić wysyłkę z ręki:
+        zaznacz wszystko > ctrl + shift + p > Rest Client: Send Request
+
+    h) po zaznaczeniu i ctrl + shift + p, można wybrać
+        'Copy Request As Curl'
+
+
+    ------ index.js ----------------------------------
+
+    const express = require('express')
+    const app = express()
+
+    app.use(express.json())  // jeśli słany będzie json
+    app.use(express.urlencoded({ extended: true }))  // jeśli urlencoded
+
+    app.listen (3000, () => console.log('Server on 3000..'))
+
+    app.post('/', (req, res) => {
+      console.log(req.body)
+      res.send(req.body.name)
+    })
+
+    ------- rest.js ---------------------------------
+
+    POST http://localhost:3000/a
+    Content-Type: application/json
+    Accept: application/json
+
+    {
+      "name": "honda1"
+    }
+
+    ###
+    POST http://localhost:3000
+    Content-Type: application/json
+    Accept: application/json
+
+    {
+      "name": "śmonda"
+    }
+
+   ------- Rest-Client odpowiedź ---------------------------------
+
+   HTTP/1.1 200 OK
+   X-Powered-By: Express
+   Content-Type: text/html; charset=utf-8
+   Content-Length: 6
+   ETag: W/"6-BcrHD4f7bQQ0478f4x/yuZVHddA"
+   Date: Fri, 15 Feb 2019 19:14:38 GMT
+   Connection: keep-alive
+
+   honda1
+________________________________________________________________________________________________________
+64) Regexy
+
+    By uruchomić rozszerzoną obsługę regexów, wklej do Setings:
+      "search.usePCRE2": true,
+
+    Jeśli nie ma pewności czy matcher działa na 100% dobrze,
+    po wyszukaniu matchy, przejrzyj je.
+
+    Jeśli załapie się jakiś niepotrzebnie, stań na nim, prawy i Dismiss
+    by go usunąć z listy matchy
+________________________________________________________________________________________________________
+65) Regexy - komentarze i console.logi
+
+    Poniższe wbiłem jako snipka o nazwie 'regex'
+
+    a) komentarze
+        Wykrywa linie z '//' ale ignoruje linie z 'http://'
+
+        (?:\/\*(?:[\s\S]*?)\*\/)|(?:^\s*\/\/(?:.*)$)
+
+    b) console.logi
+        Ignoruje je w .catch(err => console.log('Error 1: ', err))
+
+        (;|^)\s*console.log.*
+
+________________________________________________________________________________________________________
+66) regex previewer
+
+    Plugin pozwalający w jednym oknie tworzyć regexa, a w drugim widzieć matche
+    Regexa trzeba wziąć w slasze:
+
+    const email = /rank_/g
+
+________________________________________________________________________________________________________
+67) word separators
+
+    Characters that will be used as word separators when doing word related
+    navigations or operations
+
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+
+    Np chciałem dwuklikiem zaznaczyć cały string, czyli oba wyrazy: flex-shrink
+    Niestety, zaznaczał się tylko pierwszy
+    Po wycięciu myślnika z ww linii, zaznacza się już całość
+________________________________________________________________________________________________________
+68) title bar
+
+      By w topowej linii vs code'a wyświetlać tylko nazwę projektu i bieżącego pliku,
+      w Settingsach wbij:
+
+      "window.title": "${rootName}${separator}${activeEditorShort}",
+________________________________________________________________________________________________________
+69) open in browser
+
+      Otwieranie pliku html w przegladarce
+
+      a) zainstaluj extension: open in browser
+
+      b) do Settings dodaj:
+          "open-in-browser.default": "chrome",
+
+      c) restart vs
+      d) stań prawym na pliku > Open in Default Browser (alt + b)
+________________________________________________________________________________________________________
+70) emmet
+
+    Tworzenie całych tagów wpisując skrót i wciskając tabulację:
+
+    a) tag
+        h1-6, a, link, img, ul, li
+
+    b) tag + klasa / id
+        div.container
+        .container (div jest domyślny)
+        analogicznie #box
+
+    c) mnożniki
+        li*3
+        .box*3
+
+    d) templatki
+
+        div{blada dupa}
+          <div>blada dupa</div>
+
+        p{kwaśna zupa}
+          <p>kwasna zupa</p>
+
+    e) children
+        ul>li*3
+
+        ul>li*3#item$  // $ daje kolejny indeks
+          <ul>
+            <li id="item1"></li>
+            <li id="item2"></li>
+            <li id="item3"></li>
+          </ul>
+
+        ul>li*3{blada dupa}#item$
+          <ul>
+            <li id="item1">blada dupa</li>
+            <li id="item2">blada dupa</li>
+            <li id="item3">blada dupa</li>
+          </ul>
+
+    f) siblings
+
+        input+input
+          <input type="text">
+          <input type="text">
+
+        div>h2+p
+          <div>
+            <h2></h2>
+            <p></p>
+          </div>
+
+        form>input+input
+          <form action="">
+            <input type="text">
+            <input type="text">
+          </form>
+
+
+    g) link:css
+        <link rel="stylesheet" href="style.css">
+
+    h) skróty tagów
+         bq     <blockquote></blockquote>
+         hdr    <header></header>
+         ftr    <footer></footer>
+         btn    <button></button>
+
+________________________________________________________________________________________________________
+75) 30 seconds (snipki)
+
+      github.com/30-seconds/30-seconds-of-code
+      github.com/30-seconds/30-seconds-of-code/edit/master/vscode_snippets/snippets.json
+
+      Zbiór kilkuset snipków z krótkimi funkcjami narzędziowymi
+
+      a) na repo kliknij na Edit > ctl + a > ctrl + c
+      b) Settings > User snippets > New Global Snippets: '30seconds'
+      c) wklej wszystko do pliku i zasejwuj
+      d) w pliku .js napisz '30s' - wyskoczy popup ze wszystkimi snipkami
+
+________________________________________________________________________________________________________
+
+
+
+________________________________________________________________________________________________________
+
+
+
+

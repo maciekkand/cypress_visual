@@ -1,0 +1,679 @@
+﻿0) Tips,  tricks and gotchas
+1) Pluginy
+2) Zmiana strony kodowej
+3) Chrome://about
+4) Wyłączenie proxy dla adresów lokalnych
+5) Oglądanie plików PHP spod Chrome Dev Toolsów
+7) HTTPS i kłódka z czerwonym krzyżykiem + przekreślony czerwony 'https'
+8) Ściąganie na desktop apek z Google Play
+9) Backup rozszerzeń (extensions)
+
+10a) Ładowanie ajaksem pliku lokalnego (--allow-file-access-from-files)
+10b) Access-Control-Allow-Origin  error ( CORS )
+11) Ładowanie ajaksem pliku z odległego serwera
+
+12) Prawy klik na słowie i google translator - Plugin Context menus
+13a) Chrome Dev Tools - ćwiczenia js
+13b) Chrome Dev Tools - Tips and Tricks
+14) Wyłączenie thumbnaili z najczęściej oglądanymi stronami
+15) Cache clear
+16) Dokowanie konsoli pionowo po prawej
+17) Zmiana stylu strony
+18) Przyspieszanie grafiki w przeglądarce (WebGL)
+19) Download resumption - wznawianie pobierania
+20) Wersja językowa
+21) Dev tools theme
+
+22) Debugger, nie wchodź w zewn biblioteki (framework blackboxing)
+23) Dev tools addons
+24a) Dev tools > Network - tekstowo
+24b) Dev tools > Network: docs
+
+26) Android -> chrome przez usb (Remote mobile debugging)
+27) console.table
+
+28) Webpage loading online test
+29) Epoch timestamp online calculator
+30) Dev tools - kolor czcionki
+31) favicon.ico - error message
+32) Remote debugging na Chromie
+36) Testowanie łącza internetowego apki
+37) Regex w oknie konsoli dev-toolsów
+
+38) 30 Chrome devtool tips ( 2016 ) - chrome canary
+39) 30 Chrome devtool tips ( 2016 ) - chowanie elementu
+40) 30 Chrome devtool tips ( 2016 ) - ktory styl css przeważył
+41) devtool tips - console.clear (  )
+
+42) Chrome DevTools debugger  -  node
+43) Chrome DevTools - kolejność zakładek
+44) Vue dev tools - najlepszy layout ekranu
+45) Jak wyciągnąć filmy video z kesza Chroma
+46) Code coverage
+47) Jak ustawić Canarka jako domyślną przeglądarkę
+
+50) Hover w dev toolsach
+51) Kasowanie cookies
+
+
+___________________________________________________________________________________________
+0) Tips,  tricks and gotchas
+
+    1) Inspect element
+        Zamiast wybierać z menu kontekstowego  ( prawy klik i Inspect element ),
+        otwórz toolsy  ( F12 )  i ikona w prawym górnym:
+          pokaże na ekranie cienie nad przedzonymi myszą ekranami
+
+      2) debugger
+          F8,  F10 i F11
+___________________________________________________________________________________________
+1) Pluginy :
+
+    a) AdBlock
+    b) APK Downloader (ściąganie android apków z Google Play)
+    c) Avast
+    d) DevTools Autosave (przy localhoście)
+    e) dotPub (.epub'y)
+    f) Google Dictionary (dbl click a word)
+    g) Pocket (robienie bookmarków na stronie pocket)
+    h) Tincr (autoreload po sejwie w edytorze)
+    i) Context Menu Search (żeby dwukliknąć ang słowo i otworzyć z nim Gugiel Translatora)
+    j) 1click translator
+    k) Colorzilla
+    l) JB IDE support
+    m) Web Developer (chris pederick)
+    n) DevTools Theme: Zero Dark Matrix (p. 21)
+    o) JSONView (do oglądania ładnie ułożonych JSONów w Chromie)
+    p) SelectorGadget - pokazuje selektora CSS kliknietego obiektu na ekranie
+    q) Copy CSS Selector - b ułatwia wydostanie właściwego selektora elementu html (szczególnie w Cyprysie)
+
+___________________________________________________________________________________________
+2) Zmiana strony kodowej
+    Ikona ustawień -> Narzędzia -> Kodowanie -> UTF8
+___________________________________________________________________________________________
+3) Chrome://about
+___________________________________________________________________________________________
+4) Wyłączenie proxy dla adresów lokalnych
+
+    Ustawienia -> Ustawienia -> Zaawansowane -> Sieć : Zmień ustawienia serwera proxy ->
+    Polaczenia -> Ustawienia sieci LAN ->
+    a) uncheck 'Automatycznie wykryj ustawienia'
+    b) check 'Użyj serwera proxy ...'
+    c) check 'Nie używaj serwera proxy dla adresów lokalnych'
+___________________________________________________________________________________________
+5) Oglądanie plików PHP spod Chrome Dev Toolsów
+
+       a) wczytać stronę (z html z js)
+       b) odpalić Chrome Dev Toolsy (F12) i otworzyć zakładkę Network
+       c) wykonać akcję skutkującą wywołaniem pliku php
+       d) z lewej strony pokażą się ściągnięte pliki
+       e) dwukliknąć na wybrany plik .php
+___________________________________________________________________________________________
+7) HTTPS i kłódka z czerwonym krzyżykiem + przekreślony czerwony 'https'
+
+    You're browsing with an invalid SSL certificate.
+
+    That means the data you send and receive is being encrypted, but Chrome can't be sure
+    the other party is who they say they are.
+
+    When you first come across a site / certificate with this problem Chrome will ask you
+    if you want to continue.
+
+    You have chosen to continue and ignored the warning. You should not complete any sensitive transaction
+    in this manner.
+
+    I'd recommend checking that the address of the site is correct, and then contacting your credit card company.
+
+    You may also want to check your computer's time and date is set correctly.
+
+    If it isn't Google will assume that the certificate has expired.
+
+___________________________________________________________________________________________
+8) Ściąganie na desktop apek z Google Play
+
+      a) Zainstalować w chromu plugina apk downolader 1.5.1.crx
+         drag and dropem na stronę : Settings -> Extensions
+
+      b) Ściągnąć z Google Play apkę Android Device ID
+
+      c) Odpalić ją i spisać GSF (Gugiel cośtam)
+
+      d) Wyszukać na stronie Google Play apkę, którą chcę ściągnąć
+
+      e) Kliknąć w zieloną ikonkę ludka na końcu pasku adresu
+
+      f) W wyskoczone okienko wpisać maila (gyu.., hasło i GSF)
+
+         GSF ID (Google Service Framework) : 3ab650d13b587b40
+
+      Od tej chwili apki będą sejwowac się na desktop
+____________________________________________________________________________
+9) Backup rozszerzeń (extensions)
+
+    Są w C:\Users\ab\AppData\Local\Google\Chrome\User Data\Default\Local Storage
+____________________________________________________________________________
+
+10a) Ładowanie ajaksem pliku lokalnego (--allow-file-access-from-files)
+
+        $('#ajaxhome').load('test.txt');
+
+        Wywala : 'Origin null is not allowed by Access-Control-Allow-Origin'
+        bo Chrome blokuje ładowanie plików lokalnych. Można to zmienić dodając :
+
+        --allow-file-access-from-files  do komendy startu Chrome'a :
+
+        C:\Users\ab\AppData\Local\Google\Chrome\Application\chrome.exe --allow-file-access-from-files
+
+        FF ładuje pliki lokalne bez słowa skargi
+_____________________________________________________________________________
+10b) Chrome:  Access-Control-Allow-Origin  error ( CORS )
+
+        Chrome 51
+        Odpalanie chroma komendą  ".../chrom.exe" --disable-web-security  już nie pomaga
+        Teraz działa dodanie nw parametrów
+
+          a)  google-chrome-stable --disable-web-security     lub
+          b)  ".../chrom.exe" --disable-web-security --user-data-dir
+
+        Drugi jest lepszy,  po pierwszy odpala nową zakładkę o adresie  'google-chrome-stable'
+        Kolejność obu parametrów dowolna
+
+        Prawy klik na ikonce Chroma > Properties > Dodaj do linii Target :
+            "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir
+
+        UWAGA !!
+          Ścieżka do chroma w nawiasach,  parametry poza nimi
+
+_____________________________________________________________________________
+
+11) Ładowanie ajaksem pliku z odległego serwera
+
+        Do ścieżki skrótu, po końcowym cudzysłowie, dodać ' –allow-file-access-from-files -disable-web-security'. Cała ścieżka:
+
+        "C:\PathTo\Chrome.exe" –allow-file-access-from-files -disable-web-security
+
+       i nie przejmować się komunikatem, że coś będzie źle, bo Chrom nie zna tej linijki
+_____________________________________________________________________________
+
+12) Prawy klik na słowie i google translator - Plugin Context menus
+
+   Prawy klik na słowie -> Context menus -> Google Translator
+_____________________________________________________________________________
+13a) Chrome Dev Tools - ćwiczenia js
+
+        a) if(true) "prawda"   // "prawda"
+
+        b) if(false) { "prawda" } else { "fałsz" } //   jeśli ma być else, to nawet przy 1 instrukcji, muszą być nawiasy { }
+
+        c) typeof (Session.get("userId"))   // "string"
+
+        d) typeof (Session.get("xxxxxxx"))   // "undefined"
+
+        e) if(typeof (Session.get("xxxxxxx")) === "undefined") "niezdefiniowany"   //  sprawdzając czy typ = "undefined", trzeba go wziąć w ""
+
+_____________________________________________________________________________
+13b) Chrome Dev Tools - Tips and Tricks
+
+      a) jest na ekranie lista ol lub ul. W zakładce Elements, podświetlamy
+          jej ostatni element i przeciągamy na górę jako 1-szy
+
+      b) stajemy w oknie Styles na wartości linii 'font-size'  (np 20px)
+          i ruszamy kółkiem myszy - wielkość liter się zmienia
+
+      c) jeśli strona nie ma żadnych stylów, to w oknie Elements stajemy
+          na linii np 'body' , a w zakładce Styles wciskamy +. Pojawi się
+          'body { }' w którym wpisujemy 'background' i np '#d4e'
+          Po czym stajemy na '#d4e' i ruszamy kółkiem myszy albo kursorami
+          Kolor będzie się zmieniał wraz ze zmianą początkowej wartości '#d4e'
+
+      d) edycja treści na ekranie
+           Wejść do konsoli i wpisać :
+           'document.body.contentEditable=true'
+           Teraz można wejść do treści strony i ją zmieniać, po czym
+           w Elements zwinąć ją do html, prawyklik Copy as HTML i wkleić
+           do Sublime'a
+
+      e) kalkulacje w konsoli
+          Math.sqrt(9)  // 3
+          (new Date("October 10,2012") - new Date("October 9, 2012"))/3600000  //  24
+          (liczy m milisekundach)
+          navigator.userAgent  //
+          "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+           Chrome/30.0.1599.101 Safari/537.36"
+          window.innerHeight   //  256
+          window.innerWidth   // 1280
+
+      f) wyciąganie adresów wszystkich obrazków na ekranie
+          images =$$('img')
+          for (i in images) console.log(images[i].src)
+          W konsoli wypisana zostanie lista URLi wszystkich obrazków
+
+      g) to samo dla adresów linków (np indiabloggers.com)
+
+          urls = $$('a')
+          for (url in urls) console.log(urls[url].href)
+
+      h) Task Manager
+             shift + esc
+
+       i) F12 > Network > kolumna ...
+            a) Size / Content
+                    Size = wielkość pliku skompresowanego gzipem
+                    Content = wielkość po rozpakowaniu
+
+            b) Time / Latency
+                     Time = całkowity czas pobrania pliku
+                     Latency = czas do pobrania 1-go bajta
+
+                np 1s / 1.1s - większość czasu czekaliśmy, a gdy plik zaczął przychodzić, przyszedł b szybko
+
+            c) Timeline
+                    Klikiem można zmienić ustawienie na Latency, Duration, Start time, End time, Response time
+
+            d) prawy klik > Save as HAR with content
+                    Save wszystkich bebechów w oknie Network
+                    Można je potem obejrzeć w http://www.softwareishard.com/har/viewer/
+
+        j) F12 > Timeline > Record (czerwona kropka w lewym górnym) > ... > Stop (ta sama kropka)
+
+        k) wyświetlanie tylko wybranych rodzajów komunikatów
+            Jeśli wyświetlane są jakieś śmieciowe warningi, których nie chcę widzieć
+            F12 > klik w ikonę filtra (lejek) > trzymając ctrl: klik w Errors, Logs, Info i Debug (tzn wszystko prócz Warnings)
+
+        l) jeśli chcę w konsoli wyświetlać tylko linijki zawierające określony tekst:
+            F12 > klik w ikonę filtra (lejek) > w oknie 'Filter' wpisz początkowe litery (ew używając Regexa)
+
+        m) można też stanąć na niechcianej linii > prawy > Hide filter messages ..
+
+_____________________________________________________________________________
+14) Wyłączenie thumbnaili z najczęściej oglądanymi stronami :
+
+        a) chrome://flags in the Chrome's address bar then press "Enter";
+        b) Find and disable "Enable Instant Extended API Mac, Windows, Chrome OS";
+        c) Restart
+
+        W FF :
+            a) about:config
+            b) browser.newtabpage.enabled -> false
+_____________________________________________________________________________
+15) Cache clear
+
+    Przy Symfony to konieczność
+
+    a) zrobić ikonkę skrótu w górnej belce do:
+        chrome://settings/clearBrowserData
+
+    b) albo wejść w Settings > Prywatność > Wyczyść dane przeglądarki (1 dzień)
+
+    c) albo otworzyć dev toolsy (F12) i przytrzymać wciśnietą mysz na lewej górnej ikonce Refresh
+       a gdy się pokaże menu, wybrać 'Opróżnij pamięć podręczną i załaduj ponownie'
+
+_____________________________________________________________________________
+16) Dokowanie konsoli pionowo po prawej
+        a) F12 - uruchomić dev toolsy
+        b) kliknąć i przytrzymać ikonę z częściowo zaczernionym prostokatem (tuż obok iksa oznaczającego Cancel)
+        c) ukaże się druga ikona z zaczernionym prostokątem > klik
+
+_____________________________________________________________________________
+17) Zmiana stylu strony
+
+      Zaisntalować plugina Control Freak i do zakładki CSS wbić style.
+      Dla firebase.com:
+
+      a#collapseall.header-btn {
+         display: none;
+      }
+
+      a#export.header-btn.rightButton {
+         display: none;
+      }
+
+      image#legend {
+        display: none;
+      }
+
+_____________________________________________________________________________
+18) Przyspieszanie grafiki w przeglądarce (WebGL)
+
+    W Chrumie włącza się go przez  chrome://flags i wszystko co ma w nazwie
+    2D, 3D, WebGL ale też fura innych - przeleć 1/3 scrolla
+
+__________________________________________________________________________________________________
+19) Download resumption - wznawianie pobierania
+
+      chrome://flags > Włącz wznawianie pobrań Mac, Windows, Linux, Chrome OS
+
+        Po przerwaniu pobrań zezwól na ich kontynuowanie lub ponowne uruchomienie przy użyciu elementu menu kontekstowego Wznów.
+        #enable-download-resumption
+__________________________________________________________________________________________________
+20) Wersja językowa
+
+    Ustawienia > Zaawansowane > Języki > restart
+_____________________________________________________________________________
+21) Dev tools theme
+
+      a) import theme (dev tools theme - Zero Dark Matrix)
+      b) chrome://flags/#enable-devtools-experiments > klik Włącz
+      c) restart
+      d) F12 > Settings > Experiments tab > check Allow custom UI themes > F12 > F12
+_____________________________________________________________________________
+22) Debugger  - nie wchodź w zewn biblioteki (framework blackboxing)
+
+      a) F12 > F1  ( Settings ) > Blackboxing
+
+      b) dodaj:
+            \.min\.js$
+            node_modules
+            bower_components
+            bundle.js
+            \(webpack\)-hot-middleware
+
+           VM'ów nie zblekboksujesz -patrz punkt 346 z js.txt:
+
+              346) Chrome debugger - zakładki VMxx
+
+                      stackoverflow.com/questions/17367560/chrome-development-tool-vm-file-from-JS
+
+                      W trakcie debugowania w chromie, gdy ładuje on ajaksem HTML'a,
+                      w którym są tagi <script>, zawartość każdego będzie przetworzona
+                      z użyciem eval (  ) i potraktowana jako nowy plik o nazwie zaczynającej się od 'VM'
+
+                      Możesz pójść do zakładki Network, znaleźć zapytanie ajaksa i obejrzeć w całości
+                      odpowiedź, włącznie z Twoim skryptem
+
+                      Currently blackboxing doesn't work with anonymous script ( Sep 27 2016 )
+                          bugs.chromium.org/p/chromium/issues/detail?id=526239
+
+                            Nie rozwiązane @ 24 sie 2017:
+                                This issue is really frustrating, has it been resolved??!
+
+
+_____________________________________________________________________________
+23) Dev tools addons
+
+        a) dev tools theme - Zero Dark Matrix (patrz p.21)
+        b) pagespeed
+
+_____________________________________________________________________________
+24a) Dev tools > Network - tekstowo
+
+        var entries=performance.getEntriesByType("resource");
+        entries
+_____________________________________________________________________________
+24b) Dev tools > Network: docs
+
+      https://developers.google.com/web/tools/chrome-devtools/network-performance/resource-loading#view-network-timing-details-for-a-specific-resource
+_____________________________________________________________________________
+25) Filmy z tuby
+
+    a) Advanced debugging techniques with Chrome @Scale 2014 (Paul Irish ok 20 min)
+        https://www.youtube.com/watch?v=B63jNjSVEbQ
+_____________________________________________________________________________
+26) Android -> chrome przez usb (Remote mobile debugging)
+
+      4.1 umie tylko oglądać strony w android chromie
+      4.4 umie też oglądać apki
+
+      a) podłączyć smarka do usb > adb devices ..
+
+      b) uruchomić na nim chrome'a
+
+      c) laptom chrome > settings > more tools > inspect devices > baton Port Frowarding > check Port Forwarding
+
+      d) laptop chrome > powinno pod spodem się pojawić:
+              GT-S6310   #0E4F8444      zielona kropka :8080
+              Chrome (41.0.2272.96)
+          a za nim okno Open tab with url
+
+        e) wpisać doń gazeta.pl i wcisnąć batona Open
+            Strona otworzy się w smarkowym chromie
+
+        f) laptop chrome > nagnieść Inspect
+            Strona otworzy się w małym okienku chroma na laptoku
+_____________________________________________________________________________
+27) console.table
+
+      Jeśli wynik console.log(cos_tam)  = [object, object], tzn że jest to grupa obiektów
+      Zamiast console.log, użyj poniższego, a wyświetli się tabelka
+
+        console.table(snapshot.val())
+        console.table(snapshot.val(), ['time', 'timestamp']);  // tylko wybrane kolumny
+        console.table(Paczki.find().fetch(), ['latitude']);
+
+___________________________________________________________________________
+28) Webpage loading online test
+
+        http://www.webpagetest.org/
+___________________________________________________________________________
+29) Epoch timestamp online calculator
+
+        http://www.epochconverter.com/
+___________________________________________________________________________
+30) Dev tools - kolor
+
+    console.log('%c widok = ' + widokMapy, 'color: red' )
+
+    '%c' na początku stringa i na końu po przecinku 'color: jakiśtam '
+
+    Dobrze widać:
+        white
+        yellow
+        orange
+        green
+        lime
+        pink
+        tomato
+___________________________________________________________________________
+31) favicon.ico - error message
+
+        Żeby Chrom nie wyświetlał ww, stwórz pusty plik favicon.ico w głównym katalogu
+
+        Fabryka faviconów: http://faviconit.com
+
+        Format: .ico, .png, .gif
+        Rozmiar (px): 16×16, 32×32, 48×48, 64×64
+        Głębia koloru (bity): 8, 24, 32
+___________________________________________________________________________
+32) Remote debugging na Chromie
+
+    a) Redmiak:  uruchomić debugowanie USB  ( patrz p.1 )
+
+    b) cmd > adb shell  // test łączności
+
+    c) Redmiak: wyświetli okienku pozwalające na debugging > OK
+        ( i czekboksa 'pozwalaja zawsze z tego kompa' )
+
+    d)  chrome://inspect/#devices
+            lub  ( ale nie wiem ococho ):
+               chrome > dev tools  ( F12) > Settings  ( 3 pionowe kropki )  > More tools > Inspect devices
+
+    e) checknij Discover USB devices
+
+    f)  (re)connect  Redmiaka
+
+    g) odpal w nim chroma
+
+    h) w chromie na laptoku powinien się wyświetlić 'Redmi 3' i poniżej pare czekboksów
+        z adresami stron z historii smarka
+
+    i) jak się nie wyświetli to refresh  ( F5 ) i/lub nowa karta z localhost: 8080
+
+    j) click w Inspect pod adresem wybranej do debugowania strony
+___________________________________________________________________________
+36) Testowanie łącza internetowego apki
+
+        a) Dev toolsy  ( F12 )
+        b) klik w ikonę smarka i tableta  ( 2ga z lewej na górze dev toolsów )
+        c) ekran apki - górny pasek > No throttling / Offline / 3G ...
+
+___________________________________________________________________________
+37) Regex w oknie konsoli dev-toolsów
+
+        http://stackoverflow.com/questions/38524801/chrome-dev-tool-any-way-to-exclude-each-call-containing-a-string-with-regex
+
+        By nie wyświetlały się logi zaczynające się od WDS, których jest pełno,
+        gdy uruchomiony jest webpack-dev-server, wklej w okienko 'filter' konsoli
+
+        ^((?!WDS).)*$
+
+        Explanation:
+
+        ^ - Start of string
+
+        (?!WDS) - Negative lookahead (at this cursor, do not match the next bit, without capturing)
+
+        . - Match any character (except line breaks)
+
+        ()* - 0 or more of the preceeding group
+
+        $ - End of string
+___________________________________________________________________________
+38) 30 Chrome devtool tips ( 2016 )  -  chrome canary
+
+      https://www.youtube.com/watch?v=UURZFzk92bU
+
+      a) ściągnij i zainstaluj Chrome Canary
+      b) chrome://flags > ctrl + f: devtools > klik Włącz
+
+___________________________________________________________________________
+39) 30 Chrome devtool tips ( 2016 ) - chowanie elementu
+
+      Prawy klik na elemencie > Inspect  ( zbadaj) > Hide  ( albo nagnieć 'h' )
+
+___________________________________________________________________________
+40) 30 Chrome devtool tips ( 2016 ) - ktory styl przeważył
+
+      Prawy klik na elemencie > Inspect > Computed > rozwiń linie color
+      Widać kilka linii. Wszystkie są skreślone prócz jednej
+      Kliknij w ikonke strzałki w kółku koło tej jednej
+      Zobaczysz gdzie w oknie Styles jest zdefiniowana ta linia
+___________________________________________________________________________
+41) devtool tips - console.clear (  )
+
+      Czyści konsolę
+___________________________________________________________________________
+
+42) Chrome DevTools debugger - node
+
+      blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
+
+      a) w conEmu odpal:
+              node --inspect --debug-brk wywal2.js
+
+      b) dostaniesz linkę którą przeklej do okna chruma:
+              chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=127.0.0.1:9229/fe7269ca-3ec7-475e-ade0-6d555b0a758b
+
+        c) jeśli w oknie chroma wyświetli się szmatka 'Debugging connection was closed...',
+            zainstaluj chrum plugina NIM  ( Node Inspector Manager )
+
+        d) otwórz go kilkając w jego ikonę, upewnij się że jest tam
+              ten sam port co w p. b)  ( 9229 ),  a switch jest na 'auto'
+
+        e)  w conEmu odpal:
+                  node --inspect --debug-brk wywal2.js
+
+        Nowe eksperymentalne opcje chroma,  można właczyć:
+
+          Open the chrome://flags/#enable-devtools-experiments URL
+          Enable the Developer Tools experiments flag
+  ___________________________________________________________________________
+          Relaunch Chrome
+          Open DevTools Setting -> Experiments tab (it started being visible after the reload)
+          Press "SHIFT" 6 time
+
+___________________________________________________________________________
+43) Chrome DevTools - kolejność zakładek
+
+    Po dodaniu pluginów React dev tools i Redux dev tools,
+    można je ustawić jako np 3-ciego - 4-tego od lewej,
+    ale po restarcie devToolsów (F12) zmiany te będą zapomniane
+
+    Gugiel nie ma na razie rozwiązania (marzec 18)
+
+    Częściowe rozw, to zdisablowanie Redux dev toolsa
+    Dzięki temu pozycja React dev toolsa będzie pamiętana
+
+    Analogicznie można zrobić z Redux dev toolsem
+    Nie działa tylko w przypadku obu aktywnych naraz
+___________________________________________________________________________
+
+44) Vue dev tools - najlepszy layout ekranu
+
+    a) otwórz devtoolsy
+    b) zmniejsz ich czcionkę
+    c) rozszerzaj szerokość ich okna, aż okno mutacji i state/getters będą koło siebie pionowo
+    d) nagnieć 3 kropki i wynierz Show console drawer
+
+___________________________________________________________________________
+45) Jak wyciągnąć video z kesza Chroma
+
+      https://www.youtube.com/watch?v=2DQuDgaHjvA
+
+      C:\Users\abc\AppData\Local\Google\Chrome\User Data\Default   "Cache" or "Media Cache" folders
+
+      Just find all the vid's pieces in "Cache" or "Media Cache" folders, copy them to an empty folder,
+      navigate to that folder via your console and use "copy /b * wholevid.mp4" command.
+
+      Find all the vid's pieces Chrome cached on your local drive and glue them back together into a vid.
+      Though this approach works perfectly with Chromes's "Media Cache" folder, it doesn't work that well
+      for Chromes "Cache" folder.
+
+      The video can be played back but it seems like it's header is missing or something like that.
+      Chrome has 3 folders on your disk it keeps stuff in. They are: Cache, Media Cache, Pepper Data.
+
+      The last one is used only for Flash(*.flv). Vids are stored as singular files with *.tmp extensions.
+      Basically. just wait for a vid to load, copy and rename that file.
+
+      "Cache" folder stores both pictures and vids, but in fragments(multiple tiny files).
+      I think vids fragments are in a form of 'stream' and have no header because each fragment
+      is an independent video on it's own.
+
+      You can stitch those pieces back together (as I showed in this utube video) and play them back
+      in any video player though the result you get is not an actual 'normal' video file and some online
+      video upload servisec might not accept it at all(not utube though).
+
+      "Media Cache" stores only videos. They are fragmented into multiple files, as well as in Cache folder,
+      but with preserved internal structure which enables us to put it back together exactly as it was.
+
+curl https://player.vimeo.com/video/300125576 -o plik.mp4
+
+------------------------------------------------------------------------------------------------
+46) Code coverage
+
+      a) F12 > klik w ikonkę mobajla > Nexus 5
+
+      b) ctrl + shift + p > 'coverage' > 'drawer...'
+         > klik w kropkę pod 3-ma kropkami (Instrument Coverage) >
+         > wpisz adres strony np https://dist-gxaosgnncp.now.sh/ > enter
+
+      c) u dołu ekranu ukażą się pliki i kolumna 'Unused Bytes'
+      d) dwuklik na wybranym pliku
+      e) zielone = używana linia (ok), czerwona - nie (nie ok, ko)
+
+------------------------------------------------------------------------------------------------
+47) Jak ustawić Canarka jako domyślną przeglądarkę
+
+    https://superuser.com/questions/625879/how-can-i-set-google-chrome-canary-as-the-default-browser-on-windows-8
+
+    Control Panel\Programs\Default Programs\Set Default Programs
+
+------------------------------------------------------------------------------------------------
+50) Hover w dev toolsach
+
+    a) stań na wybranym elemencie > nagnieć prawy > Inspect / Zbadaj
+    b) w wyświetlonym oknie Elements, przenieś podswietlenie do najbliższego <tr> powyżej
+    c) w tabie Styles obok okienka Filter jest ':hov' - nagnieć
+    d) w wyswietlonym oknie kliknij w czekboksa ':hover'
+    e) zaznaczony element odpowiednio zmieni podświetlenie
+    f) a poniżej, wyświetlą się css'y tworzące tego hovera
+    g) przeklej je do swego kodu i zmodyfikuj
+------------------------------------------------------------------------------------------------
+51) Kasowanie cookies
+
+      Pomaga pozbyć się modala na Medium, zmuszającego do zalogowania się albo zapłacenia
+
+      a) zainstaluj addon EditThisCookie
+      b) wejdź na stronę
+      c) klik w ikonę ciastka - wyświetlą się wszystkie cookie tej strony
+      d) klik w ikonę śmietnika w lewym górnym
+

@@ -1,3 +1,4 @@
+# zmiana z domu by sprawdzić alias 'no' 
 # przeladuj odpalając: . ~/.bashrc  - kropka na początku
 alias a='alias'
 alias b='yarn build && cd dist && now && cd ..'
@@ -48,7 +49,7 @@ alias ttt='touch dupa1.js && printf "Moja 1\nMoja2\nMoja3" >> dupa1.js &&
 alias cyo='npx cypress open'
 alias cyr='npx cypress run'
 
-alias no='cd ~/Desktop/notki && git pull && git commit -am 'nowy' &&  git push -u origin master'
+alias no='cd ~/Desktop/notki && git config user.email maciek.kand@gmail.com && git config user.name maciekkand && git pull && git commit -am 'nowy' &&  git push -u origin master'
 
 
 

@@ -48,7 +48,8 @@ alias ttt='touch dupa1.js && printf "Moja 1\nMoja2\nMoja3" >> dupa1.js &&
 alias cyo='npx cypress open'
 alias cyr='npx cypress run'
 
-alias no='cd ~/Desktop/notki && git commit -am 'nowy' && git pull && git push -u origin master'
+alias no='cd ~/Desktop/notki && git pull && git commit -am 'nowy' &&  git push -u origin master'
+
 
 
 

@@ -1477,6 +1477,12 @@ ________________________________________________________________________________
            git branch
          .. i się pojawią
 
+      q) Setting > Online Services Settings
+          zawiera takie miody, jak:
+            vsc auto updates
+            addons autoupdates
+            git autofetch
+            ts - automatic type acquisition
 ________________________________________________________________________________________________________
 08) Debugger - hello world
 

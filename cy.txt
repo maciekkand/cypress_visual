@@ -51,7 +51,7 @@
 101) cypress-vue-unit-test - hello world
 
 110) percy
-112) cypress-visual-regression
+112) percy - local (cypress-visual-regression)
 
 120) 'unable to get local issuer certificate' - podczas istalacji cypressa
 121) logi
@@ -143,6 +143,12 @@
      s) Copy CSS Selector (plugin do chroma) - b ułatwia wydostanie właściwego selektora elementu html
           najedź na element na stronie > prawy > Copy CSS Selector
 
+     t) scrolowanie ekranu w górę
+          By go uniknąć, w każdym kliku wbij:
+            .click({force: true})
+            .type('sth', {force: true})
+            .select(..., {force: true})
+        Zbędne jest wtedy używanie cy.scrollTo(0, 0)
 --------------------------------------------------------------------------------------------
 01) hello world
 
@@ -1595,7 +1601,7 @@
 
       e) na percy.io stwórz nowy projekt np. skillbill1
 
-      f) wejdź w niego kilkiem w w link z jego nazwą w lewym górnym
+      f) wejdź w niego kilkiem w link z jego nazwą w lewym górnym
           > linka Integrations u góry > znajdź PERCY TOKEN i skopiuj do schowka
 
       g) wbij w terminalu:
@@ -1615,7 +1621,7 @@
       l) wykonaj kroki i) i j)
 
 --------------------------------------------------------------------------------------------
-112) cypress-visual-regression
+112) percy - local (cypress-visual-regression)
 
     Lokalna wersja percy
     https://github.com/mjhea0/cypress-visual-regression
@@ -1719,31 +1725,97 @@
 130) Cicada login - test
 
       a) utwórz lub wklej do poniższych plików
-      b) odpal vpn (f5)
-      c) odpalić apkę
-      d) npx cypresse open
-      e) klik w mojTest.js
+          UWAGA !
+            Do cypress.env.json przeklej wartości skopiowane z devtoolsów na chodzącej apce
 
-    --------- mojTest.js -----------------------------------------------
+      b) odpalić apkę
+      c) npx cypresse open
+      d) klik w start.js
+
+      e) może się przydać dodanie do cypress.json (chodź strona chodzi i bez tego):
+          "chromeWebSecurity": false
+
+  --------- start.js -----------------------------------------------
 
       describe('Cicada', () => {
-        beforeEach(function () {
-          // Cypress.Cookies.preserveOnce()
-          // cy.log('**Skopiuj poniżej aktualne wartości cookie i tokena**')
-        })
 
-        it('Login mocking', () => {
+        beforeEach(function () {
+          /*
+            In theory, below commands are needed, as Cypress clears cookies between tests
+            In practice, it seems that the app needs the cookie and the token, only for the first run
+
+            Cypress.Cookies.preserveOnce('fsd-node-server')
+            cy.restoreLocalStorageCache()
+          */
+
           cy.loginMocking()
           cy.visit('http://localhost:3000')
         })
+
+        afterEach(function () {
+          // cy.saveLocalStorageCache()  // see the comment in beforeEach section
+        })
+
+        it('1. should contain "Product Dashboard" title on the 1st page', () => {
+          cy.log('**Remember to update "fsdCookie" and "userToken" in cypress.env.json !**')
+          cy.get('h1').should('contain','Product Dashboard')
+        })
+
+        it('2. should contain "Components" title, after clicking the 1st product card', () => {
+          cy.get(':nth-child(1) > :nth-child(1) > .v-card > .container').click()  //
+          cy.get('h2').should('contain','Components')
+        })
+
+        it('3. should contain "Add Component" title, after clicking the "Add Component" button', () => {
+          cy.get(':nth-child(1) > :nth-child(1) > .v-card > .container').click()
+          cy.get('.flex > .mr-0 > .v-btn__content').click()
+          cy.get('h1').should('contain','Add Component')
+        })
+
+        it.only('4. should contain "Add Component" title, after clicking the "Add Component" button', () => {
+          cy.get(':nth-child(1) > :nth-child(1) > .v-card > .container').click({force: true})
+          cy.get('.flex > .mr-0 > .v-btn__content').click({force: true})
+          cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__content.layout.column > form > div.layout.row > div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(1) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections').click({force: true})
+          cy.get('#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div').click({force: true})
+
+          cy.get(':nth-child(2) > .v-input > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections').click({force: true})
+          cy.get('.menuable__content__active > .v-select-list > .v-list > :nth-child(2) > .v-list__tile > .v-list__tile__content > .v-list__tile__title').click({force: true})
+
+          cy.get('#add-component-developer-dl').click({force: true}).type('@DIGITAL CICADA Support', {force: true})
+
+          cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div > span').click({force: true})
+
+          cy.get('#add-component-operator-dl').click({force: true})
+          cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div').click({force: true})
+          cy.get('h1').click({force: true})
+          cy.scrollTo(0,0)
+
+          cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__buttons-container > div > div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div').should('not.be.disabled')
+        })
       })
 
-    --------- /cypress.env.json -------------------------------------
+
+
+
+  --------- /cypress.env.json -------------------------------------
 
       {
-      "fsdCookie": "s%3A0M2472rv3zHmQxs3pDYZIQ6cPiNQhAJv.UpfnAnCux4boNsvqbtA21GOg7YrksCl%2BdX2%2BmBYaCA4",
-      "userToken": {"accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJhMmI1MDVmYjFkYmQ0MDI2OGU3MGFmZDUxOTI3ODZiYiIsInN1YiI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsInNjb3BlIjpbImcwMTI4Mzc1NCIsImcwMTMxNzIzOCIsIm9wZW5pZCIsImcwMTMyODIxOSJdLCJjbGllbnRfaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImF6cCI6ImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwidXNlcl9pZCI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX25hbWUiOiI1MDMxNTI1NzMiLCJlbWFpbCI6Ik1hY2llai5LYW5kYWxza2lAZ2UuY29tIiwiYXV0aF90aW1lIjoxNTcwMzU5ODU4LCJyZXZfc2lnIjoiYTFiM2E2ZjkiLCJpYXQiOjE1NzAzNTk4NzMsImV4cCI6MTU3MDM2NzA3MiwiaXNzIjoiaHR0cHM6Ly9hOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUucHJlZGl4LXVhYS5ydW4uYXdzLXVzdzAyLXByLmljZS5wcmVkaXguaW8vb2F1dGgvdG9rZW4iLCJ6aWQiOiJhOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUiLCJhdWQiOlsiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsIm9wZW5pZCJdfQ.BMr_5CwjMYtHJRWIbK4xASWaW-6IPaLyiHAT8mKfANihoD5xUvUqO-I26gXOX_Zoudfqx5wSd-jKaxFLBWf7UcaIoN6K70syJ89bzMv19G0I2KMSzCYZDtUMmEoI2EeloHrRJWPLHPxVXNz19KgBXEbV7iBQnR-bq2UCKPwOgNw7VeN72qzDtxGaxT3qvAvRYHscaBoyayupGajPHZXWWmusRL190rmUuswaal0B5JKi5JAFgJKOfiwbcjppMYyYnLpM_izFhbubcHE4ISEUMoHcTh0P8pj1O9OZstw7w16dex0-bVu0aE4qhvIvHH5bieuCPzFhj1WvITe89ff7Pw","refreshToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJmODM3NTdlNjcxZDc0M2NiOGJjYWY4NTU3ZGU2ZTFhNC1yIiwic3ViIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwic2NvcGUiOlsiZzAxMjgzNzU0IiwiZzAxMzE3MjM4Iiwib3BlbmlkIiwiZzAxMzI4MjE5Il0sImlhdCI6MTU3MDM1OTg3MywiZXhwIjoxNTcwMzgxNDcyLCJjaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2xpZW50X2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImlzcyI6Imh0dHBzOi8vYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1LnByZWRpeC11YWEucnVuLmF3cy11c3cwMi1wci5pY2UucHJlZGl4LmlvL29hdXRoL3Rva2VuIiwiemlkIjoiYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1IiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfbmFtZSI6IjUwMzE1MjU3MyIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX2lkIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwicmV2X3NpZyI6ImExYjNhNmY5IiwiYXVkIjpbImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJvcGVuaWQiXX0.pA6jc1gCWLSjgE8tgSfaZwtVj_O1taeD1NAsMVtheCWlrD6F70ZWut1GD9JPBlnTcx3S2fjmfXrxitl9ryHIePizyVtiv2gZ1J5fSzcSFsbdQKKnXLBjGtNvUu3fmovrZkoBZLA3lSinXMcSCn6UNcJB-H7aUttqkEMWq8uEjbd6b_ny8FQnO0LjjUvAG283q59wl8mP4AlYyrTQZdahz0-lr886XTLC5qpwnoVQdePz5LOvl-bI2u1yvV8-8onCpmwKEtKH0oEs2BI9C_j9u6X8Y5jUuIuhZ1yh66ZlYT0zfyDwn36jqQvTkPGAEoGy1o_M-MC9ouV9GQMNG3u-7g","accessTokenExpiration":1570367072000,"refreshTokenExpiration":1570381472000}
-}
+        "fsdCookie": "s%3AVVRzuXiZhgNxinRT_JGtjXiZLT8ogEuS.Nx5sPuY23QQxE7h3H8gcAzwUdRDkbAtjgBhwQaYnDmc",
+        "userToken": {"accessToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiIwNmY1ZTg4ODJlMmE0ODIzYTZlNWFlN2U1MWE3NzEyNSIsInN1YiI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsInNjb3BlIjpbImcwMTI4Mzc1NCIsImcwMTMxNzIzOCIsIm9wZW5pZCIsImcwMTMyODIxOSJdLCJjbGllbnRfaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImF6cCI6ImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwidXNlcl9pZCI6ImNiMjA4ODZlLWViMWUtNGIzYy1iYjg5LTU3M2ViYWEzMWRmYSIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX25hbWUiOiI1MDMxNTI1NzMiLCJlbWFpbCI6Ik1hY2llai5LYW5kYWxza2lAZ2UuY29tIiwiYXV0aF90aW1lIjoxNTcwNDQxMzM0LCJyZXZfc2lnIjoiYTFiM2E2ZjkiLCJpYXQiOjE1NzA0NDI1NTgsImV4cCI6MTU3MDQ0OTc1NywiaXNzIjoiaHR0cHM6Ly9hOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUucHJlZGl4LXVhYS5ydW4uYXdzLXVzdzAyLXByLmljZS5wcmVkaXguaW8vb2F1dGgvdG9rZW4iLCJ6aWQiOiJhOGEyZmZjNC1iMDRlLTRlYzEtYmZlZC03YTUxZGQ0MDg3MjUiLCJhdWQiOlsiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsIm9wZW5pZCJdfQ.XzGICQAH2IF4qsBRxz62VE_Dxi9mZUk3Q9jxqbcKM9fmR7zHKo3NeF77awTo52iEPbHCtesvOTJjbtbPkzvrBSb9QL-Bd3Zhe98SSl5VfiNmYZRrL6NLn_Cx_rFwJyi7B7pFEgDVyf7u3Bd7DeNCkrnuBUmFhGlvEt3nWEGwlrb02E1Er9r6mQlAiCROwAfL76nYbcm-wspk7rIDNU_0hGGJYEpUY2DYTHO_5RjR_uLRVnOygoYPsD7IS8ZNnu2iSBVvkM4CODxZkhkWlabjcHG8QxYmD_RhIinSjfHDrBfWWq4366wRbXcoiaPDYscVsHQj8Q-Ic6ZDVCw3gpnzGg","refreshToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJmYzViZTE1MjRmNDc0M2FlOWFlMjdjNDI4NjAzZmU5OS1yIiwic3ViIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwic2NvcGUiOlsiZzAxMjgzNzU0IiwiZzAxMzE3MjM4Iiwib3BlbmlkIiwiZzAxMzI4MjE5Il0sImlhdCI6MTU3MDQ0MjU1OCwiZXhwIjoxNTcwNDY0MTU3LCJjaWQiOiJhdmlhdGlvbl9jaWNhZGFfdWlfZGV2IiwiY2xpZW50X2lkIjoiYXZpYXRpb25fY2ljYWRhX3VpX2RldiIsImlzcyI6Imh0dHBzOi8vYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1LnByZWRpeC11YWEucnVuLmF3cy11c3cwMi1wci5pY2UucHJlZGl4LmlvL29hdXRoL3Rva2VuIiwiemlkIjoiYThhMmZmYzQtYjA0ZS00ZWMxLWJmZWQtN2E1MWRkNDA4NzI1IiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfbmFtZSI6IjUwMzE1MjU3MyIsIm9yaWdpbiI6ImdlLXNzby1ncm91cHMiLCJ1c2VyX2lkIjoiY2IyMDg4NmUtZWIxZS00YjNjLWJiODktNTczZWJhYTMxZGZhIiwicmV2X3NpZyI6ImExYjNhNmY5IiwiYXVkIjpbImF2aWF0aW9uX2NpY2FkYV91aV9kZXYiLCJvcGVuaWQiXX0.PnEdCrFTw8W88K_O7bJ8rdbZFhJ9gI1z5q3YX_vCtEdKV7_pT1o8GMpUAgt9OmiZRAYdZCaTIDYfD7TmGpfGyHRkkCq9G83K5yJN11byhF2BwY7g73yvfVBOS9ii7yxgpmDCxM6bLWA-F_gux8EoSgxnPL9oRGE9r8YdOvQdmUTcl9TYmSXb-s77J8giNVANQvtsbIDkAQVYztxNvWwh4_z8LcoL4rMbzsMiPtbONSf64p5WKp3y_4-X4RAC8GcSMulL4GRV-E63RzyK5oY_z6YH2k3MlnyByDhA-kK7VvUmLNFIiXCmcLqKApCukSPMFKe7OmfSBaNbZ6Elu_51xQ","accessTokenExpiration":1570449757000,"refreshTokenExpiration":1570464157000},
+        "userProfile": {
+          "firstName":"Maciej",
+          "lastName":"Kandalski",
+          "ssoId":"503152573",
+          "memberOfDistributionLists":[
+            "dtedchydrogen@ge.com",
+            "cicada.support.dev@ge.com",
+            "maizerunners@ge.com"
+          ],
+          "disabledFeatures":[],
+          "allowedOperations":["CREATE_PRODUCT"]
+        }
+      }
+
 
     --------- tests / e2e / support / commands.js -------------------------------------
 
@@ -1809,19 +1881,6 @@
         }
       ]}
 
-      const userProfile = {
-        "firstName":"Maciej",
-        "lastName":"Kandalski",
-        "ssoId":"503152573",
-        "memberOfDistributionLists":[
-          "dtedchydrogen@ge.com",
-          "cicada.support.dev@ge.com",
-          "maizerunners@ge.com"
-        ],
-        "disabledFeatures":[],
-        "allowedOperations":["CREATE_PRODUCT"]
-      }
-
       const detail = {"id":468,"business":"Aviation","ci":"123456789","adminDistributionList":"cicada.support@ge.com","developerDistributionList":"cicada.support@ge.com","exportControl":false,"githubBranches":"master","githubUrl":"https://github.build.ge.com/cicada-test","githubUsername":"502659028","jenkinsUrl":"https://asdfaaaa-pipeline.cicada.digital.ge.com","name":"asdfaaaa","operatorDistributionList":"cicada.support@ge.com","pipelineStatus":{"serviceId":1507,"statusMessage":"STOPPED","statusProgress":"0 of 0","actionInProgress":false,"version":"1.0"},"platform":"Amazon Web Services","riskClass":"Low","supportDistributionList":"cicada.support@ge.com","uai":"uai1234567","allowedOperations":["START","REBUILD","READ","CREATE_COMPONENT","STOP","DELETE","READ_SENSITIVE_VALUES","UPDATE","TERMINATE"]}
       const links = {"links":[{"description":"Github","url":"https://github.build.ge.com/cicada-test"},{"description":"Jenkins","url":"https://asdfaaaa-pipeline.cicada.digital.ge.com"},{"description":"SonarQube","url":"https://asdfaaaa-pipeline.cicada.digital.ge.com/sonarqube"}]}
       const summaries = {"componentSummaries":[]}
@@ -1830,23 +1889,24 @@
       const productPlatformCandidates = {platformCandidates: [{id: 17, catalogItemId: 301, catalogItemName: "aws_deployment", description: "Amazon Web Services" }]}
       const risk_class = {"id":5,"name":"risk_class","systemTableItems":[{"id":717,"sysKey":"L","sysVal":"Low"},{"id":718,"sysKey":"M","sysVal":"Medium"},{"id":719,"sysKey":"H","sysVal":"High"}]}
 
+      const componentPlatformCandidates = {"platformCandidates":[{"id":1,"catalogItemId":11,"catalogItemName":"generic","description":"Generic Beanstalk Application (AWS)"},{"id":3,"catalogItemId":13,"catalogItemName":"nodejs","description":"Node.js Beanstalk Application (AWS)"},{"id":2,"catalogItemId":12,"catalogItemName":"springboot","description":"Spring Boot Beanstalk Application (AWS)"}]}
+      const componentCandidatesOnly = {"repositories":[{"name":"beanstalkGeneric","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"beanstalkMaven","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"beanstalkNodejs-test","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"cicada-hello","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"predixDefault","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"predixMaven","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true},{"name":"predixNodejs","private":false,"has_issues":true,"has_wiki":true,"has_downloads":true}]}
+
+      const digitalCicadaSupport = [{"cn":"g01191832","displayName":"@Digital CICADA Support","mail":"cicada.support@ge.com","uniquemember":["gessouid=EAA51D0D-8924-1FE1-FA17-002128B20D70,ou=geworker,o=ge.com","gessouid=60C28BA2-43F7-115D-8A0B-002128B20D70,ou=geworker,o=ge.com","gessouid=6D76817D-5D24-1A5E-BAE8-080020C4A522,ou=geWorker,o=ge.com","gessouid=A7ADD0D9-8EC8-1177-C819-002128B20D70,ou=geworker,o=ge.com","gessouid=9AC6CF61-092D-1BE9-8E82-0003BA128A2E,ou=geworker,o=ge.com","gessouid=96B8086B-957D-1A61-D703-080020C4A522,ou=geWorker,o=ge.com","gessouid=6E1B8CF2-136D-1ADA-9217-002128B20D70,ou=geworker,o=ge.com","gessouid=ED75BC33-CADC-15FD-E6BF-002128B20D70,ou=geworker,o=ge.com","gessouid=62DD7B91-51BB-1F80-90B7-002128B20D70,ou=geworker,o=ge.com","gessouid=C2819CE3-ECDE-1B75-FAFD-0003BA128A2E,ou=geworker,o=ge.com","gessouid=D1C747E7-179E-1595-E8A5-002128B20D70,ou=geworker,o=ge.com","gessouid=2C842775-EDB2-17BF-CCF9-002128B20D70,ou=geworker,o=ge.com","gessouid=EEF7850F-E336-168C-97BC-002128B20D70,ou=geworker,o=ge.com","gessouid=38BCAD65-9A40-1A61-9A48-080020C4A522,ou=geWorker,o=ge.com","gessouid=D3D224BC-BBD6-1B1A-F1E1-002128B20D70,ou=geworker,o=ge.com","gessouid=EFACD2E3-F778-12A2-EAA2-002128B20D70,ou=geworker,o=ge.com","gessouid=FDD6D237-432A-19F8-D27D-002128B20D70,ou=geworker,o=ge.com","gessouid=A9E9AD57-1D99-1663-EFAE-002128B20D70,ou=geworker,o=ge.com","gessouid=E4B7A8D0-4726-1BB6-AF5D-002128B20D70,ou=geworker,o=ge.com","gessouid=40DCB47B-F258-1961-ADA4-002128B20D70,ou=geworker,o=ge.com","gessouid=A0058D95-D9C5-1C63-8DD9-002128B20D70,ou=geworker,o=ge.com","gessouid=E5C917B1-355F-1D03-FF72-0003BA128A2E,ou=geworker,o=ge.com","gessouid=6D66312A-9FFB-1B17-A420-002128B20D70,ou=geworker,o=ge.com","gessouid=04BE0EA4-6026-1CE8-F347-002128B20D70,ou=geworker,o=ge.com","gessouid=7038DF40-EB3A-1A97-FCD7-002128B20D70,ou=geworker,o=ge.com","gessouid=F8E3800D-CB9F-1B7F-FE30-002128B20D70,ou=geworker,o=ge.com","gessouid=C2104165-F1EB-1912-C40E-002128B20D70,ou=geworker,o=ge.com","gessouid=9CC55277-E78A-17A1-B803-002128B20D70,ou=geworker,o=ge.com"]}]
+
       const upgrades = {"serviceUpgrades":[{"id":1,"catalogItemId":30,"upgradeCatalogItemId":29,"description":"2.0"}]}
 
-
       Cypress.Commands.add("loginMocking", () => {
-        cy.log('**Skopiuj poniżej aktualne wartości cookie i tokena**')
-        Cypress.Cookies.debug(true)
+        cy.log('**!! Rememeber to paste in, current "fsd-node-server" cookie and the "userToken"**')
 
         cy.setCookie('fsd-node-server', Cypress.env('fsdCookie'))
-        // window.localStorage.setItem('userToken', userToken)
-        // window.localStorage.setItem('userToken', env.jwt)
         window.localStorage.setItem('userToken', Cypress.env('userToken'))
 
         cy.server()
-        cy.route('GET', '/env', env)
+        // cy.route('GET', '/env', env)
         cy.route('GET', '/api/cicada/announcements', announcements)
         cy.route('GET', '/api/cicada/products/summaries', productSummaries)
-        cy.route('GET', '/api/cicada/user/profile', userProfile)
+        cy.route('GET', '/api/cicada/user/profile', Cypress.env('userProfile'))
 
         cy.route('GET', '/api/cicada/products/468/detail', detail)
         cy.route('GET', '/api/cicada/products/468/links', links)
@@ -1856,9 +1916,30 @@
         cy.route('GET', '/api/cicada/catalogproducts/productPlatformCandidates', productPlatformCandidates)
         cy.route('GET', '/api/cicada/systables/byName/risk_class', risk_class)
 
-        cy.route('GET', '/api/cicada/services/1507/upgrades', upgrades)
+        cy.route('GET', '/api/cicada/catalogproducts/componentPlatformCandidates', componentPlatformCandidates)
+        cy.route('GET', '/api/cicada/products/468/githubRepositories?componentCandidatesOnly=true', componentCandidatesOnly)
 
+        cy.route('GET', '/api/cicada/vds/ssoGroups/byDisplayName/@DIGITAL CICADA Support', digitalCicadaSupport)
+        cy.route('GET', '/api/cicada/vds/ssoGroups/byDisplayName/@Digital CICADA Support', digitalCicadaSupport)
+
+        cy.route('GET', '/api/cicada/services/1507/upgrades', upgrades)
       })
+
+      /* Commands for preserving localStorage items, whoch otherwise Cypress would delete after each test */
+
+      let LOCAL_STORAGE_MEMORY = {};
+
+      Cypress.Commands.add("saveLocalStorageCache", () => {
+        Object.keys(localStorage).forEach(key => {
+          LOCAL_STORAGE_MEMORY[key] = localStorage[key];
+        });
+      });
+
+      Cypress.Commands.add("restoreLocalStorageCache", () => {
+        Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
+          localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
+        });
+      });
 
 
 

@@ -149,6 +149,14 @@
             .type('sth', {force: true})
             .select(..., {force: true})
         Zbędne jest wtedy używanie cy.scrollTo(0, 0)
+
+      u) code completion / hinting
+
+          U góry pliku z testem, wklej:
+            /// <reference types="Cypress" />
+
+          Teraz po wpisaniu 'cy.' otworzy się okno z podpowiedziami
+
 --------------------------------------------------------------------------------------------
 01) hello world
 

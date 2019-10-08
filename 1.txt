@@ -1,4 +1,9 @@
+
+https://stackoverflow.com/questions/54400494/get-correct-indentation-when-pasting-in-vs-code
+
 # zmiana z domu by sprawdzić alias 'no' 
+
+
 # przeladuj odpalając: . ~/.bashrc  - kropka na początku
 alias a='alias'
 alias b='yarn build && cd dist && now && cd ..'

@@ -1800,6 +1800,40 @@
 
           cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__buttons-container > div > div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div').should('not.be.disabled')
         })
+
+        it.only('5. should login thtough SSO login page', () => {
+          // cy.pause()
+          // cy.clearLocalStorage()
+          // cy.clearCookies()
+          // cy.pause()
+
+          /* Mariusz mi wyśle nowe konto, bo to ma zły password
+             w beforeEach jest:
+              cy.clearLocalStorage()
+              cy.clearCookies()
+              cy.wait(1000)
+              cy.loginMocking()
+
+              a w commands.js:
+
+              cy.server()
+              // cy.route('GET', '/env', env)
+              cy.route('GET', '/api/cicada/announcements', announcements)
+              cy.route('GET', '/api/cicada/products/summaries', productSummaries)
+          */
+
+          cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
+            .get('#username').click().clear()
+            .type('502810418')
+            // .type('502811459')
+            .get('#password').click().type('Cicada-18L').wait(1000)
+            // .get('#password').click().type('Fa2j1befk').wait(1000)
+            // .pause()
+            .get('#submitFrm').click() //.wait(5000)
+
+          // cy.reload()
+
+        })
       })
 
 

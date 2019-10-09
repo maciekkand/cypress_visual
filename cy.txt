@@ -1839,7 +1839,7 @@
 
 
 
-  --------- /cypress.env.json -------------------------------------
+--------- /cypress.env.json -------------------------------------
 
       {
         "fsdCookie": "s%3AVVRzuXiZhgNxinRT_JGtjXiZLT8ogEuS.Nx5sPuY23QQxE7h3H8gcAzwUdRDkbAtjgBhwQaYnDmc",
@@ -1858,8 +1858,7 @@
         }
       }
 
-
-    --------- tests / e2e / support / commands.js -------------------------------------
+--------- tests / e2e / support / commands.js -------------------------------------
 
       const env = {
         jwt: {

@@ -1460,29 +1460,32 @@ ________________________________________________________________________________
           ],
         }
 
-     n) numerki z ilością błędów eslinta w gutterze explorera
+    n) numerki z ilością błędów eslinta w gutterze explorera
 
-          W wersji 1.31 (sty 19) zniknęły
-          Wróciły po instalacji 1.30.2
+         W wersji 1.31 (sty 19) zniknęły
+         Wróciły po instalacji 1.30.2
 
-     o) wszystko działało, a po nie znaczących zmianach (albo nast dnia) - przestało
+    o) wszystko działało, a po nie znaczących zmianach (albo nast dnia) - przestało
 
-          a) odpal yarn devbuild'a (yarn build && serve -s dist)
-          b) odpal w chrome canary
+         a) odpal yarn devbuild'a (yarn build && serve -s dist)
+         b) odpal w chrome canary
 
         Często okaże się że w devbuildzie wszystko działa ok
 
-      p) jeśli nie widać ani cyferki ilości zmian przy ikonce gita,
+    p) jeśli nie widać ani cyferki ilości zmian przy ikonce gita,
          ani nazwy bieżącego brancha (w lewym dolnym), odpal:
            git branch
          .. i się pojawią
 
-      q) Setting > Online Services Settings
-          zawiera takie miody, jak:
-            vsc auto updates
-            addons autoupdates
-            git autofetch
-            ts - automatic type acquisition
+    q) Setting > Online Services Settings
+         zawiera takie miody, jak:
+           vsc auto updates
+           addons autoupdates
+           git autofetch
+           ts - automatic type acquisition
+
+    r) zachowywał wcięcia przy copy/paste zawsze, prócz kombinacji .js -> .txt
+         "editor.formatOnPaste": true,
 ________________________________________________________________________________________________________
 08) Debugger - hello world
 
@@ -2559,6 +2562,8 @@ ________________________________________________________________________________
       d) w pliku .js napisz '30s' - wyskoczy popup ze wszystkimi snipkami
 
 ________________________________________________________________________________________________________
+76)
+
 
 
 

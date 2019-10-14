@@ -50,8 +50,8 @@
 100) cypress-vue-unit-test
 101) cypress-vue-unit-test - hello world
 
-110) percy
-112) percy - local (cypress-visual-regression)
+110) cypress-visual-regression (lokalne percy)
+111) percy
 
 120) 'unable to get local issuer certificate' - podczas istalacji cypressa
 121) logi
@@ -122,7 +122,12 @@
     l) by po zakończeniu testu, okno browsera nie opuszczało się,
         dodaj na końcu: cy.scrollTo(0, 0)
 
-    m) cypress cache clear
+    m) cypress cache clear  // czyści śmieci z innych wersji cy zainstalowanych kiedyś wcześniej
+         zaraz po nim musisz odpalić:
+           cypress install (20 min)
+       zrób to tylko jeśli
+          npx cypress cache list
+       pokazał ci więcej niż 1 wersję
 
     n) F5 - wykonaj test
 
@@ -156,6 +161,10 @@
             /// <reference types="Cypress" />
 
           Teraz po wpisaniu 'cy.' otworzy się okno z podpowiedziami
+
+      v) incognito
+          cypress nie pójdzie w tym trybie, bo zawiera plugina dołaczanego do chroma,
+          a tryb incognito wyłącza wszystkie pluginy
 
 --------------------------------------------------------------------------------------------
 01) hello world
@@ -1589,8 +1598,49 @@
         }
         </style>
 
+
 --------------------------------------------------------------------------------------------
-110) percy
+110) cypress-visual-regression (lokalne percy)
+
+    Lokalna wersja percy
+    https://github.com/mjhea0/cypress-visual-regression
+
+
+    a) yarn add cypress-visual-regression
+
+    b) wklej do cypress.json:
+        {
+          "screenshotsFolder": "cypress/snapshots/actual",
+          "trashAssetsBeforeRuns": true
+        }
+
+    c) wklej do cypress/plugins/index.js:
+
+        const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
+
+        module.exports = (on) => {
+          getCompareSnapshotsPlugin(on)
+        }
+
+    d) wklej do cypress/support/commands.js:
+
+        const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+        compareSnapshotCommand()
+
+    e) na początku i na końcu testu, wbij:
+        cy.compareSnapshot('test_shot')
+
+    f) zrób snapshota bazowego (początkowego):
+        npx cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base
+        npx cypress run --env type=base --config screenshotsFolder=tests/e2/snapshots/base
+
+    g) zrób jakąś drobną zmianę graficzną i snapshota kolejnego (porównawczego):
+        cypress run --env type=actual
+
+    h) w katalogu cypress/snapshots znajdziesz podkatalog o nazwie pliku testowego (np start.js)
+         base i /tests/e2e/screenshots ze snapszotem z różnicą
+--------------------------------------------------------------------------------------------
+111) percy
 
       docs.percy.io/docs/percyscript
 
@@ -1628,45 +1678,7 @@
 
       l) wykonaj kroki i) i j)
 
---------------------------------------------------------------------------------------------
-112) percy - local (cypress-visual-regression)
 
-    Lokalna wersja percy
-    https://github.com/mjhea0/cypress-visual-regression
-
-
-    a) yarn add cypress-visual-regression
-
-    b) wklej do cypress.json:
-        {
-          "screenshotsFolder": "cypress/snapshots/actual",
-          "trashAssetsBeforeRuns": true
-        }
-
-    c) wklej do cypress/plugins/index.js:
-
-        const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
-
-        module.exports = (on) => {
-          getCompareSnapshotsPlugin(on)
-        }
-
-    d) wklej do cypress/support/commands.js:
-
-        const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
-        compareSnapshotCommand()
-
-    e) na początku i na końcu testu, wbij:
-        cy.compareSnapshot('home')
-
-    f) zrób snapshota bazowego (początkowego):
-        npx cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base
-
-    g) zrób jakąś drobną zmianę graficzną i snapshota kolejnego (porównawczego):
-        cypress run --env type=actual
-
-    h) w katalogu cypress/snapshots znajdziesz podkatalogi
-         base i actual/diff/ ze snapszotem z różnicą
 --------------------------------------------------------------------------------------------
 120) 'unable to get local issuer certificate' - podczas istalacji cypressa
 
@@ -1674,7 +1686,7 @@
 
         Rozw:
           ustaw zmienną środowiskową, odpalając:
-            export NODE_TLS_REJECT_UNAUTHORIZED=0
+            export NODE_TLS_REJECT_UNAUTHORIZED=0 (tak, ma być export, jeśli piszesz w gitBashu )
           potem usuń ją:
             unset NODE_TLS_REJECT_UNAUTHORIZED
           upewnij się, że jej tu już nie ma
@@ -1982,42 +1994,159 @@
         });
       });
 
+--------------------------------------------------------------------------------------------
+131) Cicada login - test: etap 2
+
+      Poniższy test puściłem 5 razy z rzędu.
+      Za każdym razem dostałem na końcu właściwy ekran
+      Pierwsze 4 razy przeszedł z logowaniem na stronie
+      Za ostatnim razem, pokazał stronę nie wyświetlając wcześniej strony logowania
+        Czyli pomimo instrukcji:
+          cy.clearLocalStorage()
+          cy.clearCookies()
+        najwyraźniej gdzieś trzyma cuksy i/lub tokeny
+
+      Poustawiać gęściej cy.pause, by mniej się naklikać 'Next'
+
+      A może gasić główny ekran, gnieść Stop na małym oknienku i Start ?
+
+   ---- start.js ---------------------------------
+
+      describe('Cicada', () => {
+        beforeEach(function () {
+        })
+
+        afterEach(function () {
+          cy.clearLocalStorage()
+          cy.clearCookies()
+        })
+
+        it.only('5. should login thtough SSO login page', () => {
+          //! cy.compareSnapshot('test_shot')
 
 
+          cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
+            .get('#username').click().clear()
+            .type('502814481')
+            .get('#password').click().type('Cypr3ss-20U').wait(1000)
+            .get('#submitFrm').click() //.wait(5000)
 
+          cy.get('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a')
+            .should('contain', 'cypress-e2e')
+
+          // cy.reload()
+          // cy.compareSnapshot('test_shot')
+        })
+      })
 
 --------------------------------------------------------------------------------------------
+132) cicada test - final
 
-    Cyprys wywala się na 1-szej linii testu:
-      cy.visit('http://localhost:3000')
+   /// <reference types="Cypress" />
+describe('Cicada', () => {
+  beforeEach(function () {
+    cy.clearLocalStorage()
+    cy.clearCookies()
+    cy.wait(1000)
+  })
+  afterEach(function () {
+    cy.clearLocalStorage()
+    cy.clearCookies()
+  })
 
-    .. wyświetlając:
-
-    CypressError: cy.visit() failed trying to load:
-
-http://localhost:3000/
-
-We attempted to make an http request to this URL but the request failed without a response.
-
-We received this error at the network level:
-
-  > Error: getaddrinfo ENOTFOUND a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io:443
-
-Common situations why this would fail:
-  - you don't have internet access
-  - you forgot to run / boot your web server
-  - your web server isn't accessible
-  - you have weird network configuration settings on your computer
-
-The stack trace for this error is:
-
-Error: getaddrinfo ENOTFOUND a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io:443
-    at errnoException (dns.js:50:10)
-    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+  it('1. should find "cicada-test" label onone of the products shown on the "Product Dashobarod" Page', () => {
+    //! cy.compareSnapshot('test_shot')
 
 
+    cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
+    .get('#username').click().clear()
+    .type('502814481')
+    .get('#password').click().type('Cypr3ss-20U').wait(1000)
+    .get('#submitFrm').click() //.wait(5000)
 
-    https://forum.predix.io/questions/6296/you-should-not-see-this-page-set-up-your-redirect.html
+    cy.get('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a')
+      .should('contain', 'cypress-e2e')
+    // cy.compareSnapshot('test_shot')
+  })
+
+  it.only('2. should create a product and then delete it', () => {
+    //! cy.compareSnapshot('test_shot')
+
+    cy.log('**Logging in ..**')
+
+    cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
+      .get('#username').click().clear()
+      .type('502814481')
+      .get('#password').click().type('Cypr3ss-20U').wait(1000)
+      .get('#submitFrm').click() //.wait(5000)
+
+    // cy.reload()
+
+    cy.get('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a')
+      .should('contain', 'cypress-e2e')
+      .click()
+
+    cy.get('#app > div.application--wrap > main > div > div > div > div > div.components-view-header > div > div > button > div')
+      .click()
+
+
+    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__content.layout.column > form > div.layout.row > div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(1) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections')
+      .click()
+
+    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div > a > div > div')
+        .click()
+
+// cy.pause()
+
+    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__content.layout.column > form > div.layout.row > div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(2) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections')
+      .click()
+
+    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div')
+      .click()
+
+    cy.get('#add-component-developer-dl').click({ force: true }).type('@DIGITAL CICADA Support', { force: true })
+
+    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div > span').click({ force: true })
+
+  cy.log('**Defining the component ..**')
+
+    cy.get('#add-component-operator-dl').click({ force: true })
+    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div').click({ force: true })
+
+    cy.get('h1').click({ force: true })
+
+  cy.log('**Creating it upon clicking OK button ..**')
+    cy.wait(3000)
+
+    // baton Add
+    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__buttons-container > div > div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div')
+    .click()
+
+    // cy.wait(3000)
+
+    cy.get('#app > div.application--wrap > main > div > div > div > div > div.components-view-container > div:nth-child(1) > div > table > tbody > tr > td.text-xs-right > button > div > i')
+      .click()
+
+    cy.get('#app > div.v-dialog__content.v-dialog__content--active > div > div > div.v-card__actions > button.v-btn.v-btn--depressed.theme--light.error > div')
+      .click()
+
+      // cy.log('**Deleting the component ..**')
+      // cy.wait(2000)
+    // cy.scrollTo(0, 0)
+
+
+    // cy.compareSnapshot('test_shot')
+
+
+
+
+
+    // cy.compareSnapshot('test_shot')
+  })
+})
+
+
+
 
 
 

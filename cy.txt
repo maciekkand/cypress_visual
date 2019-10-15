@@ -2040,119 +2040,139 @@
       })
 
 --------------------------------------------------------------------------------------------
-132) cicada test - final
+132) cicada test - final  15 paź 9:02
+
+
+  -------- cypress.env.json ------------------------------------
+
+    {
+      "ssoId":"502814481",
+      "password": "Cypr3ss-20U"
+    }
+
+  -------- /tests/e2e/support/commands.js ------------------------------------
+
+    const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+    compareSnapshotCommand();
+
+    Cypress.Commands.add('login', () => {
+      // cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
+      cy.visit(Cypress.env('server'))
+        .get('#username')
+        .click()
+        .clear()
+        .type(Cypress.env('ssoId'))
+        .get('#password')
+        .click()
+        .type(Cypress.env('password'))
+        .get('#submitFrm')
+        .click();
+
+      // cy.compareSnapshot('test_shot')
+    })
+
+  -------- start.js ------------------------------------
 
    /// <reference types="Cypress" />
 describe('Cicada', () => {
-  beforeEach(function () {
-    cy.clearLocalStorage()
-    cy.clearCookies()
-    cy.wait(1000)
-  })
-  afterEach(function () {
-    cy.clearLocalStorage()
-    cy.clearCookies()
-  })
+  beforeEach(function() {});
+  afterEach(function() {});
 
-  it('1. should find "cicada-test" label onone of the products shown on the "Product Dashobarod" Page', () => {
+  it.only('1. should create a product and then delete it', () => {
     //! cy.compareSnapshot('test_shot')
 
+    cy.log('**Logging in ..**');
 
     cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
-    .get('#username').click().clear()
-    .type('502814481')
-    .get('#password').click().type('Cypr3ss-20U').wait(1000)
-    .get('#submitFrm').click() //.wait(5000)
+      .get('#username')
+      .click()
+      .clear()
+      .type(Cypress.env('ssoId'))
+      .get('#password')
+      .click()
+      .type(Cypress.env('password'))
+      .get('#submitFrm')
+      .click();
 
-    cy.get('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a')
+    cy.get(
+      '#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a'
+    )
       .should('contain', 'cypress-e2e')
-    // cy.compareSnapshot('test_shot')
-  })
+      .click();
 
-  it.only('2. should create a product and then delete it', () => {
-    //! cy.compareSnapshot('test_shot')
+    cy.get('div.components-view-header > div > div > button > div').click();
 
-    cy.log('**Logging in ..**')
+    cy.get(
+      'div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(1) div.v-input__slot > div.v-select__slot > div.v-select__selections'
+    ).click();
 
-    cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
-      .get('#username').click().clear()
-      .type('502814481')
-      .get('#password').click().type('Cypr3ss-20U').wait(1000)
-      .get('#submitFrm').click() //.wait(5000)
+    cy.get(
+      'div.v-menu__content.theme--light.menuable__content__active a > div > div'
+    ).click();
 
-    // cy.reload()
+    cy.get(
+      'div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(2) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections'
+    ).click();
 
-    cy.get('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a')
-      .should('contain', 'cypress-e2e')
-      .click()
+    cy.get(
+      'div.v-menu__content.theme--light.menuable__content__active div:nth-child(2) > a > div > div'
+    ).click();
 
-    cy.get('#app > div.application--wrap > main > div > div > div > div > div.components-view-header > div > div > button > div')
-      .click()
+    cy.get('#add-component-developer-dl')
+      .click({ force: true })
+      .type('@DIGITAL CICADA Support', { force: true });
 
+    cy.get(
+      '#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content a span'
+    ).click({ force: true });
 
-    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__content.layout.column > form > div.layout.row > div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(1) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections')
-      .click()
+    cy.log('**Defining the component ..**');
+    cy.get('#add-component-operator-dl').click({ force: true });
 
-    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div > a > div > div')
-        .click()
+    cy.get(
+      'div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content a > div > div'
+    ).click({ force: true });
 
-// cy.pause()
-
-    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__content.layout.column > form > div.layout.row > div.flex.wizard-page-content__form-content.lg9.md8.xs6 > div > div:nth-child(2) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections')
-      .click()
-
-    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div')
-      .click()
-
-    cy.get('#add-component-developer-dl').click({ force: true }).type('@DIGITAL CICADA Support', { force: true })
-
-    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div > span').click({ force: true })
-
-  cy.log('**Defining the component ..**')
-
-    cy.get('#add-component-operator-dl').click({ force: true })
-    cy.get('#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content > div > div > div > a > div > div').click({ force: true })
-
-    cy.get('h1').click({ force: true })
-
-  cy.log('**Creating it upon clicking OK button ..**')
-    cy.wait(3000)
+    cy.get('h1').click({ force: true });
+    cy.log('**Creating it upon clicking OK button ..**');
 
     // baton Add
-    cy.get('#app > div.application--wrap > main > div > div > div > div.wizard-container__buttons-container > div > div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div')
-    .click()
+    cy.get(
+      'div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div'
+    ).click();
 
-    // cy.wait(3000)
+    cy.wait(3000);
 
-    cy.get('#app > div.application--wrap > main > div > div > div > div > div.components-view-container > div:nth-child(1) > div > table > tbody > tr > td.text-xs-right > button > div > i')
-      .click()
+    cy.get(
+      'div.application--wrap div.components-view-container > div:nth-child(1) td.text-xs-right > button > div > i'
+    ).click();
 
-    cy.get('#app > div.v-dialog__content.v-dialog__content--active > div > div > div.v-card__actions > button.v-btn.v-btn--depressed.theme--light.error > div')
-      .click()
+    cy.get(
+      '#app > div.application--wrap > main > div > div > div > div > div.components-view-container > div:nth-child(1) > div > table > tbody > tr > td:nth-child(1) > a'
+    ).should('contain', 'cypress-demo');
 
-      // cy.log('**Deleting the component ..**')
-      // cy.wait(2000)
-    // cy.scrollTo(0, 0)
+    cy.log('**Deleting ...**');
+    cy.wait(3000);
 
+    cy.get(
+      'div.v-dialog__content.v-dialog__content--active button.v-btn.v-btn--depressed.theme--light.error > div'
+    ).click();
 
-    // cy.compareSnapshot('test_shot')
+    cy.get('body').should('not.contain', 'cypress-demo');
 
-
-
-
-
-    // cy.compareSnapshot('test_shot')
-  })
-})
-
-
-
-
-
+    //! cy.compareSnapshot('test_shot')
+  });
+});
 
 
 --------------------------------------------------------------------------------------------
+133) command line parameters
 
+      https://docs.cypress.io/guides/guides/environment-variables.html#Option-4-env
+
+      cypress run --env host=kevin.dev.local,api_server=http://localhost:8888/api/v1
+
+      cypress run --env server=https://dev-ui-cicada.cicada.digital.ge.com
 
 --------------------------------------------------------------------------------------------
 

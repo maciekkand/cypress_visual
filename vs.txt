@@ -72,193 +72,199 @@ ________________________________________________________________________________
 01) Settings
 
    {
-       "better-comments.tags": [
-           {
-           "tag": "!",
-           "color": "#FF2D00",
-           "strikethrough": false,
-           "backgroundColor": "transparent"
-           },
-           {
-           "tag": "?",
-           "color": "#3498DB",
-           "strikethrough": false,
-           "backgroundColor": "transparent"
-           },
-           {
-           "tag": "//",
-           "color": "#008000",
-           "strikethrough": false,
-           "backgroundColor": "transparent"
-           },
-           {
-           "tag": "todo",
-           "color": "#FF8C00",
-           "strikethrough": false,
-           "backgroundColor": "transparent"
-           },
-           {
-           "tag": "*",
-           "color": "#98C379",
-           "strikethrough": false,
-           "backgroundColor": "transparent"
-           }
-       ],
+    "better-comments.tags": [
+        {
+        "tag": "!",
+        "color": "#FF2D00",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+        },
+        {
+        "tag": "?",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+        },
+        {
+        "tag": "//",
+        "color": "#008000",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+        },
+        {
+        "tag": "todo",
+        "color": "#FF8C00",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+        },
+        {
+        "tag": "*",
+        "color": "#98C379",
+        "strikethrough": false,
+        "backgroundColor": "transparent"
+        }
+    ],
 
-       "checkpoints.askForCheckpointName": false,
-       "checkpoints.showCheckpointsInExplorer": true,
+    "checkpoints.askForCheckpointName": false,
+    "checkpoints.showCheckpointsInExplorer": true,
 
-       "codemetrics.nodeconfiguration.ReturnStatement": 0,
+    "codemetrics.nodeconfiguration.ReturnStatement": 0,
 
-       "code-runner.showRunCommandInEditorContextMenu": false,
-       "code-runner.showRunIconInEditorTitleMenu": false,
+    "code-runner.showRunCommandInEditorContextMenu": false,
+    "code-runner.showRunIconInEditorTitleMenu": false,
 
-       "bookmarks.navigateThroughAllFiles": true,
-       "bookmarks.saveBookmarksInProject": true,
+    "bookmarks.navigateThroughAllFiles": true,
+    "bookmarks.saveBookmarksInProject": true,
 
-       "dart.flutterDebuggerRestartBehaviour": "hotRestart",
-       "dart.flutterHotReloadOnSave": true,
+    "dart.flutterDebuggerRestartBehaviour": "hotRestart",
+    "dart.flutterHotReloadOnSave": true,
 
-       "diffEditor.renderSideBySide": false,
+    "diffEditor.renderSideBySide": false,
 
-       "editor.acceptSuggestionOnCommitCharacter": false,
-       "editor.acceptSuggestionOnEnter": "off",
-       "editor.autoClosingBrackets": "always",
-       "editor.cursorSmoothCaretAnimation": true,
-       "editor.detectIndentation": false,
-       "editor.emptySelectionClipboard": true,
-       "editor.folding": true,
-       "editor.foldingStrategy":"auto" ,
-       "editor.fontFamily": "Fira Code, Hack, Consolas, 'Courier New', monospace",
-       "editor.fontSize": 16,
-       "editor.fontLigatures": true,
-       "editor.formatOnPaste": false,
-       "editor.formatOnSave": false,
-       "editor.formatOnType": false,
-       "editor.hover.enabled": false,
-       "editor.minimap.enabled": false,
-       "editor.mouseWheelScrollSensitivity": 2,
-       "editor.multiCursorModifier": "ctrlCmd",
-       "editor.renderIndentGuides": false,
-       "editor.renderLineHighlight": "all",
-       "editor.renderWhitespace": "none",
-       "editor.showFoldingControls": "always",
-       "editor.snippetSuggestions": "top",
-       "editor.tabSize": 2,
-       "editor.useTabStops": true,
-       "editor.wordWrap": "off",
-       "editor.wordSeparators": "\\()\"',;<>~!@^&*|+[]{}`~",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.autoClosingBrackets": "always",
+    "editor.codeLens": true,
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.detectIndentation": true,
+    "editor.emptySelectionClipboard": true,
+    "editor.folding": true,
+    "editor.foldingStrategy":"auto" ,
+    "editor.fontFamily": "Fira Code, Hack, Consolas, 'Courier New', monospace",
+    "editor.fontSize": 17,
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.hover.enabled": false,
+    "editor.minimap.enabled": false,
+    "editor.mouseWheelScrollSensitivity": 2,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderIndentGuides": false,
+    "editor.renderLineHighlight": "all",
+    "editor.renderWhitespace": "none",
+    "editor.showFoldingControls": "always",
+    "editor.snippetSuggestions": "top",
+    "editor.tabSize": 2,
+    "editor.useTabStops": true,
+    "editor.wordWrap": "off",
+    "editor.wordSeparators": "\\()\"',;<>~!@^&*|+[]{}`~:",
 
-       "eslint.alwaysShowStatus": true,
-       "eslint.autoFixOnSave": false,
-       "eslint.enable": true,
-       "eslint.provideLintTask": true,
-       "eslint.validate": [ "javascript", "vue", "html" ],
-       "eslint.workingDirectories": [ "./src" ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": false,
+    "eslint.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.validate": [ "javascript", "vue", "html" ],
+    "eslint.workingDirectories": [ "./src" ],
 
-       "explorer.confirmDelete": false,
-       "explorer.confirmDragAndDrop": false,
-       "explorer.openEditors.visible": 0,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
 
-       "extensions.autoUpdate": false,
-       "extensions.ignoreRecommendations": false,
+    "extensions.autoUpdate": false,
+    "extensions.ignoreRecommendations": false,
 
-       "files.autoSave": "afterDelay",
-       "files.autoSaveDelay": 1000,
-       "files.eol": "\n",
-       "files.exclude": {
-           "**/babel*": true,
-           "**/.git": true,
-           "**/.svn": true,
-           "**/.hg": true,
-           "**/CVS": true,
-           "**/.DS_Store": true,
-           "yarn-error.log": true,
-           "yarn.lock": true,
-           "package-lock.json": true,
-           "README.md": true,
-           "node_modules": true,
-           ".vscode": true
-       },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/babel*": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "yarn-error.log": true,
+        "yarn.lock": true,
+        "package-lock.json": true,
+        "README.md": true,
+        "node_modules": true,
+        ".vscode": true
+    },
 
-       "files.hotExit": "onExit",
-       "files.insertFinalNewline": true,
-       "files.trimTrailingWhitespace": true,
+    "files.hotExit": "onExit",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
 
-       "git.confirmSync": false,
-       "git.enableSmartCommit": true,
-       "git.postCommitCommand": "none",
+    "git.autoRepositoryDetection": false,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.postCommitCommand": "none",
 
-       "gitlens.advanced.messages": {
-         "suppressShowKeyBindingsNotice": true
-       },
+    "gitlens.advanced.messages": {
+      "suppressShowKeyBindingsNotice": true
+    },
 
-       "gitlens.currentLine.enabled": false,
-       "gitlens.views.repositories.files.layout": "tree",
+    "gitlens.currentLine.enabled": false,
 
-       "html.format.wrapAttributes": "force-aligned",
-       "html.format.enable": true,
-       "html.format.preserveNewLines": true,
+    "html.format.wrapAttributes": "force-aligned",
+    "html.format.enable": true,
+    "html.format.preserveNewLines": true,
 
-       "javascript.updateImportsOnFileMove.enabled": "always",
-       "javascript.validate.enable": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.validate.enable": false,
 
-       "partialDiff.commandsOnContextMenu": {
-         "markSection1": false,
-         "markSection2AndTakeDiff": false,
-         "diffSelectionWithClipboard": true,
-         "diffVisibleEditors": true,
-         "togglePreComparisonTextNormalizationRules": false
-       },
+    "partialDiff.commandsOnContextMenu": {
+      "markSection1": false,
+      "markSection2AndTakeDiff": false,
+      "diffSelectionWithClipboard": true,
+      "diffVisibleEditors": true,
+      "togglePreComparisonTextNormalizationRules": false
+    },
 
-       "problems.decorations.enabled": true,
+    "problems.decorations.enabled": true,
 
-       "search.exclude": {
-         "**/.git": true,
-         "**/node_modules": true,
-         "**/cypress": true,
-         "**/tmp": true,
-         "**/dist": true,
-         "**/tests": true
-       },
+    "search.exclude": {
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/cypress": true,
+      "**/tmp": true,
+      "**/dist": true,
+      "**/tests": true
+    },
 
-       "search.usePCRE2": true,
+    "terminal.integrated.rendererType": "dom",
+    "terminal.integrated.scrollback": 5000,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
 
-       "terminal.integrated.rendererType": "dom",
-       "terminal.integrated.scrollback": 5000,
-       "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "todohighlight.isCaseSensitive": false,
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.html",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.vue"
+    ],
 
-       "todohighlight.isCaseSensitive": false,
-       "todohighlight.include": [
-           "**/*.js",
-           "**/*.html",
-           "**/*.css",
-           "**/*.scss",
-           "**/*.vue"
-       ],
+    "todohighlight.keywords": ["todo", "fixme", "!!", "??"],
 
-       "todohighlight.keywords": ["todo", "fixme", "!!", "??"],
+    "typescript.validate.enable": false,
+    "typescript.tsserver.trace": "verbose",
 
-       "typescript.validate.enable": false,
-       "typescript.tsserver.trace": "verbose",
+    "update.mode": "manual",
 
-       "update.channel": "none",
+    "window.menuBarVisibility": "toggle",
+    "window.title": "${rootName}${separator}${activeEditorShort}",
+    "window.zoomLevel": -1,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.panel.defaultLocation": "right",
+    "workbench.settings.editor": "json",
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.sideBar.location": "left",
+    "breadcrumbs.enabled": false,
+    "workbench.statusBar.visible": true,
+    "workbench.colorTheme": "Monokai",
+    "editor.lineHeight": 0,
+    "pasteAndIndent.selectAfter": true,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.settings.enableNaturalLanguageSearch": false
 
-       "window.menuBarVisibility": "toggle",
-       "window.title": "${rootName}${separator}${activeEditorShort}",
-       "window.zoomLevel": -1,
+}
 
-       "workbench.colorTheme": "Monokai",
-       "workbench.editor.tabSizing": "shrink",
-       "workbench.iconTheme": "material-icon-theme",
-       "workbench.panel.defaultLocation": "bottom",
-       "workbench.settings.editor": "json",
-       "workbench.startupEditor": "newUntitledFile",
-       "editor.suggestSelection": "first",
-       "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-       "workbench.sideBar.location": "left"
-
-   }
 
 
 
@@ -1486,6 +1492,12 @@ ________________________________________________________________________________
 
     r) zachowywał wcięcia przy copy/paste zawsze, prócz kombinacji .js -> .txt
          "editor.formatOnPaste": true,
+
+    s) wyłaczenie wyświetlania 'Source Control Providers' zamiast normalnego 'Source Control: Git'
+         "git.autoRepositoryDetection": false  // i reload vsc
+
+
+
 ________________________________________________________________________________________________________
 08) Debugger - hello world
 

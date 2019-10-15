@@ -1830,8 +1830,8 @@ ________________________________________________________________________________
         Scalanie kilku komitów w jeden
 
         UWAGA !!
-            Przy scalaniu iluś komitów w 1, na wyświetlonej liście,  wstawiaj 's'  ( jak squash )
-            od góry we wszystkich, aż do ostatniego na dole  ( zostaw w nim 'pick' )
+            Przy scalaniu iluś komitów w 1, na wyświetlonej liście,  wstawiaj 's' (jak squash)
+            od góry we wszystkich, aż do ostatniego na dole  (zostaw w nim 'pick')
 
         a) git log --oneline
               4f73749 Split: mastah 1 & mastah 2  // 2-ga część początkowego komita
@@ -2032,8 +2032,11 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________
 141) clone
 
-        git  clone  https://nabu1@bitbucket.org/nabu1/symfonytest.git
-        git  clone  git://github.com/schacon/grit.git mojKatalog               // umieści w katalogu mojKatalog
+      W przypadku rep korporacyjnych, często klonowanie po http jest wyłączone
+      Wtedy trzeba nagnieść linkę 'Use ssh' w okienku z adresem kolowania w gitHubie
+
+        git clone  https://nabu1@bitbucket.org/nabu1/symfonytest.git   // po http
+        git clone  git://github.com/schacon/grit.git mojKatalog        // po ssh
 
 ___________________________________________________________________________________________
 300) github Pages
@@ -2690,7 +2693,7 @@ ________________________________________________________________________________
 
       b) Scalaj komity kierując się ww rozpiską
 
-          git rebase -i   // Scalenie iluś komitów w 1 (bez scalania ich opisów) - rebase fixup
+          git rebase -i  // Scalenie iluś komitów w 1 (bez scalania ich opisów) - rebase -i fixup
                          // Stań prawym na np 5-tym komicie _od góry_ w GitLens
                          // > Rebase to Commit
 

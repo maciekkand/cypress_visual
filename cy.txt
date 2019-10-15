@@ -57,6 +57,13 @@
 121) logi
 122) cookies
 
+130) Cicada login - test: etap 1
+131) Cicada login - test: etap 2
+132) cicada test - final  15 paź 9:02
+
+133) command line parameters
+134) conditional testing
+
 --------------------------------------------------------------------------------------------
 00) tips
 
@@ -1702,10 +1709,6 @@
           a) download the binary manually here: https://download.cypress.io/desktop
           b) SET CYPRESS_INSTALL_BINARY=/path/to/zipfile/cypress.zip npm install cypress
 
---------------------------------------------------------------------------------------------
-121) logi
-
-      https://docs.cypress.io/guides/guides/command-line.html#Debugging-commands
 
 --------------------------------------------------------------------------------------------
 122) cookies
@@ -1742,7 +1745,7 @@
         As long as you provide to cy.request what the browser would have sent it will work the same and avoid using the UI.
 
 --------------------------------------------------------------------------------------------
-130) Cicada login - test
+130) Cicada login - test 1
 
       a) utwórz lub wklej do poniższych plików
           UWAGA !
@@ -2175,7 +2178,47 @@ describe('Cicada', () => {
       cypress run --env server=https://dev-ui-cicada.cicada.digital.ge.com
 
 --------------------------------------------------------------------------------------------
+134) conditional testing
 
+       https://docs.cypress.io/guides/core-concepts/conditional-testing.html#The-strategies
+
+       UWAGA !
+        Nie testowałem poniższych
+
+
+       cy.get('html')
+        .should('have.attr', 'data-campaign').then((campaign) => {
+          return campaigns.test(campaign)
+        })
+
+       --------------------------
+       
+       cy.get('body').then((body) => {
+         if (body.find('.warning').length > 0) {
+           cy.get('#warn-dialog-submit').click();
+          }
+       });
+
+       --------------------------
+
+        if (Cypress.$("#yourElement").length > 0) {
+           // element exists, do something
+        } else {
+           // element does not exist, do something else
+        }
+
+       --------------------------
+        https://stackoverflow.com/questions/54530318/skipping-a-test-in-cypress-conditionally
+
+        conditionally skip a test:
+
+          if (!Cypress.env("SKIP_E2E_TESTS")) {
+            it(...);
+          }
+
+          in package.json file I have a script that looks like this
+
+          "test": "CYPRESS_SKIP_E2E_TESTS=true npm-run-all --parallel --silent test:unit test:cypress",
 
 --------------------------------------------------------------------------------------------
 

@@ -68,6 +68,12 @@
 69) open in browser
 70) emmet
 
+75) 30 seconds (snipki)
+76) 'no source control providers registered'
+77) settings: wersja json vs ui
+78) złe pluginy
+
+
 ________________________________________________________________________________________________________
 01) Settings
 
@@ -1480,8 +1486,8 @@ ________________________________________________________________________________
 
     p) jeśli nie widać ani cyferki ilości zmian przy ikonce gita,
          ani nazwy bieżącego brancha (w lewym dolnym), odpal:
-           git branch
-         .. i się pojawią
+           git --version, jak nie pomoże, to:
+           reload vsc
 
     q) Setting > Online Services Settings
          zawiera takie miody, jak:
@@ -2574,13 +2580,23 @@ ________________________________________________________________________________
       d) w pliku .js napisz '30s' - wyskoczy popup ze wszystkimi snipkami
 
 ________________________________________________________________________________________________________
-76)
+76) 'no source control providers registered'
 
+      Pusto w zakładce gita (po wciśnięciu ikony 'Source Control')
 
-
+      Dodaj poiniższą linijkę do vsc settings i restart vsc
+        "git.path": "/mingw64/bin/git",
 
 ________________________________________________________________________________________________________
+77) settings: wersja json vs ui
 
+      Druga ikonka z lewej w prawym górnym (kartka ze strzałką) togluje ww widoki settingsów
 
+________________________________________________________________________________________________________
+78) złe pluginy
 
+    Color Highlight 2.3.0 - powodował na starcie szmatkę z 'Extension host terminated unexpectedly'
+    Jest - niepotrzebnie odpala się na starcie, zabierając parenaście sekund na 1 mały test
+    ToDoTree - na starcie szmatka z czymś a'propos todo tree
 
+________________________________________________________________________________________________________

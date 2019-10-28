@@ -63,6 +63,12 @@
 
 133) command line parameters
 134) conditional testing
+140) cypress in jenkins
+150) wyświetlanie cy.logów jak console.logów (w konsoli)
+151) cy.url()
+152) cy.task - taski node'a
+
+
 
 --------------------------------------------------------------------------------------------
 00) tips
@@ -1699,7 +1705,6 @@
           upewnij się, że jej tu już nie ma
             set > set.txt
 
-
         Stuff like setting NODE_TLS_REJECT_UNAUTHORIZED=0 or similar is out of the question
         and defeats the whole purpose of secure connections
 
@@ -2043,12 +2048,63 @@
       })
 
 --------------------------------------------------------------------------------------------
-132) cicada test - final  15 paź 9:02
+132) cicada test - final 23 paź 9:08
 
+    Dzięki conditional testingowi (z kilkoma waitami), lokalnie nie fajluje już co drugi raz.
+    Przy poniższych wartościach waitów, przeszło kolejnych 10 z 10 testów
+
+    Pozostaje problem, by chodziło to na jenkinsie, a na razie nie chce
+    Trzeba więc wykonać podobny conditional testing tam gdzie w jenknsie się wywala
+    (Timed out retrying: expected '<body>' to contain 'GE Single Sign On')
+
+
+  -------- package.json ------------------------------------
+
+    {
+      "name": "e2e",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "directories": {
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "dev-ui-cicada.cicada.digital.ge.com -p 3030 --https",
+        "cy:run": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test start https-get://localhost:3030 cy:run",
+        "test": "cypress run"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git@github.build.ge.com:cicada/e2e.git"
+      },
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+        "cypress-visual-regression": "^1.0.4",
+        "start-server-and-test": "^1.10.6"
+      }
+    }
+
+  -------- Dockerfile ------------------------------------
+
+    FROM cypress/included:3.4.1
+
+    ARG URL
+    ENV URL ${URL}
+    WORKDIR /e2e
+
+    COPY . .
+    RUN ls -la && \
+    #npm install cypress-visual-regression start-server-and-test --save-dev
+    npm install
+
+    #ENTRYPOINT [ "sh", "-c", "npx cypress run --env server=${URL}" ]
+    ENTRYPOINT [ "sh", "-c", "npm run test" ]
 
   -------- cypress.env.json ------------------------------------
 
     {
+      "https://dev-ui-cicada.cicada.digital.ge.com",
       "ssoId":"502814481",
       "password": "Cypr3ss-20U"
     }
@@ -2059,48 +2115,58 @@
     compareSnapshotCommand();
 
     Cypress.Commands.add('login', () => {
-      // cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
       cy.visit(Cypress.env('server'))
-        .get('#username')
-        .click()
-        .clear()
-        .type(Cypress.env('ssoId'))
-        .get('#password')
-        .click()
-        .type(Cypress.env('password'))
-        .get('#submitFrm')
-        .click();
 
-      // cy.compareSnapshot('test_shot')
+      cy.wait(1500)
+
+      cy.get('body').then($body => {
+        if ($body.find('#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a').length > 0) {
+          cy.log('**Znalazłem cypress-e2e**')
+          cy.get('body')
+            .should('contain', 'cypress-e2e')
+        }
+        else {
+          cy.get('body')
+            .should('contain', 'GE Single Sign On')
+
+          cy.get('#username')
+            .click()
+            .clear()
+            .type(Cypress.env('ssoId'))
+            .get('#password')
+            .click()
+            .type(Cypress.env('password'))
+            .get('#submitFrm')
+            .click();
+        }
+      })
     })
+
 
   -------- start.js ------------------------------------
 
-   /// <reference types="Cypress" />
+    /// <reference types="Cypress" />
+
 describe('Cicada', () => {
-  beforeEach(function() {});
-  afterEach(function() {});
-
-  it.only('1. should create a product and then delete it', () => {
+  beforeEach(function () {
+    cy.clearLocalStorage()
+    cy.clearCookies()
     //! cy.compareSnapshot('test_shot')
+  });
+  afterEach(function () {
+    //! cy.compareSnapshot('test_shot')
+  });
 
-    cy.log('**Logging in ..**');
 
-    cy.visit('https://dev-ui-cicada.cicada.digital.ge.com')
-      .get('#username')
-      .click()
-      .clear()
-      .type(Cypress.env('ssoId'))
-      .get('#password')
-      .click()
-      .type(Cypress.env('password'))
-      .get('#submitFrm')
-      .click();
+  it('1. should create a product and then delete it', () => {
+
+    // cy.pause()
+    cy.login();
 
     cy.get(
       '#app > div.application--wrap > main > div > div > div > div.container.products-list-container.fluid.grid-list-md > div.layout.row.wrap > div > a > div > div > div.layout.fill-height > div.flex.card-title-col > div.card-title > a'
     )
-      .should('contain', 'cypress-e2e')
+      // .should('contain', 'cypress-e2e')
       .click();
 
     cy.get('div.components-view-header > div > div > button > div').click();
@@ -2125,6 +2191,8 @@ describe('Cicada', () => {
       .click({ force: true })
       .type('@DIGITAL CICADA Support', { force: true });
 
+    cy.wait(3001);
+
     cy.get(
       '#app > div.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content a span'
     ).click({ force: true });
@@ -2137,14 +2205,14 @@ describe('Cicada', () => {
     ).click({ force: true });
 
     cy.get('h1').click({ force: true });
-    cy.log('**Creating it upon clicking OK button ..**');
+    cy.log('**Creating it upon clicking Add button ..**');
 
-    // baton Add
+    // button Add
     cy.get(
       'div.flex.no-grow > button.v-btn.v-btn--depressed.theme--light.primary > div'
     ).click();
 
-    cy.wait(3000);
+    cy.wait(5001);
 
     cy.get(
       'div.application--wrap div.components-view-container > div:nth-child(1) td.text-xs-right > button > div > i'
@@ -2155,7 +2223,7 @@ describe('Cicada', () => {
     ).should('contain', 'cypress-demo');
 
     cy.log('**Deleting ...**');
-    cy.wait(3000);
+    cy.wait(4002);
 
     cy.get(
       'div.v-dialog__content.v-dialog__content--active button.v-btn.v-btn--depressed.theme--light.error > div'
@@ -2163,10 +2231,8 @@ describe('Cicada', () => {
 
     cy.get('body').should('not.contain', 'cypress-demo');
 
-    //! cy.compareSnapshot('test_shot')
   });
 });
-
 
 --------------------------------------------------------------------------------------------
 133) command line parameters
@@ -2182,32 +2248,35 @@ describe('Cicada', () => {
 
        https://docs.cypress.io/guides/core-concepts/conditional-testing.html#The-strategies
 
-       UWAGA !
-        Nie testowałem poniższych
+        You cannot do conditional testing on the DOM unless you are either:
+          a) Server side rendering with no asynchronous JavaScript.
+          b) Using client side JavaScript that only ever does synchronous rendering.
 
+        It is crucial that you understand how your application works else you will write flaky tests.
 
-       cy.get('html')
-        .should('have.attr', 'data-campaign').then((campaign) => {
-          return campaigns.test(campaign)
-        })
+        To powiedziawszy, w klauzuli if, można szukać po selektorze:
+           if ($body.find('#app > div.application--wrap > main > div ...')
 
-       --------------------------
-       
-       cy.get('body').then((body) => {
-         if (body.find('.warning').length > 0) {
-           cy.get('#warn-dialog-submit').click();
-          }
-       });
+        .. lub po stringu:
+           if ($body.text().includes('some string'))
 
-       --------------------------
+       -------------------------------------------------------------
 
-        if (Cypress.$("#yourElement").length > 0) {
-           // element exists, do something
-        } else {
-           // element does not exist, do something else
-        }
+        // this only works if there's 100% guarantee,
+        // body has fully rendered without any pending changes to its state
 
-       --------------------------
+        cy.get('body').then(($body) => {
+            if ($body.text().includes('some string')) {
+              // yup found it
+              cy.get(...).should(...)
+            } else {
+              // nope not here
+              cy.get(...).should(...)
+            }
+          })
+
+       -------------------------------------------------------------
+
         https://stackoverflow.com/questions/54530318/skipping-a-test-in-cypress-conditionally
 
         conditionally skip a test:
@@ -2221,6 +2290,80 @@ describe('Cicada', () => {
           "test": "CYPRESS_SKIP_E2E_TESTS=true npm-run-all --parallel --silent test:unit test:cypress",
 
 --------------------------------------------------------------------------------------------
+140) cypress in jenkins
+
+      a) zrobiłem nowe repo cicada/e2e
+
+      b) spuszowałem do niego (pliki na dole):
+            /cicada/.cicada
+            /tests/e2e/plugins/index.js
+                      /specs/start.js
+            /tests/e2e/support/index.js
+                              /commands.js
+            /.gitignore
+            /cypress.env.json
+            /Dockerfile
+            /version
+
+      c) push odpala jenkinsa
+            https://cicada-pipeline.cicada.digital.ge.com/cicada/job/cicada/job/e2e/
+
+            > master > tabela Historia zadań > pierwsze od góry (0.1 2019-10-17 06:33)
+            > Console output
+            > scroll na koniec i 3 ekrany wstecz
+            > 'CypressError: Timed out retrying: Expected to find element: '#username', but never found it.
+            > Back
+            > Replay (albo zmiana kodu i push)
+
+
+--------------------------------------------------------------------------------------------
+150) wyświetlanie cy.logów jak console.logów (w konsoli)
+
+    a) w konsoli wpisz:
+        localStorage.debug = 'cypress*'
+    b) zrestartuj chroma i odpal:
+        npx cypress open
+
+    By wyłaczyć debugowanie w konsoli, wbij w niej:
+      delete localStorage.debug
+
+--------------------------------------------------------------------------------------------
+151) cy.url()
+
+      Alias polecenia cy.location('href'). Zwraca adres bieżacej strony
+      Trzeba go wołać asynchronicznie:
+
+        cy.url()
+          .then(url => {
+            cy.task('log', '#####  current url = ' + url + '  #####')
+
+          })
+
+--------------------------------------------------------------------------------------------
+152) cy.task - taski node'a
+
+      Jak stworzyć polecenie wyświetlające log'a w logach jenkinsa ?
+        a) w /plugins/index.js zdefiniuj go wraz z nazwą ('log')
+        b) użyj go w kodzie:
+            cy.task('log', 'kolor: ' + kolor)
+
+    ----  ../plugins/index.js  --------------------------
+
+      module.exports = (on, config) => {
+
+        on('task', {
+          log(message) {
+            console.log(message)
+            return null
+          }
+        })
+
+    -------------------------------------------------------
+
+        cy.url()
+          .then(url => {
+            cy.task('log', '##########  current url = ' + url + '  ############')
+        })
 
 
 --------------------------------------------------------------------------------------------
@@ -2229,5 +2372,7 @@ describe('Cicada', () => {
 --------------------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------------------

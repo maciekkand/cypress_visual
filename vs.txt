@@ -69,7 +69,7 @@
 70) emmet
 
 75) 30 seconds (snipki)
-76) 'no source control providers registered'
+76) brak gita ('no source control providers registered')
 77) settings: wersja json vs ui
 78) złe pluginy
 
@@ -271,9 +271,6 @@ ________________________________________________________________________________
 
 }
 
-
-
-
 ________________________________________________________________________________________________________
 02) Keyboard Shortcuts
 
@@ -293,357 +290,416 @@ ________________________________________________________________________________
 
 
   [
-    {
-      "key": "F1",
-      "command": "workbench.action.toggleSidebarVisibility"
-    },
-    {
-      "key": "F2",
-      "command": "workbench.action.terminal.toggleTerminal"
-    },
-    { "key": "F4", "command": "bookmarks.toggle" },
-    {
-      "key": "F7",
-      "command": "checkpoints.addCheckpoint",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "F12",
-      "command": "code-runner.run"
-    },
-    {
-      "key": "ctrl+alt+/",
-      "command": "macros.commentDown"
-    },
-    {
-      "key": "ctrl+shift+v",
-      "command": "pasteAndIndent.action",
-      "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-      "key": "ctrl+alt+l",
-      "command": "-toggleFindInSelection",
-      "when": "editorFocus"
-    },
-    {
-      "key": "ctrl+alt+l",
-      "command": "-bookmarks.jumpToNext",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+alt+n",
-      "command": "-code-runner.run"
-    },
-    {
-      "key": "ctrl+alt+s",
-      "command": "-checkpoints.addCheckpoint",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+1",
-      "command": "workbench.action.maximizeEditor"
-    },
-    {
-      "key": "ctrl+2",
-      "command": "workbench.action.evenEditorWidths"
-    },
-    {
-      "key": "alt+left",
-      "command": "workbench.action.navigateBack"
-    },
-    {
-      "key": "alt+right",
-      "command": "workbench.action.navigateForward"
-    },
-    {
-      "key": "alt+1",
-      "command": "workbench.action.focusFirstEditorGroup"
-    },
-    {
-      "key": "alt+2",
-      "command": "workbench.action.focusSecondEditorGroup"
-    },
-    {
-      "key": "ctrl+alt+n",
-      "command": "-gitProjectManager.openProjectNewWindow"
-    },
-    {
-      "key": "alt+y",
-      "command": "extension.openInBrowser"
-    },
-    {
-      "key": "alt+l",
-      "command": "-console.log.wrap.input"
-    },
-    {
-      "key": "numlock",
-      "command": "console.log.wrap.down",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "scrolllock",
-      "command": "console.log.wrap.up",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "capslock",
-      "command": "console.log.wrap.up",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+alt+w down",
-      "command": "-console.log.wrap.down",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+shift+alt+w down",
-      "command": "-console.log.wrap.down.input",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "numlock",
-      "command": "console.log.wrap.down.prefix",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+alt+w ctrl+alt+down",
-      "command": "-console.log.wrap.down.prefix",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "alt+shift+f",
-      "command": "workbench.action.findInFiles"
-    },
-    {
-      "key": "ctrl+shift+a",
-      "command": "workbench.action.findInFiles"
-    },
-    {
-      "key": "ctrl+shift+f",
-      "command": "editor.action.formatDocument",
-      "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-      "key": "shift+alt+f",
-      "command": "-editor.action.formatDocument",
-      "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-      "key": "ctrl+m ctrl+r",
-      "command": "-regionfolder.wrapWithRegion",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+right",
-      "command": "bookmarks.jumpToNext"
-    },
-    {
-      "key": "ctrl+left",
-      "command": "bookmarks.jumpToPrevious",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+alt+j",
-      "command": "-bookmarks.jumpToPrevious",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "alt+c",
-      "command": "-extension.removeConsoleLogs",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+shift+alt+q",
-      "command": "rest-client.generate-codesnippet",
-      "when": "editorTextFocus && editorLangId == 'plaintext'"
-    },
-    {
-      "key": "ctrl+alt+c",
-      "command": "-rest-client.generate-codesnippet",
-      "when": "editorTextFocus && editorLangId == 'plaintext'"
-    },
-    {
-      "key": "ctrl+shift+alt+q",
-      "command": "rest-client.generate-codesnippet",
-      "when": "editorTextFocus && editorLangId == 'http'"
-    },
-    {
-      "key": "ctrl+alt+c",
-      "command": "-rest-client.generate-codesnippet",
-      "when": "editorTextFocus && editorLangId == 'http'"
-    },
-    {
-      "key": "ctrl+shift+alt+t",
-      "command": "rest-client.rerun-last-request",
-      "when": "editorTextFocus && editorLangId == 'plaintext'"
-    },
-    {
-      "key": "ctrl+alt+l",
-      "command": "-rest-client.rerun-last-request",
-      "when": "editorTextFocus && editorLangId == 'plaintext'"
-    },
-    {
-      "key": "ctrl+shift+alt+t",
-      "command": "rest-client.rerun-last-request",
-      "when": "httpResponsePreviewFocus"
-    },
-    {
-      "key": "ctrl+alt+l",
-      "command": "-rest-client.rerun-last-request",
-      "when": "httpResponsePreviewFocus"
-    },
-    {
-      "key": "ctrl+shift+alt+t",
-      "command": "rest-client.rerun-last-request",
-      "when": "editorTextFocus && editorLangId == 'http'"
-    },
-    {
-      "key": "ctrl+alt+l",
-      "command": "-rest-client.rerun-last-request",
-      "when": "editorTextFocus && editorLangId == 'http'"
-    },
-    {
-      "key": "ctrl+shift+alt+u",
-      "command": "rest-client.switch-environment"
-    },
-    {
-      "key": "ctrl+alt+e",
-      "command": "-rest-client.switch-environment"
-    },
-    {
-      "key": "pausebreak",
-      "command": "regionfolder.wrapWithRegion",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "insert",
-      "command": "editor.foldAll",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+3",
-      "command": "editor.foldLevel1",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+4",
-      "command": "editor.foldLevel2",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+5",
-      "command": "editor.foldLevel3",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+6",
-      "command": "editor.foldLevel4",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+7",
-      "command": "editor.foldLevel5",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+8",
-      "command": "editor.foldLevel6",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+9",
-      "command": "editor.foldLevel7",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+0",
-      "command": "editor.foldLevel8",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+k ctrl+4",
-      "command": "-editor.foldLevel4",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "numpad_divide",
-      "command": "console.log.wrap.string.down",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "shift+alt+w down",
-      "command": "-console.log.wrap.string.down",
-      "when": "editorTextFocus"
-    },
-    {
-      "key":"ctrl+oem_3",
-      "command": "rest-client.request",
-      "when": "editorTextFocus"
-    },
-    {
-      "key": "ctrl+alt+r",
-      "command": "-rest-client.request",
-      "when": "editorTextFocus && editorLangId == 'plaintext'"
-    },
-    {
-      "key": "ctrl+oem_3",
-      "command": "-workbench.action.terminal.toggleTerminal"
-    },
-    {
-      "key": "ctrl+q",
-      "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
-      "when": "inQuickOpen && inViewsPicker"
-    },
-    {
-      "key": "ctrl+q",
-      "command": "workbench.action.files.openFolder"
-    },
-    {
-      "key": "ctrl+k ctrl+o",
-      "command": "-workbench.action.files.openFolder"
-    },
-    {
-      "key": "ctrl+q",
-      "command": "-workbench.action.quickOpenView"
-    },
-    {
-      "key": "ctrl+w",
-      "command": "workbench.action.navigateEditorGroups"
-    },
+  {
+    "key": "F1",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "F2",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "F4",
+    "command": "bookmarks.toggle"
+  },
+  {
+    "key": "F7",
+    "command": "checkpoints.addCheckpoint",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "F12",
+    "command": "code-runner.run"
+  },
+  {
+    "key": "ctrl+alt+/",
+    "command": "macros.commentDown"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "pasteAndIndent.action",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-toggleFindInSelection",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-bookmarks.jumpToNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-code-runner.run"
+  },
+  {
+    "key": "ctrl+alt+s",
+    "command": "-checkpoints.addCheckpoint",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+1",
+    "command": "workbench.action.maximizeEditor"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "workbench.action.evenEditorWidths"
+  },
+  {
+    "key": "alt+0",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "alt+1",
+    "command": "workbench.action.focusFirstEditorGroup"
+  },
+  {
+    "key": "alt+2",
+    "command": "workbench.action.focusSecondEditorGroup"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-gitProjectManager.openProjectNewWindow"
+  },
+  {
+    "key": "alt+y",
+    "command": "extension.openInBrowser"
+  },
+  {
+    "key": "alt+l",
+    "command": "-console.log.wrap.input"
+  },
+  {
+    "key": "numlock",
+    "command": "console.log.wrap.down",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "scrolllock",
+    "command": "console.log.wrap.up",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "capslock",
+    "command": "console.log.wrap.up",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+w down",
+    "command": "-console.log.wrap.down",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+w down",
+    "command": "-console.log.wrap.down.input",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "numlock",
+    "command": "console.log.wrap.down.prefix",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+w ctrl+alt+down",
+    "command": "-console.log.wrap.down.prefix",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+shift+f",
+    "command": "workbench.action.findInFiles"
+  },
+  {
+    "key": "ctrl+shift+a",
+    "command": "workbench.action.findInFiles"
+  },
+  {
+    "key": "ctrl+alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+m ctrl+r",
+    "command": "-regionfolder.wrapWithRegion",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "bookmarks.jumpToNext"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "bookmarks.jumpToPrevious",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "-bookmarks.jumpToPrevious",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+c",
+    "command": "-extension.removeConsoleLogs",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+q",
+    "command": "rest-client.generate-codesnippet",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+alt+c",
+    "command": "-rest-client.generate-codesnippet",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+shift+alt+q",
+    "command": "rest-client.generate-codesnippet",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "ctrl+alt+c",
+    "command": "-rest-client.generate-codesnippet",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "ctrl+shift+alt+t",
+    "command": "rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+shift+alt+t",
+    "command": "rest-client.rerun-last-request",
+    "when": "httpResponsePreviewFocus"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-rest-client.rerun-last-request",
+    "when": "httpResponsePreviewFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+t",
+    "command": "rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "-rest-client.rerun-last-request",
+    "when": "editorTextFocus && editorLangId == 'http'"
+  },
+  {
+    "key": "ctrl+shift+alt+u",
+    "command": "rest-client.switch-environment"
+  },
+  {
+    "key": "ctrl+alt+e",
+    "command": "-rest-client.switch-environment"
+  },
+  {
+    "key": "pausebreak",
+    "command": "regionfolder.wrapWithRegion",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "insert",
+    "command": "editor.foldAll",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "editor.foldLevel1",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "editor.foldLevel2",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+5",
+    "command": "editor.foldLevel3",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+6",
+    "command": "editor.foldLevel4",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+7",
+    "command": "editor.foldLevel5",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+8",
+    "command": "editor.foldLevel6",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+9",
+    "command": "editor.foldLevel7",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+0",
+    "command": "editor.foldLevel8",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+k ctrl+4",
+    "command": "-editor.foldLevel4",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "numpad_divide",
+    "command": "console.log.wrap.string.down",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+w down",
+    "command": "-console.log.wrap.string.down",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+oem_3",
+    "command": "rest-client.request",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+r",
+    "command": "-rest-client.request",
+    "when": "editorTextFocus && editorLangId == 'plaintext'"
+  },
+  {
+    "key": "ctrl+oem_3",
+    "command": "-workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
+    "when": "inQuickOpen && inViewsPicker"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.files.openFolder"
+  },
+  {
+    "key": "ctrl+k ctrl+o",
+    "command": "-workbench.action.files.openFolder"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quickOpenView"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.navigateEditorGroups"
+  },
+  {
+    "key": "alt+1",
+    "command": "vikyd.FoldLevel.level1"
+  },
+  {
+    "key": "alt+2",
+    "command": "vikyd.FoldLevel.level2"
+  },
+  {
+    "key": "alt+3",
+    "command": "vikyd.FoldLevel.level3"
+  },
+  {
+    "key": "alt+4",
+    "command": "vikyd.FoldLevel.level4"
+  },
+  {
+    "key": "alt+5",
+    "command": "vikyd.FoldLevel.level5"
+  },
+  {
+    "key": "alt+6",
+    "command": "vikyd.FoldLevel.level6"
+  },
+  {
+    "key": "alt+-",
+    "command": "editor.foldAll"
+  },
+  {
+    "key": "alt+=",
+    "command": "editor.unfoldAll"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-csv.preview",
+    "when": "editorLangId == 'tsv'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-csv.preview",
+    "when": "editorLangId == 'csv'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-csv.preview",
+    "when": "editorLangId == 'csv (semicolon)'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-csv.preview",
+    "when": "editorLangId == 'csv (pipe)'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-excel.preview",
+    "when": "editorLangId == 'excel'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown.showPreview",
+    "when": "editorLangId == 'markdown'"
+  },
+  {
+    "key": "alt+oem_minus",
+    "command": "-workbench.action.navigateBack"
+  },
+  {
+    "key": "alt+0",
+    "command": "-workbench.action.lastEditorInGroup"
+  },
+  {
+    "key": "ctrl+backspace",
+    "command": "-workbench.action.terminal.deleteWordLeft",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+backspace",
+    "command": "-deleteWordLeft",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+backspace",
+    "command": "workbench.action.navigateToLastEditLocation"
+  },
+  {
+    "key": "ctrl+k ctrl+q",
+    "command": "-workbench.action.navigateToLastEditLocation"
+  }
+]
 
-    {
-        "key": "alt+1",
-        "command": "vikyd.FoldLevel.level1"
-    },
-    {
-        "key": "alt+2",
-        "command": "vikyd.FoldLevel.level2"
-    },
-    {
-        "key": "alt+3",
-        "command": "vikyd.FoldLevel.level3"
-    },
-    {
-        "key": "alt+4",
-        "command": "vikyd.FoldLevel.level4"
-    },
-    {
-        "key": "alt+5",
-        "command": "vikyd.FoldLevel.level5"
-    },
-    {
-        "key": "alt+6",
-        "command": "vikyd.FoldLevel.level6"
-    },
-    {
-        "key": "alt+-",
-        "command": "editor.foldAll"
-    },
-    {
-        "key": "alt+=",
-        "command": "editor.unfoldAll"
-    }
-  ]
 ________________________________________________________________________________________________________
 03) Snipki - js
 
@@ -1340,7 +1396,7 @@ ________________________________________________________________________________
     Code Metrics
     Code Runner
     // Code Spell Checker - za często się wcina
-    Color Highlight
+    Color Highlight  // wywala bład
     CSS Peek
     Docker
     ESLint
@@ -1350,6 +1406,7 @@ ________________________________________________________________________________
     Formatting Toggle
     Git Blame    // lepszy git lens
     Git History
+    Git History Diff // zmiany pliku w kolejnych komitach
     Git Lens
     Git Merger
     Git Project Manager
@@ -1361,7 +1418,7 @@ ________________________________________________________________________________
     Import Cost  // za dużo literek
     indent-rainbow
     Intellicode
-    Jest
+    Jest   // wyłącz by nie odpalał testów na starcie vsc
     JS Complexity Analysis
     JSON Tools
     Live Server
@@ -1499,10 +1556,8 @@ ________________________________________________________________________________
     r) zachowywał wcięcia przy copy/paste zawsze, prócz kombinacji .js -> .txt
          "editor.formatOnPaste": true,
 
-    s) wyłaczenie wyświetlania 'Source Control Providers' zamiast normalnego 'Source Control: Git'
+    s) wyłaczenie wyświetlania 'Source Control Providers', zamiast normalnego 'Source Control: Git'
          "git.autoRepositoryDetection": false  // i reload vsc
-
-
 
 ________________________________________________________________________________________________________
 08) Debugger - hello world
@@ -2580,12 +2635,21 @@ ________________________________________________________________________________
       d) w pliku .js napisz '30s' - wyskoczy popup ze wszystkimi snipkami
 
 ________________________________________________________________________________________________________
-76) 'no source control providers registered'
+76) brak gita ('no source control providers registered')
 
       Pusto w zakładce gita (po wciśnięciu ikony 'Source Control')
 
       Dodaj poiniższą linijkę do vsc settings i restart vsc
         "git.path": "/mingw64/bin/git",
+
+      Jak nie pomoże, to sprawdź czy nie wyświetlają się (na ogół na starcie)
+      jakieś szmatki z ostrzeżeniami (np Unable to start jakiś tam host).
+
+      Jeśli tak, odpal vsc bez żadnych pluginów:
+        Extensions > 3 kropki > Disable All Installed Extensions > restart
+
+      Jeśli ww potwierdzi że przyczyną jest jakiś plugin, znajdź go i wyłącz
+      Szukaj, disablując pluginy seriami po 5 czy 10
 
 ________________________________________________________________________________________________________
 77) settings: wersja json vs ui

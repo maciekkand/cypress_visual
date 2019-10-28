@@ -54,7 +54,8 @@
 
 50) Hover w dev toolsach
 51) Kasowanie cookies
-
+53) incognito
+54) $0
 
 ___________________________________________________________________________________________
 0) Tips,  tricks and gotchas
@@ -686,7 +687,32 @@ curl https://player.vimeo.com/video/300125576 -o plik.mp4
        3) nie są zapamiętywane dane do autowypełniania formularzy
 
 ------------------------------------------------------------------------------------------------
+54) $0
 
+      -webkit-font-smoothing: antialiased;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+font: inherit;
+font-weight: 500;
+user-select: none;
+cursor: default;
+font-size: 16px;
+text-transform: none;
+caret-color: #0077cc !important;
+pointer-events: none;
+box-sizing: inherit;
+background-repeat: no-repeat;
+padding: 0;
+align-items: center;
+border-radius: inherit;
+display: flex;
+flex: 1 0 auto;
+justify-content: center;
+margin: 0 auto;
+position: relative;
+transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+white-space: nowrap;
+width: inherit;
+color: white !important;
 
 ------------------------------------------------------------------------------------------------
 

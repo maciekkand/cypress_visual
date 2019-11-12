@@ -1,1 +1,18 @@
-https://github.com/cypress-io/cypress-docker-images/tree/master/browsers/node10.16.0-chrome77
+var obj = [
+  { one: 1, two: 2, imie: 'wojtek' }, 
+  { one: 1, two: 9, imie: 'kasia' }, 
+  { one: 1, two: 3, imie: 'robert' },
+  { one: 1, two: 3, imie: 'krzys' },
+  { one: 2, two: 4, imie: 'adam' },
+  { one: 2, two: 2, imie: 'basia' },
+  { one: 2, two: 5, imie: 'piotr' },
+  { one: 2, two: 5, imie: 'zenek' },
+]
+
+obj.sort((a, b) => {
+  return a.one - b.one  ||  b.two - a.two || a.imie.localeCompare(b.imie)
+})
+
+console.table(obj)
+
+https://stackoverflow.com/questions/13211709/javascript-sort-array-by-multiple-number-fields

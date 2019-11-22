@@ -25,3 +25,20 @@ const favsAndComponents = [...favsFromComponents, ...componentsWithoutFavs]
 console.log(componentsWithoutFavs)  // [ 1, 2, 3, 4 ]
 console.log(favsFromComponents)     // [ 'c1', 'c2' ] 
 console.log(favsAndComponents)      // [ 'c1', 'c2', 1, 2, 3, 4 ]
+
+Film 'Pamięć sprytna czy zawodna' (Tricky Memory)
+
+Pani Stasiu,
+Lista naukowców:
+
+00:30  prof Elizabeth Loftus, psycholog, Uniwersytet Kalifornijski, Irvine
+00:40  prof Daniel Schacter, psycholog, Uniwersytet Harvarda
+23:20  prof Hiromu Tanimoto, neurobiolog, Uniwersytet Tohoku
+32:47  Karim Benchenane, neurobiolog
+35:42  prof Jan Born, neurobiolog, Uniwersytet Tubingen
+38:44  Hong-Viet Victor NGO, neurobiolog, Uniwersytet Tubingen
+43:53  prof Philippe Birmes, psychiatra, szpital uniwersytecki
+48:06  Tomas J. Ryan, neurobiolog, MIT, Picower Institute
+49:13  prof Susomu Tonegawa, neurobiolog, MIT, Picower Institute
+
+

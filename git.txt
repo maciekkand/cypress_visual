@@ -192,8 +192,6 @@ ________________________________________________________________________________
 
           503152573
 
-
-
       c) linking to Files
            When linking to a file on @github, press 'y' to transform the URL to a SHA-based reference.
            That way, the link will remain stable even if the underlying file changes in future commits
@@ -1831,11 +1829,12 @@ ________________________________________________________________________________
 
         UWAGA !!
             Przy scalaniu iluś komitów w 1, na wyświetlonej liście,  wstawiaj 's' (jak squash)
-            od góry we wszystkich, aż do ostatniego na dole  (zostaw w nim 'pick')
+            od dołu we wszystkich, aż do ostatniego na górze (zostaw w nim 'pick')
 
         a) git log --oneline
+
               4f73749 Split: mastah 1 & mastah 2  // 2-ga część początkowego komita
-              772fdf7 Split: mastah 1                      // 1-sza część początkowego komita
+              772fdf7 Split: mastah 1            // 1-sza część początkowego komita
               848a526 unicorns 1
               88e99ee Init
 
@@ -1845,9 +1844,9 @@ ________________________________________________________________________________
 
          c) zmień w ostatniej linii 'pick' na 'squash':
 
-                pick 848a526 unicorns 1
-                pick 772fdf7 Split: mastah 1
-                squash 4f73749 Split: mastah 1 & mastah 2
+              pick 848a526 unicorns 1
+              pick 772fdf7 Split: mastah 1
+              squash 4f73749 Split: mastah 1 & mastah 2
 
          d)  save & exit
 
@@ -2118,6 +2117,7 @@ ________________________________________________________________________________
 
                albo wbij poniższe, to Twoj login i hasło będą kaszowane przez 1h:
                  git config --global credential.helper "cache --timeout=3600"
+                 git config --replace-all --global credential.helper 'cache --timeout=7200'
 
           l) touch plik1.js
           m) napisz w nim co
@@ -2140,7 +2140,7 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________
 302) github - fork & pull request
 
-        GitHub foundations  ( video kurs ) : Forks and Pull Requests
+        GitHub foundations (video kurs) : Forks and Pull Requests
 
         Dodanie własnego kodu do istniejącego projektu
 

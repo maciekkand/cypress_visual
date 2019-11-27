@@ -11,17 +11,17 @@
 09) Debugger - node + frontend
 10) Debugger - vue
 
-11)  Uruchamianie lokalnie skryptu - code runner
-12)  Wyłączenie automatycznego akceptowania sugerowanego słowa
-13)  Blokowe zaznaczanie
-14)  Jest
-15)  jsconfig.js
-16)  Otwieranie plików
-17)  Makra
-18)  Ligatures
-19)  Prettier
-20)  Auto save
-21)  Ukrywanie plików w Explorerze
+11) Uruchamianie lokalnie skryptu - code runner
+12) Wyłączenie automatycznego akceptowania sugerowanego słowa
+13) Blokowe zaznaczanie
+14) Jest
+15) jsconfig.js
+16) Otwieranie plików
+17) Makra
+18) Ligatures
+19) Prettier
+20) Auto save
+21) Ukrywanie plików w Explorerze
 
 22) Git
 23) git diff
@@ -72,6 +72,9 @@
 76) brak gita ('no source control providers registered')
 77) settings: wersja json vs ui
 78) złe pluginy
+79) bookmarks plugin
+80) StatusBar Debugger plugin
+81) VSCode google translate plugin
 
 
 ________________________________________________________________________________________________________
@@ -674,7 +677,7 @@ ________________________________________________________________________________
   },
   {
     "key": "alt+oem_minus",
-    "command": "-workbench.action.navigateBack"
+    "command": "workbench.action.navigateBack"
   },
   {
     "key": "alt+0",
@@ -697,8 +700,24 @@ ________________________________________________________________________________
   {
     "key": "ctrl+k ctrl+q",
     "command": "-workbench.action.navigateToLastEditLocation"
+  },
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "f8",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "f12",
+    "command": "-editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
   }
 ]
+
 
 ________________________________________________________________________________________________________
 03) Snipki - js
@@ -1388,6 +1407,7 @@ ________________________________________________________________________________
 06) Pluginy
 
     Auto Close Tag
+    Auto Import
     Auto Rename Tag
     Better Comments
     Bookmarks
@@ -1398,37 +1418,45 @@ ________________________________________________________________________________
     // Code Spell Checker - za często się wcina
     Color Highlight  // wywala bład
     CSS Peek
+    Debugger for Chrome
     Docker
+    Easy Snippet Maker
     ESLint
+    Excel Viewer
     Filter Line
     Filter Text
     Fold Level
+    FontSize Shortcuts
     Formatting Toggle
-    Git Blame    // lepszy git lens
+  Git Blame    // lepszy git lens
     Git History
-    Git History Diff // zmiany pliku w kolejnych komitach
+  Git History Diff // zmiany pliku w kolejnych komitach
     Git Lens
     Git Merger
     Git Project Manager
     Git Tree Compare
     Google Fonts
     Guides
-    HTML CSS support
+  HTML CSS support
     HTML Format
     Import Cost  // za dużo literek
     indent-rainbow
+    Identicator
+    Intellisense for CSS class names in HTML
     Intellicode
     Jest   // wyłącz by nie odpalał testów na starcie vsc
     JS Complexity Analysis
     JSON Tools
-    Live Server
     Live Sass Compiler
+    Live Server
+    Local history
     Lorem ipsum
-    macrosRe (by gedsky)
+    macros (by geddsky)
     Material Icon Theme
     Node modules intellisense
     npm
     npm intellisense
+    NPM Scripts
     open-in-browser (dokadnie tak pisane)
     Partial Diff
     Paste and Indent
@@ -1436,20 +1464,29 @@ ________________________________________________________________________________
     Prettier - Code formatter
     Prettify JSON
     Project Manager
+    PWA VS Code
     Regex Previewer
     // region folding for VS Code
     Rest Client
+    Sass
     Snippet Maker
     Snyk
     Sort lines
     Sort Lines by Selection
+    StatusBar Debugger
     Sublime Text KeyMap and Settings
+    SVG Viewer
     TODO Highlight
     TODO Parser
+    TSLint
+    TSLint Vue
+    TypeScript Hero
+    Visual Studio IntelliCode
     vue (by liuji-jim; bo vetur nawalił i nie kolruje składni)
     Vue CSS Peek
     Vetur
     view-in-browser
+    VSCode google translate
     Vue Peek
     Wrap Console Log
 ________________________________________________________________________________________________________
@@ -1566,22 +1603,27 @@ ________________________________________________________________________________
 
     Jedyne co ew jest sens zmienić to nazwa apki (app.js)
 
+    outFiles potrzebne są do odpalenia StatusBar Debugger
+
    -------------------------------------------------------------
 
-    {
-      "version": "0.2.0",
-      "configurations": [
+          {
+            "version": "0.2.0",
+            "configurations": [
 
-        {
-          "type": "node",
-          "request": "launch",
-          "name": "Node",
-          "program": "${workspaceFolder}\\wywalto.js",
-          "skipFiles": [
-            "node_modules/**/*.js"
-          ]
-        },
-        {
+              {
+            "type": "node",
+            "request": "launch",
+            "name": "Node",
+            "program": "${workspaceFolder}\\a.js",
+            "skipFiles": [
+              "node_modules/**/*.js"
+            ],
+            "outFiles": [
+              "${workspaceRoot}/**/*.js"
+            ]
+          },
+          {
             "type": "chrome",
             "request": "launch",
             "name": "Vue",
@@ -1968,24 +2010,24 @@ ________________________________________________________________________________
 
         C:/Users/abc/.vscode/extensions/midnightsyntax(..)wrap-console-log/out/extension.js
 
-        Linie od 35 do 50 mają wyglądać tak:
+        Linie od 35 do 49, mają wyglądać tak:
 
         ----------
         else {
-            wrapData.txt = "console.log('%c ".concat(wrapData.item, " = ' , ", wrapData.item, ", 'color: white')")  // NumLock
-            resolve(wrapData)
-          }
+          wrapData.txt = "console.log(`%c "  .concat(wrapData.item, " = ",  "${",  wrapData.item, "}",  "`, 'color: yellow');")
+          resolve(wrapData)
         }
-        else {
-          switch (formatAs) {
-            case FormatAs.String:
-              wrapData.txt = "console.log(".concat("'" , wrapData.item, " = ' , ", wrapData.item, ")")   // Numpad dzielenie: /
+      }
+      else {
+        switch (formatAs) {
+          case FormatAs.String:
+            wrapData.txt = "console.log(".concat("'" , wrapData.item, " = ' , ", wrapData.item, ");")
+
             break;
             default:
-              wrapData.txt = wrapData.txt.replace('$txt', "'".concat(item, "'"))
-              wrapData.txt = wrapData.txt.replace(';', '')                            // PauseBreak
-              break;
-          }
+              wrapData.txt = wrapData.txt.replace('$txt', "".concat( '`%c ', item, "`, ", "'color: orange'"))
+            break;
+        }
 
 ________________________________________________________________________________________________________
 34) Modyfikacja plugina 'Snippet Maker'
@@ -2664,3 +2706,78 @@ ________________________________________________________________________________
     ToDoTree - na starcie szmatka z czymś a'propos todo tree
 
 ________________________________________________________________________________________________________
+79) bookmarks plugin
+
+    ctrl + shift + p > 'bookmark toggle labeled' > enter > wpisz nazwę bookmarka
+________________________________________________________________________________________________________
+80) StatusBar Debugger plugin
+
+      Dzięki niemu, zamiast pływającego toolbara u góry ekranu, będą ładne strzałki w dolnym pasku
+
+      a) do settings.json, wklej:
+
+          "debug.toolBarLocation": "hidden",
+          "debug.showInStatusBar": "never",
+          "statusbarDebugger.template": "$(bug) [name]",
+          "statusbarDebugger.command": "auto",
+          "statusbarDebugger.actions": ["pause", "continue", "step_over", "step_into", "step_out", "restart", "stop"],
+          "statusbarDebugger.actionsIcons": ["❙❙", "$(triangle-right)", "$(arrow-right)", "$(arrow-down)", "$(arrow-up)", "$(mail-reply)", "$(primitive-square)"],
+          "statusbarDebugger.activeColor": "",
+          "statusbarDebugger.alignment": "left",
+          "statusbarDebugger.priority": -10,
+
+      b) otwórz plik launch.json, otwierając po lewej panel debuggera i gniotąc kółko zębate (settings) i wklej
+
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Node",
+            "program": "${workspaceFolder}\\a.js",
+            "skipFiles": [
+              "node_modules/**/*.js"
+            ],
+            "outFiles": [
+              "${workspaceRoot}/**/*.js"
+            ]
+          },
+
+      c) stwórz plik
+
+          let a = 1
+          let b = 2
+
+          for (let index = 0; index < 5; index++) {
+            a = a + b
+            console.log(a)
+            debugger;
+          }
+
+      d) nagnieć ikonkę robala w lewym pasku ekranu
+
+________________________________________________________________________________________________________
+81) VSCode google translate plugin
+
+      a) zaznacz słowo, parę słów, linię, kilka linii
+      b) nagnieć ctrl + shift + t
+      c) albo ctrl + shift + p i wpisz 'translate
+      d) podpięcie ww kbd shortcuta można załatwić ręcznie, lub wklejając do pliku z kbd shortcuts:
+
+        {
+          "key": "ctrl+shift+t",
+          "command": "-workbench.action.reopenClosedEditor"
+        },
+        {
+          "key": "ctrl+shift+t",
+          "command": "extension.translateTextPreferred"
+        },
+
+
+
+
+
+
+
+
+
+
+

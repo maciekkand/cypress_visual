@@ -1698,12 +1698,17 @@
         Podobno często chodzi w corpo, bo tam stoi proxy mieszający z certami
 
         Rozw:
-          ustaw zmienną środowiskową, odpalając:
-            export NODE_TLS_REJECT_UNAUTHORIZED=0 (tak, ma być export, jeśli piszesz w gitBashu )
-          potem usuń ją:
-            unset NODE_TLS_REJECT_UNAUTHORIZED
-          upewnij się, że jej tu już nie ma
-            set > set.txt
+          1) W System variables ustaw zmienną HTTP_PROXY http://3.28.29.241:88
+              Jeśli to nie wystarczy to ustaw ją też w System variables
+              A jak i to nie wystarczy, to ustaw je obie też w User variables
+
+          2) Ustaw zmienną środowiskową, odpalając:
+          
+                export NODE_TLS_REJECT_UNAUTHORIZED=0 (tak, ma być export, jeśli piszesz w gitBashu )
+              potem usuń ją:
+                unset NODE_TLS_REJECT_UNAUTHORIZED
+              upewnij się, że jej tu już nie ma
+                set > set.txt
 
         Stuff like setting NODE_TLS_REJECT_UNAUTHORIZED=0 or similar is out of the question
         and defeats the whole purpose of secure connections

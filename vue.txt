@@ -6836,37 +6836,39 @@ npm i -g @vue/cli@nextvue/cli000) tips
                               4 na small
                               2 na medium
 
-        Dlatego pisząc na komputerze, nie zobaczysz na ekranie zmiany
-        majstrując xs czy sm. Zmieniaj md, a potem dostosuj pozostałe:
-          sm = 2 * medium
-          xs = 2 * small
+          Dlatego pisząc na komputerze, nie zobaczysz na ekranie zmiany
+          majstrując xs czy sm. Zmieniaj md, a potem dostosuj pozostałe:
+            sm = 2 * medium
+            xs = 2 * small
 
-        Extra small	  xs	small to large handset  < 600px
-        tabletSmall	  sm	small to medium tablet    600px > < 960px
-        laptopMedium	md	large tablet to laptop 	  960px > < 1264*
-        desktopLarge	lg	desktop	                  1264 > < 1904px*
-        extraLarge	  xl	4k and   ultra-wides	  > 1904px*
+          Extra small	  xs	small to large handset  < 600px
+          tabletSmall	  sm	small to medium tablet    600px > < 960px
+          laptopMedium	md	large tablet to laptop 	  960px > < 1264*
+          desktopLarge	lg	desktop	                  1264 > < 1904px*
+          extraLarge	  xl	4k and   ultra-wides	  > 1904px*
 
      2. Margins and paddings
 
-        m - applies margin
-        p - applies padding
+          <v-app class="mx-0 my-1">
 
-        t - *-top
-        b - *-bottom
-        l - *-left
-        r - *-right
-        x - both *-left and *-right
-        y - both *-top and *-bottom
-        a - the property in all directions
+            m - applies margin
+            p - applies padding
 
-        auto - sets the spacing to auto
-        0 - removes the spacing by setting it to 0
-        1 - $spacer * .25
-        2 - $spacer * .5
-        3 - $spacer
-        4 - $spacer * 1.5
-        5 - $spacer * 3
+            t - *-top
+            b - *-bottom
+            l - *-left
+            r - *-right
+            x - both *-left and *-right
+            y - both *-top and *-bottom
+            a - the property in all directions
+
+            auto - sets the spacing to auto
+            0 - removes the spacing by setting it to 0
+            1 - $spacer * .25
+            2 - $spacer * .5
+            3 - $spacer
+            4 - $spacer * 1.5
+            5 - $spacer * 3
 
 -------------------------------------------------------------------------------------------
 234) vuetify - align (flex), offsety, grow i shrink

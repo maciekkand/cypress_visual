@@ -292,15 +292,15 @@
 314) Jest - tablica obiektów
 315) Jest - crash course
 
-
-326) CDN failure fallback dla plików .css
-327) SEO - Fetch as Google (bot)
-330) Ikonki unicode w HTML
-331) Sortowanie tablicy obiektów
-332) Tablica obiektów - wyszukiwanie po Object.keys
-333) Zagnieżdżony obiekt - trawersowanie  ( traversing nested objects )
-334) Włączanie / wyłaczanie wyświetlania console.logów
-335) eval
+320) CDN failure fallback dla plików .css
+321) SEO - Fetch as Google (bot)
+322) Ikonki unicode w HTML
+323) Tablica obiektów - sortowanie
+324) Tablica obiektów - sortowanie po kilku polach
+325) Tablica obiektów - wyszukiwanie po Object.keys
+328) Zagnieżdżony obiekt - trawersowanie  ( traversing nested objects )
+329) Włączanie / wyłaczanie wyświetlania console.logów
+330) eval
 
 336) console.log - tips & gotchas
 337) console.log - color
@@ -1348,7 +1348,7 @@ ________________________________________________________________________________
 
           let a = [ 1, 2, 3 ]
 
-          let b = arr.map(function(item) {
+          let b = arr.map(item => {
             return item * 2
           })
 
@@ -1370,17 +1370,16 @@ ________________________________________________________________________________
       (such as saving each one to the database for example)
 
    --------------------------------------------------------------
-     var arr = [ 1, 2, 3, 4 ];
+        var arr = [ 1, 2, 3, 4 ];
 
-      let sum = 0
+          let sum = 0
 
-      let tablica = arr.forEach ( function ( item,  index ) {
-        sum = sum + item
-        console.log( index +  ' = ' +  item + ' sum = ' + sum )
-        return sum
-      })
+          arr.forEach ((item, index) => {
+            sum = sum + item
+            // return sum
+          })
 
-      console.log ( 'sum = ',  sum )
+          console.log ( 'sum = ',  sum )
 
    -------------lub można wyłączyć funkcję iteratora : ---------------------------------------
 
@@ -9401,7 +9400,7 @@ ________________________________________________________________________________
       test('18.', () => expect(revString('hello')).toBe('olleh'))
 
 ______________________________________________________________________________________________
-326) CDN failure fallback dla plików .css
+320) CDN failure fallback dla plików .css
 
         Skrypt śle do CDN'a ajaxa i jak dostanie OK  ( 200 ) to ładuje np bootstrapa.css
         Jak dostanie błąd, to ładuje plik lokalnie
@@ -9443,7 +9442,7 @@ ________________________________________________________________________________
     </script>
 
 ______________________________________________________________________________________________
-327) SEO - Fetch as Google  ( bot )
+321) SEO - Fetch as Google  ( bot )
 
         andrewhfarmer.com/react-seo/
         https://support.google.com/webmasters/answer/6066468?hl=en
@@ -9470,7 +9469,7 @@ ________________________________________________________________________________
 
     W przypadku PHP i konieczności server - side renderingu, trzeba na serwerze umieścić i skonfigurować rozszerzenie:  V8js
 ______________________________________________________________________________________________
-330) Ikonki unicode w HTML
+322) Ikonki unicode w HTML
 
         www.w3schools.com/charsets/ref_utf_misc_symbols.asp
 
@@ -9479,7 +9478,7 @@ ________________________________________________________________________________
         b) osadzić w HTMLu, poprzedzając kod znakami &#x:
               <button> &#8593; &#8595; </button>
 ______________________________________________________________________________________________
-331) Tablica obiektów - sortowanie
+323) Tablica obiektów - sortowanie
 
       stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 
@@ -9502,7 +9501,29 @@ ________________________________________________________________________________
       console.log ('\narrByName = ', arrByName)
 
 ______________________________________________________________________________________________
-332) Tablica obiektów - wyszukiwanie po Object.keys
+324) Tablica obiektów - sortowanie po kilku polach
+
+    var obj = [
+      { one: 1, two: 2, imie: 'wojtek' },
+      { one: 1, two: 9, imie: 'kasia' },
+      { one: 1, two: 3, imie: 'robert' },
+      { one: 1, two: 3, imie: 'krzys' },
+      { one: 2, two: 4, imie: 'adam' },
+      { one: 2, two: 2, imie: 'basia' },
+      { one: 2, two: 5, imie: 'piotr' },
+      { one: 2, two: 5, imie: 'zenek' },
+    ]
+
+    obj.sort((a, b) => {
+      return a.one - b.one  ||  b.two - a.two || a.imie.localeCompare(b.imie)
+    })
+
+    console.table(obj)
+
+  https://stackoverflow.com/questions/13211709/javascript-sort-array-by-multiple-number-fields
+
+______________________________________________________________________________________________
+325) Tablica obiektów - wyszukiwanie po Object.keys
 
         Obiekt złożony, bo jako ma property obiekt,
         więc prosta iteracja nie działa
@@ -9523,7 +9544,7 @@ ________________________________________________________________________________
         console.log( y )                 //  [ '0', '1', '2' ]
         console.log( z1, z2, z3 )    //  [ 'id2' ] [ 'id3' ] [ 'id1' ]
 ______________________________________________________________________________________________
-333) Zagnieżdżony obiekt - trawersowanie  ( traversing nested objects )
+328) Zagnieżdżony obiekt - trawersowanie  ( traversing nested objects )
 
      var callbackObject = {
        "filters": {
@@ -9558,7 +9579,7 @@ ________________________________________________________________________________
      console.log( y6 )   //  { msu: 'MBL', ps: 'Hans Kloss', sortCol: 'msu', sortAsc: true }
 
 ______________________________________________________________________________________________
-334) Włączanie / wyłaczanie wyświetlania console.logów
+329) Włączanie / wyłaczanie wyświetlania console.logów
 
         W każdego pliku .js osobno:
             a) zamień 'console.log' na 'showLogs && console.log'
@@ -9571,7 +9592,7 @@ ________________________________________________________________________________
 
         Przydaje się też console.clear (  ) które czyści konsolę
 ______________________________________________________________________________________________
-335) eval
+330) eval
 
         nczonline.net/blog/2013/06/25/eval-isnt-evil-just-misunderstood/    ( 2013 )
 
@@ -9647,8 +9668,7 @@ ________________________________________________________________________________
         console.error("error");
 
       Bez:
-        console.log('%c Hello World', 'color: #f00')
-        console.log('%c Hello World','color: blue')
+        console.log(`%c id = ${id}`, 'color: yellow');
 
 ______________________________________________________________________________________________
 338) console.time
@@ -9692,7 +9712,7 @@ ________________________________________________________________________________
 
        console.assert( x.length > 7,' za mała tablica !' )  // Assertion failed:  za mała tablica !
 ______________________________________________________________________________________________
-342) console.table
+341) console.table
 
       Wyświetla obiekty w zgrabnej i sortowalnej tabelce, zamiast w drzewie
 
@@ -10911,7 +10931,7 @@ ________________________________________________________________________________
 
       Chrome > devtools > Application > Cookies
       Są one tamn w formacie: key - value
-      Poniższa funkcja 
+      Poniższa funkcja
 
       function getCookie(key) {
         var name = key + "=";

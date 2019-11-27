@@ -1,14 +1,14 @@
 ﻿
 0) BIOS  - klawisze
-1) Dodanie usera do grupy lokalnej
-2) Wycięcie usera z grupy lokalnej
-3) Wyłączanie lewego panela z win explorera
-4) Ustawianie domyślnego widoku folderów
-5) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
-6) Wybór tła pulpitu
-7) Utyliszcza
-8) Wyłączenie autorozciągania okna
-9) Powiększanie kursora i zmiana jego koloru
+01) Dodanie usera do grupy lokalnej
+02) Wycięcie usera z grupy lokalnej
+03) Wyłączanie lewego panela z win explorera
+04) Ustawianie domyślnego widoku folderów
+05) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
+06) Wybór tła pulpitu
+07) Utyliszcza
+08) Wyłączenie autorozciągania okna
+09) Powiększanie kursora i zmiana jego koloru
 10) Konfiguracja mikrofonu
 11) Przyszybszanie Win7  (Power Options - zasilanie)
 12) Snipping Tool
@@ -131,15 +131,15 @@ _________________________________________________________________
       F10 - boot menu
       F12 - boot z USB
 _________________________________________________________________
-1) Dodanie usera do grupy lokalnej
+01) Dodanie usera do grupy lokalnej
 
         net localgroup administrators John /add
 _________________________________________________________________
-2) Wycięcie usera z grupy lokalnej
+02) Wycięcie usera z grupy lokalnej
 
         net localgroup administrators John /delete
 _________________________________________________________________
-3) Wyłączanie lewego panela z win explorera
+03) Wyłączanie lewego panela z win explorera
 
         a) Press the "Windows" and "R" keys simultaneously on your keyboard to load the Run box.
         b) Type "Explorer" and press the "Enter" key.
@@ -147,7 +147,7 @@ _________________________________________________________________
         d) Click to uncheck "Navigation Pane" in the layout options. This change takes effect immediately.
 _________________________________________________________________
 
-4) Ustawianie domyślnego widoku folderów
+04) Ustawianie domyślnego widoku folderów
 
    a) otwórz folder
    b) Z górnego toolbara kliknij o prawej stronie ikonę More Options
@@ -159,17 +159,17 @@ _________________________________________________________________
    Prawy w środku folderu -> Sort by -> More ...
 ____________________________________________________________________
 
-5) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
+05) Swobodne rozstawianie ikon na pulpicie (nie wg siatki)
 
    Prawy klik na desktopie -> View -> Align icons to grid : uncheck
 _____________________________________________________________________
 
-6) Wybór tła pulpitu
+06) Wybór tła pulpitu
 
    Prawy klik na desktopie ->  Personalize -> Desktop background (ikona na dole)
 _____________________________________________________________________
 
-7) Utyliszcza
+07) Utyliszcza
 
        a) dimmer http://www.nelsonpires.com/software/dimmer/ - przygasza ekran
        b) autohotkey - ogólnowindowsowe skróty klawiszowe
@@ -236,12 +236,12 @@ _____________________________________________________________________
       Zn) driver easy 5.6.10 - ładnie zainstalował nowe drivery (pojedyńczo bo wersja free)
       Zo) youtube-dl - command line utyliszcze jak ffmpeg, do ściągania z tuby
 _____________________________________________________________________
-8) Wyłączenie autorozciagania okna
+08) Wyłączenie autorozciagania okna
 
     Control Panel -> Ease of Access -> Ease of Access Center ->
     -> Make the mouse easier to use -> Prevent windows from being automatically ... uncheck !
 _____________________________________________________________________
-9) Powiększanie kursora i zmiana jego koloru
+09) Powiększanie kursora i zmiana jego koloru
 
     Control Panel -> Ease of Access -> Ease of Access Center ->
     -> Make the mouse easier to use -> Mouse pointers
@@ -2156,6 +2156,8 @@ ________________________________________________________________________________
       j) określanie rozmiaru pliku
           c:/youtube-dl -f 'best[filesize<50M]'   // # Download best video only format but no bigger than 50 MB
 
+c:/ffmpeg -i $(c:/youtube-dl -f 22 -g 'https://www.cda.pl/video/16100497a') output.mp4
+
 __________________________________________________________________________________________________
 119) Win 10 - black viper
 
@@ -2254,3 +2256,5 @@ ________________________________________________________________________________
 
 
 __________________________________________________________________________________________________
+
+

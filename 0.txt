@@ -26,19 +26,31 @@ console.log(componentsWithoutFavs)  // [ 1, 2, 3, 4 ]
 console.log(favsFromComponents)     // [ 'c1', 'c2' ] 
 console.log(favsAndComponents)      // [ 'c1', 'c2', 1, 2, 3, 4 ]
 
-Film 'Pamięć sprytna czy zawodna' (Tricky Memory)
+-----  Chodzący Cypress na Squadzie u Arka ------------------------------------------
 
-Pani Stasiu,
-Lista naukowców:
+Installation  
 
-00:30  prof Elizabeth Loftus, psycholog, Uniwersytet Kalifornijski, Irvine
-00:40  prof Daniel Schacter, psycholog, Uniwersytet Harvarda
-23:20  prof Hiromu Tanimoto, neurobiolog, Uniwersytet Tohoku
-32:47  Karim Benchenane, neurobiolog
-35:42  prof Jan Born, neurobiolog, Uniwersytet Tubingen
-38:44  Hong-Viet Victor NGO, neurobiolog, Uniwersytet Tubingen
-43:53  prof Philippe Birmes, psychiatra, szpital uniwersytecki
-48:06  Tomas J. Ryan, neurobiolog, MIT, Picower Institute
-49:13  prof Susomu Tonegawa, neurobiolog, MIT, Picower Institute
+Because of a problem with the proxy download Cypress directly from CDN.
+Set Cypress binary path via 
+
+SET CYPRESSINSTALLBINARY=[your_path]/cypress.zip
+Install in your project directory via
+
+npm install cypress --save-dev
+If you want doing tests from other origin set the property below in cypress.json
+
+"chromeWebSecurity": false
+ For testing drag & drop features add plugin via run
+
+npm install --save-dev @4tw/cypress-drag-dro
+If you want use the addon add this import to your spec file
+
+import '@4tw/cypress-drag-drop';
+after that you can use it like this
+
+// In this example employee is chosen based on his SSO and dropped on a first pod in tribe
+cy.get('.id-212722052').drag('.entity-POD .draggable-container:first-child');
+
+
 
 

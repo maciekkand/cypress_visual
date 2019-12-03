@@ -51,6 +51,17 @@ after that you can use it like this
 // In this example employee is chosen based on his SSO and dropped on a first pod in tribe
 cy.get('.id-212722052').drag('.entity-POD .draggable-container:first-child');
 
+-------- test.spec.js ------------------------------------
 
+import '@4tw/cypress-drag-drop';
+describe('My First Test', function() {
+    it('Visits the Kitchen Sink', function() {
+        cy.visit('page_url')
+        cy.get('#username').type("SSO");
+        cy.get('#password').type("xxx");
+        cy.get('#submitFrm').click();
+        cy.get('.id-503083709').drag('.entity-POD .draggable-container:first-child');
+    })
+});
 
 

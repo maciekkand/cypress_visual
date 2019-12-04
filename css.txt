@@ -69,7 +69,7 @@
 108) Flexbox - justify-content
 109) Flexbox - flex-direction a flex-flow
 110) Flexbox - align-items
-111) Flexbox - ustawianie w pionie i poziomie 
+111) Flexbox - ustawianie w pionie i poziomie
 
 120) Grid - hello world
 121) Grid - grid-auto-rows i columns
@@ -150,9 +150,9 @@ ________________________________________________________________________________
     https://flaviocopes.com/css-system-fonts/
 
     Font systemowy, nie wymagający ściagania go z neta (szybszy)
-    
-    a) font-family: 
-    
+
+    a) font-family:
+
       body {
         font-family: system-ui
       }
@@ -160,7 +160,7 @@ ________________________________________________________________________________
       .. a jeśli są błedy, to:
 
       body {
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, 
+        font-family: -apple-system, system-ui, BlinkMacSystemFont,
         'Segoe UI', Roboto, 'Oxygen', 'Helvetica Neue', Ubuntu, Arial, sans-serif;
       }
 
@@ -246,6 +246,9 @@ ________________________________________________________________________________
     px, em, rem, %, ch
     vw - viewport width
     vh - viewport height
+
+    em jest wielkością czcionki relatywną do wielkości czcionki direct parenta
+    rem - do root'a (html)
 
     % odnosi się do rozmiaru parenta
     vh i vw - do całego viewporta (razem z ew scrollbarem)
@@ -467,7 +470,7 @@ ________________________________________________________________________________
 
     <picture>
       <source srcset="img/awesomeWebPImage.webp" type="image/webp">
-      <source srcset="img/creakyOldJPEG.jpg" type="image/jpeg"> 
+      <source srcset="img/creakyOldJPEG.jpg" type="image/jpeg">
       <img src="img/creakyOldJPEG.jpg" alt="Alt Text!">
     </picture>
 
@@ -1001,11 +1004,11 @@ ________________________________________________________________________________
       ------- 1) text-align ----------------------------------------
 
           1) musi być kontener z text-align: center
-          2) box musi mieć display: inline-block   
+          2) box musi mieć display: inline-block
 
             <div id=container>
               <div class='box'>1</div>
-            </div>  
+            </div>
 
             #container {
               text-align: center;
@@ -1016,16 +1019,16 @@ ________________________________________________________________________________
               height: 200px;
               background: green;
 
-              display: inline-block;     
+              display: inline-block;
             }
 
       ------- 2) margin: auto ----------------------------------------
 
-          1) bez kontenera 
+          1) bez kontenera
           2) margin: auto
           3) display: block, albo bez displaya, bo domyślny to block
 
-            <div class='box'>1</div>  
+            <div class='box'>1</div>
 
             .box {
               width: 200px;
@@ -1039,7 +1042,7 @@ ________________________________________________________________________________
 
             50% - pół szerokości boksa
 
-            <div class='box'>1</div>  
+            <div class='box'>1</div>
 
             .box {
               width: 200px;
@@ -1053,7 +1056,7 @@ ________________________________________________________________________________
 
       ------- 4) transform: translate ----------------------------------------
 
-            <div class='box'>1</div>  
+            <div class='box'>1</div>
 
             .box {
               width: 200px;
@@ -1070,7 +1073,7 @@ ________________________________________________________________________________
       ------- 5) flexbox ----------------------------------------
 
               1) html, body i container mają mieć height: 100%
-              2) container - display:flex, justify-content i align-items: center  
+              2) container - display:flex, justify-content i align-items: center
 
             <div id=container>
               <div class='box'>1</div>
@@ -1095,7 +1098,7 @@ ________________________________________________________________________________
       ------- 6) css grid ----------------------------------------
 
           <div class='box'>1</div>
-          
+
           body {
             display: grid;
             place-items: center;
@@ -1287,7 +1290,7 @@ ________________________________________________________________________________
 
     Plik importowany powinien zaczynać się underscorem '_'
     Dzięki temu, nie zostanie on skompilowany nim włączy się go do
-    pliku głównego  
+    pliku głównego
 
     Importuje się go przez:
       @import './styles/colors.scss';
@@ -1583,11 +1586,11 @@ ________________________________________________________________________________
       }
 
     --- _variables.scss ------------------------------------------
-    
+
       $size: 1rem;
       $color1: orange;
       $color2: lightgreen;
-    
+
     --- _mixins.scss ------------------------------------------
 
       %kura {
@@ -1643,7 +1646,7 @@ ________________________________________________________________________________
       <div class='box one'>1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aperiam facere, odio enim et architecto. Facilis facere, vero laboriosam esse mollitia obcaecati non? Tenetur ipsum dignissimos ex, rerum modi totam!</div>
       <div class='box two'>2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aperiam facere, odio enim et architecto. Facilis facere, vero laboriosam esse mollitia obcaecati non? Tenetur ipsum dignissimos ex, rerum modi totam!</div>
       <div class='box three'>3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aperiam facere, odio enim et architecto. Facilis facere, vero laboriosam esse mollitia obcaecati non? Tenetur ipsum dignissimos ex, rerum modi totam!</div>
-    </div>  
+    </div>
 
     </body>
 </html>
@@ -1657,7 +1660,7 @@ body {
 
 .container {
   display: flex;
-  justify-content: space-evenly;  
+  justify-content: space-evenly;
   border: 1px solid white;
   /* height: 100vh; */
   padding: 5px;
@@ -1686,12 +1689,12 @@ ________________________________________________________________________________
 103) Flexbox - flex-grow
 
     CSS Flexbox Tutorial #3
-    
+
     Służy do wypełniania całej szerokości kontenera
     Jeśli nie chcesz by boksy wypełniały całą szerokość ekranu, nie używaj flex-grow,
     a tylko nadaj im szerokości (width)
 
-    Dodając zmienną flex-grow: cyfra - zmienia proporcje między boksami  
+    Dodając zmienną flex-grow: cyfra - zmienia proporcje między boksami
 
     Np w przypadku 3 boksów, dodanie do kolejnych:
 
@@ -1708,8 +1711,8 @@ body {
   color: white;
 }
 
-.container { 
-  display: flex; 
+.container {
+  display: flex;
   border: 1px solid white;
   padding: 25px;
 }
@@ -1754,7 +1757,7 @@ body {
 }
 
 .box {
-  height: 200px; 
+  height: 200px;
   width: 200px;
   border: 1px solid white;
   padding: 25px;
@@ -1776,7 +1779,7 @@ ________________________________________________________________________________
       W klasie reactowej,  zamiast flex-wrap,  ma być flexWrap
 
     Trzeba go umieścić w kontenerze boksów
-    Nie wiem tylko, dlaczego tego wrapa robi przy przekroczniu 750px szerokości ekranu,  
+    Nie wiem tylko, dlaczego tego wrapa robi przy przekroczniu 750px szerokości ekranu,
     a nie 600  ( width: 200 * 3 )
  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -1959,7 +1962,7 @@ ________________________________________________________________________________
       <div class='box' id='one'>1.</div>
       <div class='box' id='two'>2.</div>
       <div class='box' id='three'>3.</div>
-    </div>  
+    </div>
 
 -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -1988,7 +1991,7 @@ ________________________________________________________________________________
     #three { background: blue; }
 
 _________________________________________________________________________________________________________
-111) Flexbox - pozycjonowanie w pionie i poziomie 
+111) Flexbox - pozycjonowanie w pionie i poziomie
 
     Trzeba ustawić wysokość kontenera, np height: 60vh
     oraz użyć justify-content i align-items
@@ -1997,7 +2000,7 @@ ________________________________________________________________________________
       <div class='box' id='one'>1.</div>
       <div class='box' id='two'>2.</div>
       <div class='box' id='three'>3.</div>
-    </div>  
+    </div>
 
   ----------------------------------------------------
 
@@ -2011,12 +2014,12 @@ ________________________________________________________________________________
       height: 60vh;
       border: 1px solid white;
       padding: 15px;
-      justify-content: space-evenly;  
+      justify-content: space-evenly;
       align-items: center;
     }
 
     .box {
-      height: 100px; 
+      height: 100px;
       width: 100px;
       border: 1px solid white;
       padding: 25px;
@@ -2032,14 +2035,14 @@ ________________________________________________________________________________
     Kurs: CSS Grid by Overment - #1. Wprowadzenie
 
     display: grid;                    // inicjuje grida
-    grid-template-columns: 1fr 1fr;   // ilość kolumn i proporcję ich wzajemnej szerokości 
+    grid-template-columns: 1fr 1fr;   // ilość kolumn i proporcję ich wzajemnej szerokości
     grid-template-rows: 200px 100px;  // ilość rzędów
-    grid-gap: 5px;                    // marginesy między nimi 
+    grid-gap: 5px;                    // marginesy między nimi
 
     ---------- index.html ----------------------------------
 
     <link rel="stylesheet" href="style.css">
-    
+
     <div class="container">
       <div class="box">1</div>
       <div class="box">2</div>
@@ -2077,8 +2080,8 @@ ________________________________________________________________________________
 121) Grid - grid-auto-rows i columns
 
     Dzięki dodaniu auto-rows, ustala się sekwencję wysokości kolejnych wierszy
-    
-    Czyli, w poniższym przykładzie: 
+
+    Czyli, w poniższym przykładzie:
       1-szy wiersz będzie miał 300px wysokości
       2-gi 200px
       3-ci 100px
@@ -2099,13 +2102,13 @@ ________________________________________________________________________________
     Kurs: CSS Grid by Overment - #1. Wprowadzenie
 
     Zamiast pisać:
-      grid-template-columns: 1fr 1fr 1fr; 
-    
+      grid-template-columns: 1fr 1fr 1fr;
+
     można
-      grid-template-columns: repeat(3, 1fr); 
+      grid-template-columns: repeat(3, 1fr);
 
     albo
-      grid-template-columns: repeat(3, 1fr 100px); 
+      grid-template-columns: repeat(3, 1fr 100px);
 _________________________________________________________________________________________________________
 123) Grid - start i end
 
@@ -2113,7 +2116,7 @@ ________________________________________________________________________________
       i szerokości dwu komórek
 
       a) dodaj klasę 'item1' do 1-go diva
- 
+
       b) zdefiniuj klasę 'item1' (pomajstruj poniższymi wartościami):
           .item1 {
             grid-column-start: 1;
@@ -2173,14 +2176,14 @@ ________________________________________________________________________________
 
     Kurs: CSS Grid by Overment - #1. Wprowadzenie
 
-    grid-template-rows: minmax(200px, auto);  // Minimalna szerokość = 300, a maksymalna = auto, czyli taka, 
+    grid-template-rows: minmax(200px, auto);  // Minimalna szerokość = 300, a maksymalna = auto, czyli taka,
                                               // by pomieściła zawarte w niej elementy (coś jak min-height)
-    
-    Dla ilustracji, wklej do któregoś diva lorem ipsum, a zobaczysz, 
+
+    Dla ilustracji, wklej do któregoś diva lorem ipsum, a zobaczysz,
     że wysokość diva się zwiększy, by pomieścić cały tekst
 
     Funkcję minmax można łączyć z funkcją repeat:
-    
+
     grid-template-rows: repeat(minmax(300px, auto))
 
 _________________________________________________________________________________________________________
@@ -2190,36 +2193,36 @@ ________________________________________________________________________________
 
     Wyobraźmy sobie szachownicę, czyli grida 8 na 8
 
-    .box4 { 
+    .box4 {
       grid-column: 1 / 8;   // kolumna: od 1 do 8,
-      grid-row: 1 / 1;     //  rów: od 1 do 1, czyli 1-szy 
-    }                         
-     
+      grid-row: 1 / 1;     //  rów: od 1 do 1, czyli 1-szy
+    }
+
      .. lub krócej:
-    
-    .box4 { 
-      grid-column: 1 / 8; 
-      grid-row: 1; 
-    }  
+
+    .box4 {
+      grid-column: 1 / 8;
+      grid-row: 1;
+    }
 
      .. lub jeszcze krócej:
-    
-    .box4 { 
+
+    .box4 {
       grid-column: 1 / 8;   // grid-row: 1 - jest domyślny, więc można go pominąć
-    }  
+    }
 
      .. lub podając szerokość paska:
 
-    .box4 { 
-      grid-column: 1 / span 8; 
-    }  
-
-    .box3 { 
-      grid-column: span 4 / 9; 
-      grid-row: span 2 / 7 
+    .box4 {
+      grid-column: 1 / span 8;
     }
-    
-    Ww oznacza: 
+
+    .box3 {
+      grid-column: span 4 / 9;
+      grid-row: span 2 / 7
+    }
+
+    Ww oznacza:
       szeroki na 4 kolumny, kończący się na 8-mej (nie dochodzi 9-tej)
       wysoki na 2 rowy, kończący się na 6-tej (nie dochodzi 7-mej)
 
@@ -2230,7 +2233,7 @@ ________________________________________________________________________________
       <div class='box box2'>2.</div>
       <div class='box box3'>3.</div>
       <div class='box box4'>4.</div>
-    </div>  
+    </div>
 
     ----------- style.css ----------------------------------------
 
@@ -2245,8 +2248,8 @@ ________________________________________________________________________________
       border: 1px solid white;
       width: 500px;
       height: 500px;
-      grid-template-columns: repeat(8, 1fr); 
-      grid-template-rows: repeat(8, 1fr); 
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
     }
 
     .box {
@@ -2274,7 +2277,7 @@ ________________________________________________________________________________
       <main class="box">CONTENT</main>
       <aside class="box">SIDEBAR</aside>
       <footer class="box">FOOTER</footer>
-    </div>  
+    </div>
 
     -------- style.css ---------------------------------------
 
@@ -2298,8 +2301,8 @@ ________________________________________________________________________________
           "footer footer footer footer footer footer footer footer"
     }
 
-    .box { 
-      background: orange; 
+    .box {
+      background: orange;
     }
 
     header { grid-area: header }
@@ -2353,7 +2356,7 @@ ________________________________________________________________________________
       grid-template-columns: [pierwsza] 1fr [druga] 1fr [trzecia] 1fr [czwarta] 1fr [piata];
         .. a potem używamy ich do określenie rozmiaru obszaru
       grid-column: druga / czwarta;
-    
+
     body {
       background: darkgrey;
       color: white;
@@ -2374,7 +2377,7 @@ ________________________________________________________________________________
 
     .item1 {
       grid-column: druga / czwarta;
-    }  
+    }
 _________________________________________________________________________________________________________
 129) Grid - grid-auto-flow
 
@@ -2384,7 +2387,7 @@ ________________________________________________________________________________
 
       Oglądaj w devtoolsach i kliku w ikonkę w lewym górnym
 
-      Tak jak we flexboksie, ww pozycjonują boksy używając b bliskich 
+      Tak jak we flexboksie, ww pozycjonują boksy używając b bliskich
       fleksboksowi wartości:
 
       start, end, center, space-around i space-between
@@ -2417,14 +2420,14 @@ ________________________________________________________________________________
 
       Oglądaj w devtoolsach i kliku w ikonkę w lewym górnym
 
-      justify-items: stretch (domyślny) / start / end 
+      justify-items: stretch (domyślny) / start / end
       align-items: stretch (domyślny)   / start / end
 
       stretch wypełnia całą komórkę
 
       justify-items: start robi z boksa pionową kreskę na początku komórki
       justify-items: end - na końcu komórki
-      
+
       align-items: start robi z boksa poziomą kreskę na początku komórki
       align-items: end - na końcu komórki
 
@@ -2449,32 +2452,32 @@ ________________________________________________________________________________
           justify-content: center;
           align-content: center;
 
-          justify-items: stretch; 
-          align-items: end; 
+          justify-items: stretch;
+          align-items: end;
         }
 _________________________________________________________________________________________________________
 132) Grid - środkowanie tekstu w komórce
 
-      Tylko w poziomie: 
+      Tylko w poziomie:
         text-align: center
 
-      W pionie i w poziomie: 
+      W pionie i w poziomie:
         margin: auto;
 
      .item {
         /* text-align:center; */
         margin: auto;
-     }   
+     }
 
 _________________________________________________________________________________________________________
 133) Grid - pozycjonowanie całego grida
 
       UWAGA !
-        Żeby się pozbyć marginesów top i left, ustaw 
+        Żeby się pozbyć marginesów top i left, ustaw
           body {
             margin: 0;
           }
-      
+
       Ująć frajera w diva i pogonić flexboksem
 
       -------- index.html -----------------------------------
@@ -2518,7 +2521,7 @@ ________________________________________________________________________________
         grid-auto-flow: row;
       }
 _________________________________________________________________________________________________________
-134) Grid - 
+134) Grid -
 
       -------- index.html -----------------------------------
 
@@ -2529,7 +2532,7 @@ ________________________________________________________________________________
         <div class="item nav">Nav: Home, About, Contact</div>
         <div class="item sidebar">Sidebar: <br> Latest articles</div>
       </div>
-      
+
       -------- style.css -----------------------------------
 
         body {
@@ -2549,8 +2552,8 @@ ________________________________________________________________________________
             "content sidebar"
             "footer  footer";
 
-          grid-template-columns: 3fr 1fr 2fr; 
-          grid-template-rows: 100px 1fr 200px 10%; 
+          grid-template-columns: 3fr 1fr 2fr;
+          grid-template-rows: 100px 1fr 200px 10%;
 
           /* grid-column-gap: 5px;
           grid-row-gap: 5px; */
@@ -2586,10 +2589,10 @@ ________________________________________________________________________________
         }
 
 _________________________________________________________________________________________________________
-135) Grid - 
+135) Grid -
 
 _________________________________________________________________________________________________________
-136) Grid - 
+136) Grid -
 
 
 

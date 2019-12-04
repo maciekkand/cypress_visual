@@ -118,6 +118,8 @@
 331) credential.helper
 332) Podbijanie wersji pakietu
 333) sprytny amend
+334) przeniesienie komita ze złej branczki
+335) jak wycofać reset --soft
 
 ___________________________________________________________________________________________
 00) git tips
@@ -2857,7 +2859,18 @@ ________________________________________________________________________________
 
 
 ___________________________________________________________________________________________
+334) przeniesienie komita ze złej branczki
 
-
+      git reset HEAD~3
+      git stash
+      git checkout newbranch
+      git stash pop
 
 ___________________________________________________________________________________________
+335) jak wycofać reset --soft
+
+      By z przywróconych na staging poprzez
+        git reset --soft
+      .. plików z powrotem zrobić początkowego komita, wystarczy:
+        git reset hasz_zresetowanego_komita
+

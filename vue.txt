@@ -40,17 +40,17 @@
 032) eventBus ($emit i $on)
 
 033) slot
-034a) named slots
-034b) default slots
-035) dynamic component
-036) keep-alive
-037) component hooks: activated, deactivated
+034) named slots
+035) default slots
+036 dynamic component
+037) keep-alive
+038) component hooks: activated, deactivated
 
-038) input box: v-model.lazy.number
-039) textarea v-model, multiline
-040) checkbox
-041) radio
-042) select
+039) input box: v-model.lazy.number
+040) textarea v-model, multiline
+041) checkbox
+042) radio
+043) select
 
 044) custom directive - global
 045) custom directive - z propertką
@@ -212,6 +212,7 @@
 339) typescript - rest i spread
 340) typescript - union
 
+350) typescript - class memeber ordering (tslint)
 
 
 
@@ -1823,7 +1824,7 @@
       </style>
 
 -------------------------------------------------------------------------------
-034a) named slots
+034) named slots
 
     W pojedyńczym slocie, wszystko wpada do niego.
     Aby tą treść rozdzielić na mniejsze kawałki,
@@ -1863,7 +1864,7 @@
       </template>
 
 -------------------------------------------------------------------------------
-034b) default slots
+035) default slots
 
     Wszystko co w parencie nie jest oznaczone słowem 'slot' wrzucane jest
     do slota w childzie nie oznaczonego słowem 'name'
@@ -1917,7 +1918,7 @@
       </style>
 
 -------------------------------------------------------------------------------
-035) dynamic component
+036) dynamic component
 
      Poniższa konstrukcja pozwala dynamicznie wybierać komponenty
 
@@ -1963,7 +1964,7 @@
       </template>
 
 -------------------------------------------------------------------------------
-036) keep-alive
+037) keep-alive
 
     Aby jak w ww punkcie komponent nie został zniszczony (metoda destroyed()),
     ujmij tagi <component> w tagi <keep-alive>:
@@ -2033,7 +2034,7 @@
       </script>
 
 -------------------------------------------------------------------------------
-037) component hooks: activated, deactivated
+038) component hooks: activated, deactivated
 
     <template>
       <div>
@@ -2061,7 +2062,7 @@
     </script>
 
 -------------------------------------------------------------------------------
-038) input box: v-model.lazy.number
+039) input box: v-model.lazy.number
 
     Modyfikator .lazy powoduje, że wartość zmiennej uaktualniana
     będzie nie po każdym kistrołku, ale po enterze lub blurze (kliku poza input boksa)
@@ -2089,7 +2090,7 @@
 
 
 -------------------------------------------------------------------------------
-039) textarea v-model, multiline
+040) textarea v-model, multiline
 
     By zachować formatowanie tekstu w textarea,
     który podzielony jest na kilka linii, użyj css'owego
@@ -2115,7 +2116,7 @@
     </script>
 
 -------------------------------------------------------------------------------
-040) checkbox
+041) checkbox
 
     <template>
       <div>
@@ -2138,7 +2139,7 @@
     </script>
 
 -------------------------------------------------------------------------------
-041) radio
+042) radio
 
     <template>
       <div>
@@ -2161,7 +2162,7 @@
     </script>
 
 -------------------------------------------------------------------------------
-042) select
+043) select
 
     <template>
       <div>
@@ -8327,9 +8328,15 @@ ________________________________________________________________________________
 
 
 _________________________________________________________________________________________________________
-340) typescript -
+350) typescript - class memeber ordering (tslint)
 
+      https://palantir.github.io/tslint/rules/member-ordering/
 
+      @Prop
+      zmienne (public / private)
+      get
+      set
+      metody (protected / private)
 
 _________________________________________________________________________________________________________
 341) typescript -

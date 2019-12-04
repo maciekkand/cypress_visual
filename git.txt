@@ -120,6 +120,8 @@
 333) sprytny amend
 334) przeniesienie komita ze złej branczki
 335) jak wycofać reset --soft
+336) revert błędnego merge komita
+
 
 ___________________________________________________________________________________________
 00) git tips
@@ -2873,4 +2875,73 @@ ________________________________________________________________________________
         git reset --soft
       .. plików z powrotem zrobić początkowego komita, wystarczy:
         git reset hasz_zresetowanego_komita
+___________________________________________________________________________________________
+336) revert błędnego merge komita
+
+      https://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch
+
+      Kiedyś na githubie była wiadomość, że mój branch się rozjechał
+      i linka do webeditora żeby to poprawić. Poprawiłem i wysypały się Joe'emu importy przy mergu
+
+      Przy dużej ilości plików, najlepiej skorzystać z git reverta
+      Problem w tym, że po:
+        git revert hasz_komita_z_tym_mergem
+      git wywala errora: o konieczności podania opcji '-m'
+
+      Rozw:
+        a) git log -1  (jeśli to ostatni komit)
+
+            commit 8f937c683929b08379097828c8a04350b9b8e183
+            Merge: 8989ee0 7c6b236
+            Author: Ben James <ben@example.com>
+            Date:   Wed Aug 17 22:49:41 2011 +0100
+
+            Merge branch 'gh-pages'
+
+            Conflicts:
+                README
+
+        b) sprawdź obie branczki:
+            git log 8989ee0
+            git log 7c6b236
+
+        c) jeśli w 1-szej będą Twoje komity, to odpal:
+              git revert 8f937c6 -m 1
+
+        d) jeśli w 2-giej, to:
+              git revert 8f937c6 -m 1
+
+___________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

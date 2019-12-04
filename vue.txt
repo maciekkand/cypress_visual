@@ -1,4 +1,4 @@
-npm i -g @vue/cli@nextvue/cli000) tips
+000) tips
 001) hello world (CLI 3)
 002) v-text aka {{ }}
 003) v-bind aka : - 1-way-binding
@@ -12,99 +12,99 @@ npm i -g @vue/cli@nextvue/cli000) tips
 007) @onmousemove
 008) @click z argumentem
 009) event stopPropagation
-10)  @keyup, @keypress
-11)  templates
-12a) v-model
-12b) nested component
-13)  computed properties
-14)  watch
-15) :class
-16) :class i computed
-17) v-if i v-else
-18) v-show
-19) v-for
-20) v-for nested
+010)  @keyup, @keypress
+011)  templates
+012a) v-model
+012b) nested component
+013)  computed properties
+014)  watch
+015) :class
+016) :class i computed
+017) v-if i v-else
+018) v-show
+019) v-for
+020) v-for nested
 
-21) apka ToDo List
-22) Dostęp do apki z innej apki i z zewnątrz
-23) $ref
-24) $mount i template
-25) lifecycle
-26) Komponent - zagnieżdżanie lokalne
+021) apka ToDo List
+022) Dostęp do apki z innej apki i z zewnątrz
+023) $ref
+024) $mount i template
+025) lifecycle
+026) Komponent - zagnieżdżanie lokalne
 
-27) props - 1
-28) props - walidacja
-29) props - 2
-30) przekazanie funkcji
-31) custom event ($emit i $event)
-32) eventBus ($emit i $on)
+027) props - 1
+028) props - walidacja
+029) props - 2
+030) przekazanie funkcji
+031) custom event ($emit i $event)
+032) eventBus ($emit i $on)
 
-33) slot
-34a) named slots
-34b) default slots
-35) dynamic component
-36) keep-alive
-37) component hooks: activated, deactivated
+033) slot
+034a) named slots
+034b) default slots
+035) dynamic component
+036) keep-alive
+037) component hooks: activated, deactivated
 
-38) input box: v-model.lazy.number
-39) textarea v-model, multiline
-40) checkbox
-41) radio
-42) select
+038) input box: v-model.lazy.number
+039) textarea v-model, multiline
+040) checkbox
+041) radio
+042) select
 
-43a) custom directive - global
-43b) custom directive - z propertką
-43c) custom directive - z propertką i parametrem
-43d) custom directive - z propertką, parametrem i modyfikatorem
+044) custom directive - global
+045) custom directive - z propertką
+046) custom directive - z propertką i parametrem
+047) custom directive - z propertką, parametrem i modyfikatorem
 
-44) custom directive with modifier - global
-45) custom directive - local 1
-46) custom directive - local 2
-47) custom directive with objects -  local
+048) custom directive with modifier - global
+049) custom directive - local 1
+050) custom directive - local 2
+051) custom directive with objects -  local
 
-49) filter - local
-50) filter - global
-51) filter via computed property
+054) filter - local
+055) filter - global
+056) filter via computed property
 
-52) mixin
-53) mixin - lifecycles
-54) mixin - global
+058) mixin
+059) mixin - lifecycles
+060) mixin - global
 
-55) routing - hello world
-56) routing - links
-57) routing - navigating
-58) routing - z parametrem
-59) routing - watch route
-60) routing - named routes
-61) routing - query parameters
-62) routing - named router views
-63) routing - redirect
-64) routing - catchAll
-65) routing - kontrola dostępu: beforeEach, beforeEnter i beforeRouteEnter
-66) routing - kontrola wyjścia: beforeRouteLeave
-67) routing - lazy loading loading
+063) routing - hello world
+064) routing - links
+065) routing - navigating
+066) routing - z parametrem
+067) routing - watch route
+068) routing - named routes
+069) routing - query parameters
+070) routing - named router views
+071) routing - redirect
+072) routing - catchAll
+073) routing - kontrola dostępu: beforeEach, beforeEnter i beforeRouteEnter
+074) routing - kontrola wyjścia: beforeRouteLeave
+075) routing - lazy loading loading
 
-80) vuex - hello world 1 (props)
-81) vuex - hello world 2 (vuex)
-82) vuex - getters
-83) vuex - mapGetters
-84) vuex - mutations
-85) vuex - actions
-86) vuex - async actions
-87) vuex - action with payload
-88) vuex - modularyzacja
-89) vuex - moduły
-90) vuex - moduł z podziałem na pliki
-91) vuex - Two-Way-Binding v-model and Vuex
-92) vuex - ajax
-93) vuex - persistedstate
-94) vuex - wydzielenie ajaksów ze store'a do pliku zewn
-95) vuex - wydzielenie templatki do pliku zewn (CLI 3)
-96) vuex - mapState
+080) vuex - hello world 1 (props)
+081) vuex - hello world 2 (vuex)
+082) vuex - getters
+083) vuex - mapGetters
+084) vuex - mutations
+085) vuex - actions
+086) vuex - async actions
+087) vuex - action with payload
+088) vuex - modularyzacja
+089) vuex - moduły
+090) vuex - moduł z podziałem na pliki
+091) vuex - Two-Way-Binding v-model and Vuex
+092) vuex - ajax
+093) vuex - persistedstate
+094) vuex - wydzielenie ajaksów ze store'a do pliku zewn
+095) vuex - wydzielenie templatki do pliku zewn (CLI 3)
+096) vuex - mapState
 
-97)  bootstrap-vue - tips
-98)  bootstrap-vue - hello world
-99)  bootstrap-vue - import wybranych kawałków biblioteki
+097) bootstrap-vue - tips
+098) bootstrap-vue - hello world
+099) bootstrap-vue - import wybranych kawałków biblioteki
 100) bootstrap-vue - szerokości kolumn, marginesy i paddingi
 101) bootstrap-vue - layout and grid: container
 102) bootstrap-vue - layout and grid: row i column
@@ -779,7 +779,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-10) keyup, keypress
+010) keyup, keypress
 
     Poniżej można użyc dowolnego z ww, ale chyba keyup lepiej
     się sprawdza w różnych przeglądarkach
@@ -804,7 +804,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-11) templates
+011) templates
 
     W nawiasie {{ }} można wbijać proste tzn 1-linijkowe instrukcje
 
@@ -830,7 +830,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-12a) v-model
+012a) v-model
 
     <div id="app">
       <input v-model="name">
@@ -847,7 +847,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 ----------------------------------------------------------------------------------------------
-12b) nested component
+012b) nested component
 
     a) stwórz komponent
     b) umieść go w root komponencie, rejestrując w obiekcie 'components' root'a
@@ -900,7 +900,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </div>
 
 -------------------------------------------------------------------------------
-13) computed properties
+013) computed properties
 
     Udemy (Schwartsmuller) Vue: #23 Reacting to changes with computed properties
 
@@ -910,8 +910,8 @@ npm i -g @vue/cli@nextvue/cli000) tips
     i na nowo wyświetlana, a pozostałe np 9 było bez zmian
 
     W poniższym przykładzie klik dowolnego batona odpali funkcje zawarte w Methods
-    Funkcje zawarte w Computed, odpalone zostaną tylko, gdy zmieni się wartość w Computed ujęta
-    A nie dowolna
+    Funkcje zawarte w Computed, odpalone zostaną tylko, gdy zmieni się wartość
+    ujęta w w Computed, a nie dowolna
 
     -----------------------------------------------------------------------------------------------
 
@@ -949,7 +949,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-14) watch
+014) watch
 
     Udemy (Schwartzmuller) Vue: #24 Alternative to Computed properties - Watching for Changes
 
@@ -990,7 +990,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-15) :class
+015) :class
 
     W src templatki nazwa pliku musi mieć rozszerzenie .html
 
@@ -1023,7 +1023,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </div>
 
 -------------------------------------------------------------------------------
-16) :class i computed
+016) :class i computed
 
     <style>
       .demo {
@@ -1068,7 +1068,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-17) v-if i v-else
+017) v-if i v-else
 
     Rendering warunkowy - usuwa element z DOMu
 
@@ -1089,7 +1089,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-18) v-show
+018) v-show
 
     Nie usuwa elementu z DOMu, dodaje mu styl display: none
 
@@ -1108,7 +1108,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-19) v-for
+019) v-for
 
     Jeśli przy sortowaniu wynik jest inny niż powinien,
     dodaj index do pętli, np :id
@@ -1139,7 +1139,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-20) v-for nested
+020) v-for nested
 
     <div id= 'app'>
       <ul>
@@ -1164,7 +1164,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-21) apka ToDo List
+021) apka ToDo List
 
     -------- Kumpo.vue --------------------------------------
 
@@ -1223,7 +1223,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </div>
 
 -------------------------------------------------------------------------------
-22) Dostęp do apki z innej apki i z zewnątrz
+022) Dostęp do apki z innej apki i z zewnątrz
 
     <div id="app1">
       <p>{{ name }}</p>
@@ -1261,7 +1261,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-23) $ref
+023) $ref
 
     Elementowi mozna nadać nazwę, przez którą potem,
     można się doń odwoływać (jak id w css)
@@ -1292,7 +1292,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-24) $mount i template
+024) $mount i template
 
       <div id='app1'>
       </div>
@@ -1306,7 +1306,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-25) Lifecycle
+025) Lifecycle
 
     Udemy (Schwartzmueller) Vue - #75 Instance Lifecycle
 
@@ -1371,7 +1371,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-26) Komponent - zagnieżdżanie lokalne
+026) Komponent - zagnieżdżanie lokalne
 
     Udemy Schwartsmuller Vue - #96 Using Components
 
@@ -1427,7 +1427,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
   </div>
 
 -------------------------------------------------------------------------------
-27) props - 1
+027) props - 1
 
     Udemy Schwartsmuller Vue - #105-107 Props
 
@@ -1484,7 +1484,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-28) props - walidacja
+028) props - walidacja
 
     W powyższym Ninjas.vue, można zrobić walidacje typu przyjmowanych danych
       a) walidacja typ i required
@@ -1535,12 +1535,8 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }
     </script>
 
-
-
-
-
 -------------------------------------------------------------------------------
-29) props - 2
+029) props - 2
 
     ------------- App.vue ------------------------------------
 
@@ -1590,7 +1586,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-30) przekazanie funkcji
+030) przekazanie funkcji
 
   Analogicznie jak z przekazywaniem wartości, przekazuje się funkcję
 
@@ -1639,7 +1635,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
   </script>
 
 -------------------------------------------------------------------------------
-31) Custom Event ($emit i $event)
+031) Custom Event ($emit i $event)
 
       Udemy Schwartsmuller Vue #109 Using Custom Event for Child - Parent Comm @ 3:00
 
@@ -1696,7 +1692,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
   </div>
 
 -------------------------------------------------------------------------------
-32) eventBus ($emit, $on)
+032) eventBus ($emit, $on)
 
       Use vuex for everything as a default, and drop back to an event bus when vuex becomes a hurdle.
 
@@ -1772,7 +1768,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-33) slot
+033) slot
 
       Aby przekazać z parenta do childa na tyle dużo html'a,
       że nie mieści sie w 1 linii propsa:
@@ -1827,7 +1823,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </style>
 
 -------------------------------------------------------------------------------
-34a) named slots
+034a) named slots
 
     W pojedyńczym slocie, wszystko wpada do niego.
     Aby tą treść rozdzielić na mniejsze kawałki,
@@ -1867,7 +1863,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </template>
 
 -------------------------------------------------------------------------------
-34b) default slots
+034b) default slots
 
     Wszystko co w parencie nie jest oznaczone słowem 'slot' wrzucane jest
     do slota w childzie nie oznaczonego słowem 'name'
@@ -1921,7 +1917,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </style>
 
 -------------------------------------------------------------------------------
-35) dynamic component
+035) dynamic component
 
      Poniższa konstrukcja pozwala dynamicznie wybierać komponenty
 
@@ -1967,7 +1963,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </template>
 
 -------------------------------------------------------------------------------
-36) keep-alive
+036) keep-alive
 
     Aby jak w ww punkcie komponent nie został zniszczony (metoda destroyed()),
     ujmij tagi <component> w tagi <keep-alive>:
@@ -2037,7 +2033,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-37) component hooks: activated, deactivated
+037) component hooks: activated, deactivated
 
     <template>
       <div>
@@ -2065,7 +2061,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-38) input box: v-model.lazy.number
+038) input box: v-model.lazy.number
 
     Modyfikator .lazy powoduje, że wartość zmiennej uaktualniana
     będzie nie po każdym kistrołku, ale po enterze lub blurze (kliku poza input boksa)
@@ -2093,7 +2089,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-39) textarea v-model, multiline
+039) textarea v-model, multiline
 
     By zachować formatowanie tekstu w textarea,
     który podzielony jest na kilka linii, użyj css'owego
@@ -2119,7 +2115,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-40) checkbox
+040) checkbox
 
     <template>
       <div>
@@ -2142,7 +2138,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-41) radio
+041) radio
 
     <template>
       <div>
@@ -2165,7 +2161,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-42) select
+042) select
 
     <template>
       <div>
@@ -2189,7 +2185,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-43a) custom directive - global
+044) custom directive - global
 
     Global - oznacza, że dyrektywę rejestruje się w pliku main.js:
        Vue.directive('highlight', { .. })
@@ -2219,7 +2215,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </template>
 
 -------------------------------------------------------------------------------
-43b) custom directive - z propertką
+045) custom directive - z propertką
 
    --------- main.js -------------------------------
 
@@ -2242,7 +2238,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
      </template>
 
 -------------------------------------------------------------------------------
-43c) custom directive - z propertką i parametrem
+046) custom directive - z propertką i parametrem
 
 --------- main.js -------------------------------
 
@@ -2259,7 +2255,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
   </template>
 
 -------------------------------------------------------------------------------
-43d) custom directive - z propertką, parametrem i modyfikatorem
+047) custom directive - z propertką, parametrem i modyfikatorem
 
     <div v-color:background.delayed="'green'">  - modyfikatoeem jest 'delayed'
 
@@ -2292,7 +2288,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
   </template>
 
 -------------------------------------------------------------------------------
-44) custom directive with modifier - global
+048) custom directive with modifier - global
 
     Do custom dyrektywy można dodac jeszcze modifier
 
@@ -2329,7 +2325,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </template>
 
 -------------------------------------------------------------------------------
-45) custom directive - local 1
+049) custom directive - local 1
 
       <script>
         directives: {
@@ -2365,7 +2361,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-46) custom directive - local 2
+050) custom directive - local 2
 
       --------- main.js ----------------------------
 
@@ -2407,7 +2403,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-47) custom directive with objects -  local
+051) custom directive with objects -  local
 
     <template>
       <h1 v-kupa="{ sztuk: 10, cena: 6 }"></h1>
@@ -2427,7 +2423,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-49) filter - local
+054) filter - local
 
     Przekształcanie treści do wyświetlenia w templatce
     Np zamiana liter na duże i wycinanie spacji
@@ -2456,7 +2452,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-50) filter - global
+055) filter - global
 
   -------- main.js -----------------------------
 
@@ -2496,7 +2492,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     </script>
 
 -------------------------------------------------------------------------------
-51) filter via computed property
+056) filter via computed property
 
     Problem ze zwykłymi filtrami jest taki, że są przeliczane za każdą zmianą DOMu,
     nawet jeśli filtra kompletnie nie dotyczą.
@@ -2534,7 +2530,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-52) mixin
+058) mixin
 
       Jeśli jakaś metoda przydaje się w więcej niż 1 miejscu,
       warto ją wyłączyc do zewn pliku mixin, a potem zaimportować
@@ -2580,7 +2576,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-53) mixin - lifecycles
+059) mixin - lifecycles
 
     Mixiny podobnie jak komponenty, mają metody lifecycle'owe
     Przy czym nawet jeśli obie wystepują naraz i mają taką samą nazwę
@@ -2633,7 +2629,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-54) mixin - global
+060) mixin - global
 
     Jest odpalany automatycznie przy każdym komponencie,
     więc w praktyce używa się go tylko przy tworzeniu pluginów:
@@ -2652,7 +2648,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }).$mount('#app')
 
 -------------------------------------------------------------------------------
-55) routing - hello world #223
+063) routing - hello world
 
       Udemy Schwartsmuller Vue #223-225
 
@@ -2732,7 +2728,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </template>
 
 -------------------------------------------------------------------------------
-56) routing - links
+064) routing - links
 
       Udemy Schwartsmuller Vue #226
 
@@ -2797,7 +2793,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         </template>
 
 -------------------------------------------------------------------------------
-57) routing - navigating
+065) routing - navigating
 
       Udemy Vue (Schwartsmuller) - #228 Code Imperative Navigation
 
@@ -2821,7 +2817,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-58) routing - z parametrem
+066) routing - z parametrem
 
       Udemy Schwartsmuller Vue: #229-230 Fetching and Using Route Parameters
 
@@ -2920,7 +2916,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         </script>
 
 -------------------------------------------------------------------------------
-59) routing - watch route
+067) routing - watch route
 
       Udemy Schwartsmuller Vue: #231 Changes in Route Parameters
 
@@ -3016,7 +3012,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         </script>
 
 -------------------------------------------------------------------------------
-60) routing - named routes
+068) routing - named routes
 
       Udemy Schwartsmuller Vue #235 Named Routes
 
@@ -3084,7 +3080,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </template>
 
 -------------------------------------------------------------------------------
-61) routing - query parameters
+069) routing - query parameters
 
       By przesłać query parameters jak w poniższej routcie:
          http://localhost:8080/?locale=en&q=100
@@ -3165,7 +3161,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         </template>
 
 -------------------------------------------------------------------------------
-62) routing - named router views
+070) routing - named router views
 
       Tag <router-view> pliku App, sluży do wyświetlania komponentu leżącego pod adresem route'y
 
@@ -3238,7 +3234,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         </template>
 
 -------------------------------------------------------------------------------
-63) routing - redirect
+071) routing - redirect
 
       Po kluczu 'redirect', można podać ścieżkę lub jej nazwę:
 
@@ -3255,7 +3251,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       ]
 
 -------------------------------------------------------------------------------
-64) routing - catchAll
+072) routing - catchAll
 
       Ruta z wildcardem, najlepiej by była ostatnia (konwencja), ale nie musi
 
@@ -3272,7 +3268,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       ]
 
 -------------------------------------------------------------------------------
-65) routing - kontrola dostępu: beforeEach, beforeEnter i beforeRouteEnter
+073) routing - kontrola dostępu: beforeEach, beforeEnter i beforeRouteEnter
 
       Router ma 3 hooki kontrolujące uprawnienia dostępu do route:
 
@@ -3383,7 +3379,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-66) routing - kontrola wyjścia: beforeRouteLeave
+074) routing - kontrola wyjścia: beforeRouteLeave
 
     Udemy Schwartsmuller Vue #245 beforeRouteLeaveGuard
 
@@ -3418,12 +3414,12 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-67) routing - lazy loading
+075) routing - lazy loading
 
     Udemy Schwartsmuller Vue #246 Loading Routes Lazily
 
 -------------------------------------------------------------------------------
-80) vuex - hello world 1 (props)
+080) vuex - hello world 1 (props)
 
     Udemy Schwartsmuller Vue #252 Using the Centralized State
 
@@ -3498,7 +3494,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------------------
-81) vuex - hello world 2 (vuex)
+081) vuex - hello world 2 (vuex)
 
     Udemy Schwartsmuller Vue #252 Using the Centralized State
 
@@ -3602,7 +3598,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------------------
-82) vuex - getters
+082) vuex - getters
 
       Przeniesienie części logiki z komponentu do store'a
 
@@ -3706,7 +3702,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------------------
-83) vuex - mapGetters
+083) vuex - mapGetters
 
     Przy więcej niż 1 getterze, dubluje sie kod 'this.$store.getters'
 
@@ -3747,7 +3743,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------------------
-84) vuex - mutations
+084) vuex - mutations
 
       Podobnie jak scentralizowane zostały getry,
       centralizujemy w store.js swetry, czyli mutacje
@@ -3863,7 +3859,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------------------
-85) vuex - actions
+085) vuex - actions
 
     Akcje służą do odpalania mutacji asynchronicznych
     Jeśli takie nie wystepują, można używać mutacji
@@ -4002,7 +3998,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------------------
-86) vuex - async actions
+086) vuex - async actions
 
     Przykład zastosowania akcji asynchronicznych w akcjach
 
@@ -4022,7 +4018,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     }
 
 -------------------------------------------------------------------------------------------
-87) vuex - action with payload
+087) vuex - action with payload
 
     Udemy Schwartsmuller Vue #62 Mapping Actions to Methods
 
@@ -4067,7 +4063,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }
 
 -------------------------------------------------------------------------------------------
-88) vuex - modularyzacja
+088) vuex - modularyzacja
 
     Gettersy, mutacje i akcje można przenieść do osobnych plików
 
@@ -4126,7 +4122,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }
 
 -------------------------------------------------------------------------------------------
-89) vuex - moduły
+089) vuex - moduły
 
     Jeśli store zawiera stany kilku różnych obiektów,
     można je podzielić na substory i przenieść do osobnych plików
@@ -4184,7 +4180,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }
 
 -------------------------------------------------------------------------------------------
-90) vuex - moduł z podziałem na pliki
+090) vuex - moduł z podziałem na pliki
 
     Store w module, można podzielić bardziej, tzn na osobne pliki
     zawierające poszczególne sekcje jak getters, mutations itd
@@ -4245,7 +4241,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       }
 
 -------------------------------------------------------------------------------------------
-91) vuex - Two-Way-Binding v-model and Vuex
+091) vuex - Two-Way-Binding v-model and Vuex
 
     Udemy Schwartsmuller Vue #264 Two-Way-Binding v-model and Vuex
 
@@ -4328,7 +4324,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </script>
 
 -------------------------------------------------------------------------------
-92) vuex - ajax
+092) vuex - ajax
 
     Problem 1(apka 'koszyk2'): po wyświetleniu tabeli, metoda:
 
@@ -4511,7 +4507,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
         },
 
 -------------------------------------------------------------------------------------------
-93) vuex-persistedstate
+093) vuex-persistedstate
 
       https://codesandbox.io/s/80k4m2598?autoresize=1
       https://github.com/robinvdvleuten/vuex-persistedstate
@@ -4568,7 +4564,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------------------
-94) vuex - wydzielenie ajaksów ze store'a do pliku zewn
+094) vuex - wydzielenie ajaksów ze store'a do pliku zewn
 
      Wg best practises ajaxy powinny być w storze.
      Ale przez nie store puchnie niemiłosiernie
@@ -4671,7 +4667,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
     }
 
 -------------------------------------------------------------------------------------------
-95) vuex - wydzielenie templatki do pliku zewn (CLI 3)
+095) vuex - wydzielenie templatki do pliku zewn (CLI 3)
 
       Trzeba tylko pamiętać, by wywalić z pliku html tagi <template>
       by się nue dublowały z tym tagiem w pliku .vue
@@ -4702,7 +4698,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
       </div>
 
 -------------------------------------------------------------------------------------------
-96) vuex - mapState
+096) vuex - mapState
 
       forum.vuejs.org/t/vuex-mapgetters-vs-mapstate/18447/3
       vuex.vuejs.org/guide/getters.html
@@ -4785,7 +4781,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
 
 -------------------------------------------------------------------------------
-97) bootstrap-vue - tips
+097) bootstrap-vue - tips
 
       a) można używać flexa w wersji bootstrap:
 
@@ -4796,7 +4792,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
             class='d-flex justify-content-md-between'>
 
 -------------------------------------------------------------------------------
-98) bootstrap-vue  hello world
+098) bootstrap-vue  hello world
 
     https://bootstrap-vue.js.org/docs/components/layout
 
@@ -4835,7 +4831,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
        Możesz dodać ww linie <b-col>
 
 -------------------------------------------------------------------------------------------
-99)  bootstrap-vue - import wybranych kawałków biblioteki
+099)  bootstrap-vue - import wybranych kawałków biblioteki
 
       https://bootstrap-vue.js.org/docs/
 
@@ -6875,7 +6871,7 @@ npm i -g @vue/cli@nextvue/cli000) tips
 
       https://vuetifyjs.com/en/framework/grid#direction-and-align
 
-        <v-layout align-start         justify-start           row fill-height> ... </v-layout>
+        <v-layout align-start         justify-start     row fill-height> ... </v-layout>
                   align-center        justify-center
                   align-end           justify-end
                   align-space-around  justify-space-around

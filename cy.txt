@@ -1703,11 +1703,11 @@
               A jak i to nie wystarczy, to ustaw je obie też w User variables
 
           2) Ustaw zmienną środowiskową, odpalając:
-          
+
                 export NODE_TLS_REJECT_UNAUTHORIZED=0 (tak, ma być export, jeśli piszesz w gitBashu )
               potem usuń ją:
                 unset NODE_TLS_REJECT_UNAUTHORIZED
-              upewnij się, że jej tu już nie ma
+              upewnij się, że jej już nie ma:
                 set > set.txt
 
         Stuff like setting NODE_TLS_REJECT_UNAUTHORIZED=0 or similar is out of the question
@@ -2372,12 +2372,63 @@ describe('Cicada', () => {
 
 
 --------------------------------------------------------------------------------------------
+160) drag'n'drop (nie chodzi)
+
+      .. ani plugin bierika ani kod asumarana
+      Oba testy wykonują się bez błędu, ale drag'n'drop się nie wykonuje
 
 
---------------------------------------------------------------------------------------------
+      Rozwiązanie bierika, które testował na Vue.Draggable:
+      https://github.com/cypress-io/cypress/issues/857
+
+      Rozwiązanie asumarana: https://github.com/cypress-io/cypress/issues/845
+
+      1. Sklonuj Vue.Draggable
+          https://github.com/SortableJS/Vue.Draggable
+
+      2. doinstaluj cyprysa
+          npm i cypress
+
+      3. przeklej wszystko stąd
+            https://github.com/4teamwork/cypress-drag-drop/blob/master/index.js
+        do pliku:
+          /cypress/support/commands.js
+
+      4. stwórz plik /cypress/integration/darek.spec.js i wklej doń
+
+          describe("Dragtest", () => {
+            it("should dragndrop", () => {
+              cy.visit("http://localhost:8080/#/simple");
+
+              cy.get("#BBB").trigger("dragend");
+
+              // cy.get("#AAA")
+                // .dragTo("#BBB");
+
+            });
+          });
+
+      5. odpal apkę przez: npm run serve
+
+      6. do skryptów package.json'a dodaj:
+          "cy": "cypress open"
+
+      7. odpal go: npm run cy - wykona się skrypt
+
+      8. do ww pliku commands.js dodaj na końcu kod kol.asumarana:
+
+          Cypress.Commands.add("dragTo", { prevSubject: "element" }, (subject, targetEl) => {
+            cy.wrap(subject).trigger("dragstart");
+            cy.get(targetEl).trigger("drop");
+            cy.get(targetEl).trigger("dragend");
+          });
+
+      9. Zakomentuj bierika
+          // cy.get("#BBB").trigger("dragend");
+        odkomentuj asumarana
+          cy.get("#AAA")
+            .dragTo("#BBB");
+
+      10. cyprys odpali go automatycznie
 
 
---------------------------------------------------------------------------------------------
-
-
---------------------------------------------------------------------------------------------

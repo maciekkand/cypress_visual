@@ -143,12 +143,11 @@ ________________________________________________________________________________
     "editor.fontSize": 17,
     "editor.fontLigatures": true,
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnType": false,
     "editor.hover.enabled": false,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
-    "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderIndentGuides": false,
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "none",
@@ -157,7 +156,7 @@ ________________________________________________________________________________
     "editor.tabSize": 2,
     "editor.useTabStops": true,
     "editor.wordWrap": "off",
-    "editor.wordSeparators": "\\()\"',;<>~!@^&*|+[]{}`~:",
+    "editor.wordSeparators": "\\()\"',.;<>~!@^&*|+[]{}`~:",
 
     "eslint.alwaysShowStatus": true,
     "eslint.autoFixOnSave": false,
@@ -185,8 +184,6 @@ ________________________________________________________________________________
         "**/.DS_Store": true,
         "yarn-error.log": true,
         "yarn.lock": true,
-        "package-lock.json": true,
-        "README.md": true,
         "node_modules": true,
         ".vscode": true
     },
@@ -198,6 +195,7 @@ ________________________________________________________________________________
     "git.autoRepositoryDetection": false,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
+    "git.path": "/mingw64/bin/git",
     "git.postCommitCommand": "none",
 
     "gitlens.advanced.messages": {
@@ -232,6 +230,16 @@ ________________________________________________________________________________
       "**/tests": true
     },
 
+    "debug.toolBarLocation": "hidden",
+    "debug.showInStatusBar": "never",
+    "statusbarDebugger.template": "$(bug) [name]",
+    "statusbarDebugger.command": "auto",
+    "statusbarDebugger.actions": ["pause", "continue", "step_over", "step_into", "step_out", "restart", "stop"],
+    "statusbarDebugger.actionsIcons": ["❙❙", "$(triangle-right)", "$(arrow-right)", "$(arrow-down)", "$(arrow-up)", "$(mail-reply)", "$(primitive-square)"],
+    "statusbarDebugger.activeColor": "",
+    "statusbarDebugger.alignment": "left",
+    "statusbarDebugger.priority": -10,
+
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
@@ -252,11 +260,12 @@ ________________________________________________________________________________
 
     "update.mode": "manual",
 
+    "vscodeGoogleTranslate.preferredLanguage": "pl",
+
     "window.menuBarVisibility": "toggle",
     "window.title": "${rootName}${separator}${activeEditorShort}",
     "window.zoomLevel": -1,
     "workbench.editor.tabSizing": "shrink",
-    "workbench.iconTheme": "material-icon-theme",
     "workbench.panel.defaultLocation": "right",
     "workbench.settings.editor": "json",
     "workbench.startupEditor": "newUntitledFile",
@@ -270,10 +279,10 @@ ________________________________________________________________________________
     "pasteAndIndent.selectAfter": true,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "workbench.settings.enableNaturalLanguageSearch": false
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.activityBar.visible": true
 
 }
-
 ________________________________________________________________________________________________________
 02) Keyboard Shortcuts
 
@@ -638,10 +647,6 @@ ________________________________________________________________________________
     "command": "vikyd.FoldLevel.level6"
   },
   {
-    "key": "alt+-",
-    "command": "editor.foldAll"
-  },
-  {
     "key": "alt+=",
     "command": "editor.unfoldAll"
   },
@@ -715,8 +720,22 @@ ________________________________________________________________________________
     "key": "f12",
     "command": "-editor.action.revealDefinition",
     "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
-  }
+  },
+  {
+    "key": "alt+oem_minus",
+    "command": "-gitlens.showLastQuickPick",
+    "when": "gitlens:enabled && config.gitlens.keymap == 'alternate'"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "-workbench.action.reopenClosedEditor"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "extension.translateTextPreferred"
+  },
 ]
+
 
 
 ________________________________________________________________________________________________________
@@ -725,420 +744,421 @@ ________________________________________________________________________________
      Zębatka w lewym dolnym > Snippets
 
       {
-        "console.log": {
-          "prefix": "cl",
-          "body": [
-            "console.log($1)"
-          ],
-          "description": ""
-        },
+  "console.log": {
+    "prefix": "cl",
+    "body": [
+      "console.log($1)"
+    ],
+    "description": ""
+  },
 
-        "router.get": {
-          "prefix": "get",
-          "body": [
-            "router.get('/$1', async (req, res) => {\n  \n  res.send($1)\n})"
-          ]
-        },
+  "router.get": {
+    "prefix": "get",
+    "body": [
+      "router.get('/$1', async (req, res) => {\n  \n  res.send($1)\n})"
+    ]
+  },
 
-        "router.post": {
-          "prefix": "pos",
-          "body": [
-            "router.post('/$1', async (req, res) => {\n  \n  res.send()\n})"
-          ]
-        },
+  "router.post": {
+    "prefix": "pos",
+    "body": [
+      "router.post('/$1', async (req, res) => {\n  \n  res.send()\n})"
+    ]
+  },
 
-        "express": {
-          "prefix": "exp",
-          "body": [
-            "const mongoose = require('mongoose')\nconst express = require('express')\nconst app = express()\n\napp.get('/', (req, res) => {\n  $1\n  res.send('Siemanko')\n})\n\napp.listen(3000, () => console.log('Serwer na 3000 ..'))"
-          ]
-        },
+  "express": {
+    "prefix": "exp",
+    "body": [
+      "const mongoose = require('mongoose')\nconst express = require('express')\nconst app = express()\n\napp.get('/', (req, res) => {\n  $1\n  res.send('Siemanko')\n})\n\napp.listen(3000, () => console.log('Serwer na 3000 ..'))"
+    ]
+  },
 
-        "mongoose": {
-          "prefix": "mon",
-          "body": [
-            "const express = require('express')\nconst router = express.Router()\nconst mongoose = require('mongoose')\n\nmongoose.connect('mongodb://localhost/$1persons')\n  .then(() => console.log('Connected'))\n  .catch(err => console.log('Siespsuło: ', err))\n\nconst pplSchema = new mongoose.Schema()\nconst pplModel = mongoose.model('pplModel', pplSchema, 'ppl')\n\nrouter.get('/', async (req, res) => {\n  const result = await pplModel\n  .find()\n  .select({\n  _id: 0\n})\n\n  console.log(result)\n  res.send(result)\n})\n\nmodule.exports = router"
-          ]
-        },
+  "mongoose": {
+    "prefix": "mon",
+    "body": [
+      "const express = require('express')\nconst router = express.Router()\nconst mongoose = require('mongoose')\n\nmongoose.connect('mongodb://localhost/$1persons')\n  .then(() => console.log('Connected'))\n  .catch(err => console.log('Siespsuło: ', err))\n\nconst pplSchema = new mongoose.Schema()\nconst pplModel = mongoose.model('pplModel', pplSchema, 'ppl')\n\nrouter.get('/', async (req, res) => {\n  const result = await pplModel\n  .find()\n  .select({\n  _id: 0\n})\n\n  console.log(result)\n  res.send(result)\n})\n\nmodule.exports = router"
+    ]
+  },
 
-        "router": {
-          "prefix": "rou",
-          "body": [
-            "const express = require('express')\nconst router = express.Router()\n\nrouter.get('/$1', async (req, res) => {\n\n})\n\nmodule.exports = router "
-          ]
-        },
+  "router": {
+    "prefix": "rou",
+    "body": [
+      "const express = require('express')\nconst router = express.Router()\n\nrouter.get('/$1', async (req, res) => {\n\n})\n\nmodule.exports = router "
+    ]
+  },
 
-        "res.status.send": {
-          "prefix": "res",
-          "body": [
-            "res.status(400).send($1)"
-          ]
-        },
+  "res.status.send": {
+    "prefix": "res",
+    "body": [
+      "res.status(400).send($1)"
+    ]
+  },
 
-        "require": {
-          "prefix": "req",
-          "body": [
-            "require('$1')"
-          ]
-        },
+  "require": {
+    "prefix": "req",
+    "body": [
+      "require('$1')"
+    ]
+  },
 
-        "console.log string - wartosc": {
-          "prefix": "cc",
-          "body": [
-            "console.log('\\n$1 = ', $1)\n$2"
-          ]
-        },
+  "console.log string - wartosc": {
+    "prefix": "cc",
+    "body": [
+      "console.log('\\n$1 = ', $1)\n$2"
+    ]
+  },
 
-        "console.log(1) ": {
-          "prefix": "cccc",
-          "body": [
-            "console.error('\\n******* 1$1 ************')"
-          ]
-        },
+  "console.log(1) ": {
+    "prefix": "cccc",
+    "body": [
+      "console.error('\\n******* 1$1 ************')"
+    ]
+  },
 
-        "() => {})": {
-          "prefix": "cb",
-          "body": [
-            "($1) => {\n  $2\n}"
-          ]
-        },
+  "() => {})": {
+    "prefix": "cb",
+    "body": [
+      "($1) => {\n  $2\n}"
+    ]
+  },
 
-        "const x = require('x)": {
-          "prefix": "rr",
-          "body": [
-            "const $1 = require('$1')"
-          ]
-        },
+  "const x = require('x)": {
+    "prefix": "rr",
+    "body": [
+      "const $1 = require('$1')"
+    ]
+  },
 
-        "then()  catch()": {
-          "prefix": "th",
-          "body": [
-            ".then(() => {\n  $1\n})\n.catch(err => { throw Error(err)})"
-          ]
-        },
+  "then()  catch()": {
+    "prefix": "th",
+    "body": [
+      ".then(() => {\n  $1\n})\n.catch(err => { throw Error(err)})"
+    ]
+  },
 
-        "describe(...)": {
-          "prefix": "des",
-          "body": [
-            "describe('$1', () => {\n  beforeEach(() => {\n\n})\n\n  afterEach(() => {\n\n})\n\n  it('should $2', () => {\n  const result = $3\n  expect(result$4).to$5\n})\n})"
-          ]
-        },
+  "describe(...)": {
+    "prefix": "des",
+    "body": [
+      "describe('$1', () => {\n  beforeEach(() => {\n\n})\n\n  afterEach(() => {\n\n})\n\n  it('should $2', () => {\n  const result = $3\n  expect(result$4).to$5\n})\n})"
+    ]
+  },
 
-        "it(...)": {
-          "prefix": "it(",
-          "body": [
-            "it('should $1', () => {\n  $2\n})"
-          ]
-        },
+  "it(...)": {
+    "prefix": "it(",
+    "body": [
+      "it('should $1', () => {\n  $2\n})"
+    ]
+  },
 
-        "it(const .. expect ..)": {
-          "prefix": "itt(",
-          "body": [
-            "it('should $1', () => {\n  const result = $2\n  expect(result).to$3\n})"
-          ]
-        },
+  "it(const .. expect ..)": {
+    "prefix": "itt(",
+    "body": [
+      "it('should $1', () => {\n  const result = $2\n  expect(result).to$3\n})"
+    ]
+  },
 
-        "throw new Error": {
-          "prefix": "thr",
-          "body": [
-            "throw new Error('***** THROWNIĘTY ERORUCH *****$1')"
-          ]
-        },
+  "throw new Error": {
+    "prefix": "thr",
+    "body": [
+      "throw new Error('***** THROWNIĘTY ERORUCH *****$1')"
+    ]
+  },
 
-        "try catch": {
-          "prefix": "try",
-          "body": [
-            "try {\n  $1\n}\ncatch(err) { console.error(err) }"
-          ]
-        },
+  "try catch": {
+    "prefix": "try",
+    "body": [
+      "try {\n  $1\n}\ncatch(err) { console.error(err) }"
+    ]
+  },
 
-        "const": {
-          "prefix": "c",
-          "body": [
-            "const $1 "
-          ]
-        },
+  "const": {
+    "prefix": "c",
+    "body": [
+      "const $1 "
+    ]
+  },
 
-        "function short": {
-          "prefix": "ff",
-          "body": [
-            "const x$2 = () => console.log('$1')$3"
-          ]
-        },
+  "function short": {
+    "prefix": "ff",
+    "body": [
+      "const x$2 = () => console.log('$1')$3"
+    ]
+  },
 
-        "function long": {
-          "prefix": "fff",
-          "body": [
-            "const x$2 = () => {\n  $1\n}$3"
-          ]
-        },
+  "function long": {
+    "prefix": "fff",
+    "body": [
+      "const x$2 = () => {\n  $1\n}$3"
+    ]
+  },
 
-        "expect": {
-          "prefix": "exp",
-          "body": [
-            "expect(result$1).to$2()"
-          ]
-        },
+  "expect": {
+    "prefix": "exp",
+    "body": [
+      "expect(result$1).to$2()"
+    ]
+  },
 
-        "array": {
-          "prefix": "arr",
-          "body": [
-            "const arr = [1, 2, 3, 4]"
-          ]
-        },
+  "array": {
+    "prefix": "arr",
+    "body": [
+      "const arr = [1, 2, 3, 4]"
+    ]
+  },
 
-        "object": {
-          "prefix": "obj",
-          "body": [
-            "const user = { name: 'jan', age: 11, city: 'wwa'}"
-          ]
-        },
+  "object": {
+    "prefix": "obj",
+    "body": [
+      "const user = { name: 'jan', age: 11, city: 'wwa'}"
+    ]
+  },
 
-        "objects": {
-          "prefix": "objs",
-          "body": [
-            "const users = [\n  { id: 0, name: 'jan', age: 11, city: 'wwa'},\n  { id: 1, name: 'adam', age: 22, city: 'gda'}\n] "
-          ]
-        },
+  "objects": {
+    "prefix": "objs",
+    "body": [
+      "const users = [\n  { id: 0, name: 'jan', age: 11, city: 'wwa'},\n  { id: 1, name: 'adam', age: 22, city: 'gda'}\n] "
+    ]
+  },
 
-        "const x =": {
-          "prefix": "x",
-          "body": [
-            "const x = $1"
-          ]
-        },
+  "const x =": {
+    "prefix": "x",
+    "body": [
+      "const x = $1"
+    ]
+  },
 
-        "axios": {
-          "prefix": "ax",
-          "body": [
-            "const axios = require('axios')\nconst url = 'https://jsonplaceholder.typicode.com/users'\n\naxios.get(url)\n  .then(res => console.log(res.data))\n  .catch(err => console.log('Eror: ', err))"
-          ]
-        },
+  "axios": {
+    "prefix": "ax",
+    "body": [
+      "const axios = require('axios')\nconst url = 'https://jsonplaceholder.typicode.com/users'\n\naxios.get(url)\n  .then(res => console.log(res.data))\n  .catch(err => console.log('Eror: ', err))"
+    ]
+  },
 
-        "console": {
-          "prefix": "ccc",
-          "body": [
-            "console.log('\\n', res$1, '\\n')"
-          ]
-        },
+  "console": {
+    "prefix": "ccc",
+    "body": [
+      "console.log('\\n', res$1, '\\n')"
+    ]
+  },
 
-        "alert": {
-          "prefix": "al",
-          "body": [
-            "<script>alert(1)</script>"
-          ]
-        },
+  "alert": {
+    "prefix": "al",
+    "body": [
+      "<script>alert(1)</script>"
+    ]
+  },
 
-        "function": {
-          "prefix": "fu",
-          "body": [
-            "function() {\n  $1\n}"
-          ]
-        },
+  "function": {
+    "prefix": "fu",
+    "body": [
+      "function() {\n  $1\n}"
+    ]
+  },
 
-        "vue": {
-          "prefix": "vv",
-          "body": [
-            "<div id='app'>\n\n</div>\n\n\n<script>\nconst app = new Vue({\n  el: '#app',\ndata: {\n\n},\n computed: {\n\n},\nmethod: {\n}\n})\n</script>"
-          ]
-        },
+  "vue": {
+    "prefix": "vv",
+    "body": [
+      "<div id='app'>\n\n</div>\n\n\n<script>\nconst app = new Vue({\n  el: '#app',\ndata: {\n\n},\n computed: {\n\n},\nmethod: {\n}\n})\n</script>"
+    ]
+  },
 
-        "<p>": {
-          "prefix": "p",
-          "body": [
-            "<p>$1</p>"
-          ]
-        },
+  "<p>": {
+    "prefix": "p",
+    "body": [
+      "<p>$1</p>"
+    ]
+  },
 
-        "<a>": {
-          "prefix": "a",
-          "body": [
-            "<a :href='$1'>$2</a>"
-          ]
-        },
+  "<a>": {
+    "prefix": "a",
+    "body": [
+      "<a :href='$1'>$2</a>"
+    ]
+  },
 
-        "<button>": {
-          "prefix": "a",
-          "body": [
-            "<button @click='$1'>$2</button>"
-          ]
-        },
+  "<button>": {
+    "prefix": "a",
+    "body": [
+      "<button @click='$1'>$2</button>"
+    ]
+  },
 
-        "<div>": {
-          "prefix": "di",
-          "body": [
-            "<div>$1</div>"
-          ]
-        },
+  "<div>": {
+    "prefix": "di",
+    "body": [
+      "<div>$1</div>"
+    ]
+  },
 
-        "<h1>": {
-          "prefix": "h1",
-          "body": [
-            "<h1>$1</h1>"
-          ]
-        },
+  "<h1>": {
+    "prefix": "h1",
+    "body": [
+      "<h1>$1</h1>"
+    ]
+  },
 
-        "json": {
-          "prefix": "json",
-          "body": [
-            "[\n  { \"name\":\"adam\",\"city\":\"wwa\",\"age\": 12},\n  { \"name\":\"ewa\",\"city\":\"wro\",\"age\": 45},\n  { \"name\":\"piotr\",\"city\":\"poz\",\"age\": 78 }\n]"
-          ]
-        },
+  "json": {
+    "prefix": "json",
+    "body": [
+      "[\n  { \"name\":\"adam\",\"city\":\"wwa\",\"age\": 12},\n  { \"name\":\"ewa\",\"city\":\"wro\",\"age\": 45},\n  { \"name\":\"piotr\",\"city\":\"poz\",\"age\": 78 }\n]"
+    ]
+  },
 
-        "dispatch": {
-          "prefix": "dis",
-          "body": [
-            "this.\\$store.dispatch('$1',)"
-          ]
-        },
+  "dispatch": {
+    "prefix": "dis",
+    "body": [
+      "this.\\$store.dispatch('$1',)"
+    ]
+  },
 
-        "getter": {
-          "prefix": "ge",
-          "body": [
-            "this.\\$store.getters."
-          ]
-        },
+  "getter": {
+    "prefix": "ge",
+    "body": [
+      "this.\\$store.getters."
+    ]
+  },
 
-        "region folding": {
-          "prefix": "//#",
-          "body": [
-            "//#region\n//#endregion"
-          ]
-        },
+  "region folding": {
+    "prefix": "//#",
+    "body": [
+      "//#region\n//#endregion"
+    ]
+  },
 
-        "cSpell_disable_enable": {
-          "prefix": "cs",
-          "body": [
-            "/* cSpell:disable */ /* $1 */  /* cSpell:enable */"
-          ]
-        },
+  "cSpell_disable_enable": {
+    "prefix": "cs",
+    "body": [
+      "/* cSpell:disable */ /* $1 */  /* cSpell:enable */"
+    ]
+  },
 
-        "cSpell_ignore_comment": {
-          "prefix": "csp",
-          "body": [
-            "/* cSpell:disable */\n$1/* cSpell:enable */"
-          ]
-        },
+  "cSpell_ignore_comment": {
+    "prefix": "csp",
+    "body": [
+      "/* cSpell:disable */\n$1/* cSpell:enable */"
+    ]
+  },
 
-        "console.table": {
-          "prefix": "ct",
-          "body": [
-            "console.table($1, ['$2'])"
-          ]
-        },
+  "console.table": {
+    "prefix": "ct",
+    "body": [
+      "console.table($1, ['$2'])"
+    ]
+  },
 
-        "console.log - red": {
-          "prefix": "cr",
-          "body": [
-            "console.log('%c $1','color: red')"
-          ]
-        },
+  "console.log - red": {
+    "prefix": "cr",
+    "body": [
+      "console.log('%c $1','color: red')"
+    ]
+  },
 
-        "console.log - green": {
-          "prefix": "cg",
-          "body": [
-            "console.log('%c $1','color: lime')"
-          ]
-        },
+  "console.log - green": {
+    "prefix": "cg",
+    "body": [
+      "console.log('%c $1','color: lime')"
+    ]
+  },
 
-        "console.log - blue": {
-          "prefix": "cb",
-          "body": [
-            "console.log('%c $1','color: lightblue')"
-          ]
-        },
+  "console.log - blue": {
+    "prefix": "cb",
+    "body": [
+      "console.log('%c $1','color: lightblue')"
+    ]
+  },
 
-        "console.log - orange": {
-          "prefix": "co",
-          "body": [
-            "console.log('%c $1','color: orange')"
-          ]
-        },
+  "console.log - orange": {
+    "prefix": "co",
+    "body": [
+      "console.log('%c $1','color: orange')"
+    ]
+  },
 
-        "console.log - yellow": {
-          "prefix": "cy",
-          "body": [
-            "console.log('%c $1','color: yellow')"
-          ]
-        },
+  "console.log - yellow": {
+    "prefix": "cy",
+    "body": [
+      "console.log('%c $1','color: yellow')"
+    ]
+  },
 
-        "console.log - violet": {
-          "prefix": "cv",
-          "body": [
-            "console.log('%c $1','color: violet')"
-          ]
-        },
+  "console.log - violet": {
+    "prefix": "cv",
+    "body": [
+      "console.log('%c $1','color: violet')"
+    ]
+  },
 
-        "nextTick": {
-          "prefix": "nex",
-          "body": [
-            "this.$nextTick(() => {\r",
-            "  $1\r",
-            "})"
-          ]
-        },
+  "nextTick": {
+    "prefix": "nex",
+    "body": [
+      "this.$nextTick(() => {\r",
+      "  $1\r",
+      "})"
+    ]
+  },
 
-        "console.clear": {
-          "prefix": "ccl",
-          "body": [
-            "console.clear()"
-          ]
-        },
+  "console.clear": {
+    "prefix": "ccl",
+    "body": [
+      "console.clear()"
+    ]
+  },
 
-        "for_loop": {
-          "prefix": "fo",
-          "body": [
-            "for (let i = 0; i < $1; i++) {",
-            "  $2",
-            "}"
-          ]
-        },
+  "for_loop": {
+    "prefix": "fo",
+    "body": [
+      "for (let i = 0; i < $1; i++) {",
+      "  $2",
+      "}"
+    ]
+  },
 
-        "data-": {
-          "prefix": "da",
-          "body": [
-            "(\"[data-test='$1']\")"
-          ]
-        },
+  "data-": {
+    "prefix": "da",
+    "body": [
+      "(\"[data-test='$1']\")"
+    ]
+  },
 
-        "cy.pause": {
-          "prefix": "cp",
-          "body": [
-            "cy.pause()"
-          ]
-        },
+  "cy.pause": {
+    "prefix": "cp",
+    "body": [
+      "cy.pause()"
+    ]
+  },
 
-        "JSON.stringify": {
-          "prefix": "J",
-          "body": [
-            "JSON.stringify($1)"
-          ]
-        },
+  "JSON.stringify": {
+    "prefix": "J",
+    "body": [
+      "JSON.stringify($1)"
+    ]
+  },
 
-        "jsonplaceholder.typicode.com": {
-          "prefix": "typi",
-          "body": [
-            "axios.get('https://jsonplaceholder.typicode.com/posts/1')",
-            "  .then(res => console.log(res.data))",
-            "  .catch(err => console.log('Erroras:', err))"
-          ]
-        },
+  "jsonplaceholder.typicode.com": {
+    "prefix": "typi",
+    "body": [
+      "axios.get('https://jsonplaceholder.typicode.com/posts/1')",
+      "  .then(res => console.log(res.data))",
+      "  .catch(err => console.log('Erroras:', err))"
+    ]
+  },
 
-        "regex_wywalanie_logow _i_komentow": {
-          "prefix": "reg",
-          "body": [
-            "(;|^)\\s*console\\.log\\(.*?\\)($|;)",
-            "(?:\\/\\*(?:[\\s\\S]*?)\\*\\/)|(?:^\\s*\\/\\/(?:.*)$) - przejrzyj i ew prawy i Dismiss"
-          ]
-        },
+  "regex_wywalanie_logow _i_komentow": {
+    "prefix": "reg",
+    "body": [
+      "(;|^)\\s*console\\.log\\(.*?\\)($|;)",
+      "(?:\\/\\*(?:[\\s\\S]*?)\\*\\/)|(?:^\\s*\\/\\/(?:.*)$) - przejrzyj i ew prawy i Dismiss"
+    ]
+  },
 
-        "vuex": {
-          "prefix": "vuex",
-          "body": [
-            "import Vue from 'vue'\nimport Vuex from 'vuex'\n\nVue.use(Vuex)\n\nexport default new Vuex.Store({\n  state: {\n\n  },\n\n  getters: {\n\n  },\n\n  mutations: {\n\n  },\n\n  actions: {\n\n  }\n\n})"
-          ]
-        },
-      }
+  "vuex": {
+    "prefix": "vuex",
+    "body": [
+      "import Vue from 'vue'\nimport Vuex from 'vuex'\n\nVue.use(Vuex)\n\nexport default new Vuex.Store({\n  state: {\n\n  },\n\n  getters: {\n\n  },\n\n  mutations: {\n\n  },\n\n  actions: {\n\n  }\n\n})"
+    ]
+  },
+}
+
 
 ________________________________________________________________________________________________________
 04) Snipki html

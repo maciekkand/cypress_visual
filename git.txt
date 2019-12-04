@@ -115,6 +115,10 @@
 324) Wielkość liter w nazwie katalogu
 
 330) Working while waiting for pending PR
+331) credential.helper
+332) Podbijanie wersji pakietu
+333) sprytny amend
+
 ___________________________________________________________________________________________
 00) git tips
 
@@ -1164,24 +1168,32 @@ ________________________________________________________________________________
        Nadpisanie błędnego komita
        Warunek: musi to być ostatni komit
 
-       W praktyce często każdy komit robi się z amendem, by puszować tylko 1 komit
-       Dzięki temu, podczas code review patrzy sie tylko na 1 komit
+       W praktyce, często pierwszy komit robi się normalnie (tzn z -m 'jakiś msg'),
+       a każdy ostatni z amendem, by puszować tylko 1 komit
+       Dzięki temu, podczas code review patrzy sie tylko na 1 komit (patrz punk 333 - sprytny amend)
 
-       Wadą jest to że tracę wszystkie poprzednie komity, bo zawsze będę miał tylko ostatni
+        git commit --amend
 
-       Rozw: robić komity _bez_ amenda, a na chwile przed pushem, robię squasha, który składa ileś komitów w 1
+       No chyba, że przy którymś komicie, chcemy zmienić message:
+        git commit --amend -m 'nowy message'
+
+       Wadą taktyki ciągłego amendowania jest to, że tracone są wszystkie poprzednie komity,
+       bo zawsze będę miał tylko ostatni
+
+       Rozw: robić komity standardowo, tzn bez amenda, a na chwile przed pushem, zrobić squasha,
+       który składa ileś komitów w 1
 
           Robi się to przez git rebase -i  ( patrz 111 )
 
        a) Komitnąłeś zmiany i zaraz zdałeś sobie sprawę, że zapomniałeś dodać
-       do poczekalni ( staging area )  pliku, który chciałeś oryginalnie umieścić w wykonanej rewizji.
+          do poczekalni (staging area) pliku, który chciałeś oryginalnie umieścić w wykonanej rewizji.
 
-         git  commit  -m  'initial  commit'                              // pomyłkowy komit
-         git  add  forgotten_file                                             //  dodanie przeoczonego pliku
-         git  commit --amend  -m 'dodanie forgotten_file'   //   powtórny, korygujący commit
+         git  commit  -m  'initial  commit'                  // pomyłkowy komit
+         git  add  forgotten_file                           //  dodanie przeoczonego pliku
+         git  commit --amend  -m 'dodanie forgotten_file   //   powtórny, korygujący commit
 
         b) Komitując,  dodałeś zły albo niepełny opis. Możesz go uzupełnić
-                git  commit --amend   -m 'KOREKTA OPISU -  dodanie forgotten_file'   //   powtórny, korygujący commit
+             git  commit --amend   -m 'KOREKTA OPISU -  dodanie forgotten_file'   //   powtórny, korygujący commit
 
          W git logu widać będzie tylko drugi z ww komitów, ale git reflog pokaże oba
 ___________________________________________________________________________________________
@@ -1564,7 +1576,7 @@ ________________________________________________________________________________
 95) branch  --delete
 
       git branch -d dupa           // error: The branch 'dupa' is not fully merged.
-                                              //  If you are sure you want to delete it, run 'git branch -D dupa'.
+                                  //  If you are sure you want to delete it, run 'git branch -D dupa'.
 
       git branch remove dupa  // chyba to samo co ww
 
@@ -2815,12 +2827,37 @@ ________________________________________________________________________________
            w vscodzie będzie to:
              klik w nazwę brancha w lewym dolnym > Create new branch from .. > Select a ref to branch from
 
+___________________________________________________________________________________________
+331) credential.helper
+
+    to avoid entering user/pass several times, run this command to cache it
+    By nie wpisywać co chwila tego samego hasła (przy pull'u czy push'u):
+
+    Tylko dla połączeń po HTTP
+      git config --replace-all --global credential.helper 'cache --timeout=36000'
+
+    Dla ssh rozwiązania są dość zawiłe
+
+___________________________________________________________________________________________
+332) Podbijanie wersji pakietu
+
+      npm version patch  // podbije 0.0.1 na 0.0.2
+      npm version minor  // podbije 0.0.1 na 0.1.0 (? sprzwdź)
+      npm version major  // podbije 0.0.1 na 1.0.0 (? sprzwdź)
+
+___________________________________________________________________________________________
+333) sprytny amend
+
+      By uniknąć tworzenia iluś komitów, a potem squashowania ich, można zrobić pierwszy,
+      a potem nadpisywać go, nie zmieniając opisu komita, prze:
+
+        alias ga='clear && git commit --amend -a --no-edit'
+
+      Dzięki --no-edit  vs code nie otwiera okna z opisem komita
 
 
 ___________________________________________________________________________________________
 
 
+
 ___________________________________________________________________________________________
-
-
-

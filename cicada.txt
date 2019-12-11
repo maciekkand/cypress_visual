@@ -1,0 +1,102 @@
+git clone git@github.build.ge.com:cicada/ui.git
+
+
+
+1. Favorite mechanism
+2. Breadcrumb trace in services
+
+
+
+_____________________________________________________________________
+1. Favorite mechanism
+
+     https://rally1.rallydev.com/#/255730482452d/detail/userstory/343300683520
+
+     https://github.build.ge.com/cicada/ui/pull/301
+
+_____________________________________________________________________
+2. Breadcrumb trace in services
+
+     https://rally1.rallydev.com/#/255730482452d/iterationstatus?qdp=%2Fdetail%2Fuserstory%2F348297202096&sharedViewId=344816267284
+
+     https://github.build.ge.com/cicada/ui/pull/320
+
+     Feedback from the users via our UX team. We would like to navigate directly/be able to bookmark different tabs in services view. This will be also handy as we are working on DevOps dashboard.
+
+      AC:
+        1. Add (bookmarkable) URL suffix
+        2. Add Breadcrumb suffix
+
+    a) fix: bookmarking service tabów
+
+        np w http://localhost:3000/products/372/components/373/environments/1360/services/1509/deployments
+
+        DeploymentsMenu.vue
+
++     // Conditionally redirect to the initial tab based on the current route.
+      // NOTE: We can do this in created because we know the menu is only rendered
+      // when the parent detects that the service features have loaded.
+-    this.selectInitialTab();
++    if (this.$route.name === 'deployments') {
++      this.selectInitialTab();
++    }
++
+
+-----------------------------------------------------
+
+Rozjechał się bcrumb zamiast komponentu, environmentu i serwisu pokazując '(Loading Component...)'
+
+https://github.build.ge.com/cicada/ui/pull/320 'Which I guess means we need to conditionally request that, too. Ugh.' - right below last screenshot
+
+The Wizard:coffee: 5:18 PM
+Ah.  Short answer:
+the list of Products and the list of Environments are having requests dispatched in protected handleChangedCurrentRouteName().
+It looks like we'll also need to do that for whatever getSelectedComponent() draws from, as well: https://github.build.ge.com/cicada/ui/blob/6faeb838f2423dc2749556d6f227798d1ce74ead/src/components/Common/MainNavigation/MainNavigationBreadcrumb.vue#L216
+So, starting there, work backwards to the Vuex state, then find out what Mutations update that state, then find out what Action fetches the list of products and call one of those Mutations, and then add a conditional call to that Action in handleChangedCurrentRouteName().
+
+Maciej Kandalski 6:54 PM
+After adding below, seems to be working :slightly_smiling_face:
+if (
+      'isSelectedComponentLoaded' in this.isEachThingLoadedForCurrentRoute &&
+      !this.isSelectedComponentLoaded
+    ) {
+      const productId = Number(this.currentRouteParams.productId);
+      if (Number.isFinite(productId)) {
+        fetchProductComponents(this.$store, productId);
+      }
+    }
+I inserted this in the handleChangedCurrentRouteName(), between 2 existing ifs
+
+----------------------------------------------------
+2. Breadcrumb 2.0
+
+  US US341013  Breadcrumb 2.0
+
+  https://rally1.rallydev.com/#/255730482452d/iterationstatus?qdp=%2Fdetail%2Fuserstory%2F350960183680&sharedViewId=344816267284
+
+  There will be slight modifications to the top page layout, in order to make better use of page space.
+  Those modifications have to be applied globally to each view.
+
+  Wireframe/design: https://s1w48e.axshare.com/
+  High fidelity design: https://ge.invisionapp.com/share/96ARVIBJW5V#/222589796_Breadcrumb_New
+
+  Acceptance Criteria:
+  1. Apply spacing & layout according to new wireframe & high fidelity design
+  2. Breadcrumb in component tree:
+                Product > Component > Environment > Service
+  HOME >ABC > Comp1 > dev > Comp1
+  3. Breadcrumb in build infra tree:
+                Product > Build Infrastructure Service 
+  HOME > ABC > Jenkins
+  4. Remove breadcrumb from Product Dashboard, preserve spacing of H1
+  5. After UX discussion tabs (Deployment, Config, Logs, etc) should not be displayed in breadcrumb
+  6. Technical re-factor
+  7. Load breadcrumb before view?? (tak by bcrumb nie był wyświetlany na końcu, tylko razem ze wszystkim)
+
+----------------------------------------------------
+
+
+
+
+
+

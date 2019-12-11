@@ -247,6 +247,8 @@
 
 370) firebase - functions: tips
 371) opencagedata - free geocoding api
+372) wolny npm install
+373) instalka pakietu z zipa
 
 
 _______________________________________________________________________
@@ -10049,7 +10051,18 @@ ________________________________________________________________________________
       Reverse geocoding
         https://api.opencagedata.com/geocode/v1/json?q=LAT+LNG&key=YOUR-API-KEY
 ___________________________________________________________________________________________
+372) wolny npm install
 
+      https://stackoverflow.com/questions/45553401/npm-using-stale-package-data
+
+      .. i ETIMEDOUT i 'Using stale data from https://registry.npmjs.org/ due to a request error during revalidation'
+
+      Pomogło odpalenie VPN'a, skąd wniosek, że prawdopodobnie Orange robił jakiś traffic shaping na pakiety z npm
+
+___________________________________________________________________________________________
+373) instalka pakietu z zipa
+
+    npm  config get prefix - wyświetla katalog gdzie trzymane są pakiety globalne
 
 
 

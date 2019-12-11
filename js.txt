@@ -274,6 +274,9 @@
 289) ESlint - prettier-eslint
 290) ESLint i Prettier w Vue
 
+
+297) tsconfig.json - noUnusedLocals i noUnusedParameters
+
 300) Jest - config
 301) Jest - numbers: toBe
 302) Jest - refaktorowanie implementacji
@@ -401,6 +404,7 @@
 720) TWA - tips
 721) TWA - intro
 722) TWA - Android Studio
+
 
 __________________________________________________________________________________________
 00a) Zaawansowane pojęcia JS (do interview)
@@ -2476,6 +2480,16 @@ ________________________________________________________________________________
             var car = { marka: 'honda', cena: 1000 }
             var { marka, cena, kolor: masc =  'szary' } = car
             console.log( marka + ' ' + cena + ' ' + masc)   // honda  1000  szary
+
+      i) Object destructuring - assigning to new variable names
+
+          A property can be unpacked from an object and assigned to a variable with a different name than the object property.
+
+            const o = {p: 42, q: true};
+            const {p: foo, q: bar} = o;
+
+            console.log(foo); // 42
+            console.log(bar); // true
 
 ______________________________________________________________________________________________
 87)  ES6 - default parameters: 1
@@ -8337,7 +8351,7 @@ ________________________________________________________________________________
         eslint.org/docs/rules/
         github.com/airbnb/javascript
 
-        a) zainstaluj plugin Eslint i LintLens
+        a) zainstaluj vsc pluginy: Eslint i LintLens
 
         b) yarn global add eslint
 
@@ -8742,6 +8756,89 @@ ________________________________________________________________________________
              vue/singleline-html-element-content-newline
 
             Zostaw je
+
+______________________________________________________________________________________________
+291) ESLint - unused selectors
+
+
+     Żeby plugin wykrył nieużywany styl css, w tagu style musi być 'scoped':
+       <style scoped lang="scss">
+     .. i rule'a:
+       "no-unused-selector": "error"
+
+      Ponieważ w cykadzie nie używamy scoped, na koniec trzeba to 'scoped' wyciąć
+
+    npm i
+      npm install --save-dev eslint eslint-plugin-vue-scoped-css tslint-eslint-rules
+
+      npx tslint-to-eslint-config   // Converts your TSLint configuration to the closest possible ESLint equivalent
+
+      "@typescript-eslint/eslint-plugin": "^2.10.0",
+      "@typescript-eslint/parser": "^2.10.0",
+      "eslint": "^6.7.2",
+      "eslint-plugin-vue": "^6.0.1",
+
+     eslint --init > config files in Javascript
+
+     do tslint.configa dodać rulę:
+        no-unused-import
+
+     .eslintrc.js:
+
+        module.exports = {
+          "env": {
+              "browser": true,
+              "es6": true
+          },
+          "extends": [
+              "eslint:recommended",
+              "tslint-eslint-rules",
+              "plugin:vue/essential",
+              "plugin:vue-scoped-css/recommended",
+              "plugin:@typescript-eslint/eslint-recommended"   // -base or -all
+          ],
+          "globals": {
+              "Atomics": "readonly",
+              "SharedArrayBuffer": "readonly"
+          },
+          "parserOptions": {
+              "ecmaVersion": 2018,
+              "parser": "@typescript-eslint/parser",
+              "sourceType": "module"
+          },
+          "plugins": [
+              "vue",
+              "@typescript-eslint"
+          ],
+          "rules": {
+              "array-bracket-spacing": 0,
+              "arrow-parens": 0,
+              "brace-style": ["error", "stroustrup"],
+              "computed-property-spacing": 0,
+              "func-call-spacing": 0,
+              "indent": ["error", 2],
+              "linebreak-style": 0,
+              "max-len": [1, 120, 2],
+              "no-console": 0,
+              "no-multiple-empty-lines": [1, { "max": 1 }],
+              "no-plusplus": 0,
+              "no-spaced-func": 0,
+              "no-whitespace-before-property": 0,
+              "space-in-parens": 0,
+              "space-before-function-paren": 0,
+              "spaced-comment": 0,
+              "no-trailing-spaces": 2,
+              "no-unused-vars": 2,
+              "no-unused-expressions": 2,
+              "no-unused-css": 2,
+              "no-constant-condition": 2,
+              "no-unused-selector": "error"
+          }
+      };
+______________________________________________________________________________________________
+297) tsconfig.json - noUnusedLocals i noUnusedParameters
+
+      Do tsconfiga, dodaj
 
 ______________________________________________________________________________________________
 299) jest - tips
@@ -9716,15 +9813,27 @@ ________________________________________________________________________________
 
       Wyświetla obiekty w zgrabnej i sortowalnej tabelce, zamiast w drzewie
 
+      UWAGA !
+        console.table('tekst') wypisze go tak samo, jak console.log('tekst'),
+        więc w makrach lepiej używać .table, bo zachowa się ok niezależnie czy argumentem będzie string czy tablica
+
+        Jeśli jednak chce się mieć wyświelaną narpief nazwę tablicy, a potem jej zawartość,
+        rozbij to na 2 osobne linijki makra:
+
+          console.table(`%c user = ...`, `color: lime`)
+          console.table(user)
+
         var languages = [
             { name: "JS", fileExtension: ".js", paradigm: "object-oriented" },
             { name: "TS", fileExtension: ".ts", paradigm: "object-oriented" },
             { name: "CoffeeScript", fileExtension: ".coffee", paradigm: "functional" }
         ]
 
-        console.table(languages)                                        // wszystko
-        console.table(languages, "name")                         //  tylko 1 kolumna
-        console.table(languages, ["name", "paradigm"])  //   2 kolumny
+        console.table(languages)                         // wszystko
+        console.table(languages, "name")                //  tylko 1 kolumna
+        console.table(languages, ["name", "paradigm"])  //  2 kolumny
+
+        console.table('user = ', user)  // wypisze: user = i rozwijalny dropdown z tablicą
 ______________________________________________________________________________________________
 342) JS style - feross: standard JS
 

@@ -76,6 +76,12 @@
 80) StatusBar Debugger plugin
 81) VSCode google translate plugin
 
+82) Literki przy plikach w panelu Gita (Source Control)
+83) HTML CSS Support - plugin
+84) Error Lens - plugin
+85) Stackoverflow-search - plugin
+86) Local History - plugin
+87) No unused locals and parameters
 
 ________________________________________________________________________________________________________
 01) Settings
@@ -114,19 +120,15 @@ ________________________________________________________________________________
         }
     ],
 
-    "checkpoints.askForCheckpointName": false,
-    "checkpoints.showCheckpointsInExplorer": true,
+    "breadcrumbs.enabled": false,
 
-    "codemetrics.nodeconfiguration.ReturnStatement": 0,
+    "checkpoints.askForCheckpointName": false,
 
     "code-runner.showRunCommandInEditorContextMenu": false,
     "code-runner.showRunIconInEditorTitleMenu": false,
 
     "bookmarks.navigateThroughAllFiles": true,
     "bookmarks.saveBookmarksInProject": true,
-
-    "dart.flutterDebuggerRestartBehaviour": "hotRestart",
-    "dart.flutterHotReloadOnSave": true,
 
     "diffEditor.renderSideBySide": false,
 
@@ -146,6 +148,8 @@ ________________________________________________________________________________
     "editor.formatOnSave": false,
     "editor.formatOnType": false,
     "editor.hover.enabled": false,
+    "editor.lineHeight": 0,
+    "pasteAndIndent.selectAfter": true,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
     "editor.renderIndentGuides": false,
@@ -153,10 +157,14 @@ ________________________________________________________________________________
     "editor.renderWhitespace": "none",
     "editor.showFoldingControls": "always",
     "editor.snippetSuggestions": "top",
+    "editor.suggestSelection": "first",
     "editor.tabSize": 2,
     "editor.useTabStops": true,
     "editor.wordWrap": "off",
     "editor.wordSeparators": "\\()\"',.;<>~!@^&*|+[]{}`~:",
+
+    "errorLens.gutterIconsEnabled":  true,
+    "errorLens.gutterIconSize": "200%",
 
     "eslint.alwaysShowStatus": true,
     "eslint.autoFixOnSave": false,
@@ -185,7 +193,8 @@ ________________________________________________________________________________
         "yarn-error.log": true,
         "yarn.lock": true,
         "node_modules": true,
-        ".vscode": true
+        ".vscode": true,
+        "**/.history/**": true
     },
 
     "files.hotExit": "onExit",
@@ -197,6 +206,7 @@ ________________________________________________________________________________
     "git.enableSmartCommit": true,
     "git.path": "/mingw64/bin/git",
     "git.postCommitCommand": "none",
+    "git.untrackedChanges": "separate",
 
     "gitlens.advanced.messages": {
       "suppressShowKeyBindingsNotice": true
@@ -240,20 +250,12 @@ ________________________________________________________________________________
     "statusbarDebugger.alignment": "left",
     "statusbarDebugger.priority": -10,
 
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-
-    "todohighlight.isCaseSensitive": false,
-    "todohighlight.include": [
-        "**/*.js",
-        "**/*.html",
-        "**/*.css",
-        "**/*.scss",
-        "**/*.vue"
-    ],
-
-    "todohighlight.keywords": ["todo", "fixme", "!!", "??"],
 
     "typescript.validate.enable": false,
     "typescript.tsserver.trace": "verbose",
@@ -261,28 +263,29 @@ ________________________________________________________________________________
     "update.mode": "manual",
 
     "vscodeGoogleTranslate.preferredLanguage": "pl",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
     "window.menuBarVisibility": "toggle",
     "window.title": "${rootName}${separator}${activeEditorShort}",
     "window.zoomLevel": -1,
+
+    "workbench.activityBar.visible": true,
+
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#3498DB"
+    },
+
+    "workbench.colorTheme": "Monokai",
     "workbench.editor.tabSizing": "shrink",
     "workbench.panel.defaultLocation": "right",
     "workbench.settings.editor": "json",
-    "workbench.startupEditor": "newUntitledFile",
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.sideBar.location": "left",
-    "breadcrumbs.enabled": false,
-    "workbench.statusBar.visible": true,
-    "workbench.colorTheme": "Monokai",
-    "editor.lineHeight": 0,
-    "pasteAndIndent.selectAfter": true,
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
-    "workbench.activityBar.visible": true
+    "workbench.sideBar.location": "left",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.visible": true,
 
 }
+
 
 ________________________________________________________________________________________________________
 02) Keyboard Shortcuts
@@ -301,8 +304,7 @@ ________________________________________________________________________________
  tzn 'minus', a nie '-' albowiem skrót alt z minusem, kodowany jest:
    "alt+oem_minus"
 
-
-  [
+[
   {
     "key": "F1",
     "command": "workbench.action.toggleSidebarVisibility"
@@ -389,21 +391,6 @@ ________________________________________________________________________________
     "command": "-console.log.wrap.input"
   },
   {
-    "key": "numlock",
-    "command": "console.log.wrap.down",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "scrolllock",
-    "command": "console.log.wrap.up",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "capslock",
-    "command": "console.log.wrap.up",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "ctrl+alt+w down",
     "command": "-console.log.wrap.down",
     "when": "editorTextFocus"
@@ -411,11 +398,6 @@ ________________________________________________________________________________
   {
     "key": "ctrl+shift+alt+w down",
     "command": "-console.log.wrap.down.input",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "numlock",
-    "command": "console.log.wrap.down.prefix",
     "when": "editorTextFocus"
   },
   {
@@ -524,11 +506,6 @@ ________________________________________________________________________________
     "command": "-rest-client.switch-environment"
   },
   {
-    "key": "pausebreak",
-    "command": "regionfolder.wrapWithRegion",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "insert",
     "command": "editor.foldAll",
     "when": "editorTextFocus"
@@ -578,18 +555,13 @@ ________________________________________________________________________________
     "command": "-editor.foldLevel4",
     "when": "editorTextFocus"
   },
-  {
-    "key": "numpad_divide",
-    "command": "console.log.wrap.string.down",
-    "when": "editorTextFocus"
-  },
-  {
+    {
     "key": "shift+alt+w down",
     "command": "-console.log.wrap.string.down",
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+oem_3",
+    "key": "ctrl+shift+oem_3",
     "command": "rest-client.request",
     "when": "editorTextFocus"
   },
@@ -618,10 +590,6 @@ ________________________________________________________________________________
   {
     "key": "ctrl+q",
     "command": "-workbench.action.quickOpenView"
-  },
-  {
-    "key": "ctrl+w",
-    "command": "workbench.action.navigateEditorGroups"
   },
   {
     "key": "alt+1",
@@ -728,16 +696,45 @@ ________________________________________________________________________________
     "when": "gitlens:enabled && config.gitlens.keymap == 'alternate'"
   },
   {
-    "key": "ctrl+shift+t",
-    "command": "-workbench.action.reopenClosedEditor"
+    "key": "ctrl+shift+r",
+    "command": "workbench.action.reopenClosedEditor"
   },
   {
     "key": "ctrl+shift+t",
     "command": "extension.translateTextPreferred"
   },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeGroup",
+    "when": "activeEditorGroupEmpty && multipleEditorGroups"
+  },
+  {
+    "key": "ctrl+shift+oem_3",
+    "command": "-workbench.action.terminal.new"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.togglePanelPosition"
+  },
+
+
+  {
+    "key": "numlock",
+    "command": "console.log.wrap.down.prefix",
+    "when": "editorTextFocus"
+  },
+
+  {
+    "key": "scrolllock",
+    "command": "console.log.wrap.up",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "pausebreak",
+    "command": "console.log.wrap.string.down",
+    "when": "editorTextFocus"
+  }
 ]
-
-
 
 
 ________________________________________________________________________________________________________
@@ -1443,6 +1440,7 @@ ________________________________________________________________________________
     Debugger for Chrome
     Docker
     Easy Snippet Maker
+    Error Lens
     ESLint
     Excel Viewer
     Filter Line
@@ -1459,7 +1457,7 @@ ________________________________________________________________________________
     Git Tree Compare
     Google Fonts
     Guides
-  HTML CSS support
+    HTML CSS support
     HTML Format
     Import Cost  // za dużo literek
     indent-rainbow
@@ -1495,6 +1493,7 @@ ________________________________________________________________________________
     Snyk
     Sort lines
     Sort Lines by Selection
+    Stackoverflow-search by alexey-strakh
     StatusBar Debugger
     Sublime Text KeyMap and Settings
     SVG Viewer
@@ -2032,24 +2031,31 @@ ________________________________________________________________________________
 
         C:/Users/abc/.vscode/extensions/midnightsyntax(..)wrap-console-log/out/extension.js
 
-        Linie od 35 do 49, mają wyglądać tak:
+        Linie od 35 do 54, mają wyglądać tak:
 
-        ----------
-        else {
-          wrapData.txt = "console.log(`%c "  .concat(wrapData.item, " = ",  "${",  wrapData.item, "}",  "`, 'color: yellow');")
+      ----------
+
+      else {
+          // wrapData.txt = "console.log(`%c "  .concat(wrapData.item, " = ",  "${",  wrapData.item, "}",  "`, 'color: yellow');")
+          wrapData.txt = "\nconsole.table('%c "  .concat(wrapData.item, " = ...", "', 'color: lime');")  // numlock (chrome)
+          wrapData.txt += "\n" + "console.table(".concat(wrapData.item) + ");\n";
           resolve(wrapData)
         }
       }
       else {
         switch (formatAs) {
           case FormatAs.String:
-            wrapData.txt = "console.log(".concat("'" , wrapData.item, " = ' , ", wrapData.item, ");")
-
+            // wrapData.txt = "console.log(".concat("'" , wrapData.item, " = ', ", wrapData.item, ")")
+            wrapData.txt = "console.log(".concat("'\\x1b[32m', '", wrapData.item, " = ', ", wrapData.item, ", '\\x1b[0m')")  // pausebreak (node)
             break;
             default:
-              wrapData.txt = wrapData.txt.replace('$txt', "".concat( '`%c ', item, "`, ", "'color: orange'"))
-            break;
+              // wrapData.txt = wrapData.txt.replace('$txt', "".concat( '`%c ', item, "`, ", "'color: orange'"))
+              // wrapData.txt = "  console.table('%c ".concat(wrapData.item, " = ", "',", " ", wrapData.item, ", 'color: orange');")  // scrollock (chrome)
+              wrapData.txt = "console.table('%c ".concat(wrapData.item, " = ", "',", " 'color: gold', ", wrapData.item, ");")  // scrollock (chrome)
+              break;
         }
+        resolve(wrapData);
+      }
 
 ________________________________________________________________________________________________________
 34) Modyfikacja plugina 'Snippet Maker'
@@ -2293,16 +2299,14 @@ ________________________________________________________________________________
             Zostaw je
 
 ----------------------------------------------------------------------------
-49) Opróżnianie cache'a
+49) Opróżnianie cache'a (Local History)
 
-    Po zainstlowaniu pakietu Local History, po chwili przy szukaniu plików przez ctrl + p
+    Po zainstalowaniu pakietu Local History, po chwili przy szukaniu plików przez ctrl + p
     pokazywały mi się dziesiątki plików o tej samej nazwie
 
     Pomogło:
       a) opróżnienie katalogu C:/Users/abc/AppData/Local/temp
       b) ctrl + shift + p > Clear Editor History
-
-
 
 ________________________________________________________________________________________________________
 51) Aliasy
@@ -2792,8 +2796,65 @@ ________________________________________________________________________________
           "key": "ctrl+shift+t",
           "command": "extension.translateTextPreferred"
         },
+________________________________________________________________________________________________________
+82) Literki przy plikach w panelu Gita (Source Control)
 
+    M - modified
+    C - conflict
+    inne - odpal git status i zobacz pełny opis przy danym pliku
 
+________________________________________________________________________________________________________
+83) HTML CSS Support - plugin
+
+    Jeśli wbijemy w sekcji styles klasę, np
+      .dluga-klasa__testowa { ... }
+
+    .. to potem w html'u, gdy wpiszemy class=" - wyskoczy okno z nią wśród innych podpowiedzi
+
+________________________________________________________________________________________________________
+84) Error Lens - plugin
+
+      Inline'owo wyświetla błędy
+
+      Dodaj do settings.json:
+        "errorLens.gutterIconsEnabled":  true,
+        "errorLens.gutterIconSize": "200%",
+
+________________________________________________________________________________________________________
+85) Stackoverflow-search - plugin
+
+      by alexey-strakh
+
+    Zaznacz frazę > ctrl + shift + p: 'stackov'
+
+________________________________________________________________________________________________________
+86) Local History - plugin
+
+    a) zainstaluj i wklej do settings.json:
+
+      "local-history.daysLimit": 30,
+      "local-history.maxDisplay": 20,  // ilość śledzonych plików
+      "local-history.saveDelay": 5,   // 10s delay
+      "local-history.path": "null",
+
+      "files.exclude": {
+        (...)
+        "**/.history/**": true
+      },
+
+    b) zrób parę zmian w plikach i otwórz zakładkę outline w Explorer barze (lewy pionowy)
+
+________________________________________________________________________________________________________
+87) No unused locals and parameters
+
+    By vs code wyłapywał na czerwono (dzięki Error Lens) nieużywane importy, do pliku jsconfig lub tsconfig, dodaj:
+
+    "compilerOptions": {
+      "noUnusedLocals": true,
+      "noUnusedParameters": true
+    }
+
+________________________________________________________________________________________________________
 
 
 

@@ -121,8 +121,10 @@
 334) przeniesienie komita ze złej branczki
 335) jak wycofać reset --soft
 336) revert błędnego merge komita
+337) cykada - revert błędnego merge komita
+338) zamykanie w githubie zbędnego pull requesta
 
-
+342) mergowanie deva do bieżącego brancza
 ___________________________________________________________________________________________
 00) git tips
 
@@ -2912,6 +2914,73 @@ ________________________________________________________________________________
               git revert 8f937c6 -m 1
 
 ___________________________________________________________________________________________
+337) cykada - revert błędnego merge komita
+
+     Po wypuszowaniu komita, w githubie pokazało się:
+      'The branch has conflicts that must be resolved',
+     baton 'resolve conflicts' i linki do web editora i instrukcji command line'a:
+      'Use the web editor or the command line to resolve conflicts'
+
+    W celu rozwiązania ww konflików, nagniotłem linkę web editor i rozwiązałem konflikty
+
+    Następnego dnia, Joe rzekł, że merge wywalił dużo importów, trzeba więc
+    zrobić reverta, albo zrobić nowy branch i ręcznie przepisać zmiany we wszystkich plikach
+
+    Zrobiłem wyżej opisanego reverta i wypuszowałem go, ale Joe rzekł,
+    że dalej są konflikty importowe
+
+    Wobec tego zrobiłem:
+      a) hard reseta 2 ostatnich komitów (merga i reverta)
+      b) sprawdziłem - w chromie chodziło ok
+      c) soft reset 5 czy 6 komitów z moim kodem
+      d) dla formalności ponownie sprawdziłem w chromie
+      e) zmienione pliki wrzuciłem do stasza i znów check w chromie
+      f) zrobiłem i przełączyłem się na nowego brancza (bredkramb_NEW)
+      g) apply ww stasza i check w chromie
+      h) commit
+      i) push
+      j) PR
+___________________________________________________________________________________________
+338) zamykanie w githubie zbędnego pull requesta
+
+      a) otwórz listę pull requestów
+      b) klik w wybranego
+      c) scroll na sam dół
+      d) baton 'Close pull request'
+___________________________________________________________________________________________
+342) mergowanie deva do bieżącego brancza
+
+   > Desktop/breadcrumb NEW (feature/breadcrumb_trace_in_services-joe-reccomendations)
+
+      $ git merge dev
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+
+___________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

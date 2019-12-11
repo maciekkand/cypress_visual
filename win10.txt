@@ -1,0 +1,32 @@
+0) szybkie odpalanie dowolnej apki
+1) nagrywanie video
+2) screenshot wszystkich ekranów
+3) screenshot wybranego ekranu
+
+
+
+___________________________________________________________
+0) szybkie odpalanie dowolnej apki
+
+      nagnieć win i zacznij pisać jej nazwę, np:
+      win + 'avi' -> avidemux
+      win + 'prox' -> ustawienia proxy
+___________________________________________________________
+1) nagrywanie video
+     win + g
+     mp4 wyląduje w C:\Users\juzek\Videos\Captures
+
+___________________________________________________________
+2) screenshot wszystkich ekranów
+     win + printscreen
+     C:\Users\juzek\Pictures\Screenshots
+
+___________________________________________________________
+
+3) screenshot wybranego ekranu
+     klik w górną belkę okna wybranego ekranu
+     win + alt + printscreen
+
+      wyląduje w C:\Users\juzek\Videos\Captures
+
+___________________________________________________________

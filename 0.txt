@@ -1,30 +1,4 @@
-var obj = [
-  { one: 1, two: 2, imie: 'wojtek' }, 
-  { one: 1, two: 9, imie: 'kasia' }, 
-  { one: 1, two: 3, imie: 'robert' },
-  { one: 1, two: 3, imie: 'krzys' },
-  { one: 2, two: 4, imie: 'adam' },
-  { one: 2, two: 2, imie: 'basia' },
-  { one: 2, two: 5, imie: 'piotr' },
-  { one: 2, two: 5, imie: 'zenek' },
-]
-
-obj.sort((a, b) => {
-  return a.one - b.one  ||  b.two - a.two || a.imie.localeCompare(b.imie)
-})
-console.table(obj)
-https://stackoverflow.com/questions/13211709/javascript-sort-array-by-multiple-number-fields
----------------------------------------------------------------------------------------------------
-const components = [1, 2, 'c2', 'c1', 3, 4]
-const favorites = ['c1', 'c2', 'c3']
-
-const componentsWithoutFavs = components.filter(el => !favorites.includes(el))
-const favsFromComponents = components.filter(el => favorites.includes(el)).sort()
-const favsAndComponents = [...favsFromComponents, ...componentsWithoutFavs]
-
-console.log(componentsWithoutFavs)  // [ 1, 2, 3, 4 ]
-console.log(favsFromComponents)     // [ 'c1', 'c2' ] 
-console.log(favsAndComponents)      // [ 'c1', 'c2', 1, 2, 3, 4 ]
+https://www.youtube.com/watch?v=ilNu505pfkw
 
 -----  Chodzący Cypress na Squadzie u Arka ------------------------------------------
 

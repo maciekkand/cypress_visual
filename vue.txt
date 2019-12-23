@@ -6848,6 +6848,8 @@
 
           <v-app class="mx-0 my-1">
 
+            unit increment = 4px (my-2 = my-1 + 4px)
+
             m - applies margin
             p - applies padding
 
@@ -8333,7 +8335,7 @@ ________________________________________________________________________________
       https://palantir.github.io/tslint/rules/member-ordering/
 
       @Prop
-      zmienne (public / private)
+      zmienne (public / protected / private)
       get
       set
       metody (protected / private)

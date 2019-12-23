@@ -1,11 +1,25 @@
-git clone git@github.build.ge.com:cicada/ui.git
+mvn spring-boot:run -Dspring-boot.run.arguments=--spring_datasource_driverClassName=org.postgresql.Driver,--spring_datasource_password=pass123,--spring_datasource_url=jdbc:postgresql://localhost:5432/cicada_local?currentSchema=cicada,--spring_datasource_username=cicada_owner,--spring_jpa_database=postgresql,--spring_jpa_hibernate_dialect=org.hibernate.dialect.PostgreSQLDialect,--spring_jpa_hibernate_hbm2ddl_auto=none,--spring_jpa_hibernate_hbm2ddl_import_file=import.sql,--spring_jpa_hibernate_jdbc_metadata_default=false,--spring_jpa_hibernate_query_cache=false,--spring_jpa_hibernate_second_level_cache=false,--spring.profiles.active=local
 
-
-
+0. Deployment deva
 1. Favorite mechanism
 2. Breadcrumb trace in services
 
 
+_____________________________________________________________________
+0. Deployment deva
+
+    a) sprawdź czy inni nie robią już żadnych zmian w Twoich plikach
+         jeśli robią, to jak skończą git pull
+    b) rozwiąż konflikty zgłoszone w PR'ze githuba
+    c) uaktualnij plik changelog.md
+    d) podnieś wersję komendą npm version patch
+    e) odpal merga klikając 'Merge' w GH
+    f) odpal deplojkę, wchodząc na produkcyjny serwer cykady
+        > cicada > ui > dev > ui > baton Deploy
+    g) jeśli po kilku minutach na stronie z deplojami wyświetli 'Fail',
+         obejrzyj logi klikając ikonkę downloadu (strzałka w dół)
+         i sprawdź czy nowe funkcjonalności działają, bo często zdarza się,
+         że jednak działają
 
 _____________________________________________________________________
 1. Favorite mechanism
@@ -41,6 +55,55 @@ _____________________________________________________________________
 +      this.selectInitialTab();
 +    }
 +
+
+-----------------------------------------------------
+
+From poking `this.$route` myself, it should match to the deepest-most route from our route configuration,
+but to clearly define things I recommended that `meta.serviceFeature` thing so that one can just pick out
+the route definition from `this.$route.matched` by looking for that.
+
+As far as the tabs themselves, they’ll still have to be hardcoded because the DeploymentsPage
+is where the possible tabs are defined.
+
+As for rendering itself, for that you should update the DeploymentsPage to use <router-view>
+instead of <component> so that the router can take over putting in the correct tab content.
+
+Alternatively, you can always define which Tab component to show for what Feature or Route in DeploymentsPage,
+but that makes the specification of those components in `util/router.ts` redundant.
+
+Since the components are already defined in the router, <router-view> should be used.
+
+I’ve implemented what I think is a reasonable way to do this in the PipelineServiceDetailsPage.vue component:
+https://github.build.ge.com/cicada/ui/blob/edb982acb2b45fee7ad1128e2c09a6a7c2eebe0e/src/components/PipelineServiceDetailsPage/PipelineServiceDetailsPage.vue
+
+
+-	The association of ServiceFeatures, tab titles, and route names
+(And, implicitly, the order of the tabs by the order in the array) is defined in the const `renderableTabs`:
+https://github.build.ge.com/cicada/ui/blob/edb982acb2b45fee7ad1128e2c09a6a7c2eebe0e/src/components/PipelineServiceDetailsPage/PipelineServiceDetailsPage.vue#L78-L94
+
+
+-	The tabs that will actually be shown is an intersection between the tabs which the UI can actually render (`renderableTabs`)
+and features that the API dictates is supported by a given feature (`supportedFeaturesData`):
+https://github.build.ge.com/cicada/ui/blob/edb982acb2b45fee7ad1128e2c09a6a7c2eebe0e/src/components/PipelineServiceDetailsPage/PipelineServiceDetailsPage.vue#L154-L158
+
+
+-	Since service features are dynamically loaded, we can’t actually automatically navigate to a default tab
+until we know what tabs are actually supported according to the service’s supported features:
+https://github.build.ge.com/cicada/ui/blob/edb982acb2b45fee7ad1128e2c09a6a7c2eebe0e/src/components/PipelineServiceDetailsPage/PipelineServiceDetailsPage.vue#L164-L175
+
+
+o	NOTE: I forgot to handle direct links to tabs in the above linked code.
+The navigation there should only occur if the current route is for the index page, not for a tab route.
+
+-	The current tab’s actual view itself is rendered using <router-view>:
+https://github.build.ge.com/cicada/ui/blob/edb982acb2b45fee7ad1128e2c09a6a7c2eebe0e/src/components/PipelineServiceDetailsPage/PipelineServiceDetailsPage.vue#L27
+
+o	Notice that the <router-view> is only actually rendered after the initial data (the service features request) has been loaded.
+
+o	Also note, I forgot to handle the case of a feature’s tab not being supported by the current service,
+and need to update the template with that in mind.
+
+Hopefully that helps?
 
 -----------------------------------------------------
 
@@ -81,22 +144,90 @@ I inserted this in the handleChangedCurrentRouteName(), between 2 existing ifs
   High fidelity design: https://ge.invisionapp.com/share/96ARVIBJW5V#/222589796_Breadcrumb_New
 
   Acceptance Criteria:
+
   1. Apply spacing & layout according to new wireframe & high fidelity design
+      b) zastąpić 'Product Dashboard' na kolejnych stronach, ikoną home outline
+      c) zmniejszyć fonta 'My Products' i 'Favorites'
+      d) wziąć z InVision wymiary rozłożenia elementów layoutu w px (Aneta)
+
   2. Breadcrumb in component tree:
-                Product > Component > Environment > Service
-  HOME >ABC > Comp1 > dev > Comp1
+                Product   > Component   > Environment > Service
+      HOME    > ABC       > Comp1       > dev         > Comp1
+
   3. Breadcrumb in build infra tree:
-                Product > Build Infrastructure Service 
-  HOME > ABC > Jenkins
+             Product > Build Infrastructure Service 
+      HOME > ABC     > Jenkins
+
   4. Remove breadcrumb from Product Dashboard, preserve spacing of H1
-  5. After UX discussion tabs (Deployment, Config, Logs, etc) should not be displayed in breadcrumb
+
+  5. Tabs (Deployment, Config, Logs, etc) should not be displayed in breadcrumb
+
   6. Technical re-factor
+
   7. Load breadcrumb before view?? (tak by bcrumb nie był wyświetlany na końcu, tylko razem ze wszystkim)
+      Kamil: niech requesty bcrumba będą wysyłane przed requestami reszty view
+      MK: vue-router  - data fetching before navigation
+            https://router.vuejs.org/guide/advanced/data-fetching.html#fetching-before-navigation
+
+----------------------------------------------------
+Aneta (skajp w pt 13 gru):
+
+  Odległości i czcionki zostawić tak jak jest, tylko:
+    a) dodać 2px między top belką, a 'Product Dashboard'
+    b) zrównać dolną krawędź labelki 'My Products' z dolną krawędzią batona 'Create (..)'
+
 
 ----------------------------------------------------
 
 
+MainNavigationBreadcrumb: 10
+  <router-link to="/" class="breadcrumb-link">
+    <img src="@/assets/home-24px.svg" />
+  </router-link>
 
 
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path fill= "none" stroke="#1C8FE9" d="M12 69l5 4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+</svg>
 
 
+----------------------------------------------------
+
+Both of these points are already included in Breadcrumb 2.0 US:
+
+2. Breadcrumb in component tree:
+              Product > Component > Environment > Service
+HOME >ABC > Comp1 > dev > Comp1
+
+5. After UX discussion tabs (Deployment, Config, Logs, etc) should not be displayed in breadcrumb
+
+https://rally1.rallydev.com/#/255730482452d/detail/userstory/350960183680?fdp=true
+
+.. and I have them done in a new branch, so I guess it is ready for merge as it is
+
+
+________________________________________________________________
+Breadcrumb - konflikty:
+
+<<<<<<< feature/breadcrumb_trace_in_services-joe-reccomendations
+import { getSelectedProduct, fetchProducts } from '@/store';
+=======
+>>>>>>> dev
+
+1. Czy można sieknąć
+    fetchProducts ? TAK
+    getSelectedProduct ? NIE
+
+    Co mówi w notkach Joe ?
+
+<<<<<<< feature/breadcrumb_trace_in_services-joe-reccomendations
+import {
+  dispatchRequestIfNotNullAndCatch,
+  readRequestData,
+} from '@/store/Requests';
+=======
+import { dispatchRequestIfNotNullAndCatch } from '@/store/Requests';
+>>>>>>> dev
+
+
+2. Czy można sieknąć readRequestData ? TAK

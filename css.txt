@@ -255,7 +255,7 @@ ________________________________________________________________________________
 
     Który wybrać ?
       font-size (root element)        % lub nic
-      fonst-size, padding, margin     rem
+      font-size, padding, margin      rem
       border                          px
       width, height                   % lub vw / vh
       top, bottom, left, right        %

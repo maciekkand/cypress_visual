@@ -23,7 +23,7 @@ ___________________________________________________________
 
 ___________________________________________________________
 
-3) screenshot wybranego ekranu
+3) screenshot wybranego okna
      klik w górną belkę okna wybranego ekranu
      win + alt + printscreen
 
